@@ -3,7 +3,7 @@ package co.yedam.hellonote.mysitelist.vo;
 import lombok.Data;
 
 @Data
-public class MysitelistVO {
+public class MySiteListVO {
 
 	private String siteId;
 	private String sitePw;

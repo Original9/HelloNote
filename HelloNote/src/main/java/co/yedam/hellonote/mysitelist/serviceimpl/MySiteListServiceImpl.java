@@ -1,5 +1,5 @@
 package co.yedam.hellonote.mysitelist.serviceimpl;
 
-public class MysitelistServiceImpl {
+public class MySiteListServiceImpl {
 
 }

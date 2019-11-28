@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>This is mysitelist!!</h1>
+<h1>This is mySiteList!!</h1>
 </body>
 </html>

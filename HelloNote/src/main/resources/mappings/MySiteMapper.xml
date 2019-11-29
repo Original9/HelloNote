@@ -22,7 +22,7 @@
 		  		<if test="searchCondition == 'SITE_ADDR' ">
 		  			AND content LIKE '%' || #{keyword} || '%'
 		  		</if>
-		  	</if>
+		  	</if> 
 		  </where>
 		  ORDER BY SEQ ASC
 	) a ) b WHERE rn BETWEEN #{start} AND #{end}

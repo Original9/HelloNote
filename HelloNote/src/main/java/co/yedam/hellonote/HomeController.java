@@ -28,7 +28,7 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !! 		
 		
-		return "main";
+		return "main/main";
 	}
 	
 	@RequestMapping(value={"/menuList/*"} , method=RequestMethod.GET)
@@ -37,15 +37,8 @@ public class HomeController {
 		String uri = request.getRequestURI();
 		String context = request.getContextPath();
 		String path=uri.substring(context.length());
-		System.out.println("URi:" + uri);
-		System.out.println("cs:" + context);
-		System.out.println("path:" + path);
-		String t[] = path.split("/");
-		for(int x = 0;x< t.length; x++)
-		{
-			System.out.println(t[x]);
-		}
-		String x = "main/"+t[1]+"/"+t[2];		
+		String arrayOfUri[] = path.split("/");		
+		String x = "main/"+arrayOfUri[1]+"/"+arrayOfUri[2];		
 	return x;
 	}
 	

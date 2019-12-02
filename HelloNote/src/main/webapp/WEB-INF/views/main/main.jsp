@@ -30,7 +30,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="${pageContext.request.contextPath}/menuList/calendar"><i class="fas fa-tachometer-alt"></i><span> CALENDAR</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> BANKACCOUNT</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> CHECKLIST</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="${pageContext.request.contextPath}/mysite/mySiteList"><i class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
                     

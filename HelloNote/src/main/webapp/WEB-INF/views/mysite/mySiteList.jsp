@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>사이트 관리</title>
-<link rel="stylesheet" href="../assets/css/newlist.css">
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="../assets/pageJs/newlist.js"></script>
-<link href="../assets/css/mainFont.css" rel="stylesheet" type="text/css">
+<!-- MySiteList CSS 파일 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mySiteList.css">
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mainFont.css">
+
+
+<!-- MySiteList JS 파일 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src='<c:url value="/resources/assets/pageJs/mySiteList.js"/>'></script>
+
+
 </head>
 <body>
+
+
 	<main id="main">
 	<div class="overlay"></div>
 	<header class="header">
@@ -34,8 +42,7 @@
 							<input type="checkbox" id="chk1"> <label for="chk1"
 								class="toggle"></label>
 						</div>
-						<div class="subject" style="left-margin: 10%">
-							네이버<span class="star-toggle glyphicon glyphicon-star-empty"></span>
+						<div class="subject">네이버<span class="star-toggle glyphicon glyphicon-star-empty"></span>
 						</div>
 					</div>
 					<div class="col col-2">
@@ -68,8 +75,6 @@
 				<button class="button button-block" id="specification" type="button">Add</button>
 				<button class="button button-block" id="no" type="button">Delete</button>
 			</div>
-
-
 
 			<a href="#" class="load-more-link">Show more Site List</a>
 		</div>
@@ -171,12 +176,7 @@
 								</form>
 
 							</div>
-
-
-
-
-							<form action="/" method="post"></form>
-							
+							<form action="/" method="post"></form>	
 						</div>
 						<!-- tab-content -->
 					</div>
@@ -185,5 +185,6 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>

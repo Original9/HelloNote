@@ -13,7 +13,7 @@
 
 <!-- MySiteList JS 파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src='<c:url value="/resources/assets/pageJs/mySiteList.js"/>'></script>
+    <script src='<c:url value="/resources/assets/pageJs/mySiteList.js"/>'></script>
 
 
 </head>

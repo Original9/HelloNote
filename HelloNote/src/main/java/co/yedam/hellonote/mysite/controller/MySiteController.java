@@ -29,7 +29,7 @@ public class MySiteController {
 	}
 
 	// 등록 처리
-	@RequestMapping("insertMySiteForm")
+	@RequestMapping("insertMySite")
 	public String insertMySiteForm(MySiteVO vo) {
 		mySiteService.insertMySite(vo);
 		return "redirect:getMySite";

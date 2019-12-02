@@ -45,7 +45,7 @@
 	</select>
 	
 	<!-- DELETE -->
-	<delete id="getBoardDelete" parameterType="board">
+	<delete id="getBoardDelete" parameterType="mysite">
 		DELETE BOARD 
 		WHERE  SEQ = #{seq}   <!--  {}안에 VO 객체 넣으면됨 대소문자 구분함 -->
 	</delete>
@@ -74,7 +74,7 @@
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="updateBoard" parameterType="board">
+	<update id="updateBoard" parameterType="mysite">
 		UPDATE BOARD SET
 			   TITLE = #{title},
 			   CONTENT = #{content}
@@ -82,7 +82,7 @@
 	</update>
 	
 	<!-- SELECT -->
-	<select id="getBoard" parameterType="board" resultType="board">
+	<select id="getBoard" parameterType="mysite" resultType="mysite">
 		SELECT 	SEQ,
 				TITLE,
 				WRITER,

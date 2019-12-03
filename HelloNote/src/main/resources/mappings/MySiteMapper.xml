@@ -3,7 +3,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MySiteDAO">
-	<!-- LIST ID 값은 유니크해야함 -->
+
+	 <select id="getMySiteListMap" resultType="map">
+		SELECT 	SITE_ID "siteId",
+				SITE_PW "sitePw",
+				SITE_ADDR "siteAddr",
+				SITE_MEMO "siteMemo",
+				TITLE "title",
+				MENU_ID "memo",
+				MYSITE_SEQ "siteSEQ"
+		  FROM  ${userId}_MYSITE
+		  ORDER BY SEQ DESC
+	</select>
+
+
 	<select id="getMySiteList" resultType="mysite">
 	SELECT b.* FROM(SELECT a.*, ROWNUM rn FROM(
 		SELECT 	SITE_ID,
@@ -29,9 +42,9 @@
 	</select>
 	
 	<!-- 전체 건수 -->
-	<select id="getBoardCount" resultType="int">
+	<select id="getMySiteCount" resultType="int">
 		SELECT COUNT(*)
-		  FROM BOARD
+		  FROM ${userId}_MYSITE
 		  <where>
 		  	<if test="keyword != null and keyword !='' ">
 		  		<if test="searchCondition == 'title' ">
@@ -45,52 +58,54 @@
 	</select>
 	
 	<!-- DELETE -->
-	<delete id="getBoardDelete" parameterType="mysite">
-		DELETE BOARD 
-		WHERE  SEQ = #{seq}   <!--  {}안에 VO 객체 넣으면됨 대소문자 구분함 -->
+	<delete id="getMySiteDelete" parameterType="mysite">
+		DELETE ${userId}_MYSITE
+		WHERE  MYSITE_SEQ = #{mySiteSeq}
 	</delete>
 	
 	<!-- INSERT -->
-	<insert id="insertBoard"> <!-- 넘겨주는 값을 알기 때문에 parameter 생략가능 -->
-<!-- 		<selectKey order="BEFORE" resultType="int" keyProperty="seq"> resultType VO객체 타입과 맞춰줘야함 
-			1방법 SELECT NVL(MAX(SEQ),0)+1 FROM BOARD seq 값 조회 하고 insert 해야함
-			2방법 SELECT SEQ.NEXTVAL FROM DUAL  <이건 오라클에만 있어서 1번을 주로 사용 
-		</selectKey> -->
+	<insert id="insertMySite">
 	<selectKey order="BEFORE" resultType="int" keyProperty="seq">
-		 SELECT NVL(MAX(SEQ),0)+1 FROM BOARD 
+		 SELECT NVL(MAX(SEQ),0)+1 FROM ${userId}_MYSITE 
 	</selectKey>
-		INSERT INTO BOARD(  SEQ, 
-							TITLE,
-							WRITER,
-							CONTENT,
-							REGDATE,
-							CNT  )
-				  VALUES (  #{seq},
-				  			#{title},
-				  			#{writer},
-				  			#{content},
-				  			sysdate,
-				  			0  )
+		INSERT INTO ${userId}_MYSITE (  SITE_ID, 
+										SITE_PW,
+										SITE_ADDR,
+										SITE_MEMO,
+										TITLE,
+										MENU_ID,
+										MYSITE_SEQ  )
+				 			 VALUES (   #{siteId},
+				  						#{sitePw},
+				  						#{siteAddr},
+				  						#{siteMemo},
+				  						#{title},
+				  						#{menuId},
+				  						#{mySiteSeq}  )
 	</insert>
 	
 	<!-- UPDATE -->
-	<update id="updateBoard" parameterType="mysite">
-		UPDATE BOARD SET
-			   TITLE = #{title},
-			   CONTENT = #{content}
-		WHERE SEQ = #{seq}
+	<update id="updateMySite" parameterType="mysite">
+		UPDATE ${userId}_MYSITE SET
+			   SITE_ID = #{siteId},
+			   SITE_PW = #{sitePw},
+			   SITE_ADDR = #{siteAddr},
+			   SITE_MEMO = #{siteMemo},
+			   TITLE = #{title} 
+		WHERE MYSITE_SEQ = #{mySiteSeq}
 	</update>
 	
 	<!-- SELECT -->
-	<select id="getBoard" parameterType="mysite" resultType="mysite">
-		SELECT 	SEQ,
+	<select id="getMySite" parameterType="mysite" resultType="mysite">
+		SELECT 	SITE_ID, 
+				SITE_PW,
+				SITE_ADDR,
+				SITE_MEMO,
 				TITLE,
-				WRITER,
-				CONTENT,
-				REGDATE,
-				CNT
-		  FROM  BOARD
-		 WHERE  SEQ = #{seq}
+				MENU_ID,
+				MYSITE_SEQ
+		  FROM  ${userId}_MYSITE
+		 WHERE  SITE_ID = #{siteId}
 	</select>
 
 </mapper>

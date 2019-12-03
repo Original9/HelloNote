@@ -13,6 +13,7 @@
 		<!-- <typeAlias type="com.yedam.exam.board.BoardVO" alias="board"/> --> 
 		<typeAlias type="co.yedam.hellonote.mysite.vo.MySiteVO" alias="mysite"/>
 		<typeAlias type="co.yedam.hellonote.calendar.vo.CalendarVO" alias="calendar"/>
+		<typeAlias type="co.yedam.hellonote.memo.vo.MemoVO" alias="memo"/>
 	</typeAliases>
 
 </configuration>

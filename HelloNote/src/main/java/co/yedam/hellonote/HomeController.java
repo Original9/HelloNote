@@ -1,6 +1,5 @@
 package co.yedam.hellonote;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -28,7 +27,7 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !! 		
 		
-		return "main/main";
+		return "main/main/mainPage";
 	}
 	
 	/*@RequestMapping(value={"/menuList/*"} , method=RequestMethod.GET)

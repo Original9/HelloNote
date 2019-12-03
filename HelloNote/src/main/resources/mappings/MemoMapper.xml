@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemoDAO">
+	<select id="getMemoList" resultType="memo">
+		select memo_title,
+		memo_placex,
+		memo_placey,
+		memo_text,
+		menu_id,
+		memo_seq
+		from kang_memo
+	</select>
+	<delete id="deleteMemo" parameterType="memo">
+		delete from kang_memo
+		where memo_seq=#{memoSeq}
+	</delete>
+	<update id="updateMemo" parameterType="memo">
+		update kang_memo
+		set
+		memo_title=#{memoTitle},
+		memo_text=#{memoText},
+		memo_placex=#{memoPlacex},
+		memo_placey=#{memoPlacey}
+		where
+		memo_seq=#{memoSeq}
+	</update>
+	<insert id="insertMemo" parameterType="memo">
+		<selectKey order="BEFORE" keyProperty="memoSeq" resultType="int">
+			select nvl(max(memo_seq), 0)+1 from kang_memo
+		</selectKey>
+		insert into kang_memo(
+		memo_title,
+		memo_text,
+		memo_seq,
+		menu_id
+		)
+		values(
+		'Title',
+		'Text',
+		#{memoSeq},
+		'1'
+		)
+	</insert>
+</mapper>

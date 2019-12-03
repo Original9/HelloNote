@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MySiteDAO">
+
+	 <select id="getMySiteListMap" resultType="map">
+		SELECT 	SITE_ID "siteId",
+				SITE_PW "sitePw",
+				SITE_ADDR "siteAddr",
+				SITE_MEMO "siteMemo",
+				TITLE "title",
+				MENU_ID "memo",
+				MYSITE_SEQ "siteSEQ"
+		  FROM  ${userId}_MYSITE
+		  ORDER BY SEQ DESC
+	</select>
+
+
+	<select id="getMySiteList" resultType="mysite">
+	SELECT b.* FROM(SELECT a.*, ROWNUM rn FROM(
+		SELECT 	SITE_ID,
+				SITE_PW,
+				SITE_ADDR,
+				SITE_MEMO,
+				TITLE,
+				MENU_ID,
+				MYSITE_SEQ
+		  FROM  ${userId}_MYSITE
+		  <where>
+		  	<if test="keyword != null and keyword !='' ">
+		  		<if test="searchCondition == 'TITLE' ">
+		  			AND title LIKE '%' || #{keyword} || '%'
+		  		</if>
+		  		<if test="searchCondition == 'SITE_ADDR' ">
+		  			AND content LIKE '%' || #{keyword} || '%'
+		  		</if>
+		  	</if> 
+		  </where>
+		  ORDER BY SEQ ASC
+	) a ) b WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 전체 건수 -->
+	<select id="getMySiteCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM ${userId}_MYSITE
+		  <where>
+		  	<if test="keyword != null and keyword !='' ">
+		  		<if test="searchCondition == 'title' ">
+		  			and title like '%' || #{keyword} || '%'
+		  		</if>
+		  		<if test="searchCondition == 'content' ">
+		  			and content like '%' || #{keyword} || '%'
+		  		</if>
+		  	</if>
+		  </where>
+	</select>
+	
+	<!-- DELETE -->
+	<delete id="getMySiteDelete" parameterType="mysite">
+		DELETE ${userId}_MYSITE
+		WHERE  MYSITE_SEQ = #{mySiteSeq}
+	</delete>
+	
+	<!-- INSERT -->
+	<insert id="insertMySite">
+	<selectKey order="BEFORE" resultType="int" keyProperty="seq">
+		 SELECT NVL(MAX(SEQ),0)+1 FROM ${userId}_MYSITE 
+	</selectKey>
+		INSERT INTO ${userId}_MYSITE (  SITE_ID, 
+										SITE_PW,
+										SITE_ADDR,
+										SITE_MEMO,
+										TITLE,
+										MENU_ID,
+										MYSITE_SEQ  )
+				 			 VALUES (   #{siteId},
+				  						#{sitePw},
+				  						#{siteAddr},
+				  						#{siteMemo},
+				  						#{title},
+				  						#{menuId},
+				  						#{mySiteSeq}  )
+	</insert>
+	
+	<!-- UPDATE -->
+	<update id="updateMySite" parameterType="mysite">
+		UPDATE ${userId}_MYSITE SET
+			   SITE_ID = #{siteId},
+			   SITE_PW = #{sitePw},
+			   SITE_ADDR = #{siteAddr},
+			   SITE_MEMO = #{siteMemo},
+			   TITLE = #{title} 
+		WHERE MYSITE_SEQ = #{mySiteSeq}
+	</update>
+	
+	<!-- SELECT -->
+	<select id="getMySite" parameterType="mysite" resultType="mysite">
+		SELECT 	SITE_ID, 
+				SITE_PW,
+				SITE_ADDR,
+				SITE_MEMO,
+				TITLE,
+				MENU_ID,
+				MYSITE_SEQ
+		  FROM  ${userId}_MYSITE
+		 WHERE  SITE_ID = #{siteId}
+	</select>
+
+</mapper>

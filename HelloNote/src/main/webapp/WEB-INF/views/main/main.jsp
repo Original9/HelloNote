@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,6 +13,14 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/fonts/fontawesome-all.min.css">
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>"></script>
+    
+
+<%--     <script src="<c:url value="/resources/assets/js/chart.min.js"/>"></script>
+    <script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"/>"></script>
+    <script src="<c:url value="/resources/assets/js/theme.js"/>"></script> --%>
 </head>
 
 <body id="page-top">
@@ -27,10 +36,10 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="${pageContext.request.contextPath}/menuList/memo"><i class="fas fa-tachometer-alt"></i><span> MEMO</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> CALENDAR</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="${pageContext.request.contextPath}/menuList/calendar"><i class="fas fa-tachometer-alt"></i><span> CALENDAR</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> BANKACCOUNT</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> CHECKLIST</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="${pageContext.request.contextPath}/mysite/test"><i class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
                     
@@ -156,12 +165,7 @@
         </div>
     </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-    
-    <script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
-    <script src="<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>"></script>
-    <script src="<c:url value="/resources/assets/js/chart.min.js"/>"></script>
-    <script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"/>"></script>
-    <script src="<c:url value="/resources/assets/js/theme.js"/>"></script>
+
 </body>
 
 </html>

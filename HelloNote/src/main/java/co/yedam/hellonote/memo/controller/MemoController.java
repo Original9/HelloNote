@@ -13,10 +13,10 @@ public class MemoController {
 	@Autowired
 	MemoService service;
 	
-	@RequestMapping("memo")
+	@RequestMapping("/memo")
 	public String getBoardList(Model model) {
 		model.addAttribute("memoList", service.getMemoList());
-		return "memo";
+		return "main/main/memo";
 	}
 	
 }

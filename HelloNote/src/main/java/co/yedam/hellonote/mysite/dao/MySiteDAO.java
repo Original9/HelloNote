@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+import co.yedam.hellonote.mysite.vo.MySiteSearchVO;
 import co.yedam.hellonote.mysite.vo.MySiteVO;
 
 @Repository
@@ -15,10 +17,14 @@ public class MySiteDAO {
 	SqlSessionTemplate mySite;
 
 	// 전체 조회
-	public List<MySiteVO> getMySiteList() {
-		return mySite.selectList("MySiteListDAO.getMySiteList");
+	public List<MySiteVO> getMySiteList(MySiteSearchVO svo) {
+		return mySite.selectList("MySiteDAO.getMySiteList", svo);
 	}
-
+	
+	// 건수조회
+	public int getMySiteCount(MySiteSearchVO svo) {
+		return mySite.selectOne("MySiteDAO.getMySiteCount", svo);
+	}
 	// 삭제
 	public int deleteMySite(MySiteVO vo) {
 		return mySite.delete("MySiteDAO.deleteMySite", vo);

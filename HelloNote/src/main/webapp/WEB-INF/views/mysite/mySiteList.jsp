@@ -74,6 +74,8 @@
 			<div align="center">
 				<button class="button button-block" id="specification" type="button">Add</button>
 				<button class="button button-block" id="no" type="button">Delete</button>
+				<button type="button" onclick="location.href='insertMySite'">테스트입력</button>
+				
 			</div>
 
 			<a href="#" class="load-more-link">Show more Site List</a>
@@ -91,6 +93,7 @@
 				Site <a href="#">NAVER</a>
 			<div class="date">11:49 am</div>
 		</div>
+		<c:forEach items="${mySiteList }" var="mySite">
 		<div id="message-nano-wrapper" class="nano">
 			<div class="nano-content">
 				<ul class="message-container">
@@ -135,9 +138,11 @@
 								href="#"
 								class="circle-icon small red-hover glyphicon glyphicon-remove">삭</a>
 						</div>
+					
 				</ul>
 			</div>
 		</div>
+			</c:forEach>
 	</div>
 	<div class="modal" id="myModal">
 		<div class="modal-content" id="modal-content">

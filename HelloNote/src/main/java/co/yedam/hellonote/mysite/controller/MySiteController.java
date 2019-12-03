@@ -22,13 +22,13 @@ public class MySiteController {
 	public String getMySiteList(Model model, MySiteVO vo) {
 		vo.setUserId("kwon");
 		model.addAttribute("MySite", mySiteService.getMySiteList(vo));
-		return "test/getMySite";
+		return "/getMySite";
 	}
 
 	// 등록폼으로
 	@RequestMapping("insertMySiteForm")
 	public String insertMySiteForm() {
-		return "test/insertMySite";
+		return "/insertMySite";
 	}
 
 	// 등록 처리

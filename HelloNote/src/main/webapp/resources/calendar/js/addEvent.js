@@ -44,11 +44,12 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '사나',
+            username: '사나', // 필요없는값
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
         };
+       
 
         if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
@@ -78,7 +79,7 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
         eventModal.modal('hide');
 
         //새로운 일정 저장
-        $.ajax({
+        $.ajax({ // 데이터 받아서 그냥 디비에 넣으면 끝인거 같고 
             type: "get",
             url: "",
             data: {

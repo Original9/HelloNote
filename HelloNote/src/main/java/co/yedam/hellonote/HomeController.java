@@ -31,7 +31,7 @@ public class HomeController {
 		return "main/main";
 	}
 	
-	@RequestMapping(value={"/menuList/*"} , method=RequestMethod.GET)
+	/*@RequestMapping(value={"/menuList/*"} , method=RequestMethod.GET)
 	public String showIssueList(HttpServletRequest request) {
 		// url 값을 받아와서  * 에 넣어줘야 한다.
 		String uri = request.getRequestURI();
@@ -40,7 +40,7 @@ public class HomeController {
 		String arrayOfUri[] = path.split("/");		
 		String x = "main/"+arrayOfUri[1]+"/"+arrayOfUri[2];		
 	return x;
-	}
+	}*/
 	
 
 

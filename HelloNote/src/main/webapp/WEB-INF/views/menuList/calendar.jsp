@@ -11,18 +11,22 @@
 	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>FullCalendar Example</title>
-<!--     <link rel=" shortcut icon" href="image/favicon.ico">
- --><link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calendar/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calendar/css/bootstrap.min.css">
+<!--     <link rel=" shortcut icon" href="image/favicon.ico">-->
+    <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calendar/css/bootstrap.min.css"> --%>
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calendar/css/fullcalendar.min.css" />
     <link rel="stylesheet" href='${pageContext.request.contextPath}/resources/calendar/css/select2.min.css' />
     <link rel="stylesheet" href='${pageContext.request.contextPath}/resources/calendar/css/bootstrap-datetimepicker.min.css' />
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calendar/css/main.css">
-    <link href="${pageContext.request.contextPath}/resources/assets/css/mainFont.css" rel="stylesheet" type="text/css">
+    <link hef="${pageContext.request.contextPath}/resources/assets/css/mainFont.css" rel="stylesheet" type="text/css">
+    
+    
+    
 	</head>
 
 <body>
+    
     <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
@@ -131,11 +135,11 @@
 
         <div class="panel panel-default">
 
-            <div class="panel-heading">
+            <!-- <div class="panel-heading">
                 <h3 class="panel-title">필터</h3>
-            </div>
+            </div>  -->
 
-            <div class="panel-body">
+             <div class="panel-body">
 
                 <div class="col-lg-6">
                     <label for="calendar_view">구분별</label>
@@ -165,20 +169,18 @@
                     </div>
                 </div>
 
-            </div>
+            </div> 
         </div>
         <!-- /.filter panel -->
     </div>
     <!-- /.container -->
 
-	<script src="<c:url value="/resources/calendar/js/jquery.min.js"/>"></script>
-	<script src="<c:url value="/resources/calendar/js/bootstrap.min.js"/>"></script>	
-	<script src="<c:url value="/resources/calendar/js/moment.min.js"/>"></script>
+	<script src="<c:url value="/resources/calendar/js/moment.min.js"/>"></script>	 
 	<script src="<c:url value="/resources/calendar/js/fullcalendar.min.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/ko.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/select2.min.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/bootstrap-datetimepicker.min.js"/>"></script>
-	<script src="<c:url value="/resources/calendar/js/main.js"/>"></script>
+	<script src="<c:url value="/resources/calendar/js/main.js"/>"></script> 
 	<script src="<c:url value="/resources/calendar/js/addEvent.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/editEvent.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/etcSetting.js"/>"></script>

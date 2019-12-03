@@ -19,7 +19,8 @@ public class MemoDAO {
 	}
 	
 	public void insertMemo() {
-		batis.insert("MemoDAO.insertMemo");
+		MemoVO vo=new MemoVO();
+		batis.insert("MemoDAO.insertMemo", vo);
 	}
 	
 	public void updateMemo(MemoVO vo) {

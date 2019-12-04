@@ -80,6 +80,7 @@
 	<!-- 페이징 끝 -->
 
 	<!-- 입력 모달 창 -->
+	
 	<div class="modal" id="mySiteModal">
 		<div class="modal-content" id="modal-content">
 			<div class="form">
@@ -87,28 +88,28 @@
 				<div class="tab-content">
 					<div id="signup">
 						<h1>Add Site</h1>
-						<form action="/" method="post">
+						<form action="insertMySite" method="post">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
 										<label> TITLE </label> <input type="text" required
-											autocomplete="off" />
+											autocomplete="off" name="title" />
 									</div>
 									<div class="field-wrap">
 										<label> ADDR </label> <input type="text" required
-											autocomplete="off" />
+											autocomplete="off" name="siteAddr" />
 									</div>
 									<label> ID or Email </label> <input type="text" required
-										autocomplete="off" />
+										autocomplete="off" name="siteId" />
 								</div>
 								<div class="field-wrap">
 									<label>Password </label> <input type="password" required
-										autocomplete="off" />
+										autocomplete="off" name="sitePw" />
 								</div>
 							</div>
 							<div class="field-wrap">
 								<label>Memo</label>
-								<textarea></textarea>
+								<textarea name="siteMemo"></textarea>
 							</div>
 							<br>
 							<div align="center">
@@ -116,7 +117,6 @@
 							</div>
 						</form>
 					</div>
-					<form action="/" method="post"></form>
 				</div>
 				<!-- tab-content -->
 			</div>

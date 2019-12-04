@@ -32,17 +32,11 @@ public class MySiteController {
 		return "main/mysite/test";  // jsp 경로
 	}
 
-	// 등록폼으로
-	@RequestMapping("insertMySiteForm")
-	public String insertMySiteForm() {
-		return "/insertMySite";
-	}
-
 	// 등록 처리
-	@RequestMapping("insertMySite")
+	@RequestMapping("/mysite/insertMySite")
 	public String insertMySiteForm(MySiteVO vo) {
 		mySiteService.insertMySite(vo);
-		return "redirect:getMySite";
+		return "redirect:mysite/getMySiteList";
 	}
 	
 	@RequestMapping(value={"/mysite/*"} , method=RequestMethod.GET)

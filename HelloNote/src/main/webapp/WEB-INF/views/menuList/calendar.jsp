@@ -76,7 +76,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-start">시작</label>
-                                <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+                                <input type="text" name="edit-start" id="edit-start" />
                             </div>
                         </div>
                         <div class="row">
@@ -89,10 +89,10 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="카테고리1">★★★★</option>
-                                    <option value="카테고리2">★★★</option>
-                                    <option value="카테고리3">★★</option>
-                                    <option value="카테고리4">★</option>
+                                    <option value="많이중요">★★★★</option>
+                                    <option value="조금중요">★★★</option>
+                                    <option value="덜중요">★★</option>
+                                    <option value="시간나면">★</option>
                                 </select>
                             </div>
                         </div>
@@ -113,15 +113,15 @@
                             </div>
                         </div>
                         <div class="row">
+                        	
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-desc">설명</label>
-                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
-                                    id="edit-desc"></textarea>
+                                <label class="col-xs-4" for="edit-desc">설명</label><br>
+                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc" id="edit-desc"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer modalBtnContainer-addEvent">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
                         <button type="button" class="btn btn-primary" id="save-event">저장</button>
                     </div>
                     <div class="modal-footer modalBtnContainer-modifyEvent">
@@ -145,18 +145,19 @@
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="카테고리1">★★★★</option>
-                            <option value="카테고리2">★★★</option>
-                            <option value="카테고리3">★★</option>
-                            <option value="카테고리4">★</option>
+                            <option value="많이중요">★★★★</option>
+                            <option value="조금중요">★★★</option>
+                            <option value="덜중요">★★</option>
+                            <option value="시간나면">★</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <label for="calendar_view">등록자별</label>
+				<!-- 필요없는 부분이라서 display:none을 해두었다. -->
+                <div class="col-lg-6" style="display:none" > 
+                    <label for="calendar_view"></label>
                     <div class="input-group">
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
+                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
                                 checked>정연</label>
                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
                                 checked>다현</label>
@@ -165,7 +166,7 @@
                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="나연"
                                 checked>나연</label>
                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="지효"
-                                checked>지효</label>
+                                checked>지효</label> 
                     </div>
                 </div>
 
@@ -174,12 +175,11 @@
         <!-- /.filter panel -->
     </div>
     <!-- /.container -->
-
 	<script src="<c:url value="/resources/calendar/js/moment.min.js"/>"></script>	 
 	<script src="<c:url value="/resources/calendar/js/fullcalendar.min.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/ko.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/select2.min.js"/>"></script>
-	<script src="<c:url value="/resources/calendar/js/bootstrap-datetimepicker.min.js"/>"></script>
+	<script src="<c:url value="/resources/calendar/js/bootstrap-datetimepicker.min.js"/>"></script>	
 	<script src="<c:url value="/resources/calendar/js/main.js"/>"></script> 
 	<script src="<c:url value="/resources/calendar/js/addEvent.js"/>"></script>
 	<script src="<c:url value="/resources/calendar/js/editEvent.js"/>"></script>

@@ -72,7 +72,7 @@
 							class="fas fa-tachometer-alt"></i><span> CHECKLIST</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active"
-						href="${pageContext.request.contextPath}/mysite/mySiteList"><i
+						href="${pageContext.request.contextPath}/mysite/getMySiteList"><i
 							class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" href="index.html"><i

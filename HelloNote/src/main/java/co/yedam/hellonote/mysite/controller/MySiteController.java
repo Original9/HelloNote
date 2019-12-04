@@ -8,34 +8,35 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import co.yedam.hellonote.mysite.paging.Paging;
 import co.yedam.hellonote.mysite.service.MySiteService;
+import co.yedam.hellonote.mysite.vo.MySiteSearchVO;
 import co.yedam.hellonote.mysite.vo.MySiteVO;
 
 @Controller
 public class MySiteController {
 
+	// private static final Logger logger = LoggerFactory.getLogger(MySiteController.class);
+	
 	@Autowired
 	MySiteService mySiteService;
 
 	// 목록조회
-	@RequestMapping("getMySiteList")
-	public String getMySiteList(Model model, MySiteVO vo) {
-		vo.setUserId("kwon");
-		model.addAttribute("MySite", mySiteService.getMySiteList(vo));
-		return "/getMySite";
-	}
+	@RequestMapping("/mysite/getMySiteList")
+	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p) {
+		svo.setUserId("kwon");
+		// MySite key값
+		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
+		model.addAttribute("paging", p);
 
-	// 등록폼으로
-	@RequestMapping("insertMySiteForm")
-	public String insertMySiteForm() {
-		return "/insertMySite";
+		return "main/mysite/test";  // jsp 경로
 	}
 
 	// 등록 처리
-	@RequestMapping("insertMySite")
+	@RequestMapping("/mysite/insertMySite")
 	public String insertMySiteForm(MySiteVO vo) {
 		mySiteService.insertMySite(vo);
-		return "redirect:getMySite";
+		return "redirect:mysite/getMySiteList";
 	}
 	
 	@RequestMapping(value={"/mysite/*"} , method=RequestMethod.GET)

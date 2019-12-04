@@ -1,5 +1,7 @@
 package co.yedam.hellonote.mysite.vo;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -12,6 +14,7 @@ public class MySiteVO {
 	private String siteMemo;
 	private String title;
 	private String menuId;
-	private int mySitetSeq;
+	private int mySiteSeq;
+	private Date siteDate;
 	
 }

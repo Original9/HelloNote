@@ -50,7 +50,7 @@ public class MySiteServiceImpl implements MySiteService {
 	// 암호화
 	@Override
 	public int insertMySite(MySiteVO vo) {
-		vo.setTitle(Password.encryptSimpleTest(vo.getTitle()));
+		vo.setSitePw(Password.encryptSimpleTest(vo.getSitePw()));
 		return dao.insertMySite(vo);
 	}
 

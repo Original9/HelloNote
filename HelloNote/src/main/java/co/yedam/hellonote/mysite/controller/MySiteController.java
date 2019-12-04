@@ -34,10 +34,20 @@ public class MySiteController {
 
 	// 등록 처리
 	@RequestMapping("/mysite/insertMySite")
-	public String insertMySiteForm(MySiteVO vo) {
+	public String insertMySite(MySiteVO vo) {
+		vo.setUserId("kwon");
+		vo.setMenuId("8");
 		mySiteService.insertMySite(vo);
-		return "redirect:mysite/getMySiteList";
+		return "redirect:getMySiteList";
 	}
+	
+	// 삭제 처리
+	@RequestMapping("/mysite/deleteMySite")
+	public String deleteMySite(MySiteVO vo) {
+		mySiteService.deleteMySite(vo);
+		return "redirect:getMySiteList";
+	}
+	
 	
 	@RequestMapping(value={"/mysite/*"} , method=RequestMethod.GET)
 	public String showIssueList(HttpServletRequest request) {

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 public class Password {
 
 	private static final Logger log = LoggerFactory.getLogger(Password.class);
-	
+	// 암호화
 	public static String encryptSimpleTest(String str) {
 		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
 		encryptor.setPassword("sitePw");
@@ -17,6 +17,7 @@ public class Password {
 		return encStr;
 	}
 
+	// 복호화
 	public static String decryptSimpleTest(String encStr) {
 		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
 		encryptor.setPassword("sitePw");

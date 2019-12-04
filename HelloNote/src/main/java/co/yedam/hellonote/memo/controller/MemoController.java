@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.yedam.hellonote.memo.service.MemoService;
+import co.yedam.hellonote.user.vo.UserVO;
 
 @Controller
 public class MemoController {
@@ -17,13 +18,12 @@ public class MemoController {
 	MemoService service;
 	
 	@RequestMapping("/memo")
-	public String getBoardList(Model model, HttpSession session) {
+	public String getBoardList(Model model, HttpSession session, UserVO vo) {
 		String hellonotId = (String) session.getAttribute("hellonoteId");
-		String pw = (String) session.getAttribute("pw");
 		
-		System.out.println(hellonotId);
-		System.out.println(pw);
-		model.addAttribute("memoList", service.getMemoList());
+		vo.setHellonoteId(hellonotId);
+		
+		model.addAttribute("memoList", service.getMemoList(vo));
 		return "main/main/memo";
 	}
 	

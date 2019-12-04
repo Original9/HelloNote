@@ -8,7 +8,7 @@ public interface MemoService {
 
 	public List<MemoVO> getMemoList();
 
-	public void insertMemo();
+	public int insertMemo(MemoVO vo);
 
 	public void updateMemo(MemoVO vo);
 

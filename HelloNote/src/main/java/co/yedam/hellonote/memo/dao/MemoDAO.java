@@ -18,9 +18,9 @@ public class MemoDAO {
 		return batis.selectList("MemoDAO.getMemoList");
 	}
 	
-	public void insertMemo() {
-		MemoVO vo=new MemoVO();
+	public int insertMemo(MemoVO vo) {
 		batis.insert("MemoDAO.insertMemo", vo);
+		return vo.getMemoSeq(); 
 	}
 	
 	public void updateMemo(MemoVO vo) {

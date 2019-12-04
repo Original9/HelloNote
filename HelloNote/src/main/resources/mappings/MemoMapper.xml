@@ -5,12 +5,12 @@
 <mapper namespace="MemoDAO">
 	<select id="getMemoList" resultType="memo">
 		select memo_title,
-		memo_placex,
-		memo_placey,
+		memo_place,
 		memo_text,
 		menu_id,
 		memo_seq
 		from kang_memo
+		order by memo_order
 	</select>
 	<delete id="deleteMemo" parameterType="memo">
 		delete from kang_memo
@@ -21,10 +21,20 @@
 		set
 		memo_title=#{memoTitle},
 		memo_text=#{memoText},
-		memo_placex=#{memoPlacex},
-		memo_placey=#{memoPlacey}
+		memo_place=#{memoPlace}
 		where
 		memo_seq=#{memoSeq}
+	</update>
+	<update id="sortHandling" parameterType="memo">
+		update kang_memo
+		set 
+		memo_order = (select memo_order from kang_memo where memo_seq=#{memoSeq})
+		where memo_order=#{memoOrder}
+		
+		update kang_memo
+		set
+		memo_order=#{memoOrder}
+		where memo_seq=#{memoSeq}
 	</update>
 	<insert id="insertMemo" parameterType="memo">
 		<selectKey order="BEFORE" keyProperty="memoSeq" resultType="int">
@@ -34,13 +44,15 @@
 		memo_title,
 		memo_text,
 		memo_seq,
-		menu_id
+		menu_id,
+		memo_order
 		)
 		values(
 		'Title',
 		'Text',
 		#{memoSeq},
-		'1'
+		'1',
+		(select nvl(max(memo_order), 0)+1 from kang_memo)
 		)
 	</insert>
 </mapper>

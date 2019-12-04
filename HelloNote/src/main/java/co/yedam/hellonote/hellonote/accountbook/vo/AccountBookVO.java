@@ -1,7 +1,5 @@
 package co.yedam.hellonote.hellonote.accountbook.vo;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data

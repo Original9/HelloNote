@@ -4,10 +4,6 @@ $(function() {
 	modal = $('#myModal');
 	span = $('#modalClose');
 	$modal = document.getElementById('myModal');
-	// 메모 선택 변수
-	a = 0;
-	// 메모 생성 변수(auto increment)
-	i = 1;
 	// 카카오 맵 api geocoder 변수
 	geocoder = new kakao.maps.services.Geocoder();
 	// 주소 변수 미리 선언
@@ -37,6 +33,9 @@ $(function() {
 	// 메모 추가
 	addMemo();
 
+	// 메모 삭제
+	deleteHolder();
+
 	// $(window).click(function(e) {
 	// if (e.target == modal) {
 	// modal.hide();
@@ -50,37 +49,35 @@ $(function() {
 	// }
 });
 
-function addMemo() {
-	$('#add')
-			.on(
-					'click',
-					function() {
-						$.ajax({
-							url : 'insertMemo',
-							dataType : 'json',
-							method : 'post',
-							success : addMemoHandler
-						})
-						
-						$('#memoul')
-								.append(
-										'<li class="memoli" id="memoli'
-												+ i
-												+ '"><a id="memo'
-												+ i
-												+ '" class="memo"><div class="title-box"><h3 id="title'
-												+ i
-												+ '" class="title">Title</h3></div><div class="text-box"><p id="text'
-												+ i
-												+ '" class="text">Text</p></div><div class="location-box"><p id="location'
-												+ i
-												+ '" class="text"></p></div></a></li>');
-						i = i + 1;
-					});
+function deleteHolder() {
+
 }
 
-function addMemoHandler(data){
-	console.log(data);
+function addMemo() {
+	$('#add').on('click', function() {
+		$.ajax({
+			url : 'insertMemo',
+			dataType : 'json',
+			method : 'post',
+			success : addMemoHandler
+		})
+
+	});
+}
+
+function addMemoHandler(i) {
+	$('#memoul')
+			.append(
+					'<li class="memoli" id="memoli'
+							+ i
+							+ '"><a id="memo'
+							+ i
+							+ '" class="memo"><div class="title-box"><h3 id="title'
+							+ i
+							+ '" class="title">Title</h3></div><div class="text-box"><p id="text'
+							+ i
+							+ '" class="text">Text</p></div><div class="location-box"><p id="location'
+							+ i + '" class="text"></p></div></a></li>');
 }
 
 function closeModal() {
@@ -254,14 +251,17 @@ function sorting() {
 				start : function(e, ui) {
 					// creates a temporary attribute on the element with the old
 					// index
-					$(this).attr('data-previndex', ui.item.index());
+					$(this).attr('data-previndex', ui.item.index()+1);
 				},
 				update : function(e, ui) {
 					// gets the new and old index then removes the temporary
 					// attribute
-					var newIndex = ui.item.index();
+					var newIndex = ui.item.index()+1;
 					var oldIndex = $(this).attr('data-previndex');
 					var element_id = ui.item.attr('id');
+
+					sortHandler(newIndex, oldIndex, element_id);
+
 					console.log('id of Item moved = ' + element_id
 							+ ' old position = ' + oldIndex
 							+ ' new position = ' + newIndex);
@@ -269,4 +269,15 @@ function sorting() {
 				}
 			});
 	$("#memoul").disableSelection();
+}
+
+function sortHandler(newIndex, oldIndex, elementId) {
+	$.ajax({
+		url : 'sortHandling',
+		data : {
+			memoOrder : newIndex,
+			memoSeq : elementId,
+			oldOrder : oldIndex
+		}
+	})
 }

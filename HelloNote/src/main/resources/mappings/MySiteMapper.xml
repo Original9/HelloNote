@@ -60,15 +60,15 @@
 	</select>
 	
 	<!-- DELETE -->
-	<delete id="getMySiteDelete" parameterType="mysite">
+	<delete id="deleteMySite" parameterType="mysite">
 		DELETE ${userId}_MYSITE
 		WHERE  MYSITE_SEQ = #{mySiteSeq}
 	</delete>
 	
 	<!-- INSERT -->
 	<insert id="insertMySite">
-	<selectKey order="BEFORE" resultType="int" keyProperty="seq">
-		 SELECT NVL(MAX(SEQ),0)+1 FROM ${userId}_MYSITE 
+	<selectKey order="BEFORE" resultType="int" keyProperty="mySiteSeq">
+		 SELECT NVL(MAX(MYSITE_SEQ),0)+1 FROM ${userId}_MYSITE 
 	</selectKey>
 		INSERT INTO ${userId}_MYSITE (  SITE_ID, 
 										SITE_PW,
@@ -84,7 +84,7 @@
 				  						#{siteMemo},
 				  						#{title},
 				  						#{menuId},
-				  						#{siteDate},
+				  						sysdate,
 				  						#{mySiteSeq}  )
 	</insert>
 	

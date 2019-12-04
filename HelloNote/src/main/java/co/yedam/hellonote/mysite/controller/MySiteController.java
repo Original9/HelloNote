@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.yedam.hellonote.mysite.paging.Paging;
 import co.yedam.hellonote.mysite.service.MySiteService;
@@ -34,10 +35,21 @@ public class MySiteController {
 
 	// 등록 처리
 	@RequestMapping("/mysite/insertMySite")
-	public String insertMySiteForm(MySiteVO vo) {
+	public String insertMySite(MySiteVO vo) {
+		vo.setUserId("kwon");
+		vo.setMenuId("8");
 		mySiteService.insertMySite(vo);
-		return "redirect:mysite/getMySiteList";
+		return "redirect:getMySiteList";
 	}
+	
+	// 삭제 처리
+	@RequestMapping("/mysite/deleteMySite")
+	public String deleteMySite(@RequestParam int[] rowCheck, MySiteVO vo) {
+		vo.setUserId("kwon");
+		mySiteService.deleteMySite(rowCheck,vo);
+		return "redirect:getMySiteList";
+	}
+	
 	
 	@RequestMapping(value={"/mysite/*"} , method=RequestMethod.GET)
 	public String showIssueList(HttpServletRequest request) {

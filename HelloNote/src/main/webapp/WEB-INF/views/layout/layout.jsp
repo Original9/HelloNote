@@ -58,7 +58,7 @@
 							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active"
-						href="${pageContext.request.contextPath}/menuList/memo"><i
+						href="memo"><i
 							class="fas fa-tachometer-alt"></i><span> MEMO</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active"

@@ -23,12 +23,19 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !! 		
-		
-		return "main/main/mainPage";
-	}
+	/*
+	 * @RequestMapping(value = "/", method = RequestMethod.GET) public String
+	 * login(Locale locale, Model model) {
+	 * logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !!
+	 * 
+	 * return "layout/login"; }
+	 * 
+	 * @RequestMapping(value = "/mainPage", method = RequestMethod.GET) public
+	 * String home(Locale locale, Model model) {
+	 * logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !!
+	 * 
+	 * return "main/main/mainPage"; }
+	 */
 	
 	/*@RequestMapping(value={"/menuList/*"} , method=RequestMethod.GET)
 	public String showIssueList(HttpServletRequest request) {

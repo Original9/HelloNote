@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="UserDAO">
+	<select id="getUserList" resultType="user" parameterType="user">
+		SELECT HELLONOTE_ID,
+			   PW,
+			   GENDER,
+			   H_GRANT,
+			   AGE,
+			   H_PROFILE
+		FROM HELLONOTE_USERS		
+	</select>
+	<select id="getUser" parameterType="user" resultType="user">
+		SELECT HELLONOTE_ID,
+			   PW,
+			   GENDER,
+			   H_GRANT,
+			   AGE,
+			   H_PROFILE
+		FROM HELLONOTE_USERS
+		WHERE hellonote_id=#{hellonoteId} and PW=#{pw}
+	</select>
+</mapper>

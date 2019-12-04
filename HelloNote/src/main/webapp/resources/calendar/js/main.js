@@ -85,7 +85,7 @@ function calDateWhenDragnDrop(event) {
 }
 
 
-var calendar = $('#calendar').fullCalendar({
+var calendar = $('#calendar').fullCalendar({ //일정 클릭시 
 
   eventRender: function (event, element, view) {
 

@@ -6,10 +6,10 @@ import lombok.Data;
 public class MemoVO {
 
 	private String memoTitle;
-	private int memoPlacex;
-	private int memoPlacey;
 	private String memoText;
 	private String menuId;
 	private int memoSeq;
+	private String memoPlace;
+	private int memoOrder;
 	
 }

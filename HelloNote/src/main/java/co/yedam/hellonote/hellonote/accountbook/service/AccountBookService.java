@@ -2,7 +2,6 @@ package co.yedam.hellonote.hellonote.accountbook.service;
 
 import java.util.List;
 
-import co.yedam.hellonote.hellonote.accountbook.vo.AccountBookSearchVO;
 import co.yedam.hellonote.hellonote.accountbook.vo.AccountBookVO;
 
 public interface AccountBookService {

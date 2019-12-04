@@ -24,11 +24,7 @@
 						<p id="text${list.memoSeq}" class="text">${list.memoText}</p>
 					</div>
 					<div class="location-box">
-						<p id="location${list.memoSeq}" class="text"></p>
-						<input id="locationx${list.memoSeq}" type="hidden"
-							value="${list.memoPlacex}"> <input
-							id="locationy${list.memoSeq}" type="hidden"
-							value="${list.memoPlacey}">
+						<p id="location${list.memoSeq}" class="text">${list.memoPlace}</p>
 					</div>
 
 			</a></li>

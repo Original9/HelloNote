@@ -15,15 +15,21 @@ public class RestMemoController {
 	@Autowired
 	MemoService service;
 	
-	@RequestMapping(value = "insertMemo", method=RequestMethod.POST)
-	public void insertMemo() {
-		service.insertMemo();
+	@RequestMapping(value = "insertMemo", method = RequestMethod.POST)
+	public int insertMemo(MemoVO vo) {
+		int a=service.insertMemo(vo);
+		return a;
 	}
 	
 	@RequestMapping(value="memo/{memoSeq}", method=RequestMethod.DELETE)
 	public void deleteMemo(@PathVariable int memoSeq, MemoVO vo) {
 		vo.setMemoSeq(memoSeq);
 		service.deleteMemo(vo);
+	}
+	
+	@RequestMapping("sortHandling")
+	public void sortHandling(MemoVO vo, int oldOrder) {
+		
 	}
 	
 //	public void updateMemo() {

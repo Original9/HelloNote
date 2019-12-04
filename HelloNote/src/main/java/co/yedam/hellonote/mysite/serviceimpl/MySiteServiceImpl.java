@@ -43,8 +43,12 @@ public class MySiteServiceImpl implements MySiteService {
 	}
 
 	@Override
-	public int deleteMySite(MySiteVO vo) {
-		return dao.deleteMySite(vo);
+	public int deleteMySite(int[] list, MySiteVO vo) {
+		for(int i=0; i<list.length; i++) {
+			vo.setMySiteSeq(list [i]);
+		 dao.deleteMySite(vo);
+		}
+		return 0;
 	}
 
 	// 암호화

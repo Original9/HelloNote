@@ -60,7 +60,7 @@
 	</select>
 	
 	<!-- DELETE -->
-	<delete id="getMySiteDelete" parameterType="mysite">
+	<delete id="deleteMySite" parameterType="mysite">
 		DELETE ${userId}_MYSITE
 		WHERE  MYSITE_SEQ = #{mySiteSeq}
 	</delete>

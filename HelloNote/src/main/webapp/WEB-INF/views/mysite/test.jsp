@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	// 1.모두 체크
 	function allChk(obj) {
-		var chkObj = document.getElementsByName("RowCheck");
+		var chkObj = document.getElementsByName("rowCheck");
 		var rowCnt = chkObj.length - 1;
 		var check = obj.checked;
 		if (check) {
@@ -38,7 +38,7 @@
 	function fn_userDel() {
 
 		var userid = "";
-		var memberChk = document.getElementsByName("RowCheck");
+		var memberChk = document.getElementsByName("rowCheck");
 		var chked = false;
 		var indexid = false;
 		for (i = 0; i < memberChk.length; i++) {
@@ -54,11 +54,10 @@
 			alert("삭제할 사용자를 체크해 주세요");
 			return;
 		}
-		document.userForm.delUserid.value = userid;
+		
 
 		var agree = confirm("삭제 하시겠습니까?");
 		if (agree) {
-			document.userForm.execute.value = "userDel";
 			document.userForm.submit();
 		}
 	}﻿
@@ -66,25 +65,24 @@
 </head>
 <body>
 	<!-- 목록 시작 -->
-	<h3 align="center">게시판</h3>
+	<h3 align="center">My Site List</h3>
+	<br>
 	<form name="userForm" id="userForm" action='deleteMySite'>
-		<table border="1">
+		<table class="table table-black table-hover">
 			<tr>
-				<th scope="col"><input id="allCheck" type="checkbox"
+				<th scope="col" width="10"><input id="allCheck" type="checkbox"
 					onclick="allChk(this);" /></th>
-				<th>MYSITE_SEQ</th>
-				<th>SITE_ID</th>
-				<th>SITE_PW</th>
-				<th>SITE_ADDR</th>
-				<th>SITE_MEMO</th>
-				<th>TITLE</th>
+				<th align="center" width="100">MYSITE_SEQ</th>
+				<th align="center" width="200">SITE_ID</th>
+				<th align="center" width="200">SITE_PW</th>
+				<th align="center" width="200">SITE_ADDR</th>
+				<th align="center" width="200">SITE_MEMO</th>
+				<th align="center" width="200">TITLE</th>
 			</tr>
-
 			<!-- 컨트롤러의 items key 값 -->
-
 			<c:forEach items="${mySite }" var="mySite">
 				<tr>
-					<td><input ﻿ name="RowCheck" type="checkbox"
+					<td><input ﻿name="rowCheck" type="checkbox"
 						value="${mySite.mySiteSeq}" /></td>
 					<td align="center" width="100">${mySite.mySiteSeq }</td>
 					<td align="center" width="200">${mySite.siteId }</td>
@@ -92,11 +90,8 @@
 					<td align="center" width="200">${mySite.siteAddr }</td>
 					<td align="center" width="200">${mySite.siteMemo }</td>
 					<td align="center" width="200">${mySite.title }</td>
-
 				</tr>
-
 			</c:forEach>
-
 		</table>
 	</form>
 	<!-- 목록 끝 -->

@@ -55,12 +55,59 @@
 			return;
 		}
 		
-
 		var agree = confirm("삭제 하시겠습니까?");
 		if (agree) {
 			document.userForm.submit();
 		}
-	}﻿
+	}
+	// 상세보기 모달
+	$('#mySiteModalSelect').on('shown.bs.modal', function () {
+		  $('#myInput').trigger('focus')
+		})
+		
+	function selectModal(mySiteSeq){
+		var mySiteSeq;
+		
+		//특정 사용자 조회
+		$.ajax({
+			url:'users/'+userId,
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:userSelectResult
+		});
+
+	}
+		//사용자 조회 요청
+		function userSelect() {
+			//조회 버튼 클릭
+			$('body').on('click','#btnSelect',function(){
+				var userId = $(this).closest('tr').find('#hidden_userId').val();
+				//특정 사용자 조회
+				$.ajax({
+					url:'users/'+userId,
+					type:'GET',
+					contentType:'application/json;charset=utf-8',
+					dataType:'json',
+					error:function(xhr,status,msg){
+						alert("상태값 :" + status + " Http에러메시지 :"+msg);
+					},
+					success:userSelectResult
+				});
+			}); //조회 버튼 클릭
+		}//userSelect
+		
+		//사용자 조회 응답
+		function userSelectResult(user) {
+			$('input:text[name="id"]').val(user.id);
+			$('input:text[name="name"]').val(user.name);
+			$('input:text[name="password"]').val(user.password);
+			$('select[name="role"]').val(user.role).attr("selected", "selected");
+		}//userSelectResult
+	﻿
 </script>
 </head>
 <body>
@@ -68,7 +115,7 @@
 	<h3 align="center">My Site List</h3>
 	<br>
 	<form name="userForm" id="userForm" action='deleteMySite'>
-		<table class="table table-black table-hover">
+		<table class="table table-white table-hover">
 			<tr>
 				<th scope="col" width="10"><input id="allCheck" type="checkbox"
 					onclick="allChk(this);" /></th>
@@ -81,7 +128,7 @@
 			</tr>
 			<!-- 컨트롤러의 items key 값 -->
 			<c:forEach items="${mySite }" var="mySite">
-				<tr>
+				<tr onclick="selectModal(${mySite.mySiteSeq})">
 					<td><input ﻿name="rowCheck" type="checkbox"
 						value="${mySite.mySiteSeq}" /></td>
 					<td align="center" width="100">${mySite.mySiteSeq }</td>
@@ -133,7 +180,6 @@
 	<!-- 페이징 끝 -->
 
 	<!-- 입력 모달 창 -->
-
 	<div class="modal" id="mySiteModal">
 		<div class="modal-content" id="modal-content">
 			<div class="form">
@@ -146,7 +192,7 @@
 								<div class="field-wrap">
 									<div class="field-wrap">
 										<label> TITLE </label> <input type="text" required
-											autocomplete="off" name="title" />
+											autocomplete="off" name="title" "/>
 									</div>
 									<div class="field-wrap">
 										<label> ADDR </label> <input type="text" required
@@ -177,5 +223,51 @@
 		</div>
 	</div>
 	<!-- 입력 모달 창 끝-->
+
+	<!-- 상세보기 모달 창 -->
+	<div class="modal" id="mySiteModalSelect">
+		<div class="modal-content" id="modal-content">
+			<div class="form">
+				<span class="close">&times;</span>
+				<div class="tab-content">
+					<div id="signup">
+						<h1>Select My Site List</h1>
+						<form action="insertMySite" method="post">
+							<div class="top-row">
+								<div class="field-wrap">
+									<div class="field-wrap">
+										<label> TITLE </label> <input type="text" required
+											autocomplete="off" name="title" />
+									</div>
+									<div class="field-wrap">
+										<label> ADDR </label> <input type="text" required
+											autocomplete="off" name="siteAddr" />
+									</div>
+									<label> ID or Email </label> <input type="text" required
+										autocomplete="off" name="siteId" />
+								</div>
+								<div class="field-wrap">
+									<label>Password </label> <input type="password" required
+										autocomplete="off" name="sitePw" />
+								</div>
+							</div>
+							<div class="field-wrap">
+								<label>Memo</label>
+								<textarea name="siteMemo"></textarea>
+							</div>
+							<br>
+							<div align="center">
+								<button class="btn btn-primary">수정</button>
+								<button class="btn btn-primary">삭제</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- tab-content -->
+			</div>
+			<!-- /form -->
+		</div>
+	</div>
+	<!-- 상세보기 모달 창 끝-->
 </body>
 </html>

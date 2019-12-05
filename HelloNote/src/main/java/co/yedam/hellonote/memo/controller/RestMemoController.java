@@ -30,9 +30,11 @@ public class RestMemoController {
 		service.deleteMemo(vo);
 	}
 	
-	@RequestMapping("sortHandling")
-	public void sortHandling(MemoVO vo, int oldOrder) {
-		
+	@RequestMapping("memoSortHandling")
+	public void sortHandling(MemoVO vo) {
+		System.out.println(vo.getMemoOrder());
+		System.out.println(vo.getMemoSeq());
+		System.out.println(vo.getOldOrder());
 	}
 	
 //	public void updateMemo() {

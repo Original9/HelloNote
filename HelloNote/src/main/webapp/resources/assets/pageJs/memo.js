@@ -259,8 +259,9 @@ function sorting() {
 					var newIndex = ui.item.index()+1;
 					var oldIndex = $(this).attr('data-previndex');
 					var element_id = ui.item.attr('id');
-
-					sortHandler(newIndex, oldIndex, element_id);
+					var element_seq=ui.item.attr('id').replace('memoli', '');
+					
+					sortHandler(newIndex, oldIndex, element_seq);
 
 					console.log('id of Item moved = ' + element_id
 							+ ' old position = ' + oldIndex
@@ -272,12 +273,17 @@ function sorting() {
 }
 
 function sortHandler(newIndex, oldIndex, elementId) {
+	console.log(elementId);
+	
 	$.ajax({
-		url : 'sortHandling',
+		url : 'memoSortHandling',
 		data : {
 			memoOrder : newIndex,
 			memoSeq : elementId,
 			oldOrder : oldIndex
+		},
+		success : function(){
+			console.log('sort success');
 		}
 	})
 }

@@ -10,8 +10,8 @@
 		menu_id,
 		memo_seq
 		from ${hellonoteId}_memo
-		order by memo_order
 		where menu_id=#{menuId}
+		order by memo_order
 	</select>
 	<delete id="deleteMemo" parameterType="memo">
 		delete from kang_memo

@@ -12,4 +12,5 @@ public class MemoVO {
 	private String memoPlace;
 	private int memoOrder;
 	private String hellonoteId;
+	private int oldOrder;
 }

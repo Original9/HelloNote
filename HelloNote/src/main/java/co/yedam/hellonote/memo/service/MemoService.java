@@ -7,7 +7,7 @@ import co.yedam.hellonote.user.vo.UserVO;
 
 public interface MemoService {
 
-	public List<MemoVO> getMemoList(UserVO vo);
+	public List<MemoVO> getMemoList(MemoVO vo);
 
 	public int insertMemo(MemoVO vo);
 

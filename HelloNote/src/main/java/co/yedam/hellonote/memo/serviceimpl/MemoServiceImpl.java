@@ -16,7 +16,7 @@ public class MemoServiceImpl implements MemoService {
 	@Autowired
 	private MemoDAO dao;
 	
-	public List<MemoVO> getMemoList(UserVO vo){
+	public List<MemoVO> getMemoList(MemoVO vo){
 		return dao.getMemoList(vo);
 	}
 	

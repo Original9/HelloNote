@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.yedam.hellonote.memo.service.MemoService;
 import co.yedam.hellonote.memo.vo.MemoVO;
-import co.yedam.hellonote.user.vo.UserVO;
 
 @Controller
 public class MemoController {
@@ -25,7 +24,7 @@ public class MemoController {
 		vo.setMenuId("1");
 		
 		model.addAttribute("memoList", service.getMemoList(vo));
-		return "main/main/memo";
+		return "main/main/memo";	
 	}
 	
 }

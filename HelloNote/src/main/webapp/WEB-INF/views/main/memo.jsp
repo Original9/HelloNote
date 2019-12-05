@@ -18,10 +18,10 @@
 			<li class="memoli" id="memoli${list.memoSeq}"><a id="memo${list.memoSeq}"
 				class="memo">
 					<div class="title-box">
-						<h3 id="title${list.memoSeq}" class="title">${list.memoTitle}</h3>
+						<h3 id="title${list.memoSeq}" class="title">${list.memoSeq}</h3>
 					</div>
 					<div class="text-box">
-						<p id="text${list.memoSeq}" class="text">${list.memoText}</p>
+						<p id="text${list.memoSeq}" class="text">${list.memoOrder}</p>
 					</div>
 					<div class="location-box">
 						<p id="location${list.memoSeq}" class="text">${list.memoPlace}</p>

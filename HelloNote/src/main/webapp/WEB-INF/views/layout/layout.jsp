@@ -13,7 +13,7 @@
 <!-- 메인폰트	 -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/assets/css/mainFont.css"/>">
-	
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
@@ -80,7 +80,10 @@
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" href="index.html"><i
 							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-
+					<li class="nav-item" role="presentation"><a
+						class="nav-link active" href="${pageContext.request.contextPath}/menuList/accountBook"><i
+							class="fas fa-tachometer-alt"></i><span> AccountBook </span></a></li>
+					
 				</ul>
 				<div class="text-center d-none d-md-inline">
 					<button class="btn rounded-circle border-0" id="sidebarToggle"

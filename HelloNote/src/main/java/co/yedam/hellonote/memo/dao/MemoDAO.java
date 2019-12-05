@@ -1,6 +1,7 @@
 package co.yedam.hellonote.memo.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,8 +21,8 @@ public class MemoDAO {
 		return batis.selectList("MemoDAO.getMemoList", uservo);
 	}
 	
-	public int insertMemo(("memovo")MemoVO memovo, @Param("uservo") UserVO uservo) {
-		batis.insert("MemoDAO.insertMemo");
+	public int insertMemo(MemoVO memovo) {
+		batis.insert("MemoDAO.insertMemo", memovo);
 		return memovo.getMemoSeq(); 
 	}
 	

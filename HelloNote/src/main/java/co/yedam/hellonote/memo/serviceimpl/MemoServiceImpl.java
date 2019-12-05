@@ -21,7 +21,7 @@ public class MemoServiceImpl implements MemoService {
 	}
 	
 	public int insertMemo(MemoVO vo) {
-		return dao.insertMemo(vo, null);
+		return dao.insertMemo(vo);
 	}
 	
 	public void updateMemo(MemoVO vo) {

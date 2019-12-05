@@ -41,8 +41,10 @@ public class UserController {
 			//logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !!
 			return "layout/login";
 		}
-		request.setAttribute("hellonoteId", temp.getHellonoteId());
-		request.setAttribute("pw",temp.getPw());
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("hellonoteId", temp.getHellonoteId());
+		session.setAttribute("pw", temp.getPw());
 		
 		return "main/main/mainPage";
 	}

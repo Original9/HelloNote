@@ -5,7 +5,7 @@
   <mapper namespace="CalendarDAO">
   
   	<!-- 사용자가 캘린더에 등록한 일정 모두 조회 -->
-  	<select id="getCalendarList" resultType="calendar"> <!-- 사용자 이름별로 테이블이 다르기 때문에 실제로 만들때는 사용자 아이디값 불러와서 테이블이름 앞에 추가 해줘야한다.  -->
+  	<select id="getCalendarList" resultType="calendar" >
   		SELECT CALENDAR_SEQ,
   			   concat(concat(to_char(START_DATE,'yyyy-mm-dd'),'T'),to_char(START_DATE,'hh24:mi')) AS START_DATE,
   			   concat(concat(to_char(END_DATE,'yyyy-mm-dd'),'T'),to_char(END_DATE,'hh24:mi')) AS END_DATE,
@@ -15,8 +15,9 @@
   			   TEXT_COLOR,
   			   ALL_DAY,
   			   MENU_ID,
-  			   DESCRIPTION
-  	     FROM CALENDAR
+  			   DESCRIPTION,
+  			   title
+  	     FROM ${hellonoteId}_CALENDAR
   	
   	</select>
   	
@@ -27,6 +28,8 @@
   	
   	<!-- 캘린더에 일정 등록 -->
   	<insert id="insertCalendar" parameterType="calendar">
+  		
+  	
   	
   	</insert>
   	

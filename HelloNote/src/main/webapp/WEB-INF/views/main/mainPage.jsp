@@ -8,48 +8,56 @@
   <title>jQuery UI Draggable - Constrain movement</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <style>
-  .draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+  .draggable { width: 150px; height:150px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
   #draggable, #draggable2 { margin-bottom:20px; }
   #draggable { cursor: n-resize; }
   #draggable2 { cursor: e-resize; }
-  #containment-wrapper { width: 95%; height:150px; border:2px solid #ccc; padding: 10px; }
+  #containment-wrapper { width: 100%; height:1000px; border:2px solid #ccc; padding: 10px; }
   h3 { clear: left; }
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#draggable" ).draggable({ axis: "y" });
-    $( "#draggable2" ).draggable({ axis: "x" });
- 
-    $( "#draggable3" ).draggable({ containment: "#containment-wrapper", scroll: false });
-    $( "#draggable4" ).draggable({ containment: "parent" });
-  } );
-  </script>
+  
+
+  
 </head>
+
 <body>
-<h2>접속 ID: "${hellonoteId}" 접속 pw: "${pw}"</h2>  
-<h3>Constrain movement along an axis:</h3>
- 
-<div id="draggable" class="draggable ui-widget-content">
-  <p>I can be dragged only vertically</p>
-</div>
- 
-<div id="draggable2" class="draggable ui-widget-content">
-  <p>I can be dragged only horizontally</p>
-</div>
- 
-<h3>Or to within another DOM element:</h3>
+<h2>접속 ID: "${hellonoteId}" 접속 pw: "${pw}"</h2>   
+<h3>Widgets Moving<input type='button' id="addWidgets" value='버튼1'/></h3>
 <div id="containment-wrapper">
-  <div id="draggable3" class="draggable ui-widget-content">
+
+  <div id="draggable1" class="draggable ui-widget-content">
     <p>I'm contained within the box</p>
   </div>
- 
-  <div class="draggable ui-widget-content">
-    <p id="draggable4" class="ui-widget-header">I'm contained within my parent</p>
+  
+  
+  <div id="draggable2" class="draggable ui-widget-content">
+    <p>I'm contained within the box</p>
   </div>
+  
+  
+  
+  
 </div>
  
  
 </body>
+<script>
+// aja로 사용자가 가지고 있는 widgets 목록에서 위젯들 불러오고 화면에 뿌려준다.
+
+$("#addWidgets").click(function() { // 위젯 아이디를 div id로 넣고 script에도 id 값으로 넣는다.
+	var add = $('<div id="draggable3" class="draggable ui-widget-content" >').html('<p>test</p>');
+	add.draggable({ containment: "#containment-wrapper", scroll: true });
+	$('#containment-wrapper').append(add);
+});
+
+
+
+$(function(){
+	$( "#draggable1" ).draggable({ containment: "#containment-wrapper", scroll: true });
+	$( "#draggable2" ).draggable({ containment: "#containment-wrapper", scroll: true });
+	
+})
+</script>
 </html>

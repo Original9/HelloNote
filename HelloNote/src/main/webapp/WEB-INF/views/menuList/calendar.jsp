@@ -20,13 +20,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calendar/css/main.css">
     <link hef="${pageContext.request.contextPath}/resources/assets/css/mainFont.css" rel="stylesheet" type="text/css">
-    
+    <script src="<c:url value="/resources/assets/js/json.min.js"/>"></script>	 
     
     
 	</head>
 
 <body>
-    
+    <h4>session hellonoteId: "${hellonoteId}" session pw: "${pw}"</h4>
     <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->

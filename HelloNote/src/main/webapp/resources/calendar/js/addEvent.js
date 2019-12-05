@@ -37,7 +37,7 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
     $('#save-event').unbind(); // .unbind()를 사용하여 요소의 모든 이벤트의 바인딩을 해제합니다. 
     $('#save-event').on('click', function () {
 
-        var eventData = {
+        /*var eventData = {
             _id: eventId, // DB 아이디 아직 설정안해서 temp값 넣어준다.
             title: editTitle.val(),
             start: editStart.val(),
@@ -48,16 +48,28 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
-        };
-       
-
+        };*/
+    	var eventData = {
+                calendarSeq: eventId, // DB 아이디 아직 설정안해서 temp값 넣어준다.
+                title: editTitle.val(),
+                startDate: editStart.val(),
+                endDate: editEnd.val(),
+                description: editDesc.val(),
+                type: editType.val(),
+                userName: '사나', // 필요없는값
+                backgroundColor: editColor.val(),
+                textColor: '#ffffff',
+                allDay: false
+            };
+    	console.log(eventData);
         if (eventData.start > eventData.end) {
-            alert('끝나는 날짜가 앞설 수 없습니다.');
+            alert('끝나는 날짜가 앞설 수 없습니다!');
             return false;
         }
 
         if (eventData.title === '') {
-            alert('일정명은 필수입니다.');
+        	console.log("!!!!!");
+            alert('일정명은 필수입니다!');
             return false;
         }
 
@@ -78,13 +90,13 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
 
-        //새로운 일정 저장
+        //새로운 일정 // 79라인까지 화면에 자동으로 등록해주고 나는 DB에만 넣으면 된다.
         $.ajax({ // 데이터 받아서 그냥 디비에 넣으면 끝인거 같고 
-            type: "get",
-            url: "",
-            data: {
-                //..... db 연동시 
-            },
+            type: "post",
+            url: "/hellonote/addCalendar",
+            dataType:'json',
+            data: JSON.stringify(eventData).serializeObject()            //..... db 연동시 
+            ,
             success: function (response) {
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');

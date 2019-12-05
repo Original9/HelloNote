@@ -6,8 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.yedam.hellonote.hellonote.accountbook.service.Paging;
-import co.yedam.hellonote.hellonote.accountbook.vo.AccountBookSearchVO;
 import co.yedam.hellonote.hellonote.accountbook.vo.AccountBookVO;
 
 @Repository

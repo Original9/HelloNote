@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Dashboard - Brand</title>\
+<title>Dashboard - Brand</title>
 <!-- 메인폰트	 -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/assets/css/mainFont.css"/>">
@@ -58,7 +58,7 @@
 							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active"
-						href="${pageContext.request.contextPath}/menuList/memo"><i
+						href="memo"><i
 							class="fas fa-tachometer-alt"></i><span> MEMO</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active"
@@ -72,7 +72,7 @@
 							class="fas fa-tachometer-alt"></i><span> CHECKLIST</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active"
-						href="${pageContext.request.contextPath}/mysite/mySiteList"><i
+						href="${pageContext.request.contextPath}/mysite/getMySiteList"><i
 							class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" href="index.html"><i

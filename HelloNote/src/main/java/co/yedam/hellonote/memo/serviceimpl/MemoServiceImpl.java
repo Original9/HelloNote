@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import co.yedam.hellonote.memo.dao.MemoDAO;
 import co.yedam.hellonote.memo.service.MemoService;
 import co.yedam.hellonote.memo.vo.MemoVO;
+import co.yedam.hellonote.user.vo.UserVO;
 
 @Service
 public class MemoServiceImpl implements MemoService {
@@ -15,12 +16,12 @@ public class MemoServiceImpl implements MemoService {
 	@Autowired
 	private MemoDAO dao;
 	
-	public List<MemoVO> getMemoList(){
-		return dao.getMemoList();
+	public List<MemoVO> getMemoList(MemoVO vo){
+		return dao.getMemoList(vo);
 	}
 	
-	public void insertMemo() {
-		dao.insertMemo();
+	public int insertMemo(MemoVO vo) {
+		return dao.insertMemo(vo);
 	}
 	
 	public void updateMemo(MemoVO vo) {

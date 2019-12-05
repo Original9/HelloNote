@@ -10,10 +10,11 @@
 				SITE_ADDR "siteAddr",
 				SITE_MEMO "siteMemo",
 				TITLE "title",
-				MENU_ID "memo",
+				MENU_ID "menuId",
 				MYSITE_SEQ "siteSEQ"
+				SITE_DATE "siteDate"
 		  FROM  ${userId}_MYSITE
-		  ORDER BY SEQ DESC
+		  ORDER BY MYSITE_SEQ DESC
 	</select>
 
 
@@ -25,19 +26,20 @@
 				SITE_MEMO,
 				TITLE,
 				MENU_ID,
-				MYSITE_SEQ
+				MYSITE_SEQ,
+				SITE_DATE
 		  FROM  ${userId}_MYSITE
 		  <where>
 		  	<if test="keyword != null and keyword !='' ">
-		  		<if test="searchCondition == 'TITLE' ">
+		  		<if test="searchCondition == 'title' ">
 		  			AND title LIKE '%' || #{keyword} || '%'
 		  		</if>
-		  		<if test="searchCondition == 'SITE_ADDR' ">
-		  			AND content LIKE '%' || #{keyword} || '%'
+		  		<if test="searchCondition == 'siteAddr' ">
+		  			AND SITE_ADDR LIKE '%' || #{keyword} || '%'
 		  		</if>
 		  	</if> 
 		  </where>
-		  ORDER BY SEQ ASC
+		  ORDER BY MYSITE_SEQ DESC
 	) a ) b WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 	
@@ -50,23 +52,23 @@
 		  		<if test="searchCondition == 'title' ">
 		  			and title like '%' || #{keyword} || '%'
 		  		</if>
-		  		<if test="searchCondition == 'content' ">
-		  			and content like '%' || #{keyword} || '%'
+		  		<if test="searchCondition == 'siteAddr' ">
+		  			and SITE_ADDR like '%' || #{keyword} || '%'
 		  		</if>
 		  	</if>
 		  </where>
 	</select>
 	
 	<!-- DELETE -->
-	<delete id="getMySiteDelete" parameterType="mysite">
+	<delete id="deleteMySite" parameterType="mysite">
 		DELETE ${userId}_MYSITE
 		WHERE  MYSITE_SEQ = #{mySiteSeq}
 	</delete>
 	
 	<!-- INSERT -->
 	<insert id="insertMySite">
-	<selectKey order="BEFORE" resultType="int" keyProperty="seq">
-		 SELECT NVL(MAX(SEQ),0)+1 FROM ${userId}_MYSITE 
+	<selectKey order="BEFORE" resultType="int" keyProperty="mySiteSeq">
+		 SELECT NVL(MAX(MYSITE_SEQ),0)+1 FROM ${userId}_MYSITE 
 	</selectKey>
 		INSERT INTO ${userId}_MYSITE (  SITE_ID, 
 										SITE_PW,
@@ -74,6 +76,7 @@
 										SITE_MEMO,
 										TITLE,
 										MENU_ID,
+										SITE_DATE,
 										MYSITE_SEQ  )
 				 			 VALUES (   #{siteId},
 				  						#{sitePw},
@@ -81,6 +84,7 @@
 				  						#{siteMemo},
 				  						#{title},
 				  						#{menuId},
+				  						sysdate,
 				  						#{mySiteSeq}  )
 	</insert>
 	
@@ -92,6 +96,7 @@
 			   SITE_ADDR = #{siteAddr},
 			   SITE_MEMO = #{siteMemo},
 			   TITLE = #{title} 
+			   SITE_DATE = #{sysdate}
 		WHERE MYSITE_SEQ = #{mySiteSeq}
 	</update>
 	
@@ -103,7 +108,8 @@
 				SITE_MEMO,
 				TITLE,
 				MENU_ID,
-				MYSITE_SEQ
+				MYSITE_SEQ,
+				SITE_DATE
 		  FROM  ${userId}_MYSITE
 		 WHERE  SITE_ID = #{siteId}
 	</select>

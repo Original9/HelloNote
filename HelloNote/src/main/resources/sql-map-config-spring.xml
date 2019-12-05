@@ -12,8 +12,10 @@
 	<!-- 항상 sql에 column과 자바에서 설정해주는 이름이 자동으로 mapping 되기 때문에 변수명이 똑같해야한다.-->
 		<!-- <typeAlias type="com.yedam.exam.board.BoardVO" alias="board"/> --> 
 		<typeAlias type="co.yedam.hellonote.mysite.vo.MySiteVO" alias="mysite"/>
+		<typeAlias type="co.yedam.hellonote.calendar.vo.CalendarVO" alias="calendar"/>
 		<typeAlias type="co.yedam.hellonote.memo.vo.MemoVO" alias="memo"/>
 		<typeAlias type="co.yedam.hellonote.hellonote.accountbook.vo.AccountBookVO" alias="accountBook"/>
+		<typeAlias type="co.yedam.hellonote.user.vo.UserVO" alias="user"/>
 	</typeAliases>
 
 </configuration>

@@ -14,13 +14,13 @@ public class MemoDAO {
 	@Autowired
 	SqlSessionTemplate batis;
 	
-	public List<MemoVO> getMemoList(){
-		return batis.selectList("MemoDAO.getMemoList");
+	public List<MemoVO> getMemoList(MemoVO vo){
+		return batis.selectList("MemoDAO.getMemoList", vo);
 	}
 	
-	public void insertMemo() {
-		MemoVO vo=new MemoVO();
-		batis.insert("MemoDAO.insertMemo", vo);
+	public int insertMemo(MemoVO memovo) {
+		batis.insert("MemoDAO.insertMemo", memovo);
+		return memovo.getMemoSeq(); 
 	}
 	
 	public void updateMemo(MemoVO vo) {

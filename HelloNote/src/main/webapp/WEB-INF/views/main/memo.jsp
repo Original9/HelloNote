@@ -15,7 +15,7 @@
 <body>
 	<ul class="memoul" id="memoul">
 		<c:forEach items="${memoList}" var="list">
-			<li class="memoli" id="memoli"><a id="memo${list.memoSeq}"
+			<li class="memoli" id="memoli${list.memoSeq}"><a id="memo${list.memoSeq}"
 				class="memo">
 					<div class="title-box">
 						<h3 id="title${list.memoSeq}" class="title">${list.memoTitle}</h3>
@@ -24,11 +24,7 @@
 						<p id="text${list.memoSeq}" class="text">${list.memoText}</p>
 					</div>
 					<div class="location-box">
-						<p id="location${list.memoSeq}" class="text"></p>
-						<input id="locationx${list.memoSeq}" type="hidden"
-							value="${list.memoPlacex}"> <input
-							id="locationy${list.memoSeq}" type="hidden"
-							value="${list.memoPlacey}">
+						<p id="location${list.memoSeq}" class="text">${list.memoPlace}</p>
 					</div>
 
 			</a></li>

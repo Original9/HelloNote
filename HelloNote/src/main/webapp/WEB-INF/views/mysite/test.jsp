@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	// 1.모두 체크
 	function allChk(obj) {
-		var chkObj = document.getElementsByName("rowCheck");
+		var chkObj = document.getElementsByClassName("rowCheck");
 		var rowCnt = chkObj.length - 1;
 		var check = obj.checked;
 		if (check) {
@@ -38,7 +38,7 @@
 	function fn_userDel() {
 
 		var userid = "";
-		var memberChk = document.getElementsByName("rowCheck");
+		var memberChk = document.getElementsByClassName("rowCheck");
 		var chked = false;
 		var indexid = false;
 		for (i = 0; i < memberChk.length; i++) {
@@ -51,63 +51,24 @@
 			}
 		}
 		if (!indexid) {
-			alert("삭제할 사용자를 체크해 주세요");
+			alert("삭제할 메모를 체크해 주세요");
 			return;
 		}
-		
+
 		var agree = confirm("삭제 하시겠습니까?");
 		if (agree) {
 			document.userForm.submit();
 		}
 	}
-	// 상세보기 모달
-	$('#mySiteModalSelect').on('shown.bs.modal', function () {
-		  $('#myInput').trigger('focus')
-		})
-		
-	function selectModal(mySiteSeq){
-		var mySiteSeq;
-		
-		//특정 사용자 조회
-		$.ajax({
-			url:'users/'+userId,
-			type:'GET',
-			contentType:'application/json;charset=utf-8',
-			dataType:'json',
-			error:function(xhr,status,msg){
-				alert("상태값 :" + status + " Http에러메시지 :"+msg);
-			},
-			success:userSelectResult
-		});
-
+	
+	// 상세 모달창 삭제 function
+	function fn_userDel2() {
+		var agree = confirm("삭제 하시겠습니까?");
+		if (agree) {
+			document.dele.submit();
+		}
 	}
-		//사용자 조회 요청
-		function userSelect() {
-			//조회 버튼 클릭
-			$('body').on('click','#btnSelect',function(){
-				var userId = $(this).closest('tr').find('#hidden_userId').val();
-				//특정 사용자 조회
-				$.ajax({
-					url:'users/'+userId,
-					type:'GET',
-					contentType:'application/json;charset=utf-8',
-					dataType:'json',
-					error:function(xhr,status,msg){
-						alert("상태값 :" + status + " Http에러메시지 :"+msg);
-					},
-					success:userSelectResult
-				});
-			}); //조회 버튼 클릭
-		}//userSelect
-		
-		//사용자 조회 응답
-		function userSelectResult(user) {
-			$('input:text[name="id"]').val(user.id);
-			$('input:text[name="name"]').val(user.name);
-			$('input:text[name="password"]').val(user.password);
-			$('select[name="role"]').val(user.role).attr("selected", "selected");
-		}//userSelectResult
-	﻿
+		 ﻿
 </script>
 </head>
 <body>
@@ -128,15 +89,15 @@
 			</tr>
 			<!-- 컨트롤러의 items key 값 -->
 			<c:forEach items="${mySite }" var="mySite">
-				<tr onclick="selectModal(${mySite.mySiteSeq})">
-					<td><input ﻿name="rowCheck" type="checkbox"
-						value="${mySite.mySiteSeq}" /></td>
-					<td align="center" width="100">${mySite.mySiteSeq }</td>
-					<td align="center" width="200">${mySite.siteId }</td>
-					<td align="center" width="200">${mySite.sitePw }</td>
-					<td align="center" width="200">${mySite.siteAddr }</td>
-					<td align="center" width="200">${mySite.siteMemo }</td>
-					<td align="center" width="200">${mySite.title }</td>
+				<tr >
+					<td ><input name="rowCheck" class="rowCheck" type="checkbox"
+						value="${mySite.mySiteSeq }" /></td>
+					<td class="getMySite" align="center" width="100">${mySite.mySiteSeq }</td>
+					<td class="getMySite" align="center" width="200">${mySite.siteId }</td>
+					<td class="getMySite" align="center" width="200">${mySite.sitePw }</td>
+					<td class="getMySite" align="center" width="200">${mySite.siteAddr }</td>
+					<td class="getMySite" align="center" width="200">${mySite.siteMemo }</td>
+					<td class="getMySite" align="center" width="200">${mySite.title }</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -192,7 +153,7 @@
 								<div class="field-wrap">
 									<div class="field-wrap">
 										<label> TITLE </label> <input type="text" required
-											autocomplete="off" name="title" "/>
+											autocomplete="off" name="title" />
 									</div>
 									<div class="field-wrap">
 										<label> ADDR </label> <input type="text" required
@@ -225,14 +186,52 @@
 	<!-- 입력 모달 창 끝-->
 
 	<!-- 상세보기 모달 창 -->
-	<div class="modal" id="mySiteModalSelect">
+	<div class="modal" id="getMySiteModal">
 		<div class="modal-content" id="modal-content">
 			<div class="form">
 				<span class="close">&times;</span>
 				<div class="tab-content">
 					<div id="signup">
-						<h1>Select My Site List</h1>
-						<form action="insertMySite" method="post">
+						<h1>My Site List</h1>
+						<form name="dele" id="dele" action="getMySitedelete" method="post">
+			
+							<input type="hidden" name="mySiteSeq" id="mySiteSeq">
+					
+							<div class="top-row">
+								<div class="field-wrap">
+									<div class="field-wrap">
+										<label> TITLE : </label> <span id="title"></span>
+									</div>
+									<div class="field-wrap">
+										<label> ADDR : </label>  <span id="siteAddr"></span>
+									</div>
+									<label> ID or Email : </label>  <span id="siteId"></span>
+								</div>
+								<div class="field-wrap">
+									<label>Password : </label>  <span id="sitePw"></span>
+								</div>
+							</div>
+							<div class="field-wrap">
+								<label>Memo : </label>
+								 <span id="siteMemo"></span>
+							</div>
+							<br>
+							<div align="center">
+								<button class="btn btn-primary" name="change" id="change">수정</button>
+								<button class="btn btn-primary" name="del" onclick="fn_userDel2()" type="button">삭제</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- tab-content -->
+			</div>
+			<!-- /form  -->
+		</div>
+	</div>
+	<!-- 상세보기 모달 창 끝  -->
+						<div id="changeform" class="changeform">
+						<h1>Update mySite </h1>
+						<form action="updateMySite" method="post">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
@@ -257,17 +256,9 @@
 							</div>
 							<br>
 							<div align="center">
-								<button class="btn btn-primary">수정</button>
-								<button class="btn btn-primary">삭제</button>
+								<button class="btn btn-primary">Add</button>
 							</div>
 						</form>
 					</div>
-				</div>
-				<!-- tab-content -->
-			</div>
-			<!-- /form -->
-		</div>
-	</div>
-	<!-- 상세보기 모달 창 끝-->
 </body>
 </html>

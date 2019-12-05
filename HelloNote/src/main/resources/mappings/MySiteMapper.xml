@@ -65,6 +65,13 @@
 		WHERE  MYSITE_SEQ = #{mySiteSeq}
 	</delete>
 	
+	<!-- SELECT DELETE -->
+	<delete id="getMySitedelete" parameterType="mysite">
+		DELETE ${userId}_MYSITE
+		WHERE  MYSITE_SEQ = #{mySiteSeq}
+	</delete>
+	
+	
 	<!-- INSERT -->
 	<insert id="insertMySite">
 	<selectKey order="BEFORE" resultType="int" keyProperty="mySiteSeq">
@@ -111,7 +118,7 @@
 				MYSITE_SEQ,
 				SITE_DATE
 		  FROM  ${userId}_MYSITE
-		 WHERE  SITE_ID = #{siteId}
+		 WHERE  MYSITE_SEQ = #{mySiteSeq}
 	</select>
 
 </mapper>

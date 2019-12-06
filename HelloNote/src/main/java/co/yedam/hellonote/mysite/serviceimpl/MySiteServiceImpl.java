@@ -44,9 +44,9 @@ public class MySiteServiceImpl implements MySiteService {
 
 	@Override
 	public int deleteMySite(int[] list, MySiteVO vo) {
-		for(int i=0; i<list.length; i++) {
-			vo.setMySiteSeq(list [i]);
-		 dao.deleteMySite(vo);
+		for (int i = 0; i < list.length; i++) {
+			vo.setMySiteSeq(list[i]);
+			dao.deleteMySite(vo);
 		}
 		return 0;
 	}
@@ -66,6 +66,14 @@ public class MySiteServiceImpl implements MySiteService {
 
 	@Override
 	public MySiteVO getMySite(MySiteVO vo) {
-		return dao.getMySite(vo);
+		MySiteVO result = dao.getMySite(vo); // 암호화된 vo를 result에 담아 
+		result.setSitePw(Password.decryptSimpleTest(result.getSitePw())); // result로 decry 복호화 해서 return 해준다
+		return result;
 	}
+
+	@Override
+	public int getMySitedelete(MySiteVO vo) {
+		return dao.getMySitedelete(vo);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.yedam.hellonote.calendar.vo.CalendarVO;
+import co.yedam.hellonote.user.vo.UserVO;
 
 @Repository
 public class CalendarDAO {
@@ -15,8 +16,8 @@ public class CalendarDAO {
 	SqlSessionTemplate calendar;
 	
 	//전체 조회
-	public List<CalendarVO> getCalendarList(){
-		return calendar.selectList("CalendarDAO.getCalendarList");		
+	public List<CalendarVO> getCalendarList(CalendarVO vo, UserVO user){
+		return calendar.selectList("CalendarDAO.getCalendarList",user);		
 	}
 	
 	//삭제
@@ -25,8 +26,8 @@ public class CalendarDAO {
 	}
 	
 	//등륵
-	public int insertCalendar(CalendarVO vo) {
-		return calendar.insert("CalendarDAO.insertCalendar",vo);		
+	public int insertCalendar(CalendarVO vo, UserVO user) {
+		return calendar.insert("CalendarDAO.insertCalendar", vo);		
 	}	
 	
 	//수정

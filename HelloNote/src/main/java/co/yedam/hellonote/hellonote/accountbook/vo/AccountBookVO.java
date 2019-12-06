@@ -1,12 +1,10 @@
 package co.yedam.hellonote.hellonote.accountbook.vo;
 
-<<<<<<< HEAD
+
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-=======
->>>>>>> branch 'master' of https://github.com/Original9/HelloNote.git
 import lombok.Data;
 
 @Data

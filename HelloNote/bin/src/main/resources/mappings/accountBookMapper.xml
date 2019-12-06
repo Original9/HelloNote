@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="AccountBookDAO">
+
+<select id="getAccountBookList" resultType="map">
+		SELECT
+		ACCOUNTBOOK_SEQ "accountbookSeq", 
+		ACCOUNTBOOK_DATE "accountbookDate", 
+		ACCOUNTBOOK_TRANSLATION "accountbookTranslation", 
+		ACCOUNTBOOK_PRICE "accountbookPrice", 
+		ACCOUNTBOOK_PURPOSE "accountbookPurpose"
+		FROM
+		KANG_ACCOUNTBOOK
+		ORDER BY ACCOUNTBOOK_SEQ ASC
+		   
+</select>
+
+<insert id="insertAccountBook">
+	<selectKey order="BEFORE" resultType="int" keyProperty="accountbookSeq">
+		SELECT NVL(MAX(ACCOUNTBOOK_SEQ),0)+1 FROM KANG_ACCOUNTBOOK
+	</selectKey>  
+		insert into KANG_ACCOUNTBOOK 
+		(
+		ACCOUNTBOOK_SEQ,
+		ACCOUNTBOOK_DATE, 
+		ACCOUNTBOOK_PURPOSE, 
+		ACCOUNTBOOK_TRANSLATION, 
+		ACCOUNTBOOK_PRICE
+		)
+		values
+		 ( 
+		#{accountbookSeq },
+		#{accountbookDate  },
+		#{accountbookPurpose},
+		#{accountbookTranslation},
+		#{accountbookPrice} 
+		)
+
+</insert>
+<select id="searchAccountBook" resultType="map">
+		SELECT
+		ACCOUNTBOOK_SEQ "accountbookSeq", 
+		ACCOUNTBOOK_DATE "accountbookDate", 
+		ACCOUNTBOOK_TRANSLATION "accountbookTranslation", 
+		ACCOUNTBOOK_PRICE "accountbookPrice", 
+		ACCOUNTBOOK_PURPOSE "accountbookPurpose"
+		FROM
+		KANG_ACCOUNTBOOK
+		<where>
+		<choose>
+		<when test= "accountbookPurpose == '' " >
+	 	ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
+	 	</when>
+	 	
+	 	<when test= " accountbookFirstDate == ''  and  accountbookLastDate == '' ">
+	 	ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
+	 	</when>
+	 	
+	 	<otherwise>
+		( ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate} ) and ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
+		ORDER BY ACCOUNTBOOK_SEQ ASC
+		</otherwise>
+		</choose>
+		</where>
+
+</select>
+
+
+
+
+
+
+
+
+
+
+</mapper>

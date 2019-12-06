@@ -22,5 +22,8 @@ public interface MySiteService {
 
 	// 단건조회
 	MySiteVO getMySite(MySiteVO vo);
+	
+	// 단건삭제
+	int getMySitedelete(MySiteVO vo);
 
 }

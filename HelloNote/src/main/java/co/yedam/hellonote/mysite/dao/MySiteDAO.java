@@ -1,6 +1,7 @@
 package co.yedam.hellonote.mysite.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ public class MySiteDAO {
 
 	@Autowired
 	SqlSessionTemplate mySite;
+	
+	// 전체조회<Map>으로 실행
+	public List<Map<String,Object>> getMySiteListMap(){
+		return mySite.selectList("MySiteDAO.getMySiteListMap");
+	}
 
 	// 전체 조회
 	public List<MySiteVO> getMySiteList(MySiteSearchVO svo) {

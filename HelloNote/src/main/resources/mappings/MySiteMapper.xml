@@ -11,8 +11,8 @@
 				SITE_MEMO "siteMemo",
 				TITLE "title",
 				MENU_ID "menuId",
-				MYSITE_SEQ "siteSEQ"
-				SITE_DATE "siteDate"
+				MYSITE_SEQ "mySiteSeq",
+				SITE_DATE sysdate
 		  FROM  ${userId}_MYSITE
 		  ORDER BY MYSITE_SEQ DESC
 	</select>
@@ -98,12 +98,12 @@
 	<!-- UPDATE -->
 	<update id="updateMySite" parameterType="mysite">
 		UPDATE ${userId}_MYSITE SET
+			   SITE_ADDR = #{siteAddr},
 			   SITE_ID = #{siteId},
 			   SITE_PW = #{sitePw},
-			   SITE_ADDR = #{siteAddr},
 			   SITE_MEMO = #{siteMemo},
-			   TITLE = #{title} 
-			   SITE_DATE = #{sysdate}
+			   TITLE = #{title},
+			   SITE_DATE = sysdate
 		WHERE MYSITE_SEQ = #{mySiteSeq}
 	</update>
 	

@@ -1,12 +1,16 @@
 package co.yedam.hellonote.mysite.service;
 
 import java.util.List;
+import java.util.Map;
 
 import co.yedam.hellonote.mysite.paging.Paging;
 import co.yedam.hellonote.mysite.vo.MySiteSearchVO;
 import co.yedam.hellonote.mysite.vo.MySiteVO;
 
 public interface MySiteService {
+	
+	// 전체조회<Map>
+	List<Map<String, Object>> getMySiteListMap();
 
 	// 전체 조회
 	List<MySiteVO> getMySiteList(MySiteSearchVO svo, Paging p);
@@ -25,5 +29,6 @@ public interface MySiteService {
 	
 	// 단건삭제
 	int getMySitedelete(MySiteVO vo);
+
 
 }

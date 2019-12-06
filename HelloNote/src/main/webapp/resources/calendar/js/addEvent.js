@@ -95,7 +95,7 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
             type: "post",
             url: "/hellonote/addCalendar",
             dataType:'json',
-            data: JSON.stringify(eventData).serializeObject()            //..... db 연동시 
+            data: eventData//JSON.stringify(eventData).serializeObject()            //..... db 연동시 
             ,
             success: function (response) {
                 //DB연동시 중복이벤트 방지를 위한

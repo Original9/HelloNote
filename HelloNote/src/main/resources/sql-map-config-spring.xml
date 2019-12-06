@@ -16,6 +16,7 @@
 		<typeAlias type="co.yedam.hellonote.memo.vo.MemoVO" alias="memo"/>
 		<typeAlias type="co.yedam.hellonote.hellonote.accountbook.vo.AccountBookVO" alias="accountBook"/>
 		<typeAlias type="co.yedam.hellonote.user.vo.UserVO" alias="user"/>
+		<typeAlias type="co.yedam.hellonote.menu.vo.MenuVO" alias="menu"/>
 	</typeAliases>
 
 </configuration>

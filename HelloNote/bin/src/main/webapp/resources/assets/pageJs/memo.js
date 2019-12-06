@@ -1,4 +1,4 @@
-var modal, span, $modal, a, i, geocoder, address;
+var modal, span, $modal, a, i, geocoder, address, marker = new kakao.maps.Marker;
 
 $(function() {
 	modal = $('#myModal');
@@ -20,9 +20,6 @@ $(function() {
 
 	// 편집 시 장소 추가
 	addingLocation();
-
-	// 삭제
-	deletingMemo();
 
 	// 편집 완료
 	editDone();
@@ -50,7 +47,25 @@ $(function() {
 });
 
 function deleteHolder() {
-
+	$('#deleteHolder').droppable(
+			{
+				accept : '.memoli',
+				drop : function(event, ui) {
+					flag = false;
+					var $id = ui.draggable.children().eq(0).attr("id").replace(
+							'memo', '');
+					$.ajax({
+						url : 'deleteHandling',
+						data : {
+							memoSeq : $id
+						},
+						success : function() {
+							ui.draggable.remove();
+							console.log('delete success');
+						}
+					});
+				}
+			})
 }
 
 function addMemo() {
@@ -123,13 +138,6 @@ function editDone() {
 					});
 }
 
-function deletingMemo() {
-	$('#modal-content').on('click', '#delete', function() {
-		$('#memo' + a).parent().remove();
-		modal.hide();
-	});
-}
-
 function addingLocation() {
 	$('#modal-content')
 			.on(
@@ -140,20 +148,20 @@ function addingLocation() {
 								.before(
 										'<div id="map" style="width: 100%; height: 400px;"></div>')
 						var options = {
-							center : new kakao.maps.LatLng(33.450701,
-									126.570667),
-							level : 15
+							center : new kakao.maps.LatLng(36.778338213001675,
+									128.01324154787676),
+							level : 14
 						};
 						var $container = $('#map');
-						console.log($('#map'));
-						console.log(document.getElementById('map'));
-						console.log($container);
 						var map = new kakao.maps.Map($container[0], options);
 						kakao.maps.event.addListener(map, 'click', function(
 								mouseEvent) {
 							var clickXy = mouseEvent.latLng;
 							var coord = new kakao.maps.LatLng(clickXy.Ha,
 									clickXy.Ga);
+							marker.setMap(map);
+							marker.setPosition(new kakao.maps.LatLng(
+									clickXy.Ha, clickXy.Ga));
 							var callback = function(result, status) {
 								if (status === kakao.maps.services.Status.OK) {
 									address = result[0].address.address_name;
@@ -183,7 +191,6 @@ function showMemoModal() {
 						$('#text-edit').remove();
 						$('#edit').remove();
 						$('#edit-done').remove();
-						$('#delete').remove();
 						$('#addLocation').remove();
 						$('#map').remove();
 						// 팝업 표시
@@ -211,12 +218,7 @@ function showMemoModal() {
 
 						$('#modal-content')
 								.prepend(
-										'<button id="delete" class="modalButton" style="margin-left: 5px;">삭제</button>');
-						$('#modal-content')
-								.prepend(
 										'<button id="edit" class="modalButton">편집</button>');
-						$('#modal-content').focus();
-
 						$('#modal-content').focus();
 					});
 }
@@ -238,42 +240,93 @@ function editMemo() {
 								'<textarea rows="12" style="width: 100%" id="text-edit">'
 										+ $('#modal-text').text()
 										+ '</textarea>');
-						$modalContent
-								.append('<button id="addLocation" class="modalButton">위치</button>');
+						if ($('#modalLocation').text() == '') {
+							$modalContent
+									.append('<button id="addLocation" class="modalButton">위치</button>');
+						} else {
+							locationExist();
+						}
 						$('#edit').html('완료');
 						$('#edit').attr('id', 'edit-done');
 					});
 }
 
+// 위치 값이 존재할 때 위치 버튼이 아니라 바로 맵이 뜨게 하는 함수
+function locationExist() {
+	$('#modalLocation')
+
+	var callback = function(result, status) {
+		if (status === kakao.maps.services.Status.OK) {
+			addMap(result[0].y, result[0].x);
+			console.log(result[0].y, result[0].x);
+		}
+	};
+
+	geocoder.addressSearch($('#modalLocation').text(), callback);
+}
+
+function addMap(lat, lng) {
+	$('#modal-content').append(
+			'<div id="map" style="width: 100%; height: 400px;"></div>')
+	var options = {
+		center : new kakao.maps.LatLng(lat, lng),
+		level : 7
+	};
+	var $container = $('#map');
+	var map = new kakao.maps.Map($container[0], options);
+	marker.setMap(map);
+	marker.setPosition(new kakao.maps.LatLng(lat, lng));
+	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+		var clickXy = mouseEvent.latLng;
+		var coord = new kakao.maps.LatLng(clickXy.Ha, clickXy.Ga);
+		marker.setMap(map);
+		marker.setPosition(new kakao.maps.LatLng(clickXy.Ha, clickXy.Ga));
+		var callback = function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				address = result[0].address.address_name;
+				$('#modalLocation').text(address);
+
+			}
+		};
+
+		geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+	});
+}
+
+var flag = false;
 function sorting() {
-	$("#memoul").sortable(
-			{
-				start : function(e, ui) {
-					// creates a temporary attribute on the element with the old
-					// index
-					$(this).attr('data-previndex', ui.item.index()+1);
-				},
-				update : function(e, ui) {
-					// gets the new and old index then removes the temporary
-					// attribute
-					var newIndex = ui.item.index()+1;
-					var oldIndex = $(this).attr('data-previndex');
-					var element_id = ui.item.attr('id');
+	$("#memoul").sortable({
+		start : function(e, ui) {
+			flag = true;
+			// creates a temporary attribute on the element with the old
+			// index
+			$(this).attr('data-previndex', ui.item.index() + 1);
+		},
+		update : function(e, ui) {
+			if (flag != true)
+				return;
+			// gets the new and old index then removes the temporary
+			// attribute
+			var newIndex = ui.item.index() + 1;
+			var oldIndex = $(this).attr('data-previndex');
+			var element_id = ui.item.attr('id');
+			var element_seq = ui.item.attr('id').replace('memoli', '');
 
-					sortHandler(newIndex, oldIndex, element_id);
+			sortHandler(newIndex, oldIndex, element_seq);
 
-					console.log('id of Item moved = ' + element_id
-							+ ' old position = ' + oldIndex
-							+ ' new position = ' + newIndex);
-					$(this).removeAttr('data-previndex');
-				}
-			});
+			// console.log('id of Item moved = ' + element_id
+			// + ' old position = ' + oldIndex
+			// + ' new position = ' + newIndex);
+			$(this).removeAttr('data-previndex');
+			flag = false;
+		}
+	});
 	$("#memoul").disableSelection();
 }
 
 function sortHandler(newIndex, oldIndex, elementId) {
 	$.ajax({
-		url : 'sortHandling',
+		url : 'memoSortHandling',
 		data : {
 			memoOrder : newIndex,
 			memoSeq : elementId,

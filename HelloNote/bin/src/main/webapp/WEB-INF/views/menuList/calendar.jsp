@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calendar/css/main.css">
     <link hef="${pageContext.request.contextPath}/resources/assets/css/mainFont.css" rel="stylesheet" type="text/css">
+    	 
     <script src="<c:url value="/resources/assets/js/json.min.js"/>"></script>	 
     
     
@@ -89,10 +90,10 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="많이중요">★★★★</option>
-                                    <option value="조금중요">★★★</option>
-                                    <option value="덜중요">★★</option>
-                                    <option value="시간나면">★</option>
+                                    <option value="카테고리1">★★★★</option>
+                                    <option value="카테고리2">★★★</option>
+                                    <option value="카테고리3">★★</option>
+                                    <option value="카테고리4">★</option>
                                 </select>
                             </div>
                         </div>
@@ -142,13 +143,13 @@
              <div class="panel-body">
 
                 <div class="col-lg-6">
-                    <label for="calendar_view">구분별</label>
+                    <label for="calendar_view">★중요도 구분★</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="많이중요">★★★★</option>
-                            <option value="조금중요">★★★</option>
-                            <option value="덜중요">★★</option>
-                            <option value="시간나면">★</option>
+                            <option value="카테고리1">★★★★</option>
+                            <option value="카테고리2">★★★</option>
+                            <option value="카테고리3">★★</option>
+                            <option value="카테고리4">★</option>
                         </select>
                     </div>
                 </div>
@@ -157,7 +158,7 @@
                 <div class="col-lg-6" style="display:none" > 
                     <label for="calendar_view"></label>
                     <div class="input-group">
-                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
+                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="나"
                                 checked>정연</label>
                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
                                 checked>다현</label>

@@ -27,7 +27,7 @@ public class RestMemoController {
 	public void sortHandling(MemoVO vo, HttpSession session) {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
 		vo.setMenuId("1");
-
+   
 		service.sortHandling1(vo);
 		service.sortHandling2(vo);
 	}

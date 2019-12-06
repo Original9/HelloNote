@@ -31,8 +31,10 @@ public class AccountBookServiceImpl implements AccountBookService {
 	}
 
 	@Override
-	public List<AccountBookVO> searchAccountBook(AccountBookVO vo) {
-		return dao.searchAccountBook(vo);
+	public int deleteAccountBook(AccountBookVO vo) {
+		return dao.deleteAccountBook(vo);
 	}
+
+
 
 }

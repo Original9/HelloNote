@@ -37,7 +37,7 @@
 							<tr>
 								<th scope="col" width="10"><input id="allCheck"
 									type="checkbox" onclick="allChk(this);" /></th>
-								<th align="center" width="80">시퀀스</th>
+							<!--<th align="center" width="80">시퀀스</th>  -->	
 								<th align="center" width="150">저장날짜</th>
 								<th align="center" width="200">제목</th>
 								<th align="center" width="100">아이디</th>
@@ -52,7 +52,7 @@
 								<tr>
 									<td><input name="rowCheck" class="rowCheck"
 										type="checkbox" value="${mySite.mySiteSeq }" /></td>
-									<td class="getMySite" align="center" width="80">${mySite.mySiteSeq }</td>
+								<!--	<td class="getMySite" align="center" width="80">${mySite.mySiteSeq }</td> -->
 									<td class="getMySite" align="center" width="150">${mySite.siteDate }</td>
 									<td class="getMySite" align="center" width="200">${mySite.title }</td>
 									<td class="getMySite" align="center" width="100">${mySite.siteId }</td>
@@ -130,7 +130,7 @@
 										<label> ADDR </label> <input type="text" required
 											autocomplete="off" name="siteAddr" />
 									</div>
-									<label> ID&Email </label> <input type="text" required
+									<label> ID or Email </label> <input type="text" required
 										autocomplete="off" name="siteId" />
 								</div>
 								<div class="field-wrap">
@@ -176,7 +176,7 @@
 									<div class="field-wrap">
 										<label> ADDR : </label> <span id="siteAddr"></span>
 									</div>
-									<label> ID&Email : </label> <span id="siteId"></span>
+									<label> ID or Email : </label> <span id="siteId"></span>
 								</div>
 								<div class="field-wrap">
 									<label>Password : </label> <span id="sitePw"></span>
@@ -211,7 +211,7 @@
 									<label> ADDR : </label> <input type="text" required
 										autocomplete="off" name="siteAddr" />
 								</div>
-								<label> ID&Email : </label> <input type="text" required
+								<label> ID or Email : </label> <input type="text" required
 									autocomplete="off" name="siteId" />
 							</div>
 							<div class="field-wrap">

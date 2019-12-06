@@ -135,6 +135,19 @@ function editDone() {
 						$('#title' + a).text($titleEdit);
 						$('#text' + a).text($textEdit);
 						$('#location' + a).text($('#modalLocation').text());
+						
+						$.ajax({
+							url : 'updateMemo',
+							data : {
+								memoTitle : $('#modal-title').text(),
+								memoText : $('#modal-text').text(),
+								memoPlace : $('#modalLocation').text(),
+								memoSeq : a
+							},
+							success : function(){
+								console.log('update success');
+							}
+						});
 					});
 }
 

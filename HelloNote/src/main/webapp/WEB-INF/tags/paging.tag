@@ -6,6 +6,7 @@
 <c:if test="${empty jsFunc}">
 	<c:set var="jsFunc" value="go_page"></c:set>
 </c:if>
+<nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
 <ul class="pagination">
 	<li class="page-item"><a class="page-link"  
  href="javascript:${jsFunc}(${paging.startPage>2?paging.startPage-1:1})">이전</a>
@@ -18,4 +19,4 @@
 		</c:if>
 	</c:forEach>
 	<li class="page-item"><a class="page-link" href="javascript:${jsFunc}(${paging.endPage<paging.lastPage?paging.endPage+1:paging.endPage})">다음</a>
-</ul>
+</ul></nav>

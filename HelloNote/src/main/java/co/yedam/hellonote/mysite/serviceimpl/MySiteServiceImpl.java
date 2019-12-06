@@ -1,6 +1,7 @@
 package co.yedam.hellonote.mysite.serviceimpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,15 @@ public class MySiteServiceImpl implements MySiteService {
 	MySiteDAO dao;
 
 	@Override
+	public List<Map<String,Object>> getMySiteListMap() {
+		return dao.getMySiteListMap();
+	}
+	
+	// paging 및 암호화 처리
+	@Override
 	public List<MySiteVO> getMySiteList(MySiteSearchVO svo, Paging paging) {
 		// 출력건수
-		paging.setPageUnit(5);
+		paging.setPageUnit(15);
 		// 페이지번호가 없으면 1로 초기화
 		if (paging.getPage() == null) {
 			paging.setPage(1);
@@ -61,9 +68,11 @@ public class MySiteServiceImpl implements MySiteService {
 	// 암호화
 	@Override
 	public int updateMySite(MySiteVO vo) {
+		vo.setSitePw(Password.encryptSimpleTest(vo.getSitePw()));
 		return dao.updateMySite(vo);
 	}
-
+	
+	// 암호화
 	@Override
 	public MySiteVO getMySite(MySiteVO vo) {
 		MySiteVO result = dao.getMySite(vo); // 암호화된 vo를 result에 담아 

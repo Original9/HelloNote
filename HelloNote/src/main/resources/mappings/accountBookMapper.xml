@@ -49,21 +49,15 @@
 		FROM
 		KANG_ACCOUNTBOOK
 		<where>
-		<choose>
-		<when test= "accountbookPurpose == '' " >
+		<if test= "accountbookFirstDate != null and accountbookFirstDate != '' " >
 	 	ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
-	 	</when>
+	 	</if>
 	 	
-	 	<when test= " accountbookFirstDate == ''  and  accountbookLastDate == '' ">
-	 	ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
-	 	</when>
-	 	
-	 	<otherwise>
-		( ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate} ) and ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
-		ORDER BY ACCOUNTBOOK_SEQ ASC
-		</otherwise>
-		</choose>
+	 	<if test= " accountbookPurpose != null  and  accountbookPurpose == '' ">
+	 	AND ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
+	 	</if>
 		</where>
+		ORDER BY ACCOUNTBOOK_SEQ ASC
 
 </select>
 

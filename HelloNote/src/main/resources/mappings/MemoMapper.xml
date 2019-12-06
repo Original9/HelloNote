@@ -23,13 +23,14 @@
 		and menu_id=#{menuId}
 	</delete>
 	<update id="updateMemo" parameterType="memo">
-		update kang_memo
+		update ${hellonoteId}_memo
 		set
 		memo_title=#{memoTitle},
 		memo_text=#{memoText},
 		memo_place=#{memoPlace}
 		where
 		memo_seq=#{memoSeq}
+		and menu_id=#{menuId}
 	</update>
 	<update id="sortHandling" parameterType="memo">
 		update kang_memo

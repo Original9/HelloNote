@@ -37,7 +37,7 @@
 	//목록 조회 요청
 	function getAccountBookList() {
 		$.ajax({
-			url : "ajax/getAccountBookList.json",
+			url : "/getAccountBookList.json",
 			type : "json",
 			success : getAccountBookListHandler
 		});
@@ -45,6 +45,7 @@
 
 	//목록 조회 결과 처리
 	function getAccountBookListHandler(data) {
+		//List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
 		for (i = 0; i < data.length; i++) {
 			$("<tr>").append($("<td>").html(data[i].accountbookSeq))
 					 .append($("<td>").html(data[i].accountbookDate))
@@ -52,7 +53,6 @@
 					 .append($("<td>").html(data[i].accountbookPrice))
 					 .append($("<td>").html(data[i].accountbookTranslation))
 					 .appendTo($("#tbodyList"))
-			console.log(data)
 		}
 	}
 
@@ -63,7 +63,7 @@
 		$('#btnIns').on('click', function(){
 		$("#searchfrm")
 	$.ajax({
-		url : "ajax/searchAccountBook.json",
+		url : "/searchAccountBook.json",
 		method : "POST",
 		dataType : "json",
 		data : $("#searchfrm").serialize(),
@@ -76,8 +76,9 @@
 
 //특정기간조회 처리 결과
 	function searchAccountBookHandler(data) {
+	//기존 리스트에 검색결과가 추가되는걸 방지하기 위해서 초기화
 		$("tbody").empty();
-
+		//List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
 	for (i = 0; i < data.length; i++) {
 		$("<tr>").append($("<td>").html(data[i].accountbookSeq))
 			     .append($("<td>").html(data[i].accountbookDate))
@@ -94,7 +95,7 @@
 		$("#submit").click(function() {
 			var param = JSON.stringify($("#submitFrm").serializeObject());
 			$.ajax({
-				url : "ajax/insertAccountBook.json",
+				url : "/insertAccountBook.json",
 				method : "post",
 				dataType : "json",
 				data : param,
@@ -107,6 +108,7 @@
 
 	//등록 처리 결과
 	function insertAccountBookHandler(data) {
+		//입력할 데이터를 td태그로 추가하여 입력
 		$("<tr>").append($("<td>").html(data.accountbookSeq))
 			     .append($("<td>").html(data.accountbookDate))
 			     .append($("<td>").html(data.accountbookPurpose))

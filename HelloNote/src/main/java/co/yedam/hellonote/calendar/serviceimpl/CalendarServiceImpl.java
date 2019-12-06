@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import co.yedam.hellonote.calendar.dao.CalendarDAO;
 import co.yedam.hellonote.calendar.service.CalendarService;
 import co.yedam.hellonote.calendar.vo.CalendarVO;
+import co.yedam.hellonote.user.vo.UserVO;
 
 @Service
 public class CalendarServiceImpl implements CalendarService{
@@ -16,9 +17,13 @@ public class CalendarServiceImpl implements CalendarService{
 	CalendarDAO dao;
 	
 	@Override
-	public List<CalendarVO> getCalendarList(CalendarVO vo) {
-		// TODO Auto-generated method stub
-		return dao.getCalendarList();
+	public List<CalendarVO> getCalendarList(CalendarVO vo,UserVO user) {
+		
+		UserVO user1 = new UserVO();
+		user1.setHellonoteId(user.getHellonoteId());
+		
+		
+		return dao.getCalendarList(vo, user1); // user1에 session id 값인 hellonoteId값을 넣어서 넘긴
 	}
 
 	@Override
@@ -28,9 +33,9 @@ public class CalendarServiceImpl implements CalendarService{
 	}
 
 	@Override
-	public int insertCalendar(CalendarVO vo) {
+	public int insertCalendar(CalendarVO vo, UserVO user) {
 		// TODO Auto-generated method stub
-		return dao.insertCalendar(vo);
+		return dao.insertCalendar(vo, user );
 	}
 
 	@Override

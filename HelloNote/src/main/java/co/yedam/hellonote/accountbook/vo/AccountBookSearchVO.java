@@ -1,4 +1,4 @@
-package co.yedam.hellonote.hellonote.accountbook.vo;
+package co.yedam.hellonote.accountbook.vo;
 
 import lombok.Data;
 

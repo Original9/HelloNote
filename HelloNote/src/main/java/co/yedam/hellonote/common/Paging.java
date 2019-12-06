@@ -1,4 +1,4 @@
-package co.yedam.hellonote.hellonote.accountbook.service;
+package co.yedam.hellonote.common;
 
 public class Paging {
 	int pageUnit=10 ; 		//한페이지 출력할 레코드 건수

@@ -1,4 +1,4 @@
-package co.yedam.hellonote.hellonote.accountbook.dao;
+package co.yedam.hellonote.accountbook.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.yedam.hellonote.hellonote.accountbook.vo.AccountBookVO;
+import co.yedam.hellonote.accountbook.vo.AccountBookVO;
 
 @Repository
 public class AccountBookDAO {

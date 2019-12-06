@@ -1,13 +1,13 @@
-package co.yedam.hellonote.hellonote.accountbook.serviceimpl;
+package co.yedam.hellonote.accountbook.serviceimpl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.yedam.hellonote.hellonote.accountbook.dao.AccountBookDAO;
-import co.yedam.hellonote.hellonote.accountbook.service.AccountBookService;
-import co.yedam.hellonote.hellonote.accountbook.vo.AccountBookVO;
+import co.yedam.hellonote.accountbook.dao.AccountBookDAO;
+import co.yedam.hellonote.accountbook.service.AccountBookService;
+import co.yedam.hellonote.accountbook.vo.AccountBookVO;
 @Service
 public class AccountBookServiceImpl implements AccountBookService {
 	

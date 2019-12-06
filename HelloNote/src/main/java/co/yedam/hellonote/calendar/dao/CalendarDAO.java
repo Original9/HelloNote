@@ -26,7 +26,9 @@ public class CalendarDAO {
 	}
 	
 	//등륵
-	public int insertCalendar(CalendarVO vo, UserVO user) {
+	public int insertCalendar(CalendarVO vo) {
+		//parameters 여러게 보내고 싶으면 map으로 묶어서보낸다.		
+		System.out.println(vo);
 		return calendar.insert("CalendarDAO.insertCalendar", vo);		
 	}	
 	
@@ -35,5 +37,9 @@ public class CalendarDAO {
 		return calendar.update("CalendarDAO.updateCalendar",vo);
 	}
 	
+	//드래그 수정
+	public int dragAnddropReviseCalendar(CalendarVO vo) {
+		return calendar.update("CalendarDAO.dragAnddropReviseCalendar",vo);
+	}
 
 }

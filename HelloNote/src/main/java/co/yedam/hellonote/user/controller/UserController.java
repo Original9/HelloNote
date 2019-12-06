@@ -45,7 +45,7 @@ public class UserController {
 		session.setAttribute("hellonoteId", temp.getHellonoteId());
 		session.setAttribute("pw",temp.getPw());
 		
-		return "main/main/mainPage";
+		return "redirect:mainPage";
 	}
 	
 	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
@@ -53,5 +53,7 @@ public class UserController {
 		
 		return "main/main/mainPage";
 	}
+	
+	
 
 }

@@ -1,4 +1,3 @@
-
 .form {
 	background: #ffffff;
 	padding: 40px;
@@ -7,7 +6,25 @@
 	box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 
+th {
+	text-align: center;
+}
 
+.pagination {
+	text-align: center;
+}
+
+.custom-select {
+	display: inline;
+}
+
+.form-control {
+	display: inline;
+}
+
+divno {
+	display: inline;
+}
 
 #mySiteModal input, #mySiteModal textarea {
 	/* font-size: 0px;*/
@@ -30,9 +47,8 @@
 
 #mySiteModal textarea {
 	border: 2px solid #a0b3b0;
- 	resize: vertical;
+	resize: vertical;
 }
-
 
 #mySiteModal .button {
 	border: 0;

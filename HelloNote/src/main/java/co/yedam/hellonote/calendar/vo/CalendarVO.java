@@ -23,5 +23,9 @@ public class CalendarVO {
 	String textColor;
 	String allDay;
 	String description;
+	
+	///session imformation
+	String hellonoteId;
+	
 
 }

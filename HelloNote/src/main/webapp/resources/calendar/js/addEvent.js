@@ -37,29 +37,29 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
     $('#save-event').unbind(); // .unbind()를 사용하여 요소의 모든 이벤트의 바인딩을 해제합니다. 
     $('#save-event').on('click', function () {
 
-        /*var eventData = {
+        var eventData = {
             _id: eventId, // DB 아이디 아직 설정안해서 temp값 넣어준다.
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '사나', // 필요없는값
+            username: '나', // 필요없는값
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
-        };*/
-    	var eventData = {
-                calendarSeq: eventId, // DB 아이디 아직 설정안해서 temp값 넣어준다.
-                title: editTitle.val(),
-                startDate: editStart.val(),
-                endDate: editEnd.val(),
-                description: editDesc.val(),
-                type: editType.val(),
-                userName: '사나', // 필요없는값
-                backgroundColor: editColor.val(),
-                textColor: '#ffffff',
-                allDay: false
+        };
+    	var eventData1 = {
+                "calendarSeq": eventId, // DB 아이디 아직 설정안해서 temp값 넣어준다.// DB에 넣어줄떄 알아서 계산해서 여기서 아무값이나 그대로 둔거임
+                "title": editTitle.val(),
+                "startDate": editStart.val(),
+                "endDate": editEnd.val(),
+                "description": editDesc.val(),
+                "type": editType.val(),
+                "userName": '사나', // 필요없는값 controller 에서 session 값 받아서 다시 넣는다.
+                "backgroundColor": editColor.val(),
+                "textColor": '#ffffff',                 
+                "allDay": false
             };
     	console.log(eventData);
         if (eventData.start > eventData.end) {
@@ -95,7 +95,8 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
             type: "post",
             url: "/hellonote/addCalendar",
             dataType:'json',
-            data: eventData//JSON.stringify(eventData).serializeObject()            //..... db 연동시 
+           // contentType: 'application/json',
+            data: eventData1  //JSON.parse(eventData)//JSON.stringify(eventData).serializeObject()            //..... db 연동시 
             ,
             success: function (response) {
                 //DB연동시 중복이벤트 방지를 위한

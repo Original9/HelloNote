@@ -20,11 +20,16 @@ public class AccountBookDAO {
 		
 	}
 	
+	public List<AccountBookVO>searchAccountBook(AccountBookVO vo){
+		return mybatis.selectList("AccountBookDAO.searchAccountBook", vo);
+	}
+	
 	
 	public int insertAccountBook(AccountBookVO vo) {
 		return mybatis.insert("AccountBookDAO.insertAccountBook", vo);
 	}
 	
+
 	
 	
 }

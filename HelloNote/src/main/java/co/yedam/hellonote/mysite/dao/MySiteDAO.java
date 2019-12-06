@@ -43,5 +43,10 @@ public class MySiteDAO {
 	public MySiteVO getMySite(MySiteVO vo) {
 		return mySite.selectOne("MySiteDAO.getMySite", vo);
 	}
+	
+	// 단건삭제
+	public int getMySitedelete(MySiteVO vo) {
+		return mySite.delete("MySiteDAO.getMySitedelete", vo);
+	}
 
 }

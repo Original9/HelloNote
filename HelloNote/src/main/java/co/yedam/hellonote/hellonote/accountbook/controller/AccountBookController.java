@@ -18,25 +18,34 @@ public class AccountBookController {
 	AccountBookService accountBookService;
 	
 	//전체 조회
-	@RequestMapping("ajax/getAccountBookList.json")
+	@RequestMapping("/menuList/ajax/getAccountBookList.json")
 	@ResponseBody
 	public List<AccountBookVO>getAccountBookList(AccountBookVO vo){
 		
 		return accountBookService.getAccountBookList(vo);	
 	}
 	
-	@RequestMapping("accountBookList")
-	public String accoutBookList() {
+	
+	//기간별 조회
+	@RequestMapping("/menuList/ajax/searchAccountBook.json")
+	@ResponseBody
+	public List<AccountBookVO>searchAccountBook(AccountBookVO vo){
 		
-		return "menuList/accountBook";
+		return accountBookService.searchAccountBook(vo);
+		
 	}
 	
+	//항목 조회
+	
+
 	
 	//등록
-	@RequestMapping(value="ajax/insertAccountBook.json", consumes ="application/json" )
-	public int insertAccountBook(@RequestBody AccountBookVO vo) {
+	@RequestMapping(value="/menuList/ajax/insertAccountBook.json", consumes ="application/json" )
+	public AccountBookVO insertAccountBook(@RequestBody AccountBookVO vo) {
 		
-		return accountBookService.insertAccountBook(vo);
+		accountBookService.insertAccountBook(vo);
+		return vo;
+		
 	}
 	
 	

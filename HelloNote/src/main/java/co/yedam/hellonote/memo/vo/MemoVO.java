@@ -11,5 +11,6 @@ public class MemoVO {
 	private int memoSeq;
 	private String memoPlace;
 	private int memoOrder;
-	
+	private String hellonoteId;
+	private int oldOrder;
 }

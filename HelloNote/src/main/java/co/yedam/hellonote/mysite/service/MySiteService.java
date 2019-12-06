@@ -12,7 +12,7 @@ public interface MySiteService {
 	List<MySiteVO> getMySiteList(MySiteSearchVO svo, Paging p);
 
 	// 삭제
-	int deleteMySite(MySiteVO vo);
+	int deleteMySite(int[] list, MySiteVO vo);
 
 	// 등록
 	int insertMySite(MySiteVO vo);
@@ -22,5 +22,8 @@ public interface MySiteService {
 
 	// 단건조회
 	MySiteVO getMySite(MySiteVO vo);
+	
+	// 단건삭제
+	int getMySitedelete(MySiteVO vo);
 
 }

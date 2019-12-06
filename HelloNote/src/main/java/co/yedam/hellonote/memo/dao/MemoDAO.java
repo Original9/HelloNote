@@ -10,24 +10,36 @@ import co.yedam.hellonote.memo.vo.MemoVO;
 
 @Repository
 public class MemoDAO {
-	
+
 	@Autowired
 	SqlSessionTemplate batis;
-	
-	public List<MemoVO> getMemoList(){
-		return batis.selectList("MemoDAO.getMemoList");
+
+	public List<MemoVO> getMemoList(MemoVO vo) {
+		return batis.selectList("MemoDAO.getMemoList", vo);
 	}
-	
-	public int insertMemo(MemoVO vo) {
-		batis.insert("MemoDAO.insertMemo", vo);
-		return vo.getMemoSeq(); 
+
+	public int insertMemo(MemoVO memovo) {
+		batis.insert("MemoDAO.insertMemo", memovo);
+		return memovo.getMemoSeq();
 	}
-	
+
 	public void updateMemo(MemoVO vo) {
 		batis.update("MemoDAO.updateMemo", vo);
 	}
-	
+
 	public void deleteMemo(MemoVO vo) {
 		batis.delete("MemoDAO.deleteMemo", vo);
+	}
+
+	public void sortHandling1(MemoVO vo) {
+		batis.update("MemoDAO.sortHandling1", vo);
+	}
+
+	public void sortHandling2(MemoVO vo) {
+		batis.update("MemoDAO.sortHandling2", vo);
+	}
+	
+	public void deleteHandling(MemoVO vo) {
+		batis.update("MemoDAO.deleteHandling", vo);
 	}
 }

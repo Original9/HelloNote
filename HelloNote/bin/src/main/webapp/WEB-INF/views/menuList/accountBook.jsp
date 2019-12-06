@@ -31,70 +31,99 @@
 	$(function() {
 		getAccountBookList();
 		insertAccountBook();
-		searchAccountBook();
+		deleteAccountBook();
 	});
 
 	//목록 조회 요청
 	function getAccountBookList() {
+			// 특정 기간 / 항목별  / 특정기간+항목으로 내역 조회
+		 	$('#btnIns').on('click', function(){
+		 		//날짜 잘못 입력했을 시 경고창
+ 		 		var fdate = $('#accountbookFirstDate').val();
+ 		 		var ldate = $('#accountbookLastDate').val();
+ 		 		if(fdate > ldate ){
+ 		 			alert('날짜 선택이 잘못 되었습니다.');
+ 		 			
+ 		 			
+ 		 		}
+ 		 		else{
+		 		$("#searchfrm")
+			 	$.ajax({
+			 		url : "getAccountBookList.json",
+			 		method : "POST",
+			 		dataType : "json",
+			 		data : $("#searchfrm").serialize(),
+			 		success : getAccountBookListHandler
+			 		 
+			 	});}
+		 		});
+		 	
+		//메인에 출력되는 전체 내역 조회	
 		$.ajax({
-			url : "ajax/getAccountBookList.json",
+			url : "getAccountBookList.json",
 			type : "json",
 			success : getAccountBookListHandler
 		});
+		
 	}
 
 	//목록 조회 결과 처리
 	function getAccountBookListHandler(data) {
+		$("tbody").empty();
+		//List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
 		for (i = 0; i < data.length; i++) {
 			$("<tr>").append($("<td>").html(data[i].accountbookSeq))
 					 .append($("<td>").html(data[i].accountbookDate))
 					 .append($("<td>").html(data[i].accountbookPurpose))
 					 .append($("<td>").html(data[i].accountbookPrice))
 					 .append($("<td>").html(data[i].accountbookTranslation))
+					 .append($('<td>').html('<button class="btn btn-danger" id=\'btnDelete\'>삭제</button>'))
+					 .append($('<input type=\'hidden\' id=\'hidden_accountbookSeq\'>').val(data[i].accountbookSeq))
 					 .appendTo($("#tbodyList"))
-			console.log(data)
+					 
 		}
 	}
 
 
 	
 	//특정기간조회
-	function searchAccountBook() {
-		$('#btnIns').on('click', function(){
-		$("#searchfrm")
-	$.ajax({
-		url : "ajax/searchAccountBook.json",
-		method : "POST",
-		dataType : "json",
-		data : $("#searchfrm").serialize(),
-		success : searchAccountBookHandler
+// 	function searchAccountBook() {
+// 		$('#btnIns').on('click', function(){
+// 		$("#searchfrm")
+// 	$.ajax({
+// 		url : "searchAccountBook.json",
+// 		method : "POST",
+// 		dataType : "json",
+// 		data : $("#searchfrm").serialize(),
+// 		success : searchAccountBookHandler
 		 
-	});
-		});
-	}
+// 	});
+// 		});
+// 	}
 
 
 //특정기간조회 처리 결과
-	function searchAccountBookHandler(data) {
-		$("tbody").empty();
+// 	function searchAccountBookHandler(data) {
+// 	//기존 리스트에 검색결과가 추가되는걸 방지하기 위해서 초기화
+// 		$("tbody").empty();
+// 		//List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
+// 	for (i = 0; i < data.length; i++) {
+// 		$("<tr>").append($("<td>").html(data[i].accountbookSeq))
+// 			     .append($("<td>").html(data[i].accountbookDate))
+// 			     .append($("<td>").html(data[i].accountbookPurpose))
+// 			     .append($("<td>").html(data[i].accountbookPrice))
+// 			     .append($("<td>").html(data[i].accountbookTranslation))
+// 			     .appendTo($("#tbodyList"))
 
-	for (i = 0; i < data.length; i++) {
-		$("<tr>").append($("<td>").html(data[i].accountbookSeq))
-			     .append($("<td>").html(data[i].accountbookDate))
-			     .append($("<td>").html(data[i].accountbookPurpose))
-			     .append($("<td>").html(data[i].accountbookPrice))
-			     .append($("<td>").html(data[i].accountbookTranslation))
-			     .appendTo($("#tbodyList"))
-
-	}
-}
+// 	}
+// }
 
 
 	function insertAccountBook() {
 		$("#submit").click(function() {
 			var param = JSON.stringify($("#submitFrm").serializeObject());
 			$.ajax({
-				url : "ajax/insertAccountBook.json",
+				url : "insertAccountBook.json",
 				method : "post",
 				dataType : "json",
 				data : param,
@@ -107,6 +136,7 @@
 
 	//등록 처리 결과
 	function insertAccountBookHandler(data) {
+		//입력할 데이터를 td태그로 추가하여 입력
 		$("<tr>").append($("<td>").html(data.accountbookSeq))
 			     .append($("<td>").html(data.accountbookDate))
 			     .append($("<td>").html(data.accountbookPurpose))
@@ -115,7 +145,42 @@
 			     .appendTo($("#tbodyList"));
 		console.log(data)
 	}
+	
+// 	//삭제
+// 	function deleteAccountBookHandler(){	
+// 	}
 
+	function deleteAccountBook() {
+		//삭제 버튼 클릭
+		$('body').on('click','#btnDelete',function(){
+			var hidden_accountbookSeq = $(this).closest('tr').find('#hidden_accountbookSeq').val();
+			var result = confirm("기록을 정말로 삭제하시겠습니까?");
+			if(result) {
+				$.ajax({
+					url:'deleteAccountBook.json',  
+					type:'DELETE',
+					contentType:'application/json',
+					dataType:'json',
+					data : {
+						"accountbookSeq" : hidden_accountbookSeq
+					},
+					success: deleteAccountBookHandler
+						
+						
+				});      }
+		}); 
+	}
+	
+	function deleteAccountBookHandler(data){
+ 		$("<tr>").remove($("<td>").html(data.accountbookSeq))
+ 	     	     .remove($("<td>").html(data.accountbookDate))
+ 	     	     .remove($("<td>").html(data.accountbookPurpose))
+ 	     	     .remove($("<td>").html(data.accountbookPrice))
+ 	     	     .remove($("<td>").html(data.accountbookTranslation))
+ 	     	     .remove($("#tbodyList"));
+	}
+	
+	
 
 </script>
 
@@ -216,7 +281,7 @@
 		</form>
 		<div id="accountBookList">
 			<table class="table" id="accountBookTable">
-				<tr>
+				<tr id="tr" name="tr">
 					<th>#</th>
 					<th>날짜</th>
 					<th>이용 목적</th>

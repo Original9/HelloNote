@@ -11,8 +11,10 @@ public interface CalendarService {
 	//삭제
 	int deleteCalendar(CalendarVO vo);
 	//등록
-	int insertCalendar(CalendarVO vo,UserVO user);
+	int insertCalendar(CalendarVO vo);
 	//수정
 	int updateCalendar(CalendarVO vo);
+	//드래그 수정
+	int dragAnddropReviseCalendar(CalendarVO vo);
 	
 }

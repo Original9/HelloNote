@@ -26,69 +26,70 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script
 	src="<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/assets/pageJs/index.js"/>"></script>
+<link href="<c:url value="/resources/assets/css/index.css"/>" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<%--     <script src="<c:url value="/resources/assets/js/chart.min.js"/>"></script>
-    <script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"/>"></script>
-    <script src="<c:url value="/resources/assets/js/theme.js"/>"></script> --%>
+<%-- <script src="<c:url value="/resources/assets/js/chart.min.js"/>"></script> --%>
+<!-- <script -->
+<%-- 	src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"/>"></script> --%>
+<%-- <script src="<c:url value="/resources/assets/js/theme.js"/>"></script> --%>
 </head>
 
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
 	<div id="wrapper">
 		<nav
-			class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+			class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 toggled"
+			id="navigationBar">
 			<div class="container-fluid d-flex flex-column p-0">
 				<a
 					class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
 					href="#">
 					<div class="sidebar-brand-icon rotate-n-15">
-						<i class="fas fa-laugh-wink"></i>
+						<i class="fas fa-clipboard"></i>
 					</div>
 					<div class="sidebar-brand-text mx-3">
-						<span>Brand</span>
+						<span>Hello Note</span>
 					</div>
 				</a>
 				<hr class="sidebar-divider my-0">
 				<ul class="nav navbar-nav text-light" id="accordionSidebar">
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" href="index.html"><i -->
+					<!-- 							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li> -->
 					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="index.html"><i
-							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="index.html"><i
-							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active"
-						href="memo"><i
+						class="nav-link active" href="${pageContext.request.contextPath}/memo"><i
 							class="fas fa-tachometer-alt"></i><span> MEMO</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active"
-						href="${pageContext.request.contextPath}/menuList/calendar"><i
-							class="fas fa-tachometer-alt"></i><span> CALENDAR</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="index.html"><i
-							class="fas fa-tachometer-alt"></i><span> BANKACCOUNT</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="index.html"><i
-							class="fas fa-tachometer-alt"></i><span> CHECKLIST</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active"
-						href="${pageContext.request.contextPath}/mysite/getMySiteList"><i
-							class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="index.html"><i
-							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="index.html"><i
-							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li>
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="${pageContext.request.contextPath}/menuList/accountBook"><i
-							class="fas fa-tachometer-alt"></i><span> AccountBook </span></a></li>
-					
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" -->
+					<%-- 						href="${pageContext.request.contextPath}/menuList/calendar"><i --%>
+					<!-- 							class="fas fa-tachometer-alt"></i><span> CALENDAR</span></a></li> -->
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" href="index.html"><i -->
+					<!-- 							class="fas fa-tachometer-alt"></i><span> BANKACCOUNT</span></a></li> -->
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" href="index.html"><i -->
+					<!-- 							class="fas fa-tachometer-alt"></i><span> CHECKLIST</span></a></li> -->
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" -->
+					<%-- 						href="${pageContext.request.contextPath}/mysite/getMySiteList"><i --%>
+					<!-- 							class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li> -->
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" href="index.html"><i -->
+					<!-- 							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li> -->
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" href="index.html"><i -->
+					<!-- 							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li> -->
+					<!-- 					<li class="nav-item" role="presentation"><a -->
+					<!-- 						class="nav-link active" -->
+					<%-- 						href="${pageContext.request.contextPath}/menuList/accountBook"><i --%>
+					<!-- 							class="fas fa-tachometer-alt"></i><span> AccountBook </span></a></li> -->
 				</ul>
 				<div class="text-center d-none d-md-inline">
 					<button class="btn rounded-circle border-0" id="sidebarToggle"
 						type="button"></button>
 				</div>
+				<i class="fas fa-plus-square fa-3x" id="addMenu"></i>
 			</div>
 		</nav>
 		<div class="d-flex flex-column" id="content-wrapper">
@@ -293,7 +294,31 @@
 		<a class="border rounded d-inline scroll-to-top" href="#page-top"><i
 			class="fas fa-angle-up"></i></a>
 	</div>
-
+	<div class="modal" id="addMenuModal" style="z-index: 6;">
+		<div class="modal-content" id="addMenumodalConent">
+			<span class="close" id="addMenuModalClose"
+				style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
+			<div>
+				<input placeholder="메뉴이름" type="text" class="menuName" id="menuName"
+					name="menuName">
+			</div>
+			<div>
+				<select class="menuType" name="menuType" id="menuType">
+					<option value="0">아이디</option>
+					<option value="1">메모</option>
+					<option value="2">체크리스트</option>
+					<option value="3">기념일</option>
+					<option value="4">계좌번호</option>
+					<option value="5">가계부</option>
+					<option value="6">캘린더</option>
+					<option value="7">장보기</option>
+				</select>
+			</div>
+			<div>
+				<button id="addConfirm" class="addConfirm">추가</button>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

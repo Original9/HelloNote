@@ -33,15 +33,25 @@ public List<CalendarVO> getCalendarList(HttpServletRequest request,Model model, 
 	return calendarService.getCalendarList(vo, user);
 }
 
-@RequestMapping(value="/addCalendar", method=RequestMethod.GET)
-public int addCalendar(HttpServletRequest request,@RequestBody CalendarVO vo) {
-	System.out.println(request.getAttribute("_id"));
-	System.out.println(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-	HttpSession session = request.getSession(); // 세션값을 받아온다.	
-	UserVO user = new UserVO();
-	user.setHellonoteId((String)session.getAttribute("hellonoteId"));
+@RequestMapping(value="/addCalendar")
+public int addCalendar(HttpServletRequest request, CalendarVO vo) { // Requestbody 안해줘도 자동으로 들어간다.;
+	//HttpSession session = request.getSession(); // 세션값을 받아온다.
+	HttpSession session = request.getSession();
+	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	// 세션에다가 menuID값을 넣어서 같이 넣어줘야 한다. 
 	
-	return calendarService.insertCalendar(vo, user);
+	return calendarService.insertCalendar(vo);
+}
+
+@RequestMapping(value="/dgagAnddropReviseCalendar")
+public int revise(HttpServletRequest request, CalendarVO vo) {
+	
+	HttpSession session = request.getSession();
+	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	System.out.println(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	return calendarService.dragAnddropReviseCalendar(vo);
+	
+	
 }
 
 

@@ -168,7 +168,9 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
        dataType:'json',
        success: function (response) { //값을 받아와야지
          console.log(response);
+         
          var fixedDate = response.map(function (array) {
+        	 array.end = moment(array.end).add(-1, 'days'); // 하나 플러스되서 나와서 -1 해줌
            if (array.allDay && array.start !== array.end) {
              // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
              array.end = moment(array.end).add(1, 'days');
@@ -212,7 +214,7 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
   eventDragStart: function (event, jsEvent, ui, view) {
     draggedEventIsAllDay = event.allDay;
   },
-
+  
   //일정 드래그앤드롭
   eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
     $('.popover.fade.top').remove();
@@ -226,16 +228,18 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
       }
     }
 
+    // 타이틀값 받아오기
+    var title = event.title; // 어떻게 받아오죠?? // 수정하기 부분에서 알아봅세
+    
     // 드랍시 수정된 날짜반영
     var newDates = calDateWhenDragnDrop(event);
 
     //드롭한 일정 업데이트
-    $.ajax({
-      type: "get",
-      url: "",
-      data: {
-        //...
-      },
+    $.ajax({// 변경되기전 값이 필요하다.
+      type: "post",
+      url: "/hellonote/dgagAnddropReviseCalendar",
+      dataType:'json',
+      data: {"startDate":newDates.startDate, "endDate":newDates.endDate,"title":title},
       success: function (response) {
         alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
       }

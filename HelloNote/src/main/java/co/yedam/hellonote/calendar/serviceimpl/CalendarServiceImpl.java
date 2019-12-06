@@ -33,15 +33,21 @@ public class CalendarServiceImpl implements CalendarService{
 	}
 
 	@Override
-	public int insertCalendar(CalendarVO vo, UserVO user) {
+	public int insertCalendar(CalendarVO vo) {
 		// TODO Auto-generated method stub
-		return dao.insertCalendar(vo, user );
+		return dao.insertCalendar(vo);
 	}
 
 	@Override
 	public int updateCalendar(CalendarVO vo) {
 		// TODO Auto-generated method stub
 		return dao.updateCalendar(vo);
+	}
+
+	@Override
+	public int dragAnddropReviseCalendar(CalendarVO vo) {
+		// TODO Auto-generated method stub
+		return dao.dragAnddropReviseCalendar(vo);
 	}
 
 }

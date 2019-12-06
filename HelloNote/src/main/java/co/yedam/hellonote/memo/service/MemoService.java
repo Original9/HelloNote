@@ -3,7 +3,6 @@ package co.yedam.hellonote.memo.service;
 import java.util.List;
 
 import co.yedam.hellonote.memo.vo.MemoVO;
-import co.yedam.hellonote.user.vo.UserVO;
 
 public interface MemoService {
 
@@ -15,4 +14,10 @@ public interface MemoService {
 
 	public void deleteMemo(MemoVO vo);
 
+	public void sortHandling1(MemoVO vo);
+	
+	public void sortHandling2(MemoVO vo);
+
+	public void deleteHandling(MemoVO vo);
+	
 }

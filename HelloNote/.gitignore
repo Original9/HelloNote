@@ -110,6 +110,6 @@ buildNumber.properties
 .flattened-pom.xml
 
 ### jdbc ###
-src\main\resources\global.properties
+src/main/resources/global.properties
 
 # End of https://www.gitignore.io/api/java,maven,eclipse

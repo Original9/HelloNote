@@ -20,8 +20,9 @@ public class MySiteServiceImpl implements MySiteService {
 	MySiteDAO dao;
 
 	@Override
-	public List<Map<String,Object>> getMySiteListMap() {
-		return dao.getMySiteListMap();
+	public List<Map<String,Object>> getMySiteListMap(MySiteVO vo) {
+		vo.setSitePw(Password.decryptSimpleTest(vo.getSitePw()));
+		return dao.getMySiteListMap(vo);
 	}
 	
 	// paging 및 암호화 처리

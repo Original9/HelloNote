@@ -104,9 +104,9 @@ public class MySiteController {
 	// 엑셀출력
 	@RequestMapping("/mysite/downloadExcel")
 	public ModelAndView excelView(MySiteVO vo) throws IOException {
-		List<Map<String, Object>> list = mySiteService.getMySiteListMap();
-		HashMap<String, Object> map = new HashMap<String, Object>();
 		vo.setUserId("kwon");
+		List<Map<String, Object>> list = mySiteService.getMySiteListMap(vo);
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		String[] header = { "siteId", "sitePw", "siteAddr", "siteMemo", "title", "menuId", "mySiteSeq", "siteDate" };
 		map.put("headers", header);
 		map.put("filename", "excel_mysitelist");

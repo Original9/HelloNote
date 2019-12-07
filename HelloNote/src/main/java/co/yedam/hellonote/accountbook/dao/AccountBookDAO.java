@@ -14,19 +14,21 @@ public class AccountBookDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
+	//가계부 전체 리스트 조회 및 특정 기간/항목 설정 조회
 	public List<AccountBookVO>getAccountBookList(AccountBookVO vo){
 		
 		return mybatis.selectList("AccountBookDAO.getAccountBookList", vo);
 		
 	}
 	
-	public List<AccountBookVO>searchAccountBook(AccountBookVO vo){
-		return mybatis.selectList("AccountBookDAO.searchAccountBook", vo);
-	}
 	
-	
+	//가계부 등록
 	public int insertAccountBook(AccountBookVO vo) {
 		return mybatis.insert("AccountBookDAO.insertAccountBook", vo);
+	}
+	
+	public int deleteAccountBook(AccountBookVO vo) {
+		return mybatis.delete("AccountBookDAO.deleteAccountBook", vo);
 	}
 	
 

@@ -12,7 +12,7 @@
 				TITLE "title",
 				MENU_ID "menuId",
 				MYSITE_SEQ "mySiteSeq",
-				SITE_DATE sysdate
+				SITE_DATE "siteDate"
 		  FROM  ${userId}_MYSITE
 		  ORDER BY MYSITE_SEQ DESC
 	</select>

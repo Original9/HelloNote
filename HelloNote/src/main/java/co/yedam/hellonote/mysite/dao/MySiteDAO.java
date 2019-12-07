@@ -17,8 +17,8 @@ public class MySiteDAO {
 	SqlSessionTemplate mySite;
 	
 	// 전체조회<Map>으로 실행
-	public List<Map<String,Object>> getMySiteListMap(){
-		return mySite.selectList("MySiteDAO.getMySiteListMap");
+	public List<Map<String,Object>> getMySiteListMap(MySiteVO vo){
+		return mySite.selectList("MySiteDAO.getMySiteListMap", vo);
 	}
 
 	// 전체 조회

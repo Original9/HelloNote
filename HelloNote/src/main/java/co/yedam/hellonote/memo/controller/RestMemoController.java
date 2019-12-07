@@ -16,7 +16,7 @@ public class RestMemoController {
 	@Autowired
 	MemoService service;
 
-	@RequestMapping(value = "insertMemo", method = RequestMethod.POST)
+	@RequestMapping(value = "insertMemo")
 	public int insertMemo(MemoVO vo, HttpSession session) {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
 		int a = service.insertMemo(vo);
@@ -27,6 +27,7 @@ public class RestMemoController {
 	public void sortHandling(MemoVO vo, HttpSession session) {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
 		vo.setMenuId("1");
+   
 
 		service.sortHandling1(vo);
 		service.sortHandling2(vo);
@@ -35,7 +36,6 @@ public class RestMemoController {
 	@RequestMapping("deleteHandling")
 	public void deleteHandling(HttpSession session, MemoVO vo) {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
-		vo.setMenuId("1");
 		
 		service.deleteHandling(vo);
 		service.deleteMemo(vo);
@@ -44,7 +44,6 @@ public class RestMemoController {
 	@RequestMapping("updateMemo")
 	public void updateMemo(HttpSession session, MemoVO vo) {
 		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
-		vo.setMenuId("1");
 		
 		service.updateMemo(vo);
 	}

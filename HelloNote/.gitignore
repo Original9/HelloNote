@@ -109,7 +109,7 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 .flattened-pom.xml
 
-### jdbc ###
+### jdbc 안 먹힘 다시 보기 ###
 src/main/resources/global.properties
 
 # End of https://www.gitignore.io/api/java,maven,eclipse

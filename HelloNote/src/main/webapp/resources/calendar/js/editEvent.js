@@ -95,13 +95,16 @@ var editEvent = function (event, element, view) {
         $('#deleteEvent').unbind();
         $("#calendar").fullCalendar('removeEvents', [event._id]);
         eventModal.modal('hide');
+        //삭세버튼을 누르면 title 값과 시작날짜를 넘겨서 삭제힌디.
+        var title = event.title;
+        var startDate = event.start;
 
         //삭제시
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //...
+            type: "post",
+            url: "deleteCalendar",
+            data: {"title":title,"startDate":startDate
+                //Json값으로 넘김
             },
             success: function (response) {
                 alert('삭제되었습니다.');

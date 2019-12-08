@@ -58,7 +58,7 @@ function deleteHolder() {
 						url : 'deleteHandling',
 						data : {
 							memoSeq : $id,
-							menuId: $('#menuId').val()
+							menuId : $('#menuId').val()
 						},
 						success : function() {
 							ui.draggable.remove();
@@ -75,7 +75,7 @@ function addMemo() {
 			url : 'insertMemo',
 			dataType : 'json',
 			data : {
-				menuId: $('#menuId').val()
+				menuId : $('#menuId').val()
 			},
 			success : addMemoHandler
 		})
@@ -138,7 +138,7 @@ function editDone() {
 						$('#title' + a).text($titleEdit);
 						$('#text' + a).text($textEdit);
 						$('#location' + a).text($('#modalLocation').text());
-						
+
 						$.ajax({
 							url : 'updateMemo',
 							data : {
@@ -146,9 +146,9 @@ function editDone() {
 								memoText : $('#modal-text').text(),
 								memoPlace : $('#modalLocation').text(),
 								memoSeq : a,
-								menuId: $('#menuId').val()
+								menuId : $('#menuId').val()
 							},
-							success : function(){
+							success : function() {
 								console.log('update success');
 							}
 						});
@@ -348,7 +348,7 @@ function sortHandler(newIndex, oldIndex, elementId) {
 			memoOrder : newIndex,
 			memoSeq : elementId,
 			oldOrder : oldIndex,
-			menuId: $('#menuId').val()
+			menuId : $('#menuId').val()
 		}
 	})
 }

@@ -23,7 +23,7 @@ function menuList() {
 var iconType, menuTypePage, menuId, menuName, menuIndex, menuTypenumber;
 // 메뉴 리스트 동적으로 추가하는 함수
 function menuListHandler(data) {
-
+	console.log(data);
 	for (i = 0; i < data.length; i++) {
 		if (!data[i].menuId.startsWith('KANG')) {
 			menuId = data[i].menuId;
@@ -48,8 +48,9 @@ function addingMenuDynamically() {
 
 // 메뉴 타입에 따라 아이콘 변경하는 함수
 function iconSelector(i) {
+	console.log(i);
 	if (i == 1)
-		iconType = '<i class="far fa-calendar"></i>';
+		iconType = '<i class="far fa-calendar"></i>', menuTypePage = 'menuList/calendar';
 	if (i == 2)
 		iconType = '<i class="fas fa-sticky-note"></i>', menuTypePage = 'memo';
 	if (i == 3)

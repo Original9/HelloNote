@@ -33,17 +33,8 @@ $(function() {
 	// 메모 삭제
 	deleteHolder();
 
-	// $(window).click(function(e) {
-	// if (e.target == modal) {
-	// modal.hide();
-	// }
-	// })
-
-	// window.onclick = function(event) {
-	// if (event.target == modal) {
-	// modal.style.display = "none";
-	// }
-	// }
+	
+	
 });
 
 function deleteHolder() {

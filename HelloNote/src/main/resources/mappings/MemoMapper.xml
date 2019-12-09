@@ -49,7 +49,7 @@
 			resultType="int">
 			select nvl(max(memo_seq), 0)+1 from kang_memo
 		</selectKey>
-		insert into kang_memo(
+		insert into ${hellonoteId}_memo(
 		memo_title,
 		memo_text,
 		memo_seq,

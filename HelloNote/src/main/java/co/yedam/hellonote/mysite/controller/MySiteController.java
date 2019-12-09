@@ -42,7 +42,7 @@ public class MySiteController {
 		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
 		model.addAttribute("paging", p);
 
-		return "main/mysite/test"; // jsp 경로
+		return "main/mysite/mysite"; // jsp 경로
 	}
 
 	// 등록 처리

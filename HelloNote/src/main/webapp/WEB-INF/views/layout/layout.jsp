@@ -44,7 +44,7 @@
 			<div class="container-fluid d-flex flex-column p-0">
 				<a
 					class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-					href="#">
+					href="${pageContext.request.contextPath}/main">
 					<div class="sidebar-brand-icon rotate-n-15">
 						<i class="fas fa-clipboard"></i>
 					</div>
@@ -57,9 +57,12 @@
 					<!-- 					<li class="nav-item" role="presentation"><a -->
 					<!-- 						class="nav-link active" href="index.html"><i -->
 					<!-- 							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li> -->
+<<<<<<< HEAD
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" href="${pageContext.request.contextPath}/translate"><i
 							class="fas fa-tachometer-alt"></i><span> 번역기</span></a></li>
+=======
+>>>>>>> branch 'master' of https://github.com/Original9/HelloNote.git
 					<!-- 					<li class="nav-item" role="presentation"><a -->
 					<!-- 						class="nav-link active" -->
 					<%-- 						href="${pageContext.request.contextPath}/menuList/calendar"><i --%>

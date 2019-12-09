@@ -13,26 +13,26 @@
 	</appender>
 
 	<!-- Application Loggers -->
-<!-- 	<logger name="com.yedam.exam"> -->
-<!-- 		<level value="info" /> -->
-<!-- 	</logger> -->
+	<logger name="com.yedam.exam">
+		<level value="debug" />
+	</logger>
 
 	<!-- 3rdparty Loggers -->
-<!-- 	<logger name="org.springframework.core"> -->
-<!-- 		<level value="info" /> -->
-<!-- 	</logger> -->
+	<logger name="org.springframework.core">
+		<level value="debug" />
+	</logger>
 
-<!-- 	<logger name="org.springframework.beans"> -->
-<!-- 		<level value="info" /> -->
-<!-- 	</logger> -->
+	<logger name="org.springframework.beans">
+		<level value="debug" />
+	</logger>
 
-<!-- 	<logger name="org.springframework.context"> -->
-<!-- 		<level value="info" /> -->
-<!-- 	</logger> -->
+	<logger name="org.springframework.context">
+		<level value="debug" />
+	</logger>
 
-<!-- 	<logger name="org.springframework.web"> -->
-<!-- 		<level value="info" /> -->
-<!-- 	</logger> -->
+	<logger name="org.springframework.web">
+		<level value="debug" />
+	</logger>
 
 	<logger name="jdbc.sqlonly" additivity="false">
 		<level value="info" />

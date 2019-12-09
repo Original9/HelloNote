@@ -46,13 +46,13 @@
 								<th align="center" width="200">사이트 주소</th>
 							</tr>
 						</thead>
-						<!-- 컨트롤러의 items key 값 -->
-						<c:forEach items="${mySite }" var="mySite">
 							<tbody>
+							<!-- 컨트롤러의 items key 값 -->
+							<c:forEach items="${mySite }" var="mySite">
 								<tr>
 									<td><input name="rowCheck" class="rowCheck"
 										type="checkbox" value="${mySite.mySiteSeq }" /></td>
-								<!--	<td class="getMySite" align="center" width="80">${mySite.mySiteSeq }</td> -->
+									<!--	<td class="getMySite" align="center" width="80">${mySite.mySiteSeq }</td> -->
 									<td class="getMySite" align="center" width="150">${mySite.siteDate }</td>
 									<td class="getMySite" align="center" width="200">${mySite.title }</td>
 									<td class="getMySite" align="center" width="100">${mySite.siteId }</td>
@@ -61,8 +61,8 @@
 									<td align="center" width="200"><a
 										href="${mySite.siteAddr }">${mySite.siteAddr }</a></td>
 								</tr>
-							</tbody>
-						</c:forEach>
+							</c:forEach>
+						</tbody>
 					</table>
 					<!-- 목록 끝 -->
 				</div>

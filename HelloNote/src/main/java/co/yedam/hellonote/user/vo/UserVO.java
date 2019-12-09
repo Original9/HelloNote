@@ -11,4 +11,18 @@ public class UserVO {
 	String age;
 	String hProfile;
 
+	public String gethGrant() {
+		return hGrant;
+	}
+	public void sethGrant(String hGrant) {
+		this.hGrant = hGrant;
+	}
+	public String gethProfile() {
+		return hProfile;
+	}
+	public void sethProfile(String hProfile) {
+		this.hProfile = hProfile;
+	}
+	
+	
 }

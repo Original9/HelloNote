@@ -42,6 +42,7 @@
 				style="float: right; width: 30px;">&times;</span>
 		</div>
 	</div>
-	<input type="hidden" id="menuId" value="${memoList[0].menuId}"/>
+	${menuId}
+	<input type="hidden" id="menuId" value="${menuId}" />
 </body>
 </html>

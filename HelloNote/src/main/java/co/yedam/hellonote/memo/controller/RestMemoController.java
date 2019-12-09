@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.yedam.hellonote.memo.service.MemoService;
@@ -19,6 +18,7 @@ public class RestMemoController {
 	@RequestMapping(value = "insertMemo")
 	public int insertMemo(MemoVO vo, HttpSession session) {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+		
 		int a = service.insertMemo(vo);
 		return a;
 	}
@@ -26,7 +26,6 @@ public class RestMemoController {
 	@RequestMapping("memoSortHandling")
 	public void sortHandling(MemoVO vo, HttpSession session) {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
-		vo.setMenuId("1");
    
 
 		service.sortHandling1(vo);

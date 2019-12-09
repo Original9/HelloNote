@@ -25,6 +25,7 @@ public class MemoController {
 		vo.setMenuId(request.getParameter("menuId"));
 		
 		model.addAttribute("memoList", service.getMemoList(vo));
+		model.addAttribute("menuId", request.getParameter("menuId"));
 		return "main/main/memo";	
 	}
 	

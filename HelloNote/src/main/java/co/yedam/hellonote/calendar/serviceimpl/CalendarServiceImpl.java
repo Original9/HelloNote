@@ -17,13 +17,10 @@ public class CalendarServiceImpl implements CalendarService{
 	CalendarDAO dao;
 	
 	@Override
-	public List<CalendarVO> getCalendarList(CalendarVO vo,UserVO user) {
-		
-		UserVO user1 = new UserVO();
-		user1.setHellonoteId(user.getHellonoteId());
+	public List<CalendarVO> getCalendarList(CalendarVO vo) {		
 		
 		
-		return dao.getCalendarList(vo, user1); // user1에 session id 값인 hellonoteId값을 넣어서 넘긴
+		return dao.getCalendarList(vo); // user1에 session id 값인 hellonoteId값을 넣어서 넘긴
 	}
 
 	@Override
@@ -48,6 +45,12 @@ public class CalendarServiceImpl implements CalendarService{
 	public int dragAnddropReviseCalendar(CalendarVO vo) {
 		// TODO Auto-generated method stub
 		return dao.dragAnddropReviseCalendar(vo);
+	}
+
+	@Override
+	public int getCalendarSeq(CalendarVO vo) {
+		// TODO Auto-generated method stub
+		return dao.getCalendarSeq(vo);
 	}
 
 }

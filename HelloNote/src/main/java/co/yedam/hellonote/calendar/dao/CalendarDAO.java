@@ -16,8 +16,8 @@ public class CalendarDAO {
 	SqlSessionTemplate calendar;
 	
 	//전체 조회
-	public List<CalendarVO> getCalendarList(CalendarVO vo, UserVO user){
-		return calendar.selectList("CalendarDAO.getCalendarList",user);		
+	public List<CalendarVO> getCalendarList(CalendarVO vo){
+		return calendar.selectList("CalendarDAO.getCalendarList",vo);		
 	}
 	
 	//삭제
@@ -28,12 +28,12 @@ public class CalendarDAO {
 	//등륵
 	public int insertCalendar(CalendarVO vo) {
 		//parameters 여러게 보내고 싶으면 map으로 묶어서보낸다.		
-		System.out.println(vo);
 		return calendar.insert("CalendarDAO.insertCalendar", vo);		
 	}	
 	
 	//수정
 	public int updateCalendar(CalendarVO vo) {
+		
 		return calendar.update("CalendarDAO.updateCalendar",vo);
 	}
 	
@@ -42,4 +42,10 @@ public class CalendarDAO {
 		return calendar.update("CalendarDAO.dragAnddropReviseCalendar",vo);
 	}
 
+	//
+	public int getCalendarSeq(CalendarVO vo) {
+		CalendarVO temp = calendar.selectOne("CalendarDAO.getCalendarSeq", vo);
+		int seq = temp.getCalendarSeq();
+		return seq;
+	}
 }

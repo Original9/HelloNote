@@ -49,7 +49,7 @@ function addingMenuDynamically() {
 // 메뉴 타입에 따라 아이콘 변경하는 함수
 function iconSelector(i) {
 	if (i == 1)
-		iconType = '<i class="far fa-calendar"></i>';
+		iconType = '<i class="far fa-calendar"></i>'; 		
 	if (i == 2)
 		iconType = '<i class="fas fa-sticky-note"></i>', menuTypePage = 'memo';
 	if (i == 3)

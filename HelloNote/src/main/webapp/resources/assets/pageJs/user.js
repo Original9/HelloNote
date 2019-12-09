@@ -96,8 +96,8 @@ $(function() {
 	$('#change').on('click', function() {
 		$('#UpdForm input[name="hellonoteId"]').val($("#dele #hellonoteId").html());
 		$('#UpdForm input[name="pw"]').val($("#dele #pw").html());
-		$('#UpdForm input[name="gender"]').val($("#dele #gender").html());
-		$('#UpdForm input[name="hGrant"]').val($("#dele #hGrant").html());
+		$('#UpdForm select[name="gender"]').val($("#dele #gender").html());
+		$('#UpdForm select[name="hGrant"]').val($("#dele #hGrant").html());
 		$('#UpdForm input[name="age"]').val($("#dele #age").html());
 		$('#UpdForm input[name="hProfile"]').val($("#dele #hProfile").html());
 		$('#changeform').show();
@@ -115,10 +115,11 @@ function UserUpdate() {
 	// 수정 버튼 클릭
 	$('#updatebutton').on('click', function() {
 		var pw = $('#UpdForm input[name="pw"]').val();
-		var gender = $('#UpdForm input:text[name="gender"]').val();
-		var hGrant = $('#UpdForm input[name="hGrant"]').val();
+		var gender = $('#UpdForm select[name="gender"]').val();
+		var hGrant = $('#UpdForm select[name="hGrant"]').val();
 		var age = $('#UpdForm input[name="age"]').val();
 		var hProfile = $('#UpdForm input[name="hProfile"]').val();
+		var hellonoteId = $('#UpdForm input[name="hellonoteId"]').val();
 
 		$.ajax({
 			url : "updateUser",
@@ -129,7 +130,8 @@ function UserUpdate() {
 				gender : gender,
 				hGrant : hGrant,
 				age : age,
-				hProfile : hProfile
+				hProfile : hProfile,
+				hellonoteId : hellonoteId
 			}),
 			contentType : 'application/json',
 			success : getupdateHandler

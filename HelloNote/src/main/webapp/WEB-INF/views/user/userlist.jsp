@@ -74,12 +74,12 @@
 										<tr>
 											<td><input name="rowCheck" class="rowCheck"
 												type="checkbox" value="${user.hellonoteId }" /></td>
-											<td class="getUser" align="center" >${user.hellonoteId }</td>
-											<td class="getUser" align="center" >${user.pw }</td>
-											<td class="getUser" align="center" >${user.gender }</td>
-											<td class="getUser" align="center" >${user.hGrant }</td>
-											<td class="getUser" align="center" >${user.age }</td>
-											<td class="getUser" align="center" >${user.hProfile }</td>
+											<td class="getUser" align="center">${user.hellonoteId }</td>
+											<td class="getUser" align="center">${user.pw }</td>
+											<td class="getUser" align="center">${user.gender }</td>
+											<td class="getUser" align="center">${user.hGrant }</td>
+											<td class="getUser" align="center">${user.age }</td>
+											<td class="getUser" align="center">${user.hProfile }</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -151,18 +151,24 @@
 							<div class="field-wrap">
 								<div class="field-wrap">
 									<label> ID : </label> <input type="text" required
-										autocomplete="off" name="hellonoteId" readonly/>
+										autocomplete="off" name="hellonoteId" readonly />
 								</div>
 								<div class="field-wrap">
 									<label> PW : </label> <input type="password" required
 										autocomplete="off" name="pw" />
 								</div>
-								<label> GENDER : </label> <input type="text" required
-									autocomplete="off" name="gender" />
+								<label> GENDER : </label> <select name="gender">
+									<option value="M">M</option>
+									<option value="F">F</option>
+
+								</select>
 							</div>
 							<div class="field-wrap">
-								<label> HGRANT : </label> <input type="text" required
-									autocomplete="off" name="hGrant" />
+								<label> HGRANT : </label><select name="hGrant">
+									<option value="M">M</option>
+									<option value="U">U</option>
+
+								</select>
 							</div>
 							<div class="field-wrap">
 								<label> AGE : </label> <input type="text" required

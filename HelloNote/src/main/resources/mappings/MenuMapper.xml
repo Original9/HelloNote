@@ -4,11 +4,51 @@
 
 <mapper namespace="MenuDAO">
 	<select id="menuList" parameterType="menu" resultType="menu">
-		select menu_id,
+		select
+		menu_id,
 		menu_name,
 		menu_index,
 		menu_typenumber
-		from ${hellonoteId}_usermenu
+		from
+		${hellonoteId}_usermenu
 		order by menu_index
 	</select>
+	<update id="sortHandling1" parameterType="menu">
+		update ${hellonoteId}_usermenu
+		<if test="oldOrder lt menuIndex">
+			set menu_index = menu_index - 1
+			where menu_index between
+			#{oldOrder} and #{menuIndex}
+		</if>
+		<if test="oldOrder gt menuIndex">
+			set menu_index = menu_index + 1
+			where menu_index between
+			#{menuIndex} and #{oldOrder}
+		</if>
+		and menu_index != #{oldOrder}
+	</update>
+	<update id="sortHandling2" parameterType="menu">
+		update
+		${hellonoteId}_usermenu
+		set menu_index = #{menuIndex}
+		where menu_id =
+		#{menuId}
+	</update>
+	<insert id="insertMenu" parameterType="menu">
+		<selectKey order="BEFORE" keyProperty="menuSeq"
+			resultType="String">
+			select to_char(count(*)+1)
+			from kang_usermenu 
+			where menu_id like #{menuId} || '%';
+		</selectKey>
+		insert into ${hellonoteId}_usermenu(
+		menu_id,
+		menu_name,
+		menu_index,
+		menu_typenumber
+		)
+		values(
+		#{menuId} || '_' || #{menuSeq}
+		);
+	</insert>
 </mapper>

@@ -20,5 +20,13 @@ public class MenuServiceImpl implements MenuService{
 		return dao.menuList(vo);
 	}
 	
+	@Override
+	public void sortHandling1(MenuVO vo) {
+		dao.sortHandling1(vo);
+	}
 	
+	@Override
+	public void sortHandling2(MenuVO vo) {
+		dao.sortHandling2(vo);
+	}
 }

@@ -24,4 +24,17 @@ public class MenuController {
 		return service.menuList(vo);
 	}
 	
+	@RequestMapping("menuSortHandling")
+	public void sortHandling(MenuVO vo, HttpSession session) {
+		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+
+		service.sortHandling1(vo);
+		service.sortHandling2(vo);
+	}
+	
+//	@RequestMapping("menuInsert")
+//	public String menuInsert(MenuVO vo) {
+//		
+//		return vo.getmenu
+//	}
 }

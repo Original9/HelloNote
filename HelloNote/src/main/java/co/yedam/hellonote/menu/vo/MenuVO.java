@@ -10,5 +10,6 @@ public class MenuVO {
 	private int menuIndex;
 	private int menuTypenumber;
 	private String hellonoteId;
-	
+	private int oldOrder;
+	private String menuSeq;
 }

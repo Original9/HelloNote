@@ -113,15 +113,26 @@ function menuSort() {
 			var newIndex = ui.item.index() + 1;
 			var oldIndex = $(this).attr('data-previndex');
 			var element_id = ui.item.attr('id');
-			console.log(element_id);
-			// sortHandler(newIndex, oldIndex, element_seq);
 
-			// console.log('id of Item moved = ' + element_id
-			// + ' old position = ' + oldIndex
-			// + ' new position = ' + newIndex);
+			 menuSortHandler(newIndex, oldIndex, element_id);
+
+			 console.log('id of Item moved = ' + element_id
+			 + ' old position = ' + oldIndex
+			 + ' new position = ' + newIndex);
 			$(this).removeAttr('data-previndex');
 			flag = false;
 		}
 	});
 	$("#accordionSidebar").disableSelection();
+}
+
+function menuSortHandler(newIndex, oldIndex, elementId) {
+	$.ajax({
+		url : 'menuSortHandling',
+		data : {
+			menuIndex : newIndex,
+			menuId : elementId,
+			oldOrder : oldIndex
+		}
+	})
 }

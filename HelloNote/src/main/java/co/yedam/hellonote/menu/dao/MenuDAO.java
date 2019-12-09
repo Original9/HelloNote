@@ -10,12 +10,19 @@ import co.yedam.hellonote.menu.vo.MenuVO;
 
 @Repository
 public class MenuDAO {
-	
+
 	@Autowired
 	private SqlSessionTemplate batis;
-	
-	public List<MenuVO> menuList(MenuVO vo){
+
+	public List<MenuVO> menuList(MenuVO vo) {
 		return batis.selectList("MenuDAO.menuList", vo);
 	}
-	
+
+	public void sortHandling1(MenuVO vo) {
+		batis.update("MenuDAO.sortHandling1", vo);
+	}
+
+	public void sortHandling2(MenuVO vo) {
+		batis.update("MenuDAO.sortHandling2", vo);
+	}
 }

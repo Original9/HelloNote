@@ -11,30 +11,51 @@ import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDAO userDAO;
+
 	@Override
 	public UserVO getUser(UserVO vo) {
 		return userDAO.getUser(vo);
 	}
+
 	@Override
 	public List<UserVO> getUserList(UserVO vo) {
 		return userDAO.getUserList(vo);
 	}
+
 	@Override
-	public List<Map> getUserListMap(UserVO vo) {
+	public List<Map<String, Object>> getUserListMap(UserVO vo) {
 		return userDAO.getUserListMap(vo);
 	}
-	public int insertUser(UserVO dto) {		
-		return userDAO.insertUser(dto);		
-	}
+//	public int insertUser(UserVO dto) {		
+//		return userDAO.insertUser(dto);		
+//	} insert  필요한가
+
+	@Override
 	public int updateUser(UserVO dto) {
 		return userDAO.updateUser(dto);
 	}
-	public int deleteUser(UserVO dto) {
-		return userDAO.deleteUser(dto);
+
+	@Override
+	public int deleteUser(String[] list, UserVO vo) {
+		for (int i = 0; i < list.length; i++) {
+			vo.setHellonoteId(list[i]);
+			userDAO.deleteUser(vo);
+		}
+		return 0;
+	}
+
+	@Override
+	public int getUserdelete(UserVO vo) {
+		return userDAO.getUserdelete(vo);
+	}
+
+	@Override
+	public int insertUser(UserVO vo) {
+		return 0;
 	}
 
 }

@@ -23,25 +23,27 @@ public class UserDAO {
 		return mybatis.selectOne("UserDAO.getUser", user);
 	}
 
-	public List<Map> getUserListMap(UserVO user) {
+	public List<Map<String, Object>> getUserListMap(UserVO user) {
 		return mybatis.selectList("UserDAO.getUserListMap", user);
 	}
 
 	// 등록
 	public int insertUser(UserVO dto) {
-		System.out.println("mybatis 사용자 등록");
 		return mybatis.insert("UserDAO.insertUser", dto);
 	}
 
 	// 수정
 	public int updateUser(UserVO dto) {
-		System.out.println("mybatis 사용자 수정");
 		return mybatis.update("UserDAO.updateUser", dto);
 	}
 
 	// 삭제
-	public int deleteUser(UserVO dto) {
-		System.out.println("mybatis 사용자 삭제");
-		return mybatis.delete("UserDAO.deleteUser", dto);
+	public int deleteUser(UserVO vo) {
+		return mybatis.delete("UserDAO.deleteUser", vo);
+	}
+	
+	// 단건 삭제
+	public int getUserdelete(UserVO vo) {
+		return mybatis.delete("UserDAO.getUserdelete", vo);
 	}
 }

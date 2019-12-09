@@ -7,7 +7,7 @@ public class MemoVO {
 
 	private String memoTitle;
 	private String memoText;
-	private String menuId;
+	private int menuId;
 	private int memoSeq;
 	private String memoPlace;
 	private int memoOrder;

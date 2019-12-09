@@ -22,7 +22,7 @@ public class MemoController {
 		String hellonotId = (String) session.getAttribute("hellonoteId");
 		
 		vo.setHellonoteId(hellonotId);
-		vo.setMenuId(request.getParameter("menuId"));
+		vo.setMenuId(Integer.parseInt(request.getParameter("menuId")));
 		
 		model.addAttribute("memoList", service.getMemoList(vo));
 		model.addAttribute("menuId", request.getParameter("menuId"));

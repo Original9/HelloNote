@@ -48,11 +48,18 @@ public int revise(HttpServletRequest request, CalendarVO vo) {
 	
 	HttpSession session = request.getSession();
 	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
-	System.out.println(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-	return calendarService.dragAnddropReviseCalendar(vo);
+	return calendarService.dragAnddropReviseCalendar(vo);	
+}
+
+@RequestMapping(value="/updateCalendar")
+public int update(HttpServletRequest request, CalendarVO vo) {
 	
+	HttpSession session = request.getSession();
+	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	return 1;	
 	
 }
+
 
 
 }

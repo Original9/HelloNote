@@ -62,7 +62,7 @@
 							class="fas fa-tachometer-alt"></i><span> MEMO</span></a></li>
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active"
-						href="${pageContext.request.contextPath}/menuList/calendar"><i
+						href="${pageContext.request.contextPath}/calendar"><i
 							class="fas fa-tachometer-alt"></i><span> CALENDAR</span></a></li>
 					<li class="nav-item" role="presentation"><a  
 						class="nav-link active" href="${pageContext.request.contextPath}/menuList/bankaccount"><i

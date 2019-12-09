@@ -31,7 +31,7 @@
   	<insert id="insertCalendar" parameterType="calendar" >
   		 <selectKey order="BEFORE" resultType="int" keyProperty="calendarSeq">
   			SELECT MAX(CALENDAR_SEQ)+1 
-  			FROM kang_CALENDAR
+  			FROM ${hellonoteId}_CALENDAR
   		</selectKey>
   	
   		INSERT INTO ${hellonoteId}_CALENDAR(CALENDAR_SEQ,
@@ -72,5 +72,17 @@
   		   WHERE TITLE=#{title}
   	
   	</update>
+  	
+    <!-- 캘린더 정보 업데이트 -->
+   <!-- <update id="updateCalendar" parameterType="calendar">
+    	UPDATE ${hellonoteId}_CALENDAR
+    	   SET TITLE= ,
+    	   	   START_DATE= ,
+    	   	   END_DATE=  ,
+    	   	   TYPE=  ,
+    	   	   COLOR= ,
+    	   	   DESCRIPTION= 
+    	   	WHERE TITLE =     
+    </update> -->
   
   </mapper>

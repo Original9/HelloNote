@@ -14,7 +14,7 @@ public class CalendarController {
 	
 	@Autowired CalendarService calendarService;
 	
-@RequestMapping(value="/menuList/calendar")
+@RequestMapping(value="/calendar")
 public String getCalendarList(Model model, CalendarVO vo) {
 	
 	return "main/menuList/calendar";

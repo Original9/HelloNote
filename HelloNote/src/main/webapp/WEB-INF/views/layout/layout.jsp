@@ -27,7 +27,8 @@
 <script
 	src="<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/pageJs/index.js"/>"></script>
-<link href="<c:url value="/resources/assets/css/index.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/assets/css/index.css"/>"
+	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <%-- <script src="<c:url value="/resources/assets/js/chart.min.js"/>"></script> --%>
@@ -41,7 +42,7 @@
 		<nav
 			class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 toggled"
 			id="navigationBar">
-			<div class="container-fluid d-flex flex-column p-0">
+			<div class="container-fluid d-flex flex-column navi1">
 				<a
 					class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
 					href="${pageContext.request.contextPath}/main">
@@ -55,45 +56,23 @@
 				<hr class="sidebar-divider my-0">
 				<ul class="nav navbar-nav text-light" id="accordionSidebar">
 					<!-- 					<li class="nav-item" role="presentation"><a -->
-					<!-- 						class="nav-link active" href="index.html"><i -->
-					<!-- 							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li> -->
-<<<<<<< HEAD
-					<li class="nav-item" role="presentation"><a
-						class="nav-link active" href="${pageContext.request.contextPath}/translate"><i
-							class="fas fa-tachometer-alt"></i><span> 번역기</span></a></li>
-=======
->>>>>>> branch 'master' of https://github.com/Original9/HelloNote.git
-					<!-- 					<li class="nav-item" role="presentation"><a -->
-					<!-- 						class="nav-link active" -->
-					<%-- 						href="${pageContext.request.contextPath}/menuList/calendar"><i --%>
-					<!-- 							class="fas fa-tachometer-alt"></i><span> CALENDAR</span></a></li> -->
-					<!-- 					<li class="nav-item" role="presentation"><a -->
-					<!-- 						class="nav-link active" href="index.html"><i -->
-					<!-- 							class="fas fa-tachometer-alt"></i><span> BANKACCOUNT</span></a></li> -->
-					<!-- 					<li class="nav-item" role="presentation"><a -->
-					<!-- 						class="nav-link active" href="index.html"><i -->
-					<!-- 							class="fas fa-tachometer-alt"></i><span> CHECKLIST</span></a></li> -->
-					<!-- 					<li class="nav-item" role="presentation"><a -->
-					<!-- 						class="nav-link active" -->
-					<%-- 						href="${pageContext.request.contextPath}/mysite/getMySiteList"><i --%>
-					<!-- 							class="fas fa-tachometer-alt"></i><span> MYSITELIST</span></a></li> -->
-					<!-- 					<li class="nav-item" role="presentation"><a -->
-					<!-- 						class="nav-link active" href="index.html"><i -->
-					<!-- 							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li> -->
-					<!-- 					<li class="nav-item" role="presentation"><a -->
-					<!-- 						class="nav-link active" href="index.html"><i -->
-					<!-- 							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li> -->
-					<!-- 					<li class="nav-item" role="presentation"><a -->
 					<!-- 						class="nav-link active" -->
 					<%-- 						href="${pageContext.request.contextPath}/menuList/accountBook"><i --%>
 					<!-- 							class="fas fa-tachometer-alt"></i><span> AccountBook </span></a></li> -->
+				</ul>
+				<ul class="nav navbar-nav text-light">
+					<li class="nav-item" role="presentation"><a
+						class="nav-link active"
+						href="${pageContext.request.contextPath}/translate"><i
+							class="fas fa-tachometer-alt"></i><span> 번역기</span></a></li>
 				</ul>
 				<div class="text-center d-none d-md-inline">
 					<button class="btn rounded-circle border-0" id="sidebarToggle"
 						type="button"></button>
 				</div>
-				<i class="fas fa-plus-square fa-3x" id="addMenu"></i>
-				<i class="fas fa-trash fa-3x" id="deleteMenu"></i>
+				<div height="500px"></div>
+				<i class="fas fa-plus-square fa-3x" id="addMenu"></i> <i
+					class="fas fa-trash fa-3x" id="deleteMenu"></i>
 			</div>
 		</nav>
 		<div class="d-flex flex-column" id="content-wrapper">

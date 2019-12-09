@@ -3,8 +3,14 @@
 	color: white;
 	/* 	postion: absolute; 가 있어야 먹힘 */
 	bottom: 30px;
-	/* 	커서 모양 바꿈 */
-	cursor: pointer;
+	pointer : 
+}
+
+#deleteMenu {
+	position: absolute;
+	color: white;
+	/* 	postion: absolute; 가 있어야 먹힘 */
+	bottom: 100px;
 }
 
 /* The Modal (background) */

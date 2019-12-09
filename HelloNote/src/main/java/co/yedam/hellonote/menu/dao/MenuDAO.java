@@ -25,4 +25,8 @@ public class MenuDAO {
 	public void sortHandling2(MenuVO vo) {
 		batis.update("MenuDAO.sortHandling2", vo);
 	}
+	
+	public int insertMenu(MenuVO vo) {
+		return batis.insert("MenuDAO.insertMenu", vo);
+	}
 }

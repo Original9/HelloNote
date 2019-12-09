@@ -87,6 +87,7 @@
 						type="button"></button>
 				</div>
 				<i class="fas fa-plus-square fa-3x" id="addMenu"></i>
+				<i class="fas fa-trash fa-3x" id="deleteMenu"></i>
 			</div>
 		</nav>
 		<div class="d-flex flex-column" id="content-wrapper">
@@ -301,14 +302,14 @@
 			</div>
 			<div>
 				<select class="menuType" name="menuType" id="menuType">
-					<option value="0">아이디</option>
-					<option value="1">메모</option>
-					<option value="2">체크리스트</option>
-					<option value="3">기념일</option>
-					<option value="4">계좌번호</option>
-					<option value="5">가계부</option>
-					<option value="6">캘린더</option>
+					<option value="1">캘린더</option>
+					<option value="2">메모</option>
+					<option value="3">DDAY</option>
+					<option value="4">가계부</option>
+					<option value="5">계좌번호</option>
+					<option value="6">체크리스트</option>
 					<option value="7">장보기</option>
+					<option value="8">아이디</option>
 				</select>
 			</div>
 			<div>

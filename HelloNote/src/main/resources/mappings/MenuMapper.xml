@@ -35,11 +35,10 @@
 		#{menuId}
 	</update>
 	<insert id="insertMenu" parameterType="menu">
-		<selectKey order="BEFORE" keyProperty="menuSeq"
-			resultType="String">
-			select to_char(count(*)+1)
-			from kang_usermenu 
-			where menu_id like #{menuId} || '%';
+		<selectKey order="BEFORE" keyProperty="menuId"
+			resultType="int">
+			select nvl(max(menu_id), 0) + 1 
+			from ${hellonoteId}_usermenu
 		</selectKey>
 		insert into ${hellonoteId}_usermenu(
 		menu_id,
@@ -48,7 +47,10 @@
 		menu_typenumber
 		)
 		values(
-		#{menuId} || '_' || #{menuSeq}
-		);
+		#{menuId},
+		#{menuName},
+		(select nvl(max(menu_index), 0) + 1 from ${hellonoteId}_usermenu),
+		#{menuTypenumber}
+		)
 	</insert>
 </mapper>

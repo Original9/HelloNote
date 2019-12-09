@@ -29,4 +29,9 @@ public class MenuServiceImpl implements MenuService{
 	public void sortHandling2(MenuVO vo) {
 		dao.sortHandling2(vo);
 	}
+
+	@Override
+	public int insertMenu(MenuVO vo) {
+		return dao.insertMenu(vo);
+	}
 }

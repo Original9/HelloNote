@@ -18,9 +18,16 @@ var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
  * ************** */
 var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작하는지 
 
+	
+	
     $("#contextMenu").hide(); // Date 클릭시 dropdown menu
 
     modalTitle.html('새로운 일정');
+    
+    
+   
+    editTitle.val(' '); // 안먹음   
+    editDesc.val(' '); // 안먹음
     editStart.val(start);
     editEnd.val(end);
     editType.val(eventType).prop("selected", true); //prop() 지정한 선택자를 가진 첫번번째 요소의 속성값을 가져오거나 속성값을 추가합니다. 
@@ -33,6 +40,7 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
     var eventId = 1 + Math.floor(Math.random() * 1000);
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
+    
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind(); // .unbind()를 사용하여 요소의 모든 이벤트의 바인딩을 해제합니다. 
     $('#save-event').on('click', function () {

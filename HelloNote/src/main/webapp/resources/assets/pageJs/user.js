@@ -69,7 +69,7 @@ $(function() {
 			type : 'GET', // 받아온다
 			data : {
 				hellonoteId : id
-			}, 
+			},
 			dataType : 'json', // json 형식
 			success : getUserHandler
 		// 성공시 작동
@@ -78,12 +78,12 @@ $(function() {
 	// success 후 function getMySiteHandler 실행 각ID에 데이터를 span에 값을 넣어줌 각 span은
 	// html
 	function getUserHandler(data) {
-		$("#hellonoteId").html(data.hellonoteId);
-		$("#pw").html(data.pw);
-		$("#gender").html(data.gender);
-		$("#hGrant").html(data.hGrant);
-		$("#age").html(data.age);
-		$("#hProfile").html(data.hProfile);
+		$("#dele #hellonoteId").html(data.hellonoteId);
+		$("#dele #pw").html(data.pw);
+		$("#dele #gender").html(data.gender);
+		$("#dele #hGrant").html(data.hGrant);
+		$("#dele #age").html(data.age);
+		$("#dele #hProfile").html(data.hProfile);
 	}
 
 	// .name 은 클래스 사용 모든영역에 사용가능 #name은 유니크한 ID 그객체만 사용가능
@@ -94,12 +94,12 @@ $(function() {
 
 	// change라는 ID버튼을 클릭시 수정모달로 show 해준다음 select 는 hide
 	$('#change').on('click', function() {
-		$('#UpdForm input[name="hellonoteId"]').val($("#hellonoteId").html());
-		$('#UpdForm input[name="pw"]').val($("#pw").html());
-		$('#UpdForm input[name="gender"]').val($("#gender").html());
-		$('#UpdForm input[name="hGrant"]').val($("#hGrant").html());
-		$('#UpdForm input[name="age"]').val($("#age").html());
-		$('#UpdForm input[name="hProfile"]').val($("#hProfile").html());
+		$('#UpdForm input[name="hellonoteId"]').val($("#dele #hellonoteId").html());
+		$('#UpdForm input[name="pw"]').val($("#dele #pw").html());
+		$('#UpdForm input[name="gender"]').val($("#dele #gender").html());
+		$('#UpdForm input[name="hGrant"]').val($("#dele #hGrant").html());
+		$('#UpdForm input[name="age"]').val($("#dele #age").html());
+		$('#UpdForm input[name="hProfile"]').val($("#dele #hProfile").html());
 		$('#changeform').show();
 		$('#select').hide();
 	})
@@ -114,8 +114,7 @@ $(function() {
 function UserUpdate() {
 	// 수정 버튼 클릭
 	$('#updatebutton').on('click', function() {
-		var hellonoteId = $('#UpdForm input:text[name="hellonoteId"]').val();
-		var pw = $('#UpdForm input:text[name="pw"]').val();
+		var pw = $('#UpdForm input[name="pw"]').val();
 		var gender = $('#UpdForm input:text[name="gender"]').val();
 		var hGrant = $('#UpdForm input[name="hGrant"]').val();
 		var age = $('#UpdForm input[name="age"]').val();
@@ -126,7 +125,6 @@ function UserUpdate() {
 			method : 'PUT',
 			dataType : 'json',
 			data : JSON.stringify({
-				hellonoteId : hellonoteId,
 				pw : pw,
 				gender : gender,
 				hGrant : hGrant,

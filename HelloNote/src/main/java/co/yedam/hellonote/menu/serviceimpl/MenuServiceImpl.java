@@ -34,4 +34,9 @@ public class MenuServiceImpl implements MenuService{
 	public int insertMenu(MenuVO vo) {
 		return dao.insertMenu(vo);
 	}
+
+	@Override
+	public void deleteMenu(MenuVO vo) {
+		dao.deleteMenu(vo);
+	}
 }

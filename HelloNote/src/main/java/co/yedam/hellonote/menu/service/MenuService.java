@@ -10,4 +10,5 @@ public interface MenuService {
 	public void sortHandling1(MenuVO vo);
 	public void sortHandling2(MenuVO vo);
 	public int insertMenu(MenuVO vo);
+	public void deleteMenu(MenuVO vo);
 }

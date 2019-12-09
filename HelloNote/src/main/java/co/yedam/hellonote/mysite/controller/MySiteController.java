@@ -35,7 +35,7 @@ public class MySiteController {
 	MySiteService mySiteService;
 
 	// 목록조회
-	@RequestMapping("/mysite/getMySiteList")
+	@RequestMapping("/mysite")
 	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p) {
 		svo.setUserId("kwon");
 		// MySite key값

@@ -3,7 +3,7 @@
 	color: white;
 	/* 	postion: absolute; 가 있어야 먹힘 */
 	bottom: 30px;
-	pointer : 
+	cursor : pointer;
 }
 
 #deleteMenu {

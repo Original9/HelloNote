@@ -14,9 +14,31 @@ $(function() {
 	// 메뉴 삽입 함수
 	menuInsert();
 	// 메뉴 삭제 함수
+	deleteMenu();
+	// 메뉴 수정 함수
 	
-
 })
+
+function deleteMenu() {
+	$('#deleteMenu').droppable(
+			{
+				accept : '.nav-item',
+				drop : function(event, ui) {
+					flag = false;
+					var $id = ui.draggable.attr("id");
+					$.ajax({
+						url : 'deleteMenu',
+						data : {
+							menuId : $id
+						},
+						success : function() {
+							ui.draggable.remove();
+							console.log('delete success');
+						}
+					});
+				}
+			})
+}
 
 // 메뉴 리스트 ajax 함수
 function menuList() {

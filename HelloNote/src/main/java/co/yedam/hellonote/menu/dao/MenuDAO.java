@@ -29,4 +29,8 @@ public class MenuDAO {
 	public int insertMenu(MenuVO vo) {
 		return batis.insert("MenuDAO.insertMenu", vo);
 	}
+	
+	public void deleteMenu(MenuVO vo ) {
+		batis.delete("MenuDAO.deleteMenu", vo);
+	}
 }

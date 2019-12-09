@@ -53,4 +53,8 @@
 		#{menuTypenumber}
 		)
 	</insert>
+	<delete id="deleteMenu" parameterType="menu">
+		delete from ${hellonoteId}_usermenu
+		where menu_id = #{menuId}
+	</delete>
 </mapper>

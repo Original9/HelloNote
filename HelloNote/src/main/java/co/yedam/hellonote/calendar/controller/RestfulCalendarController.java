@@ -75,7 +75,6 @@ public int getCalendarSeq(HttpServletRequest request, CalendarVO vo) {
 	HttpSession session = request.getSession();
 	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
 	vo.setMenuId((String)session.getAttribute("menuId"));
-	System.out.println(calendarService.getCalendarSeq(vo)+"return");
 	return calendarService.getCalendarSeq(vo);
 }
 

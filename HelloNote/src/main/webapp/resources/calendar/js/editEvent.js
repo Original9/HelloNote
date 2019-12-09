@@ -3,6 +3,7 @@
  * ************** */
 var editEvent = function (event, element, view) {
 	
+	
 	// 변경하기전 calendarSeq 값을 받아외야한다.
      var calendarSeq;
     $.ajax({
@@ -13,12 +14,13 @@ var editEvent = function (event, element, view) {
         },
         success: function (response) {        	
         	calendarSeq=response;
+        	
         }
     });
 
 
     $('.popover.fade.top').remove();
-    $(element).popover("hide");
+    $(element).popover("hide");    
 
     if (event.allDay === true) {
         editAllDay.prop('checked', true);
@@ -45,10 +47,10 @@ var editEvent = function (event, element, view) {
 
     addBtnContainer.hide();
     modifyBtnContainer.show();
-    eventModal.modal('show');
+    eventModal.modal('show'); // modal이 hide되면 이 함수는 아무것도 리턴하지말고 이 함수를 빠져나와야한다.
 
     //업데이트 버튼 클릭시
-    $('#updateEvent').unbind();
+    $('#updateEvent').unbind(); // 이벤트 해제
     $('#updateEvent').on('click', function () {
 
         if (editStart.val() > editEnd.val()) {
@@ -99,6 +101,8 @@ var editEvent = function (event, element, view) {
             },
             success: function (response) {
                 alert('수정되었습니다.')
+                editTitle.val(" ");    
+                editDesc.val(" ");
             }
         });
 
@@ -106,8 +110,8 @@ var editEvent = function (event, element, view) {
 
     
     // 삭제버튼
+    $('#deleteEvent').unbind(); // 이벤트를 제거하고 다시 실행해야한다.
     $('#deleteEvent').on('click', function () {
-        $('#deleteEvent').unbind();
         $("#calendar").fullCalendar('removeEvents', [event._id]);
         eventModal.modal('hide');
         //삭세버튼을 누르면 title 값과 시작날짜를 넘겨서 삭제힌디.
@@ -123,7 +127,11 @@ var editEvent = function (event, element, view) {
             },
             success: function (response) {
                 alert('삭제되었습니다.');
+                editTitle.val(" ");    
+                editDesc.val(" ");
             }
         });
     });
+    
+    
 };

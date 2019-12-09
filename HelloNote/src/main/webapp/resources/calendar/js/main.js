@@ -325,7 +325,7 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
   },
   eventLimitClick: 'week', //popover
   navLinks: true,
-  defaultDate: moment('2019-05'), //실제 사용시 삭제
+  //defaultDate: moment('2019-05'), //실제 사용시 삭제
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
   editable: true,
@@ -339,3 +339,4 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
   eventLongPressDelay: 0,
   selectLongPressDelay: 0
 });
+

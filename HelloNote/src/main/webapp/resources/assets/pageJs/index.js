@@ -50,7 +50,7 @@ function addingMenuDynamically() {
 function iconSelector(i) {
 	console.log(i);
 	if (i == 1)
-		iconType = '<i class="far fa-calendar"></i>', menuTypePage = 'menuList/calendar';
+		iconType = '<i class="far fa-calendar"></i>', menuTypePage = 'calendar';
 	if (i == 2)
 		iconType = '<i class="fas fa-sticky-note"></i>', menuTypePage = 'memo';
 	if (i == 3)

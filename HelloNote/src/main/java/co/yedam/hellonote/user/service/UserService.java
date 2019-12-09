@@ -5,17 +5,27 @@ import java.util.Map;
 
 import co.yedam.hellonote.user.vo.UserVO;
 
-
 public interface UserService {
-	
+
+	// 단건 조회
 	public UserVO getUser(UserVO vo);
+
+	// 리스트 조회
 	public List<UserVO> getUserList(UserVO vo);
-	public List<Map> getUserListMap(UserVO user);
-	//등록
+
+	// 조회 맵
+	public List<Map<String, Object>> getUserListMap(UserVO vo);
+
+	// 등록
 	public int insertUser(UserVO vo);
-	//수정
+
+	// 수정
 	public int updateUser(UserVO vo);
-	//삭제
-	public int deleteUser(UserVO vo);
+
+	// 삭제
+	public int deleteUser(String[] list, UserVO vo);
+
+	// 단건삭제
+	int getUserdelete(UserVO vo);
 
 }

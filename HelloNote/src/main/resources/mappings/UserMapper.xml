@@ -3,6 +3,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="UserDAO">
+
+	 <select id="getUserListMap" resultType="map">
+		SELECT 	HELLONOTE_ID "hellonoteId",
+				PW "pw",
+				GENDER "siteAddr",
+				H_GRANT "hGrant",
+				AGE "age",
+				H_PROFILE "hProfile",
+				SITE_DATE "siteDate"
+		  FROM  HELLONOTE_USERS
+		  ORDER BY MYSITE_SEQ DESC
+	</select>
+	
 	<select id="getUserList" resultType="user" parameterType="user">
 		SELECT HELLONOTE_ID,
 			   PW,
@@ -10,7 +23,7 @@
 			   H_GRANT,
 			   AGE,
 			   H_PROFILE
-		FROM HELLONOTE_USERS		
+		FROM HELLONOTE_USERS
 	</select>
 	<select id="getUser" parameterType="user" resultType="user">
 		SELECT HELLONOTE_ID,
@@ -22,4 +35,30 @@
 		FROM HELLONOTE_USERS
 		WHERE hellonote_id=#{hellonoteId} and PW=#{pw}
 	</select>
+	
+	<!-- SELECT DELETE -->
+	<delete id="getUserdelete" parameterType="user">
+		DELETE HELLONOTE_USERS
+		WHERE  HELLONOTE_ID = #{hellonoteId}
+	</delete>
+	
+	
+	<!-- DELETE -->
+	<delete id="deleteUser" parameterType="user">
+		DELETE HELLONOTE_USERS
+		WHERE  HELLONOTE_ID = #{hellonoteId}
+	</delete>
+	
+	<!-- UPDATE -->
+	<update id="updateUser" parameterType="user">
+		UPDATE HELLONOTE_USERS SET
+			   HELLONOTE_ID = #{hellonoteId},
+			   PW = #{pw},
+			   GENDER = #{gender},
+			   H_GRANT = #{hGrant},
+			   AGE = #{age},
+			   H_PROFILE = #{hProfile}
+		WHERE HELLONOTE_ID = #{hellonoteId}
+	</update>
+
 </mapper>

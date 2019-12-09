@@ -8,7 +8,7 @@ public interface AccountBookService {
 	
 	List<AccountBookVO>getAccountBookList(AccountBookVO vo);
 	
-	List<AccountBookVO>searchAccountBook(AccountBookVO vo);
+	int deleteAccountBook(AccountBookVO vo);
 	
 	int insertAccountBook(AccountBookVO vo);
 	

@@ -10,7 +10,7 @@ import co.yedam.hellonote.mysite.vo.MySiteVO;
 public interface MySiteService {
 	
 	// 전체조회<Map>
-	List<Map<String, Object>> getMySiteListMap();
+	List<Map<String, Object>> getMySiteListMap(MySiteVO vo);
 
 	// 전체 조회
 	List<MySiteVO> getMySiteList(MySiteSearchVO svo, Paging p);

@@ -26,11 +26,10 @@ public List<CalendarVO> getCalendarList(HttpServletRequest request,Model model, 
 	//여기서 세션값을 확인하자, 세션값을 받아서 넘기자 calendarList(user vo 여기 넘어서 넘기자)
 	// 세션값을 미리 User controller 에서 등록 해놓았기 때문에 여기서 그냥 불러오면되는지 확인하자. 
 	HttpSession session = request.getSession(); // 세션값을 받아온다.	
-	UserVO user = new UserVO();
-	user.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	vo.setMenuId((String)session.getAttribute("menuId"));	
 	
-	
-	return calendarService.getCalendarList(vo, user);
+	return calendarService.getCalendarList(vo);
 }
 
 @RequestMapping(value="/addCalendar")
@@ -38,6 +37,7 @@ public int addCalendar(HttpServletRequest request, CalendarVO vo) { // Requestbo
 	//HttpSession session = request.getSession(); // 세션값을 받아온다.
 	HttpSession session = request.getSession();
 	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	vo.setMenuId((String)session.getAttribute("menuId"));
 	// 세션에다가 menuID값을 넣어서 같이 넣어줘야 한다. 
 	
 	return calendarService.insertCalendar(vo);
@@ -48,18 +48,35 @@ public int revise(HttpServletRequest request, CalendarVO vo) {
 	
 	HttpSession session = request.getSession();
 	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
-	return calendarService.dragAnddropReviseCalendar(vo);	
+	vo.setMenuId((String)session.getAttribute("menuId"));
+	return calendarService.dragAnddropReviseCalendar(vo);
+	
+	
+}
+
+@RequestMapping(value="/deleteCalendar")
+public int deleteCalendar(HttpServletRequest request, CalendarVO vo) {
+	HttpSession session = request.getSession();
+	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	vo.setMenuId((String)session.getAttribute("menuId"));
+	return calendarService.deleteCalendar(vo);
 }
 
 @RequestMapping(value="/updateCalendar")
-public int update(HttpServletRequest request, CalendarVO vo) {
-	
+public int updateCalendar(HttpServletRequest request, CalendarVO vo) {
 	HttpSession session = request.getSession();
 	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
-	return 1;	
-	
+	vo.setMenuId((String)session.getAttribute("menuId"));
+	return calendarService.updateCalendar(vo);
 }
 
-
+@RequestMapping(value="/getCalendarSeq")
+public int getCalendarSeq(HttpServletRequest request, CalendarVO vo) {
+	HttpSession session = request.getSession();
+	vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+	vo.setMenuId((String)session.getAttribute("menuId"));
+	System.out.println(calendarService.getCalendarSeq(vo)+"return");
+	return calendarService.getCalendarSeq(vo);
+}
 
 }

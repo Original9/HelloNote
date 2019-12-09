@@ -2,6 +2,20 @@
  *  일정 편집
  * ************** */
 var editEvent = function (event, element, view) {
+	
+	// 변경하기전 calendarSeq 값을 받아외야한다.
+     var calendarSeq;
+    $.ajax({
+        type: "post",
+        url: "getCalendarSeq",
+        data: {"title":event.title,"startDate":event.start.format('YYYY-MM-DD HH:mm')
+            //...
+        },
+        success: function (response) {        	
+        	calendarSeq=response;
+        }
+    });
+
 
     $('.popover.fade.top').remove();
     $(element).popover("hide");
@@ -63,7 +77,7 @@ var editEvent = function (event, element, view) {
             endDate = editEnd.val();
             displayDate = endDate;
         }
-
+        
         eventModal.modal('hide');
 
         event.allDay = statusAllDay;
@@ -79,8 +93,9 @@ var editEvent = function (event, element, view) {
         //일정 업데이트
         $.ajax({
             type: "post",
-            url: "/updateCalendar",
-            data: {
+            url: "updateCalendar",
+            data: {"calendarSeq":calendarSeq,"allDay":event.allDay,"title":event.title,"startDate":event.start,"endDate":event.end,"type":event.type,"backgroundColor":event.backgroundColor,"description":event.description
+                //...
             },
             success: function (response) {
                 alert('수정되었습니다.')
@@ -89,18 +104,22 @@ var editEvent = function (event, element, view) {
 
     });
 
+    
     // 삭제버튼
     $('#deleteEvent').on('click', function () {
         $('#deleteEvent').unbind();
         $("#calendar").fullCalendar('removeEvents', [event._id]);
         eventModal.modal('hide');
-
+        //삭세버튼을 누르면 title 값과 시작날짜를 넘겨서 삭제힌디.
+        var title =  editTitle.val();
+        var startDate = editStart.val();
+       
         //삭제시
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //...
+            type: "post",
+            url: "deleteCalendar",
+            data: {"title":title,"startDate":startDate
+                //Json값으로 넘김
             },
             success: function (response) {
                 alert('삭제되었습니다.');

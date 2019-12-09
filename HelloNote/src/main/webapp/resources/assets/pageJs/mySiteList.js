@@ -73,7 +73,7 @@ $(function() {
 		$('#changeform').hide(); // 수정폼으로 close 햇을시 남아있는 수정 form을 숨겨준다
 		$('#select').show(); // 다시 상세보기창을 띄운다
 		// seq 선언 값
-		var seq = $(this).closest('tr').find('td').eq(1).html() // 클릭한버튼은 this
+		var seq = $(this).closest('tr').find('input').val(); // 클릭한버튼은 this
 		// closest 부모위
 		// find 배열 eq 1<
 		// 2번째부터 html
@@ -111,6 +111,12 @@ $(function() {
 
 	// change라는 ID버튼을 클릭시 수정모달로 show 해준다음 select 는 hide
 	$('#change').on('click', function() {
+		$('#UpdForm input[name="title"]').val($("#title").html());
+		$('#UpdForm input[name="siteAddr"]').val($("#siteAddr").html());
+		$('#UpdForm input[name="siteId"]').val($("#siteId").html());
+		$('#UpdForm input[name="sitePw"]').val($("#sitePw").html());
+		$('#UpdForm textarea[name="siteMemo"]').val($("#siteMemo").html());
+		$('#UpdForm input[name="mySiteSeq"]').val($("#mySiteSeq").val());
 		$('#changeform').show();
 		$('#select').hide();
 	})
@@ -158,7 +164,6 @@ function getupdateHandler(data) {
 	$("#mySiteSeq").val(data.mySiteSeq);
 	
 	$('#changeform').hide();
-	$('#select').show();
 	location.reload();
 	
 }

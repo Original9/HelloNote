@@ -60,7 +60,7 @@
 		'Title',
 		'Text',
 		#{memoSeq},
-		'1',
+		#{menuId},
 		(select
 		nvl(max(memo_order), 0)+1 from kang_memo)
 		)

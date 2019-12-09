@@ -4,24 +4,36 @@
   
 <mapper namespace="AccountBookDAO">
 
-<select id="getAccountBookList" resultType="map">
+<select id="getAccountBookList" resultType="accountBook">
 		SELECT
-		ACCOUNTBOOK_SEQ "accountbookSeq", 
-		ACCOUNTBOOK_DATE "accountbookDate", 
-		ACCOUNTBOOK_TRANSLATION "accountbookTranslation", 
-		ACCOUNTBOOK_PRICE "accountbookPrice", 
-		ACCOUNTBOOK_PURPOSE "accountbookPurpose"
+		ACCOUNTBOOK_SEQ , 
+		ACCOUNTBOOK_DATE , 
+		ACCOUNTBOOK_TRANSLATION , 
+		ACCOUNTBOOK_PRICE , 
+		ACCOUNTBOOK_PURPOSE 
 		FROM
-		KANG_ACCOUNTBOOK
+		${hellonoteId}_ACCOUNTBOOK
+		<!--  특정 기간 및 항목 선택 조회 -->
+		<where>
+		<if test= "accountbookFirstDate != null and accountbookFirstDate != '' " >
+	 	AND ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
+	 	</if>
+	 	
+	 	<if test= " accountbookPurpose != '항목을 선택해 주세요' and accountbookPurpose != '' and accountbookPurpose !=null">
+	 	AND ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
+	 	</if>
+		</where>
+		
+		
 		ORDER BY ACCOUNTBOOK_SEQ ASC
 		   
 </select>
 
 <insert id="insertAccountBook">
 	<selectKey order="BEFORE" resultType="int" keyProperty="accountbookSeq">
-		SELECT NVL(MAX(ACCOUNTBOOK_SEQ),0)+1 FROM KANG_ACCOUNTBOOK
+		SELECT NVL(MAX(ACCOUNTBOOK_SEQ),0)+1 FROM ${hellonoteId}_ACCOUNTBOOK
 	</selectKey>  
-		insert into KANG_ACCOUNTBOOK 
+		insert into ${hellonoteId}_ACCOUNTBOOK 
 		(
 		ACCOUNTBOOK_SEQ,
 		ACCOUNTBOOK_DATE, 
@@ -39,34 +51,12 @@
 		)
 
 </insert>
-<select id="searchAccountBook" resultType="map">
-		SELECT
-		ACCOUNTBOOK_SEQ "accountbookSeq", 
-		ACCOUNTBOOK_DATE "accountbookDate", 
-		ACCOUNTBOOK_TRANSLATION "accountbookTranslation", 
-		ACCOUNTBOOK_PRICE "accountbookPrice", 
-		ACCOUNTBOOK_PURPOSE "accountbookPurpose"
-		FROM
-		KANG_ACCOUNTBOOK
-		<where>
-		<if test= "accountbookFirstDate != null and accountbookFirstDate != '' " >
-	 	ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
-	 	</if>
-	 	
-	 	<if test= " accountbookPurpose != null  and  accountbookPurpose == '' ">
-	 	AND ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
-	 	</if>
-		</where>
-		ORDER BY ACCOUNTBOOK_SEQ ASC
 
-</select>
+<delete id="deleteAccountBook" parameterType="accountBook">
+		DELETE from ${hellonoteId}_ACCOUNTBOOK
+		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
 
-
-
-
-
-
-
+</delete>
 
 
 

@@ -17,14 +17,15 @@
   			   MENU_ID,
   			   DESCRIPTION,
   			   title
-  	     FROM ${hellonoteId}_CALENDAR
+  	     FROM ${hellonoteId}_${menuId}
   	     ORDER BY CALENDAR_SEQ
   	
   	</select>
   	
   	<!-- 캘린더에 등록한 일정 삭제 -->
   	<delete id="deleteCalendar" parameterType="calendar">
-  	  		
+  	  		DELETE from ${hellonoteId}_${menuId}
+  	  		WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi')
   	</delete>
   	
   	<!-- 캘린더에 일정 등록 -->
@@ -34,7 +35,7 @@
   			FROM ${hellonoteId}_CALENDAR
   		</selectKey>
   	
-  		INSERT INTO ${hellonoteId}_CALENDAR(CALENDAR_SEQ,
+  		INSERT INTO ${hellonoteId}_${menuId}(CALENDAR_SEQ,
                           START_DATE,
                           END_DATE,
                           TYPE,
@@ -59,17 +60,35 @@
   	
   	</insert>
   	
+  	<!-- SEQ 번호 얻기 -->
+  	<select id="getCalendarSeq" parameterType="calendar" resultType="calendar">
+  		SELECT CALENDAR_SEQ 
+  			FROM ${hellonoteId}_${menuId}
+  			WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi')
+  	</select>
+  	
   	<!-- 캘린더에 등록된 일정 수정 -->
   	<update id="updateCalendar" parameterType="calendar">
+  	
+  		UPDATE ${hellonoteId}_${menuId}
+  		SET TITLE= #{title},
+  		    START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi'),
+  		    END_DATE= to_date(#{endDate},'yyyy-mm-dd hh24 mi'),
+  		    TYPE= #{type},
+  		    BACKGROUND_COLOR= #{backgroundColor},
+  		    ALL_DAY= #{allDay},
+  		    DESCRIPTION= #{description}
+  		WHERE CALENDAR_SEQ = #{calendarSeq}
+  		
   	
   	</update>
   	
   	<!-- 드래그엔 드랍 일정 수정 -->
   	<update id="dragAnddropReviseCalendar" parameterType="calendar">
-  		UPDATE ${hellonoteId}_CALENDAR
+  		UPDATE ${hellonoteId}_${menuId}
   		   SET START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi'),
   		   	   END_DATE= to_date(#{endDate},'yyyy-mm-dd hh24 mi')
-  		   WHERE TITLE=#{title}
+  		   WHERE TITLE=#{title} 
   	
   	</update>
   	

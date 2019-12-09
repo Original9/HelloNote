@@ -1,5 +1,6 @@
 package co.yedam.hellonote.memo.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,14 @@ public class MemoController {
 	MemoService service;
 	
 	@RequestMapping("/memo")
-	public String getBoardList(Model model, HttpSession session, MemoVO vo) {
+	public String getBoardList(HttpServletRequest request, Model model, HttpSession session, MemoVO vo) {
 		String hellonotId = (String) session.getAttribute("hellonoteId");
 		
 		vo.setHellonoteId(hellonotId);
-		vo.setMenuId("1");
+		vo.setMenuId(request.getParameter("menuId"));
 		
 		model.addAttribute("memoList", service.getMemoList(vo));
+		model.addAttribute("menuId", request.getParameter("menuId"));
 		return "main/main/memo";	
 	}
 	

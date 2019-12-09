@@ -42,5 +42,7 @@
 				style="float: right; width: 30px;">&times;</span>
 		</div>
 	</div>
+	${menuId}
+	<input type="hidden" id="menuId" value="${menuId}" />
 </body>
 </html>

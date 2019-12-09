@@ -167,7 +167,6 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
        // },
        dataType:'json',
        success: function (response) { //값을 받아와야지
-         console.log(response);
          
          var fixedDate = response.map(function (array) {
         	 array.end = moment(array.end).add(-1, 'days'); // 하나 플러스되서 나와서 -1 해줌

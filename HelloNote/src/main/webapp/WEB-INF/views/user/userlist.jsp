@@ -60,11 +60,11 @@
 									<tr>
 										<th scope="col" width="10"><input id="allCheck"
 											type="checkbox" onclick="allChk(this);" /></th>
-										<th align="center" width="150">id</th>
-										<th align="center" width="200">pw</th>
-										<th align="center" width="100">gender</th>
-										<th align="center" width="200">hgrant</th>
-										<th align="center" width="200">age</th>
+										<th align="center" width="80">id</th>
+										<th align="center" width="100">pw</th>
+										<th align="center" width="50">gender</th>
+										<th align="center" width="50">hgrant</th>
+										<th align="center" width="50">age</th>
 										<th align="center" width="200">hprofile</th>
 									</tr>
 								</thead>
@@ -74,12 +74,12 @@
 										<tr>
 											<td><input name="rowCheck" class="rowCheck"
 												type="checkbox" value="${user.hellonoteId }" /></td>
-											<td class="getUser" align="center" width="150">${user.hellonoteId }</td>
-											<td class="getUser" align="center" width="200">${user.pw }</td>
-											<td class="getUser" align="center" width="100">${user.gender }</td>
-											<td class="getUser" align="center" width="200">${user.hGrant }</td>
-											<td class="getUser" align="center" width="200">${user.age }</td>
-											<td class="getUser" align="center" width="200">${user.hProfile }</td>
+											<td class="getUser" align="center" >${user.hellonoteId }</td>
+											<td class="getUser" align="center" >${user.pw }</td>
+											<td class="getUser" align="center" >${user.gender }</td>
+											<td class="getUser" align="center" >${user.hGrant }</td>
+											<td class="getUser" align="center" >${user.age }</td>
+											<td class="getUser" align="center" >${user.hProfile }</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -92,7 +92,7 @@
 								<button class="btn btn-primary" type="button"
 									onclick="fn_userDel()">삭제</button>
 								<button class="btn btn-primary" type="button"
-									onclick="location.href='downloadExcel'">엑셀 다운로드</button>
+									onclick="location.href='downloadExcel2'">엑셀 다운로드</button>
 							</div>
 							<!-- 버튼 끝 -->
 						</div>
@@ -112,7 +112,6 @@
 						<br>
 						<form name="dele" id="dele" action="getUserdelete" method="post">
 							<!-- hidden input tag 로 seq 값을 담음 -->
-							<input type="hidden" name="hellonoteId" id="hellonoteId">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
@@ -149,11 +148,10 @@
 						<h1>Update User</h1>
 						<br>
 						<form action="updateUser" id="UpdForm" name="UpdForm">
-							<input type="hidden" name="hellonoteId" id="hellonoteId">
 							<div class="field-wrap">
 								<div class="field-wrap">
 									<label> ID : </label> <input type="text" required
-										autocomplete="off" name="hellonoteId" />
+										autocomplete="off" name="hellonoteId" readonly/>
 								</div>
 								<div class="field-wrap">
 									<label> PW : </label> <input type="password" required

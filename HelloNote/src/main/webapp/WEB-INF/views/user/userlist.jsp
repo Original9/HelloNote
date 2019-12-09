@@ -74,12 +74,12 @@
 										<tr>
 											<td><input name="rowCheck" class="rowCheck"
 												type="checkbox" value="${user.hellonoteId }" /></td>
-											<td class="getMySite" align="center" width="150">${user.hellonoteId }</td>
-											<td class="getMySite" align="center" width="200">${user.pw }</td>
-											<td class="getMySite" align="center" width="100">${user.gender }</td>
-											<td class="getMySite" align="center" width="200">${user.hGrant }</td>
-											<td align="center" width="200">${user.age }</td>
-											<td align="center" width="200">${user.hProfile }</td>
+											<td class="getUser" align="center" width="150">${user.hellonoteId }</td>
+											<td class="getUser" align="center" width="200">${user.pw }</td>
+											<td class="getUser" align="center" width="100">${user.gender }</td>
+											<td class="getUser" align="center" width="200">${user.hGrant }</td>
+											<td class="getUser" align="center" width="200">${user.age }</td>
+											<td class="getUser" align="center" width="200">${user.hProfile }</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -97,13 +97,99 @@
 							<!-- 버튼 끝 -->
 						</div>
 					</form>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 상세보기 모달 창 -->
+	<div class="modal" id="getUserModal">
+		<div class="modal-content" id="modal-content">
+			<div class="form">
+				<span class="close">&times;</span>
+				<div class="tab-content">
+					<div id="select" class="select" align="center">
+						<h1>User List</h1>
+						<br>
+						<form name="dele" id="dele" action="getUserdelete" method="post">
+							<!-- hidden input tag 로 seq 값을 담음 -->
+							<input type="hidden" name="hellonoteId" id="hellonoteId">
+							<div class="top-row">
+								<div class="field-wrap">
+									<div class="field-wrap">
+										<label> ID : </label> <span id="hellonoteId"></span>
+									</div>
+									<div class="field-wrap">
+										<label> PW : </label> <span id="pw"></span>
+									</div>
+									<label> GENDER : </label> <span id="gender"></span>
+								</div>
+								<div class="field-wrap">
+									<label> HGANT : </label> <span id="hGrant"></span>
+								</div>
+							</div>
+							<div class="field-wrap">
+								<label> AGE : </label> <span id="age"></span>
+							</div>
+							<div class="field-wrap">
+								<label> HPROFILE : </label> <span id="hProfile"></span>
+							</div>
+							<br>
+							<div align="center">
+								<button class="btn btn-primary" name="change" id="change"
+									type="button">수정</button>
+								<button class="btn btn-primary" name="del"
+									onclick="fn_userDel2()" type="button">삭제</button>
+							</div>
+						</form>
 
+					</div>
+					<!-- 수정 폼 체인지 -->
+					<div id="changeform" class="changeform" style="display: none"
+						align="center">
+						<h1>Update User</h1>
+						<br>
+						<form action="updateUser" id="UpdForm" name="UpdForm">
+							<input type="hidden" name="hellonoteId" id="hellonoteId">
+							<div class="field-wrap">
+								<div class="field-wrap">
+									<label> ID : </label> <input type="text" required
+										autocomplete="off" name="hellonoteId" />
+								</div>
+								<div class="field-wrap">
+									<label> PW : </label> <input type="password" required
+										autocomplete="off" name="pw" />
+								</div>
+								<label> GENDER : </label> <input type="text" required
+									autocomplete="off" name="gender" />
+							</div>
+							<div class="field-wrap">
+								<label> HGRANT : </label> <input type="text" required
+									autocomplete="off" name="hGrant" />
+							</div>
+							<div class="field-wrap">
+								<label> AGE : </label> <input type="text" required
+									autocomplete="off" name="age" />
+							</div>
+							<div class="field-wrap">
+								<label> HPROFILE : </label> <input type="text" required
+									autocomplete="off" name="hProfile" />
+							</div>
+							<br>
+							<div align="center">
+								<button class="btn btn-primary" name="updatebutton"
+									id="updatebutton" type="button">수정</button>
+								<button class="btn btn-primary" name="change2" id="change2"
+									type="button">취소</button>
+							</div>
+						</form>
+					</div>
+					<!-- 수정 폼 체인지  끝-->
+				</div>
+				<!-- tab-content -->
+			</div>
+			<!-- /form  -->
+		</div>
+	</div>
+	<!-- 상세보기 모달 창 끝  -->
 </body>
-
 </html>

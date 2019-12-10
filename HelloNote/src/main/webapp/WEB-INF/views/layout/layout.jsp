@@ -72,7 +72,8 @@
 				</div>
 				<div height="500px"></div>
 				<i class="fas fa-plus-square fa-3x" id="addMenu"></i> <i
-					class="fas fa-trash fa-3x" id="deleteMenu"></i>
+					class="fas fa-trash fa-3x" id="deleteMenu"></i><i
+					class="fas fa-edit fa-3x" id="editMenu"></i>
 			</div>
 		</nav>
 		<div class="d-flex flex-column" id="content-wrapper">
@@ -282,8 +283,8 @@
 			<span class="close" id="addMenuModalClose"
 				style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
 			<div>
-				<input placeholder="메뉴이름" type="text" class="menuName" id="menuName"
-					name="menuName">
+				<input placeholder="메뉴 이름" type="text" class="menuName"
+					id="menuName" name="menuName">
 			</div>
 			<div>
 				<select class="menuType" name="menuType" id="menuType">
@@ -299,6 +300,18 @@
 			</div>
 			<div>
 				<button id="addConfirm" class="addConfirm">추가</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="editMenuModal" style="z-index: 6;">
+		<div class="modal-content" id="editMenuModalConent">
+			<span class="close" id="editMenuModalClose"
+				style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
+			<select id="editMenuSelector" class="menuType"></select> <input
+				type="text" placeholder="메뉴 이름" class="menuName" id="editName">
+			<div>
+				<button id="editConfirm" class="addConfirm">수정</button>
 			</div>
 		</div>
 	</div>

@@ -13,6 +13,15 @@
 	bottom: 100px;
 }
 
+#editMenu {
+	position : absolute;
+	color : white;
+	bottom: 175px;
+    margin-left: 6px;
+    cursor : pointer;
+   
+}
+
 /* The Modal (background) */
 .modal {
 	display: none; /* Hidden by default */

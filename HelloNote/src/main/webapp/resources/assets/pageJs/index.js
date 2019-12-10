@@ -175,6 +175,7 @@ function sidebar() {
 	})
 }
 
+var flag = false;
 function menuSort() {
 	console.log('sort');
 	$("#accordionSidebar").sortable(

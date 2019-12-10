@@ -57,4 +57,18 @@
 		delete from ${hellonoteId}_usermenu
 		where menu_id = #{menuId}
 	</delete>
+	<update id="editMenu" parameterType="menu">
+		update ${hellonoteId}_usermenu
+		set menu_name = #{menuName}
+		where menu_id = #{menuId}
+	</update>
+	<select id="menuType" parameterType="menu" resultType="int">
+		select menu_typenumber 
+		from ${hellonoteId}_usermenu
+		where menu_id = #{menuId}
+	</select>
+	<delete id="menuDeleteHandling" parameterType="menu">
+		delete from ${hellonoteId}_${menuTableName}
+		where menu_id = #{menuId}
+	</delete>
 </mapper>

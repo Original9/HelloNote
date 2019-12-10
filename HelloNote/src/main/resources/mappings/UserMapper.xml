@@ -57,5 +57,24 @@
 			   H_PROFILE = #{hProfile}
 		WHERE HELLONOTE_ID = #{hellonoteId}
 	</update>
+	
+	<!-- proc select delete-->
+	<delete id="deleteUserProc" statementType="CALLABLE"
+		parameterType="user">
+		{ call proc_userleave(#{hellonoteId}) }
+	</delete>
+
+	<!-- proc list delete -->
+	<delete id="deleteUserListProc" statementType="CALLABLE"
+		parameterType="user">
+		{ call proc_userleave(#{hellonoteId}) }
+	</delete>
+	
+	<!-- proc insert signup -->
+	<insert id="insertUserSignUp" statementType="CALLABLE"
+		parameterType="user">
+		{ call proc_signup(#{hellonoteId},#{pw},#{gender},#{hGrant},#{age},#{hProfile}) }
+	</insert>
+	
 
 </mapper>

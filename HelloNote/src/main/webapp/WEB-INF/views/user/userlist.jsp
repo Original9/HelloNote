@@ -52,7 +52,8 @@
 						<div class="col-md-6 text-nowrap"></div>
 					</div>
 					<!-- 목록 시작 -->
-					<form name="userForm" id="userForm" action='deleteUser'>
+					<form name="userForm" id="userForm" action='deleteUserListProc'>
+					<input type="hidden" name="hellonoteId1">
 						<div class="table-responsive table mt-2" id="dataTable"
 							role="grid" aria-describedby="dataTable_info">
 							<table class="table dataTable my-0" id="tabledata">
@@ -109,8 +110,8 @@
 					<div id="select" class="select" align="center">
 						<h1>User List</h1>
 						<br>
-						<form name="dele" id="dele" action="getUserdelete" method="post">
-							<!-- hidden input tag 로 seq 값을 담음 -->
+						<form name="dele" id="dele" action="deleteUserProc" method="post">
+						<input type="hidden" name="hellonoteId">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">

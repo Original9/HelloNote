@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.yedam.hellonote.mysite.vo.MySiteVO;
 import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
 
@@ -27,17 +28,38 @@ import co.yedam.hellonote.user.vo.UserVO;
 public class UserController {
 	@Autowired
 	UserService userService;
+	
+	// 회원가입 등록처리 프로시저
+	@RequestMapping("/user/insertUserSignUp")
+	public String insertUserSignUp(UserVO vo) {
+		userService.insertUserSignUp(vo);
+		return "redirect:signup";
+	}
+
+	// 프로시저 단건삭제
+	@RequestMapping("/user/deleteUserProc")
+	public String deleteUserProc(UserVO vo) {
+		userService.deleteUserProc(vo);
+		return "redirect:getUserList";
+	}
+	
+	// 프로시저 리스트 삭제 처리
+	@RequestMapping("/user/deleteUserListProc")
+	public String deleteUserListProc(@RequestParam String[] rowCheck, UserVO vo) {
+		userService.deleteUserListProc(rowCheck, vo);
+		return "redirect:getUserList";
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 
 		return "layout/login";
 	}
-	
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+
+	@RequestMapping(value = "user/signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {
 
-		return "layout/signup";
+		return "user/signup";
 	}
 
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.GET)

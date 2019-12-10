@@ -33,6 +33,12 @@ public class UserController {
 
 		return "layout/login";
 	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signup(Locale locale, Model model) {
+
+		return "layout/signup";
+	}
 
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
 	public String loginCheck(HttpSession session, HttpServletRequest request, HttpServletResponse reponse, UserVO vo) {

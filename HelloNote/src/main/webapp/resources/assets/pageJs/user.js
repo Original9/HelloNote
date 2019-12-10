@@ -79,7 +79,6 @@ $(function() {
 	// html
 	function getUserHandler(data) {
 		$("#dele #hellonoteId").html(data.hellonoteId);
-		$("#dele #pw").html(data.pw);
 		$("#dele #gender").html(data.gender);
 		$("#dele #hGrant").html(data.hGrant);
 		$("#dele #age").html(data.age);
@@ -91,15 +90,14 @@ $(function() {
 	$('#getUserModal .close').on('click', function() {
 		$('#getUserModal').hide();
 	})
-
+ 
 	// change라는 ID버튼을 클릭시 수정모달로 show 해준다음 select 는 hide
 	$('#change').on('click', function() {
-		$('#UpdForm input[name="hellonoteId"]').val($("#dele #hellonoteId").html());
-		$('#UpdForm input[name="pw"]').val($("#dele #pw").html());
-		$('#UpdForm select[name="gender"]').val($("#dele #gender").html());
+		$('#UpdForm #hellonoteId').html($("#dele #hellonoteId").html());
+		$('#UpdForm #gender').html($("#dele #gender").html());
 		$('#UpdForm select[name="hGrant"]').val($("#dele #hGrant").html());
-		$('#UpdForm input[name="age"]').val($("#dele #age").html());
-		$('#UpdForm input[name="hProfile"]').val($("#dele #hProfile").html());
+		$('#UpdForm #age').html($("#dele #age").html());
+		$('#UpdForm textarea[name="hProfile"]').val($("#dele #hProfile").html());
 		$('#changeform').show();
 		$('#select').hide();
 	})
@@ -114,19 +112,19 @@ $(function() {
 function UserUpdate() {
 	// 수정 버튼 클릭
 	$('#updatebutton').on('click', function() {
-		var pw = $('#UpdForm input[name="pw"]').val();
-		var gender = $('#UpdForm select[name="gender"]').val();
-		var hGrant = $('#UpdForm select[name="hGrant"]').val();
-		var age = $('#UpdForm input[name="age"]').val();
-		var hProfile = $('#UpdForm input[name="hProfile"]').val();
-		var hellonoteId = $('#UpdForm input[name="hellonoteId"]').val();
+		// span tag는 FORM ID 에 ID .html 
+		// input태그는 (form ID input 종류select or input["name=이름"]).val()  
+		var gender = $('#UpdForm #gender').html(); 
+		var hGrant = $('#UpdForm select[name="hGrant"]').val(); 
+		var age = $('#UpdForm #age').html();
+		var hProfile = $('#UpdForm textarea[name="hProfile"]').val();
+		var hellonoteId = $('#UpdForm #hellonoteId').html();
 
 		$.ajax({
 			url : "updateUser",
 			method : 'PUT',
 			dataType : 'json',
 			data : JSON.stringify({
-				pw : pw,
 				gender : gender,
 				hGrant : hGrant,
 				age : age,
@@ -139,12 +137,11 @@ function UserUpdate() {
 	});
 }
 function getupdateHandler(data) {
-	$("#hellonoteId").html(data.hellonoteId);
-	$("#pw").html(data.pw);
+	$('#UpdForm #hellonoteId').html(data.hellonoteId);
 	$("#gender").html(data.gender);
-	$("#hGrant").html(data.hGrant);
-	$("#age").html(data.age);
-	$("#hProfile").html(data.hProfile);
+	$('#UpdForm select[name="hGrant"]').val(data.hGrant);
+	$('#UpdForm #age').html(data.age);
+	$('#UpdForm textarea[name="hProfile"]').val(data.hProfile);
 
 	$('#changeform').hide();
 	location.reload();

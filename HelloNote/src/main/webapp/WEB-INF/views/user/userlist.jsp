@@ -58,10 +58,9 @@
 							<table class="table dataTable my-0" id="tabledata">
 								<thead>
 									<tr>
-										<th scope="col" width="10"><input id="allCheck"
-											type="checkbox" onclick="allChk(this);" /></th>
+										<th scope="col" width="10" align="center"><input
+											id="allCheck" type="checkbox" onclick="allChk(this);" /></th>
 										<th align="center" width="80">id</th>
-										<th align="center" width="100">pw</th>
 										<th align="center" width="50">gender</th>
 										<th align="center" width="50">hgrant</th>
 										<th align="center" width="50">age</th>
@@ -72,10 +71,10 @@
 									<!-- 컨트롤러의 items key 값 -->
 									<c:forEach items="${user}" var="user">
 										<tr>
-											<td><input name="rowCheck" class="rowCheck"
-												type="checkbox" value="${user.hellonoteId }" /></td>
+											<td align="center"><input name="rowCheck"
+												class="rowCheck" type="checkbox"
+												value="${user.hellonoteId }" /></td>
 											<td class="getUser" align="center">${user.hellonoteId }</td>
-											<td class="getUser" align="center">${user.pw }</td>
 											<td class="getUser" align="center">${user.gender }</td>
 											<td class="getUser" align="center">${user.hGrant }</td>
 											<td class="getUser" align="center">${user.age }</td>
@@ -117,9 +116,6 @@
 									<div class="field-wrap">
 										<label> ID : </label> <span id="hellonoteId"></span>
 									</div>
-									<div class="field-wrap">
-										<label> PW : </label> <span id="pw"></span>
-									</div>
 									<label> GENDER : </label> <span id="gender"></span>
 								</div>
 								<div class="field-wrap">
@@ -150,33 +146,23 @@
 						<form action="updateUser" id="UpdForm" name="UpdForm">
 							<div class="field-wrap">
 								<div class="field-wrap">
-									<label> ID : </label> <input type="text" required
-										autocomplete="off" name="hellonoteId" readonly />
+									<label> ID : </label> <span id="hellonoteId"></span>
 								</div>
-								<div class="field-wrap">
-									<label> PW : </label> <input type="password" required
-										autocomplete="off" name="pw" />
-								</div>
-								<label> GENDER : </label> <select name="gender">
-									<option value="M">M</option>
-									<option value="F">F</option>
-
-								</select>
+								<label> GENDER : </label> <span id="gender"></span>
 							</div>
 							<div class="field-wrap">
-								<label> HGRANT : </label><select name="hGrant">
+								<label> HGRANT : &nbsp;</label><select name="hGrant">
 									<option value="M">M</option>
 									<option value="U">U</option>
 
 								</select>
 							</div>
 							<div class="field-wrap">
-								<label> AGE : </label> <input type="text" required
-									autocomplete="off" name="age" />
+								<label>AGE : </label><span id="age"></span>
 							</div>
 							<div class="field-wrap">
-								<label> HPROFILE : </label> <input type="text" required
-									autocomplete="off" name="hProfile" />
+								<label>HPROFILE</label><br>
+								<textarea name="hProfile" readonly></textarea>
 							</div>
 							<br>
 							<div align="center">

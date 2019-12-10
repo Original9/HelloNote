@@ -31,6 +31,10 @@ public class AccountBookDAO {
 		return mybatis.delete("AccountBookDAO.deleteAccountBook", vo);
 	}
 	
+	//조회
+	public int updateAccountBook(AccountBookVO vo) {
+		return mybatis.update("AccountBookDAO.updateAccountBook", vo);
+	}
 
 	
 	

@@ -53,11 +53,21 @@
 </insert>
 
 <delete id="deleteAccountBook" parameterType="accountBook">
-		DELETE from ${hellonoteId}_ACCOUNTBOOK
+		DELETE FROM ${hellonoteId}_ACCOUNTBOOK
 		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
 
 </delete>
 
+<update id="updateAccountBook" parameterType="accountBook">
+
+		UPDATE ${hellonoteId}_ACCOUNTBOOK SET
+		ACCOUNTBOOK_DATE =#{accountbookDate}, 
+		ACCOUNTBOOK_PURPOSE = #{accountbookPurpose},
+		ACCOUNTBOOK_PRICE = #{accountbookPrice} , 
+		ACCOUNTBOOK_TRANSLATION = #{accountbookTranslation}
+		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
+
+</update>
 
 
 </mapper>

@@ -51,7 +51,6 @@
 	<!-- UPDATE -->
 	<update id="updateUser" parameterType="user">
 		UPDATE HELLONOTE_USERS SET
-			   PW = #{pw},
 			   GENDER = #{gender},
 			   H_GRANT = #{hGrant},
 			   AGE = #{age},

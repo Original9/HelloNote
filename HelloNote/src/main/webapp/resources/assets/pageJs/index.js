@@ -223,7 +223,7 @@ function menuInsert() {
 
 	$('#addConfirm').on('click', function() {
 		var $menuName = $('#menuName').val().trim();
-		var menuTypenumber = $('#menuType').val();
+		var $menuTypenumber = $('#menuType').val();
 		if (menuName == '') {
 			alert('메뉴 이름을 입력하세요');
 			return;
@@ -233,11 +233,11 @@ function menuInsert() {
 			url : 'insertMenu',
 			data : {
 				menuName : $menuName,
-				menuTypenumber : menuTypenumber
+				menuTypenumber : $menuTypenumber
 			},
 			dataType : 'json',
 			success : function(data) {
-				menuId = data, menuName = $menuName;
+				menuId = data, menuName = $menuName, menuTypenumber = $menuTypenumber;
 				iconSelector(menuTypenumber);
 				addingMenuDynamically();
 				$('#menuName').val('');

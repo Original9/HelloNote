@@ -45,4 +45,10 @@ public class MenuController {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
 		service.deleteMenu(vo);
 	}
+	
+	@RequestMapping("editMenu")
+	public void editMenu(MenuVO vo, HttpSession session) {
+		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));  
+		service.editMenu(vo);
+	}
 }

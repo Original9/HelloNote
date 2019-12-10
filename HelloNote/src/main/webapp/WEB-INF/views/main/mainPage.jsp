@@ -15,8 +15,6 @@
   #containment-wrapper { width: 100%; height:1000px; border:2px solid #ccc; padding: 10px; }
   h3 { clear: left; }
   </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
 
   

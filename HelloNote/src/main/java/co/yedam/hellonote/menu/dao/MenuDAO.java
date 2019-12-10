@@ -33,4 +33,16 @@ public class MenuDAO {
 	public void deleteMenu(MenuVO vo ) {
 		batis.delete("MenuDAO.deleteMenu", vo);
 	}
+	
+	public void editMenu(MenuVO vo) {
+		batis.update("MenuDAO.editMenu", vo);
+	}
+	
+	public int selectMenuType(MenuVO vo) {
+		return batis.selectOne("MenuDAO.menuType", vo);
+	}
+	
+	public void menuDeleteHandling(MenuVO vo) {
+		batis.delete("MenuDAO.menuDeleteHandling", vo);
+	}
 }

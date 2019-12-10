@@ -16,28 +16,63 @@ $(function() {
 	// 메뉴 삭제 함수
 	deleteMenu();
 	// 메뉴 수정 함수
-	editMenu();
+	editMenuModal();
 })
 
-function editMenu() {
-	// 옵션 모두 삭제
-	$('#editMenuSelector').empty();
-	$('#editMenu').on('click', function() {
-		// 아무 메뉴가 없을 경우 모달 띄우지 않음
-		if ($('#accordionSidebar li').length == 0) {
-			return;
-		}
-		// 모달 메뉴 전체 옵션 어펜드
-		$('#accordionSidebar li').each(function(){
-			$('#editMenuSelector').append('<option value="'+this.id+'">'+$(this).find('span').text()+'</option>')
-		})
-		// 모달 창 띄움
-		$('#editMenuModal').show();
-	})
+function editMenuModal() {
+	$('#editMenu').on(
+			'click',
+			function() {
+				// 아무 메뉴가 없을 경우 모달 띄우지 않음
+				if ($('#accordionSidebar li').length == 0) {
+					return;
+				}
+				// 옵션 모두 삭제
+				$('#editMenuSelector').empty();
+				// 모달 메뉴 전체 옵션 어펜드
+				$('#accordionSidebar li').each(
+						function() {
+							$('#editMenuSelector').append(
+									'<option value="' + this.id + '">'
+											+ $(this).find('span').text()
+											+ '</option>')
+						})
+				// 모달 창 띄움
+				$('#editMenuModal').show();
+			})
 	// 모달 창 닫음
 	$('#editMenuModalClose').on('click', function() {
 		$('#editMenuModal').hide();
 	})
+
+	editMenuHandler();
+}
+
+function editMenuHandler() {
+	$('#editConfirm').on(
+			'click',
+			function() {
+				// 이름 유효성 체크
+				if ($('#editName').val().trim() == '') {
+					alert('메뉴 이름을 입력하세요')
+					return;
+				}
+				// ajax로 정보처리
+				$.ajax({
+					url : 'editMenu',
+					data : {
+						menuId : $('#editMenuSelector').val(),
+						menuName : $('#editName').val()
+					},
+					success : function() {
+						// 동적으로 이름 변경
+						$('#' + $('#editMenuSelector').val()).find('span')
+								.text($('#editName').val());
+						$('#editName').val('');
+						console.log('edit success');
+					}
+				})
+			})
 }
 
 function deleteMenu() {
@@ -106,11 +141,11 @@ function iconSelector(i) {
 	if (i == 2)
 		iconType = '<i class="fas fa-sticky-note"></i>', menuTypePage = 'memo';
 	if (i == 3)
-		iconType = '<i class="fas fa-birthday-cake"></i>';
+		iconType = '<i class="fas fa-birthday-cake"></i>'; 
 	if (i == 4)
 		iconType = '<i class="fas fa-money-check"></i>';
 	if (i == 5)
-		iconType = '<i class="far fa-credit-card"></i>';
+		iconType = '<i class="far fa-credit-card"></i>', menuTypePage = 'bankaccount';
 	if (i == 6)
 		iconType = '<i class="fas fa-tasks"></i>';
 }
@@ -183,7 +218,7 @@ function menuSortHandler(newIndex, oldIndex, elementId) {
 }
 
 function menuInsert() {
-	
+
 	$('#addConfirm').on('click', function() {
 		var $menuName = $('#menuName').val().trim();
 		var menuTypenumber = $('#menuType').val();

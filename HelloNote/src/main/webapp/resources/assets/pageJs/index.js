@@ -130,7 +130,8 @@ function addingMenuDynamically() {
 	$('#accordionSidebar').append(
 			'<li class="nav-item" role="presentation" id="' + menuId
 					+ '"><a class="nav-link active" href="' + menuTypePage
-					+ '?menuId=' + menuId + '">' + iconType + '<span>'
+					+ '?menuId=' + menuId + '">' + iconType + '<span id="'+
+					menuTypenumber+'">'
 					+ menuName + '</span></a></li>');
 }
 

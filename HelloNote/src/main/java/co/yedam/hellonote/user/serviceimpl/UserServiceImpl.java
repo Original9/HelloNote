@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.yedam.hellonote.mysite.Password.Password;
 import co.yedam.hellonote.user.dao.UserDAO;
 import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
@@ -54,8 +55,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int insertUser(UserVO vo) {
-		return 0;
+	public int insertUserSignUp(UserVO vo) {
+		vo.setPw(Password.encryptSimpleTest(vo.getPw()));
+		return userDAO.insertUserSignUp(vo);
 	}
 
+	@Override
+	public int deleteUserProc(UserVO vo) {
+		return userDAO.deleteUserProc(vo);
+	}
+
+	@Override
+	public int deleteUserListProc(String[] list, UserVO vo) {
+		for (int i = 0; i < list.length; i++) {
+			vo.setHellonoteId(list[i]);
+			userDAO.deleteUserListProc(vo);
+		}
+		return 0;
+	}
 }

@@ -16,8 +16,8 @@ public interface UserService {
 	// 조회 맵
 	public List<Map<String, Object>> getUserListMap(UserVO vo);
 
-	// 등록
-	public int insertUser(UserVO vo);
+	// 회원가입 프로시저
+	public int insertUserSignUp(UserVO vo);
 
 	// 수정
 	public int updateUser(UserVO vo);
@@ -27,5 +27,13 @@ public interface UserService {
 
 	// 단건삭제
 	int getUserdelete(UserVO vo);
+	
+	// proc 단건 삭제
+	
+	int deleteUserProc(UserVO vo);
+	
+	// proc 리스트 삭제
+	public int deleteUserListProc(String[] list, UserVO vo);
+
 
 }

@@ -40,6 +40,7 @@ function fn_userDel() {
 
 	var agree = confirm("삭제 하시겠습니까?");
 	if (agree) {
+		$('#userForm input[name="hellonoteId1"]').val($(this).closest('tr').find('td').val());
 		document.userForm.submit();
 	}
 }
@@ -48,6 +49,7 @@ function fn_userDel() {
 function fn_userDel2() {
 	var agree = confirm("삭제 하시겠습니까?");
 	if (agree) {
+		$('#dele input[name="hellonoteId"]').val($('#dele #hellonoteId').html());
 		document.dele.submit();
 	}
 }

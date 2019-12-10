@@ -90,7 +90,7 @@
 						class="form-control" style="width: 200px">
 					<button class="btn btn-primary">검색</button>
 					<button class="btn btn-primary" type="button"
-						onclick="location.href='getMySiteList'">전체목록보기</button>
+						onclick="location.href='mysite'">전체목록보기</button>
 				</form>
 			</div>
 			<!-- 검색폼 끝 -->

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.yedam.hellonote.mysite.vo.MySiteVO;
 import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
 
@@ -32,8 +31,9 @@ public class UserController {
 	// 회원가입 등록처리 프로시저
 	@RequestMapping("/user/insertUserSignUp")
 	public String insertUserSignUp(UserVO vo) {
+		vo.sethGrant("U");
 		userService.insertUserSignUp(vo);
-		return "redirect:signup";
+		return "redirect:/";
 	}
 
 	// 프로시저 단건삭제
@@ -55,6 +55,7 @@ public class UserController {
 
 		return "layout/login";
 	}
+	
 
 	@RequestMapping(value = "user/signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {

@@ -42,7 +42,7 @@
                                         <hr>
                                     </form>
                                     <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                                    <div class="text-center"><a class="small" href="signup.jsp">Create an Account!</a></div>
+                                    <div class="text-center"><a class="small" href="user/signup">Create an Account!</a></div>
                                 </div>
                             </div>
                         </div>

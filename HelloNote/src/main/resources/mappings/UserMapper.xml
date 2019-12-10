@@ -70,7 +70,7 @@
 		{ call proc_userleave(#{hellonoteId}) }
 	</delete>
 	
-	<!-- proc insert signup -->
+	<!-- proc insert signup hGrant는 컨트롤러에서 default U가 입력됨-->
 	<insert id="insertUserSignUp" statementType="CALLABLE"
 		parameterType="user">
 		{ call proc_signup(#{hellonoteId},#{pw},#{gender},#{hGrant},#{age},#{hProfile}) }

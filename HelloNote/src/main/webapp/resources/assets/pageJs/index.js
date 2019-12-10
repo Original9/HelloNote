@@ -16,28 +16,48 @@ $(function() {
 	// 메뉴 삭제 함수
 	deleteMenu();
 	// 메뉴 수정 함수
-	
+	editMenu();
 })
 
+function editMenu() {
+	// 옵션 모두 삭제
+	$('#editMenuSelector').empty();
+	$('#editMenu').on('click', function() {
+		// 아무 메뉴가 없을 경우 모달 띄우지 않음
+		if ($('#accordionSidebar li').length == 0) {
+			return;
+		}
+		// 모달 메뉴 전체 옵션 어펜드
+		$('#accordionSidebar li').each(function(){
+			$('#editMenuSelector').append('<option value="'+this.id+'">'+$(this).find('span').text()+'</option>')
+		})
+		// 모달 창 띄움
+		$('#editMenuModal').show();
+	})
+	// 모달 창 닫음
+	$('#editMenuModalClose').on('click', function() {
+		$('#editMenuModal').hide();
+	})
+}
+
 function deleteMenu() {
-	$('#deleteMenu').droppable(
-			{
-				accept : '.nav-item',
-				drop : function(event, ui) {
-					flag = false;
-					var $id = ui.draggable.attr("id");
-					$.ajax({
-						url : 'deleteMenu',
-						data : {
-							menuId : $id
-						},
-						success : function() {
-							ui.draggable.remove();
-							console.log('delete success');
-						}
-					});
+	$('#deleteMenu').droppable({
+		accept : '.nav-item',
+		drop : function(event, ui) {
+			flag = false;
+			var $id = ui.draggable.attr("id");
+			$.ajax({
+				url : 'deleteMenu',
+				data : {
+					menuId : $id
+				},
+				success : function() {
+					ui.draggable.remove();
+					console.log('delete success');
 				}
-			})
+			});
+		}
+	})
 }
 
 // 메뉴 리스트 ajax 함수
@@ -163,6 +183,7 @@ function menuSortHandler(newIndex, oldIndex, elementId) {
 }
 
 function menuInsert() {
+	
 	$('#addConfirm').on('click', function() {
 		var $menuName = $('#menuName').val().trim();
 		var menuTypenumber = $('#menuType').val();
@@ -182,6 +203,8 @@ function menuInsert() {
 				menuId = data, menuName = $menuName;
 				iconSelector(menuTypenumber);
 				addingMenuDynamically();
+				$('#menuName').val('');
+				$('#addMenuModal').hide();
 			}
 		})
 	})

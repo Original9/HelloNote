@@ -37,6 +37,39 @@ public class MenuServiceImpl implements MenuService{
 
 	@Override
 	public void deleteMenu(MenuVO vo) {
+		int menuType = dao.selectMenuType(vo);
+		switch (menuType) {
+		case 1:
+			vo.setMenuTableName("calendar");
+			break;
+		case 2:
+			vo.setMenuTableName("memo");
+			break;
+		case 3:
+			vo.setMenuTableName("d_day");
+			break;
+		case 4:
+			vo.setMenuTableName("mybudget");
+			break;
+		case 5:
+			vo.setMenuTableName("bankaccount");
+			break;
+		case 6:
+			vo.setMenuTableName("checklist");
+			break;
+		case 7:
+			vo.setMenuTableName("marketlist");
+			break;
+		case 8:
+			vo.setMenuTableName("mysite");
+			break;
+		}
+		dao.menuDeleteHandling(vo);
 		dao.deleteMenu(vo);
+	}
+
+	@Override
+	public void editMenu(MenuVO vo) {
+		dao.editMenu(vo);
 	}
 }

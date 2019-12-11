@@ -4,7 +4,7 @@
   
  <mapper namespace="WidgetDAO">
  	<select parameterType="widget" resultType="widget" id="getWidgetList">
- 		select 	widget_seq,
+ 		select 	widgets_seq,
 		 		x_location,
 		 		y_location,
 		 		menu_id,

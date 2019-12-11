@@ -53,15 +53,21 @@
 							<div class="text-center">
 								<h4 class="text-dark mb-4">Create an Account!</h4>
 							</div>
-							<form class="signUp" name="signUp" id="signUp" action="insertUserSignUp">
+							<form class="signUp" name="signUp" id="signUp"
+								action="insertUserSignUp">
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId">
+											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId"
+											onkeydown="inputIdChk()"> <input type="button"
+											value="중복확인" onclick="openIdChk()"> <input
+											type="hidden" name="idDuplication" value="idUncheck">
 									</div>
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="password"
-											id="pw" placeholder="pw" name="pw">
+											id="pw" placeholder="pw" name="pw"> <input
+											class="form-control form-control-user" type="password"
+											id="pwcheck" placeholder="pwcheck" name="pwcheck">
 									</div>
 								</div>
 								<div class="form-group">
@@ -74,17 +80,16 @@
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="age" placeholder="age"
-											name="age">
+											id="age" placeholder="age" name="age">
 									</div>
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="text"
-											id="hProfile" placeholder="hProfile"
-											name="hProfile">
+											id="hProfile" placeholder="hProfile" name="hProfile">
 									</div>
 								</div>
 								<button class="btn btn-primary btn-block text-white btn-user"
-									onclick="signupbutton()" type="button">Register Account</button>
+									onclick="signupbutton()" type="button">Register
+									Account</button>
 								<hr>
 								<a
 									class="btn btn-primary btn-block text-white btn-google btn-user"

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<<<<<< HEAD
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,18 +21,32 @@
 	padding: 10px;
 }
 </style>
-
-
-
 </head>
 
 <body>
 	<h2>접속 ID: "${hellonoteId}" 접속 pw: "${pw}"</h2>
+	<div id="widgetContainer"></div>
+	<!-- 로그인 정보 print -->
+	<sec:authentication property="principal.username" />
+	<br>
+	<sec:authentication property="principal.hellonoteId" />
+	<br>
+	<sec:authentication property="principal.pw" />
+	<br>
+	<sec:authentication property="principal.hGrant" />
+	<br>
+	<sec:authorize access="isAuthenticated()">
+	로그인 중
+	</sec:authorize>
+	<!-- admin 권한만 보이게 -->
+	<sec:authorize access="hasAuthority('M')">
+		<button type="button" onclick="location.href='/user/getUserList'">버튼이보이면
+			ADMIN 이다~ 누르면 유저리스트로 간다</button>
+	</sec:authorize>
+	<!-- admin 권한만 보이게 -->
+	<h2>접속 ID: "${hellonoteId}" 접속 pw: "${pw}"</h2>
 	<h3>
 		Widgets Moving<input type='button' id="addWidgets" value='버튼1' />
 	</h3>
-	<div id="widgetContainer"></div>
-
-
 </body>
 </html>

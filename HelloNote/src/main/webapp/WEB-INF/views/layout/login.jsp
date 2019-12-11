@@ -30,9 +30,9 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Welcome Back!</h4>
                                     </div>
-                                    <form class="user" action="loginCheck">
-                                        <div class="form-group"><input class="form-control form-control-user"  id="userID" aria-describedby="emailHelp" placeholder="Enter ID..." name="hellonoteId"></div>
-                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="pw" placeholder="Password" name="pw"></div>
+                                    <form class="user" action="/processLogin">
+                                        <div class="form-group"><input class="form-control form-control-user"  id="userID" aria-describedby="emailHelp" placeholder="Enter ID..." name="paramLoginId"></div>
+                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="pw" placeholder="Password" name="paramPassword"></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>

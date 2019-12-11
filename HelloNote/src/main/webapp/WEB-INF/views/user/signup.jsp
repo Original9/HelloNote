@@ -59,24 +59,33 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
 											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId"
-											onkeydown="inputIdChk()"> <input type="button"
-											value="중복확인" onclick="openIdChk()"> <input
-											type="hidden" name="idDuplication" value="idUncheck">
+											onkeydown="inputIdChk()"><input type="hidden"
+											name="idDuplication" value="idUncheck">
+									</div>
+									<div class="col-sm-6">
+										<input class="form-control form-control-user" type="button"
+											value="중복확인" onclick="openIdChk()">
+
+									</div>
+									<br> <br> <br>
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input class="form-control form-control-user" type="password"
+											id="pw" placeholder="pw" name="pw">
 									</div>
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="password"
-											id="pw" placeholder="pw" name="pw"> <input
-											class="form-control form-control-user" type="password"
 											id="pwcheck" placeholder="pwcheck" name="pwcheck">
 									</div>
 								</div>
-								<div class="form-group">
+
+								<div class="col-sm-6"> 성별 : 
 									<select name="gender">
 										<option selected>선택</option>
 										<option value="M">M</option>
 										<option value="F">F</option>
 									</select>
 								</div>
+								<br>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
@@ -87,24 +96,22 @@
 											id="hProfile" placeholder="hProfile" name="hProfile">
 									</div>
 								</div>
+								<br> <br>
+								<hr>
+								<br>
 								<button class="btn btn-primary btn-block text-white btn-user"
 									onclick="signupbutton()" type="button">Register
 									Account</button>
-								<hr>
-								<a
-									class="btn btn-primary btn-block text-white btn-google btn-user"
-									role="button">&nbsp; Register with Google</a><a
-									class="btn btn-primary btn-block text-white btn-facebook btn-user"
-									role="button">&nbsp; Register with Facebook</a>
+								<br>
 								<hr>
 							</form>
 							<div class="text-center">
-								<a class="small" href="forgot-password.html">Forgot
-									Password?</a>
+								<a class="small" href="https://www.google.com">Click Go Site
+									=> www.google.co.kr</a>
 							</div>
 							<div class="text-center">
-								<a class="small" href="login.html">Already have an account?
-									Login!</a>
+								<a class="small" href="https://www.naver.com">Click Go Site
+									=> www.naver.com</a>
 							</div>
 						</div>
 					</div>

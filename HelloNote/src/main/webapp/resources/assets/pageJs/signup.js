@@ -38,7 +38,17 @@ function signupbutton() {
 		form.submit();
 	}
 }
+//
+function openIdChk() {
+	window.name = "parentForm";
+	window.open("user/IdCheckForm.jsp", "chkForm",
+			"width=500, height=300, resizable=no, scrollbars=no");
+}
 // 아이디 입력창에 값 입력시 hidden에 idUncheck를 셋팅
 function inputIdChk() {
 	document.signUp.idDuplication.value = "idUncheck"
+}
+
+function pValue(){
+	document.getElementById("hellonoteId").value = opener.document.
 }

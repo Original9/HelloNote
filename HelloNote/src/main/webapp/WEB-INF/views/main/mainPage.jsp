@@ -48,9 +48,11 @@ h3 {
 </head>
 
 <body>
+<form action="logout" method="post">
+  <button>로그아웃</button>
+</form>
+
 	<!-- 로그인 정보 print -->
-	<sec:authentication property="principal.username" />
-	<br>
 	<sec:authentication property="principal.hellonoteId" />
 	<br>
 	<sec:authentication property="principal.pw" />
@@ -62,7 +64,7 @@ h3 {
 	</sec:authorize>
 	<!-- admin 권한만 보이게 -->
 	<sec:authorize access="hasAuthority('M')">
-		<button type="button" onclick="location.href='/user/getUserList'">버튼이보이면 ADMIN 이다~ 누르면 유저리스트로 간다</button>
+		<button type="button" onclick="location.href='admin/getUserList'">버튼이보이면 ADMIN 이다~ 누르면 유저리스트로 간다</button>
 	</sec:authorize>
 	<!-- admin 권한만 보이게 -->
 	<h2>접속 ID: "${hellonoteId}" 접속 pw: "${pw}"</h2>

@@ -23,7 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		if(login == null) {
 			// login == null 시 login page로 리다이렉트
-			response.sendRedirect("/");
+			response.sendRedirect("/mainPage");
 			return false;
 		}
 		return true;

@@ -30,7 +30,7 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Welcome Back!</h4>
                                     </div>
-                                    <form class="user" action="/processLogin">
+                                    <form class="user" action="processLogin" method="POST">
                                         <div class="form-group"><input class="form-control form-control-user"  id="userID" aria-describedby="emailHelp" placeholder="Enter ID..." name="paramLoginId"></div>
                                         <div class="form-group"><input class="form-control form-control-user" type="password" id="pw" placeholder="Password" name="paramPassword"></div>
                                         <div class="form-group">

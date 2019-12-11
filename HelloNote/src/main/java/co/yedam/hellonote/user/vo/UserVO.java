@@ -43,7 +43,7 @@ public class UserVO implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return null;
+		return "{noop}" + pw;
 	}
 
 	@Override

@@ -27,8 +27,7 @@
 <script
 	src="<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/pageJs/index.js"/>"></script>
-<link href="<c:url value="/resources/assets/css/index.css"/>"
-	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/assets/css/index.css"/>" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <%-- <script src="<c:url value="/resources/assets/js/chart.min.js"/>"></script> --%>
@@ -57,7 +56,6 @@
 				<hr class="sidebar-divider my-0">
 				<ul class="nav navbar-nav text-light" id="accordionSidebar">
 					<!-- 					<li class="nav-item" role="presentation"><a -->
-<<<<<<< HEAD
 					<!-- 						class="nav-link active" href="index.html"><i -->
 					<!-- 							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li> -->
 
@@ -86,8 +84,6 @@
 					<!-- 						class="nav-link active" href="index.html"><i -->
 					<!-- 							class="fas fa-tachometer-alt"></i><span> Dashboard</span></a></li> -->
 					<!-- 					<li class="nav-item" role="presentation"><a -->
-=======
->>>>>>> branch 'master' of https://github.com/Original9/HelloNote.git
 					<!-- 						class="nav-link active" -->
 					<%-- 						href="${pageContext.request.contextPath}/menuList/accountBook"><i --%>
 					<!-- 							class="fas fa-tachometer-alt"></i><span> AccountBook </span></a></li> -->
@@ -294,7 +290,6 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 	<!-- 채팅 관련 script -->
 	<script type="text/javascript">
 
@@ -484,7 +479,7 @@
 }
 </script>
 	
-=======
+
 
 	<div class="modal" id="editMenuModal" style="z-index: 6;">
 		<div class="modal-content" id="editMenuModalConent">
@@ -497,7 +492,7 @@
 			</div>
 		</div>
 	</div>
->>>>>>> branch 'master' of https://github.com/Original9/HelloNote.git
+
 </body>
 
 </html>

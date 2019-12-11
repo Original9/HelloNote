@@ -4,19 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-	<!-- 자동으로 소문자를 대문자로 바꾸어준다. ORACLE에서는 소문자 대문자 구분이 없지만 java에서는 구분을 하기 때문에 -->
-		<setting name="mapUnderscoreToCamelCase" value="true" />		
+		<!-- 자동으로 소문자를 대문자로 바꾸어준다. ORACLE에서는 소문자 대문자 구분이 없지만 java에서는 구분을 하기 때문에 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
-	
+
 	<typeAliases>
-	<!-- 항상 sql에 column과 자바에서 설정해주는 이름이 자동으로 mapping 되기 때문에 변수명이 똑같해야한다.-->
-		<!-- <typeAlias type="com.yedam.exam.board.BoardVO" alias="board"/> --> 
-		<typeAlias type="co.yedam.hellonote.mysite.vo.MySiteVO" alias="mysite"/>
-		<typeAlias type="co.yedam.hellonote.calendar.vo.CalendarVO" alias="calendar"/>
-		<typeAlias type="co.yedam.hellonote.memo.vo.MemoVO" alias="memo"/>
-		<typeAlias type="co.yedam.hellonote.accountbook.vo.AccountBookVO" alias="accountBook"/>
-		<typeAlias type="co.yedam.hellonote.user.vo.UserVO" alias="user"/>
-		<typeAlias type="co.yedam.hellonote.menu.vo.MenuVO" alias="menu"/>
+
+		<!-- 항상 sql에 column과 자바에서 설정해주는 이름이 자동으로 mapping 되기 때문에 변수명이 똑같해야한다. -->
+		<!-- <typeAlias type="com.yedam.exam.board.BoardVO" alias="board"/> -->
+		<typeAlias type="co.yedam.hellonote.calendar.vo.CalendarVO"
+			alias="calendar" />
+		<typeAlias type="co.yedam.hellonote.memo.vo.MemoVO"
+			alias="memo" />
+		<typeAlias
+			type="co.yedam.hellonote.accountbook.vo.AccountBookVO"
+			alias="accountBook" />
+		<typeAlias type="co.yedam.hellonote.user.vo.UserVO"
+			alias="user" />
+		<typeAlias type="co.yedam.hellonote.menu.vo.MenuVO"
+			alias="menu" />
+		<typeAlias type="co.yedam.hellonote.mysite.vo.MySiteVO"
+			alias="mysite" />
+		<typeAlias type="co.yedam.hellonote.widget.vo.WidgetVO"
+			alias="widget" />
+		<typeAlias type="co.yedam.hellonote.chat.ChatVO"
+			alias="chat" />
 	</typeAliases>
 
 </configuration>

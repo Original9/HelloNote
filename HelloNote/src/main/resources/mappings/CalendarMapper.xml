@@ -18,7 +18,7 @@
   			   DESCRIPTION,
   			   title
   	     FROM ${hellonoteId}_CALENDAR
-  	     WHERE MENU_ID='${hellonoteId}_${menuId}'
+  	     WHERE MENU_ID='${menuId}'
   	     ORDER BY CALENDAR_SEQ
   	
   	</select>
@@ -26,13 +26,13 @@
   	<!-- 캘린더에 등록한 일정 삭제 -->
   	<delete id="deleteCalendar" parameterType="calendar">
   	  		DELETE from ${hellonoteId}_CALENDAR
-  	  		WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi') AND MENU_ID='${hellonoteId}_${menuId}'
+  	  		WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi') AND MENU_ID='${menuId}'
   	</delete>
   	
   	<!-- 캘린더에 일정 등록 -->
   	<insert id="insertCalendar" parameterType="calendar" >
   		 <selectKey order="BEFORE" resultType="int" keyProperty="calendarSeq">
-  			SELECT MAX(CALENDAR_SEQ)+1 
+  			SELECT NVL(MAX(CALENDAR_SEQ)+1,1) 
   			FROM ${hellonoteId}_CALENDAR
   		</selectKey>
   	
@@ -55,7 +55,7 @@
                            #{backgroundColor},
                            #{textColor},
                            #{allDay},
-                           'KANG_CALENDAR_1', <!-- 메뉴 세션값 불러오면 여기 대체해야한다. -->
+                           #{menuId}, <!-- 메뉴 세션값 불러오면 여기 대체해야한다. -->
                            #{description},
                            #{title})
   	
@@ -65,7 +65,7 @@
   	<select id="getCalendarSeq" parameterType="calendar" resultType="calendar">
   		SELECT CALENDAR_SEQ 
   			FROM ${hellonoteId}_CALENDAR
-  			WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi') AND MENU_ID='${hellonoteId}_${menuId}'
+  			WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi') AND MENU_ID='${menuId}'
   	</select>
   	
   	<!-- 캘린더에 등록된 일정 수정 -->
@@ -79,7 +79,7 @@
   		    BACKGROUND_COLOR= #{backgroundColor},
   		    ALL_DAY= #{allDay},
   		    DESCRIPTION= #{description}
-  		WHERE CALENDAR_SEQ = #{calendarSeq} AND MENU_ID='#{hellonoteId}_#{menuId}'
+  		WHERE CALENDAR_SEQ = #{calendarSeq} AND MENU_ID= ${menuId}
   		
   	
   	</update>

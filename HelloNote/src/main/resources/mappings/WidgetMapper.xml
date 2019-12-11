@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="WidgetDAO">
+ 	<select parameterType="widget" resultType="widget" id="getWidgetList">
+ 		select 	widgets_seq,
+		 		x_location,
+		 		y_location,
+		 		menu_id,
+		 		z_index,
+		 		menu_typenumber
+ 		from 	${hellonoteId}_widget
+ 	</select>
+ 	<insert id="insertWidget" parameterType="widget">
+ 		insert into ${hellonoteId}_widget(
+ 			widgets_seq,
+ 			x_location,
+ 			y_location,
+ 			menu_id,
+ 			z_index,
+ 			menu_typenumber
+ 		)
+ 		values(
+ 			(select nvl(max(widgets_seq),0)+1 from kang_widget),
+			null,
+			null,
+			#{menuId},
+			#{zIndex},
+			#{menuTypenumber} 			
+ 		)
+ 	</insert>
+ 	<update id="updateWidget" parameterType="widget">
+ 		update ${hellonoteId}_widget
+ 		set x_location = #{xLocation}, y_location = #{yLocation}
+ 		where widgets_seq = #{widgetsSeq}
+ 	</update>
+ 	<delete id="deleteWidget" parameterType="widget">
+ 		delete from ${hellonoteId}_widget
+ 		where widgets_seq = #{widgetsSeq}
+ 	</delete>
+ </mapper>

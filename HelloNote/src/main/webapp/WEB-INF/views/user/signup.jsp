@@ -53,53 +53,61 @@
 							<div class="text-center">
 								<h4 class="text-dark mb-4">Create an Account!</h4>
 							</div>
-							<form class="signUp" name="signUp" id="signUp" action="insertUserSignUp">
+							<form class="signUp" name="signUp" id="signUp"
+								action="insertUserSignUp">
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
 											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId">
+										<button type="button" class="idCheck">중복 체크</button>
+										<p class="result">
+											<span class="msg">아이디를 확인해주십시오.</span>
+										</p>
 									</div>
-									<div class="col-sm-6">
+									<br> <br> <br>
+									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="password"
 											id="pw" placeholder="pw" name="pw">
 									</div>
+									<div class="col-sm-6">
+										<input class="form-control form-control-user" type="password"
+											id="pwcheck" placeholder="pwcheck" name="pwcheck">
+									</div>
 								</div>
-								<div class="form-group">
-									<select name="gender">
+
+								<div class="col-sm-6">
+									성별 : <select name="gender">
 										<option selected>선택</option>
 										<option value="M">M</option>
 										<option value="F">F</option>
 									</select>
 								</div>
+								<br>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="age" placeholder="age"
-											name="age">
+											id="age" placeholder="age" name="age">
 									</div>
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="text"
-											id="hProfile" placeholder="hProfile"
-											name="hProfile">
+											id="hProfile" placeholder="hProfile" name="hProfile">
 									</div>
 								</div>
-								<button class="btn btn-primary btn-block text-white btn-user"
-									onclick="signupbutton()" type="button">Register Account</button>
+								<br> <br>
 								<hr>
-								<a
-									class="btn btn-primary btn-block text-white btn-google btn-user"
-									role="button">&nbsp; Register with Google</a><a
-									class="btn btn-primary btn-block text-white btn-facebook btn-user"
-									role="button">&nbsp; Register with Facebook</a>
+								<br>
+								<button class="btn btn-primary btn-block text-white btn-user"
+									onclick="signupbutton()" type="button" disabled="disabled" id="submit">Register Account</button>
+								<br>
 								<hr>
 							</form>
 							<div class="text-center">
-								<a class="small" href="forgot-password.html">Forgot
-									Password?</a>
+								<a class="small" href="https://www.google.com">Click Go Site
+									=> www.google.co.kr</a>
 							</div>
 							<div class="text-center">
-								<a class="small" href="login.html">Already have an account?
-									Login!</a>
+								<a class="small" href="https://www.naver.com">Click Go Site
+									=> www.naver.com</a>
 							</div>
 						</div>
 					</div>

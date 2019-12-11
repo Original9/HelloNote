@@ -73,4 +73,10 @@ public class UserServiceImpl implements UserService {
 		}
 		return 0;
 	}
+
+	@Override
+	public UserVO idCheck(UserVO vo) {
+		return userDAO.idCheck(vo);
+	}
+
 }

@@ -7,8 +7,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +25,21 @@ import co.yedam.hellonote.user.vo.UserVO;
 public class UserController {
 	@Autowired
 	UserService userService;
-	
+
+	// 아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.POST)
+	public int postIdCheck(UserVO vo) {
+		UserVO idCheck = userService.idCheck(vo);
+
+		int result = 0;
+
+		if (idCheck != null) {
+			result = 1;
+		}
+		return result;
+	}
+
 	// 회원가입 등록처리 프로시저
 	@RequestMapping("/user/insertUserSignUp")
 	public String insertUserSignUp(UserVO vo) {
@@ -37,25 +49,24 @@ public class UserController {
 	}
 
 	// 프로시저 단건삭제
-	@RequestMapping("/user/deleteUserProc")
+	@RequestMapping("/admin/deleteUserProc")
 	public String deleteUserProc(UserVO vo) {
 		userService.deleteUserProc(vo);
 		return "redirect:getUserList";
 	}
-	
+
 	// 프로시저 리스트 삭제 처리
-	@RequestMapping("/user/deleteUserListProc")
+	@RequestMapping("/admin/deleteUserListProc")
 	public String deleteUserListProc(@RequestParam String[] rowCheck, UserVO vo) {
 		userService.deleteUserListProc(rowCheck, vo);
 		return "redirect:getUserList";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
+	public String homelogin(Locale locale, Model model) {
 
 		return "layout/login";
 	}
-	
 
 	@RequestMapping(value = "user/signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {
@@ -63,30 +74,13 @@ public class UserController {
 		return "user/signup";
 	}
 
-	@RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
-	public String loginCheck(HttpSession session, HttpServletRequest request, HttpServletResponse reponse, UserVO vo) {
-
-		UserVO temp = new UserVO();
-		temp = userService.getUser(vo);
-		if (temp.getHellonoteId() == null) {
-			// logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !!
-			return "layout/login";
-		}
-
-		session.setAttribute("hellonoteId", temp.getHellonoteId());
-		session.setAttribute("pw", temp.getPw());
-
-		return "redirect:mainPage";
-	}
-
 	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-
 		return "main/main/mainPage";
 	}
 
 	// 관리자 페이지 이동
-	@RequestMapping(value = { "/user/*" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/*" }, method = RequestMethod.GET)
 	public String showIssueList(HttpServletRequest request) {
 		// url 값을 받아와서 * 에 넣어줘야 한다.
 		String uri = request.getRequestURI();
@@ -98,14 +92,14 @@ public class UserController {
 	}
 
 	// 유저 리스트 페이지
-	@RequestMapping("/user/getUserList")
+	@RequestMapping("/admin/getUserList")
 	public String getUserList(Model model, UserVO vo) {
 		model.addAttribute("user", userService.getUserList(vo));
 		return "main/user/userlist"; // jsp 경로
 	}
 
 	// 삭제 처리
-	@RequestMapping("/user/deleteUser")
+	@RequestMapping("/admin/deleteUser")
 	public String deleteUser(@RequestParam String[] rowCheck, UserVO vo) {
 		userService.deleteUser(rowCheck, vo);
 		return "redirect:getUserList";
@@ -125,20 +119,20 @@ public class UserController {
 
 	// 단건 조회
 	@ResponseBody
-	@RequestMapping("/user/getUser")
+	@RequestMapping("/admin/getUser")
 	public UserVO getUser(UserVO vo) {
 		return userService.getUser(vo);
 	}
 
 	// 단건 삭제
-	@RequestMapping("/user/getUserdelete")
+	@RequestMapping("/admin/getUserdelete")
 	public String getUserdelete(UserVO vo) {
 		userService.getUserdelete(vo);
 		return "redirect:getUserList";
 	}
 
 	// 수정
-	@RequestMapping(value = "/user/updateUser", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
+	@RequestMapping(value = "/admin/updateUser", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
 	)
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
 	public UserVO updateUser(@RequestBody UserVO vo) {

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +21,8 @@ public class MemoController {
 	
 	@RequestMapping("/memo")
 	public String getBoardList(HttpServletRequest request, Model model, HttpSession session, MemoVO vo) {
-		String hellonotId = (String) session.getAttribute("hellonoteId");
-		
-		vo.setHellonoteId(hellonotId);
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
 		vo.setMenuId(Integer.parseInt(request.getParameter("menuId")));
 		
 		model.addAttribute("memoList", service.getMemoList(vo));

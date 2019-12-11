@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import co.yedam.hellonote.user.vo.UserVO;
 
-
 @Repository
 public class UserDAO {
 	@Autowired
@@ -41,19 +40,24 @@ public class UserDAO {
 	public int deleteUser(UserVO vo) {
 		return mybatis.delete("UserDAO.deleteUser", vo);
 	}
-	
+
 	// 단건 삭제
 	public int getUserdelete(UserVO vo) {
 		return mybatis.delete("UserDAO.getUserdelete", vo);
 	}
-	
+
 	// 유저 삭제 proc
 	public int deleteUserProc(UserVO vo) {
 		return mybatis.delete("UserDAO.deleteUserProc", vo);
 	}
-	
+
 	// 유저 리스트 삭제 proc
 	public int deleteUserListProc(UserVO vo) {
 		return mybatis.delete("UserDAO.deleteUserListProc", vo);
+	}
+
+	// 아이디 중복체크
+	public UserVO idCheck(UserVO vo) {
+		return mybatis.selectOne("UserDAO.idCheck", vo);
 	}
 }

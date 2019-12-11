@@ -11,15 +11,9 @@
 <!-- <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css"> -->
 <!-- <link href="assets/css/mainFont.css" rel="stylesheet" type="text/css"> -->
 <link href="${pageContext.request.contextPath}/resources/assets/css/index.css" rel="stylesheet" type="text/css">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
 </head>
 
 <script type="text/javascript">
-	
-
 	$(function(){		
 		
 		$('#translate').click(function(){
@@ -74,7 +68,7 @@
 		          	<div>
 		          	  	<select id="target_lang">
 		          	  		<option value="kr">한국어</option>
-		          	  		<option value="en">영어</option>
+		          	  		<option value="en" selected>영어</option>
 		          	  		<option value="jp">일본어</option>
 		          	  		<option value="cn">중국어</option>
 		          	  		<option value="de">독일어</option>	          	  		

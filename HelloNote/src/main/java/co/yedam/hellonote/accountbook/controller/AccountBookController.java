@@ -25,7 +25,7 @@ public class AccountBookController {
 	AccountBookService accountBookService;
 	
 	
-	@RequestMapping("/menuList/accountBook")
+	@RequestMapping("/accountBook")
 	public String accoutBookList() {
 		
 		return "main/menuList/accountBook";
@@ -33,7 +33,7 @@ public class AccountBookController {
 	
 	
 	//전체 조회
-	@RequestMapping("/menuList/getAccountBookList.json")
+	@RequestMapping("/getAccountBookList.json")
 	@ResponseBody
 	public List<AccountBookVO>getAccountBookList(HttpSession session, AccountBookVO vo){
 		
@@ -45,7 +45,7 @@ public class AccountBookController {
 	
 	
 	//등록
-	@RequestMapping(value="/menuList/insertAccountBook.json", consumes ="application/json" )
+	@RequestMapping(value="/insertAccountBook.json", consumes ="application/json" )
 	@ResponseBody
 	public AccountBookVO insertAccountBook(@RequestBody AccountBookVO vo, HttpSession session) {
 		
@@ -56,7 +56,7 @@ public class AccountBookController {
 	}
 	
 	//삭제
-	@RequestMapping("/menuList/deleteAccountBook.json")
+	@RequestMapping("/deleteAccountBook.json")
 	@ResponseBody
 	public Map deleteAccountBook(AccountBookVO vo, Model model, HttpSession session) {
 		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
@@ -66,7 +66,7 @@ public class AccountBookController {
 		 
 	}
 	//수정
-	@RequestMapping(value="/menuList/updateAccountBook.json", consumes="application/json", method=RequestMethod.PUT)
+	@RequestMapping(value="/updateAccountBook.json", consumes="application/json", method=RequestMethod.PUT)
 	@ResponseBody
 	public AccountBookVO updateAccountbook(@RequestBody AccountBookVO vo, Model model, HttpSession session) {
 		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));

@@ -16,11 +16,11 @@
 		<!--  특정 기간 및 항목 선택 조회 -->
 		<where>
 		<if test= "accountbookFirstDate != null and accountbookFirstDate != '' " >
-	 	AND ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
+	 	ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
 	 	</if>
 	 	
 	 	<if test= " accountbookPurpose != '항목을 선택해 주세요' and accountbookPurpose != '' and accountbookPurpose !=null">
-	 	AND ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
+	 	ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
 	 	</if>
 		</where>
 		

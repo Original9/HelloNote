@@ -26,6 +26,15 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+//	// 아이디 중복체크 컨트롤러
+//	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+//	@ResponseBody
+//	public int idCheck(@RequestParam("hellonoteId") String hellonoteId) {
+//
+//		return userService.userIdCheck(hellonoteId);
+//
+//	}
+
 	// 회원가입 등록처리 프로시저
 	@RequestMapping("/user/insertUserSignUp")
 	public String insertUserSignUp(UserVO vo) {
@@ -59,7 +68,6 @@ public class UserController {
 
 		return "user/signup";
 	}
-
 
 	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {

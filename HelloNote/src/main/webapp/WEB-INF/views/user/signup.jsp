@@ -58,15 +58,9 @@
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId"
-											onkeydown="inputIdChk()"><input type="hidden"
-											name="idDuplication" value="idUncheck">
+											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId">
 									</div>
-									<div class="col-sm-6">
-										<input class="form-control form-control-user" type="button"
-											value="중복확인" onclick="openIdChk()">
-
-									</div>
+									<div id="id_chech"></div>
 									<br> <br> <br>
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="password"
@@ -78,8 +72,8 @@
 									</div>
 								</div>
 
-								<div class="col-sm-6"> 성별 : 
-									<select name="gender">
+								<div class="col-sm-6">
+									성별 : <select name="gender">
 										<option selected>선택</option>
 										<option value="M">M</option>
 										<option value="F">F</option>

@@ -73,4 +73,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return 0;
 	}
+
+//	@Override
+//	public int userIdCheck(String hellonoteId) {
+//		userDAO = userSqlSession.getMapper (UserService.class);
+//		
+//		return userDAO.
+//	}
+//	
 }

@@ -35,6 +35,4 @@ public interface UserService {
 	// proc 리스트 삭제
 	public int deleteUserListProc(String[] list, UserVO vo);
 
-//	public int userIdCheck(String hellonoteId);
-
 }

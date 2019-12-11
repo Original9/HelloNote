@@ -11,7 +11,11 @@ function getWidgetList(){
 		url : 'getWidgetList',
 		dataType : 'json',
 		success : function(data){
-			console.log(data);
+			$(data).each(function(){
+				// 위젯의 타입을 가져옴
+				$mtn = this.menuTypeNumber
+				
+			})
 		}
 	})
 }

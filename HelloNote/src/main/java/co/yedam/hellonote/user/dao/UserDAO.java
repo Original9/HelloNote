@@ -55,12 +55,4 @@ public class UserDAO {
 	public int deleteUserListProc(UserVO vo) {
 		return mybatis.delete("UserDAO.deleteUserListProc", vo);
 	}
-
-//	// 아이디 중복 체크
-//	public int userIdCheck(String user_id) {
-//
-//		userDao = userSqlSessin.getMapper(UserDAO.class);
-//
-//		return mybatis.checkOverId(user_id);
-//	}
 }

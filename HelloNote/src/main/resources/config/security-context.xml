@@ -12,7 +12,7 @@
 	<security:http>
 		<!-- 로그인페이지로가는걸 허가 -->
 		<security:intercept-url method="GET"
-			pattern="/login" access="permitAll()" />
+			pattern="/" access="permitAll()" />
 		<!-- 회원가입 페이지로 가는걸 허가 -->
 		<security:intercept-url method="GET"
 			pattern="/user/signup" access="permitAll()" />
@@ -23,21 +23,21 @@
 		<security:intercept-url method="GET"
 			pattern="/processLogin" access="permitAll()" />
 		<!-- admin 권한 설정 -->
-		<security:intercept-url
-			pattern="/admin/**" access="hasAuthority('M')" />
+		<security:intercept-url pattern="/admin/**"
+			access="hasAuthority('M')" />
 		<!-- user 권한설정 -->
 		<security:intercept-url pattern="/**"
 			access="isAuthenticated()" />
 		<!-- form-login 로그인 페이지 login-processing-url 로그인처리 default-target-url = 
 			login 후 main 페이지 이동 -->
-		<security:form-login login-page="/login"
+		<security:form-login login-page="/"
 			login-processing-url="/processLogin" default-target-url="/mainPage"
-			authentication-failure-url="/login" password-parameter="paramPassword"
-			username-parameter="paramLoginId" />
+			authentication-failure-url="/"
+			password-parameter="paramPassword" username-parameter="paramLoginId" />
 		<security:access-denied-handler
 			error-page="/accessDenied.jsp" /> <!-- 권한없을ㄸ ㅐ 디나이페이지 -->
 		<security:logout logout-url="/logout"
-			logout-success-url="/login" />
+			logout-success-url="/" />
 		<security:csrf disabled="true" />
 	</security:http>
 

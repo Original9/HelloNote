@@ -1,13 +1,18 @@
 package co.yedam.hellonote.accountbook.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.yedam.hellonote.accountbook.service.AccountBookService;
@@ -20,7 +25,7 @@ public class AccountBookController {
 	AccountBookService accountBookService;
 	
 	
-	@RequestMapping("/menuList/accountBook")
+	@RequestMapping("/accountBook")
 	public String accoutBookList() {
 		
 		return "main/menuList/accountBook";
@@ -28,19 +33,19 @@ public class AccountBookController {
 	
 	
 	//전체 조회
-	@RequestMapping("/menuList/getAccountBookList.json")
+	@RequestMapping("/getAccountBookList.json")
 	@ResponseBody
 	public List<AccountBookVO>getAccountBookList(HttpSession session, AccountBookVO vo){
 		
 		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
 //		vo.setAccountbookSeq(session.getAttribute("accountBook"));
-		
+//		vo.setMenuId(request.getParameter("menuId"));
 		return accountBookService.getAccountBookList(vo);	
 	}
 	
 	
 	//등록
-	@RequestMapping(value="/menuList/insertAccountBook.json", consumes ="application/json" )
+	@RequestMapping(value="/insertAccountBook.json", consumes ="application/json" )
 	@ResponseBody
 	public AccountBookVO insertAccountBook(@RequestBody AccountBookVO vo, HttpSession session) {
 		
@@ -50,12 +55,22 @@ public class AccountBookController {
 		
 	}
 	
-	@RequestMapping(value="/menuList/deleteAccountBook.json", consumes ="application/json" )
+	//삭제
+	@RequestMapping("/deleteAccountBook.json")
 	@ResponseBody
-	public AccountBookVO deleteAccountbook(@RequestBody AccountBookVO vo, HttpSession session) {
+	public Map deleteAccountBook(AccountBookVO vo, Model model, HttpSession session) {
 		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
-		accountBookService.deleteAccountBook(vo);
-		System.out.println(vo.getAccountbookSeq());
+		accountBookService.deleteAccountBook(vo);		
+		 Map result = new HashMap<Integer, Object>(); result.put("result",Boolean.TRUE); 
+		 return result;
+		 
+	}
+	//수정
+	@RequestMapping(value="/updateAccountBook.json", consumes="application/json", method=RequestMethod.PUT)
+	@ResponseBody
+	public AccountBookVO updateAccountbook(@RequestBody AccountBookVO vo, Model model, HttpSession session) {
+		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+		accountBookService.updateAccountBook(vo);
 		return vo;
 	}
 

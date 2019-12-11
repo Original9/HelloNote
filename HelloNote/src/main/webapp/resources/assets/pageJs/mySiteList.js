@@ -70,7 +70,7 @@ $(function() {
 
 	// 상세보기 모달창 열기
 	$('.getMySite').on('click', function() {
-		$('#changeform').hide(); // 수정폼으로 close 햇을시 남아있는 수정 form을 숨겨준다
+		$('#changeform').hide(); // 수정폼으로 close 했을시 남아있는 수정 form을 숨겨준다
 		$('#select').show(); // 다시 상세보기창을 띄운다
 		// seq 선언 값
 		var seq = $(this).closest('tr').find('input').val(); // 클릭한버튼은 this

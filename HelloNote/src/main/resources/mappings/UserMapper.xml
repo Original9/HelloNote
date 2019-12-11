@@ -7,13 +7,12 @@
 	 <select id="getUserListMap" resultType="map">
 		SELECT 	HELLONOTE_ID "hellonoteId",
 				PW "pw",
-				GENDER "siteAddr",
+				GENDER "gender",
 				H_GRANT "hGrant",
 				AGE "age",
-				H_PROFILE "hProfile",
-				SITE_DATE "siteDate"
+				H_PROFILE "hProfile"
 		  FROM  HELLONOTE_USERS
-		  ORDER BY MYSITE_SEQ DESC
+		  ORDER BY HELLONOTE_ID DESC
 	</select>
 	
 	<select id="getUserList" resultType="user" parameterType="user">
@@ -33,7 +32,7 @@
 			   AGE,
 			   H_PROFILE
 		FROM HELLONOTE_USERS
-		WHERE hellonote_id=#{hellonoteId} and PW=#{pw}
+		WHERE hellonote_id=#{hellonoteId}
 	</select>
 	
 	<!-- SELECT DELETE -->
@@ -52,13 +51,30 @@
 	<!-- UPDATE -->
 	<update id="updateUser" parameterType="user">
 		UPDATE HELLONOTE_USERS SET
-			   HELLONOTE_ID = #{hellonoteId},
-			   PW = #{pw},
 			   GENDER = #{gender},
 			   H_GRANT = #{hGrant},
 			   AGE = #{age},
 			   H_PROFILE = #{hProfile}
 		WHERE HELLONOTE_ID = #{hellonoteId}
 	</update>
+	
+	<!-- proc select delete-->
+	<delete id="deleteUserProc" statementType="CALLABLE"
+		parameterType="user">
+		{ call proc_userleave(#{hellonoteId}) }
+	</delete>
+
+	<!-- proc list delete -->
+	<delete id="deleteUserListProc" statementType="CALLABLE"
+		parameterType="user">
+		{ call proc_userleave(#{hellonoteId}) }
+	</delete>
+	
+	<!-- proc insert signup hGrant는 컨트롤러에서 default U가 입력됨-->
+	<insert id="insertUserSignUp" statementType="CALLABLE"
+		parameterType="user">
+		{ call proc_signup(#{hellonoteId},#{pw},#{gender},#{hGrant},#{age},#{hProfile}) }
+	</insert>
+	
 
 </mapper>

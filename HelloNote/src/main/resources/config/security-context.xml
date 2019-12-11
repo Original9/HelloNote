@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- security context Login 설정 -->
+	<!-- css 파일은 검사안하고 허가 시켜줌 -->
+	<security:http pattern="/resources/**" security="none" />
+	<security:http>
+		<!-- 로그인페이지로가는걸 허가 -->
+		<security:intercept-url method="GET"
+			pattern="/login" access="permitAll()" />
+		<!-- 회원가입 페이지로 가는걸 허가 -->
+		<security:intercept-url method="GET"
+			pattern="/user/signup" access="permitAll()" />
+		<!-- 회원가입 처리 하는걸 허가 -->
+		<security:intercept-url method="GET"
+			pattern="/user/insertUserSignUp" access="permitAll()" />
+		<!-- 로그인 처리 해주는걸 허가 -->
+		<security:intercept-url method="GET"
+			pattern="/processLogin" access="permitAll()" />
+		<!-- admin 권한 설정 -->
+		<security:intercept-url
+			pattern="/admin/**" access="hasAuthority('M')" />
+		<!-- user 권한설정 -->
+		<security:intercept-url pattern="/**"
+			access="isAuthenticated()" />
+		<!-- form-login 로그인 페이지 login-processing-url 로그인처리 default-target-url = 
+			login 후 main 페이지 이동 -->
+		<security:form-login login-page="/login"
+			login-processing-url="/processLogin" default-target-url="/mainPage"
+			authentication-failure-url="/login" password-parameter="paramPassword"
+			username-parameter="paramLoginId" />
+		<security:access-denied-handler
+			error-page="/accessDenied.jsp" /> <!-- 권한없을ㄸ ㅐ 디나이페이지 -->
+		<security:logout logout-url="/logout"
+			logout-success-url="/login" />
+		<security:csrf disabled="true" />
+	</security:http>
+
+
+	<!-- user 정보 -->
+	<bean id="userService"
+		class="co.yedam.hellonote.user.service.CustomUserDetailsService" />
+	<security:authentication-manager>
+
+		<!-- <security:user-service> <security:user name="user" password="1234" 
+			authorities="ROLE_USER" /> <security:user name="admin" password="1234" authorities="ROLE_ADMIN" 
+			/> </security:user-service> -->
+		<!-- Oracle DB 에서 인증받아옴 -->
+		<security:authentication-provider
+			user-service-ref="userService">
+		</security:authentication-provider>
+		<!-- <security:jdbc-user-service data-source-ref="dataSource" users-by-username-query="select 
+			HELLONOTE_ID, PW, 1 from HELLONOTE_USERS where HELLONOTE_ID = ?" authorities-by-username-query="select 
+			HELLONOTE_ID, H_GRANT from HELLONOTE_USERS where HELLONOTE_ID = ?" /> -->
+
+	</security:authentication-manager>
+
+</beans>

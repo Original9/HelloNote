@@ -25,16 +25,16 @@ public class AccountBookServiceImpl implements AccountBookService {
 		return dao.insertAccountBook(vo);
 	}
 
-	@Override
-	public int updateAccountBook(AccountBookVO vo) {
-		return 0;
-	}
 
 	@Override
 	public int deleteAccountBook(AccountBookVO vo) {
 		return dao.deleteAccountBook(vo);
 	}
 
+	@Override
+	public int updateAccountBook(AccountBookVO vo) {
+		return dao.updateAccountBook(vo);
+	}
 
 
 }

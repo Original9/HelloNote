@@ -1,7 +1,8 @@
 package co.yedam.hellonote.accountbook.vo;
 
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -13,7 +14,7 @@ public class AccountBookVO {
 	private String accountbookMenuid; //메뉴 아이디
 	private int accountbookSeq; //시퀀스
 	private int accountbookBalance; //잔고
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
 	private String accountbookDate; //날짜
 	private String accountbookTranslation; //비고
 	private int accountbookPrice; //금액

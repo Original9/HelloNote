@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="WidgetDAO">
+ 	<select parameterType="widget" resultType="widget" id="getWidgetList">
+ 		select 	widget_seq,
+		 		x_location,
+		 		y_location,
+		 		menu_id,
+		 		z_index,
+		 		menu_typenumber
+ 		from 	kang_widget;
+ 	</select>
+ 	<insert id="insertWidget" parameterType="widget">
+ 		insert into kang_widget(
+ 			widgets_seq,
+ 			x_location,
+ 			y_location,
+ 			menu_id,
+ 			z_index,
+ 			menu_typenumber
+ 		)
+ 		values(
+ 			(select nvl(max(widgets_seq),0)+1 from kang_widget),
+			null,
+			null,
+			#{menuId},
+			#{zIndex},
+			#{menuTypenumber} 			
+ 		)
+ 	</insert>
+ </mapper>

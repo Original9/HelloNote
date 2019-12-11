@@ -3,8 +3,23 @@
 	color: white;
 	/* 	postion: absolute; 가 있어야 먹힘 */
 	bottom: 30px;
-	/* 	커서 모양 바꿈 */
-	cursor: pointer;
+	cursor : pointer;
+}
+
+#deleteMenu {
+	position: absolute;
+	color: white;
+	/* 	postion: absolute; 가 있어야 먹힘 */
+	bottom: 100px;
+}
+
+#editMenu {
+	position : absolute;
+	color : white;
+	bottom: 175px;
+    margin-left: 6px;
+    cursor : pointer;
+   
 }
 
 /* The Modal (background) */
@@ -64,6 +79,11 @@
 
 .addConfirm {
 	margin-top: 10px
+}
+
+.navi1 {
+	padding : 0 0 200px 0;
+	
 }
 
 /* 화면 크기에 따라 모달 창 width 조정 */

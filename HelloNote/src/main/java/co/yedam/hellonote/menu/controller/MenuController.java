@@ -13,17 +13,17 @@ import co.yedam.hellonote.menu.vo.MenuVO;
 
 @RestController
 public class MenuController {
-	
+
 	@Autowired
 	private MenuService service;
-	
+
 	@RequestMapping("menuList")
 	public List<MenuVO> menuList(HttpSession session, MenuVO vo) {
-		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
-		
+		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+
 		return service.menuList(vo);
 	}
-	
+
 	@RequestMapping("menuSortHandling")
 	public void sortHandling(MenuVO vo, HttpSession session) {
 		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
@@ -31,10 +31,24 @@ public class MenuController {
 		service.sortHandling1(vo);
 		service.sortHandling2(vo);
 	}
+
+	@RequestMapping("insertMenu")
+	public int menuInsert(MenuVO vo, HttpSession session) {
+		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+		service.insertMenu(vo);
+
+		return vo.getMenuId();
+	}
 	
-//	@RequestMapping("menuInsert")
-//	public String menuInsert(MenuVO vo) {
-//		
-//		return vo.getmenu
-//	}
+	@RequestMapping("deleteMenu")
+	public void deleteMenu(MenuVO vo, HttpSession session) {
+		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+		service.deleteMenu(vo);
+	}
+	
+	@RequestMapping("editMenu")
+	public void editMenu(MenuVO vo, HttpSession session) {
+		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));  
+		service.editMenu(vo);
+	}
 }

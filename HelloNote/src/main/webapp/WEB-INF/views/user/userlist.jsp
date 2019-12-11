@@ -52,19 +52,19 @@
 						<div class="col-md-6 text-nowrap"></div>
 					</div>
 					<!-- 목록 시작 -->
-					<form name="userForm" id="userForm" action='deleteUser'>
+					<form name="userForm" id="userForm" action='deleteUserListProc'>
+					<input type="hidden" name="hellonoteId1">
 						<div class="table-responsive table mt-2" id="dataTable"
 							role="grid" aria-describedby="dataTable_info">
 							<table class="table dataTable my-0" id="tabledata">
 								<thead>
 									<tr>
-										<th scope="col" width="10"><input id="allCheck"
-											type="checkbox" onclick="allChk(this);" /></th>
-										<th align="center" width="150">id</th>
-										<th align="center" width="200">pw</th>
-										<th align="center" width="100">gender</th>
-										<th align="center" width="200">hgrant</th>
-										<th align="center" width="200">age</th>
+										<th scope="col" width="10" align="center"><input
+											id="allCheck" type="checkbox" onclick="allChk(this);" /></th>
+										<th align="center" width="80">id</th>
+										<th align="center" width="50">gender</th>
+										<th align="center" width="50">hgrant</th>
+										<th align="center" width="50">age</th>
 										<th align="center" width="200">hprofile</th>
 									</tr>
 								</thead>
@@ -72,14 +72,14 @@
 									<!-- 컨트롤러의 items key 값 -->
 									<c:forEach items="${user}" var="user">
 										<tr>
-											<td><input name="rowCheck" class="rowCheck"
-												type="checkbox" value="${user.hellonoteId }" /></td>
-											<td class="getUser" align="center" width="150">${user.hellonoteId }</td>
-											<td class="getUser" align="center" width="200">${user.pw }</td>
-											<td class="getUser" align="center" width="100">${user.gender }</td>
-											<td class="getUser" align="center" width="200">${user.hGrant }</td>
-											<td class="getUser" align="center" width="200">${user.age }</td>
-											<td class="getUser" align="center" width="200">${user.hProfile }</td>
+											<td align="center"><input name="rowCheck"
+												class="rowCheck" type="checkbox"
+												value="${user.hellonoteId }" /></td>
+											<td class="getUser" align="center">${user.hellonoteId }</td>
+											<td class="getUser" align="center">${user.gender }</td>
+											<td class="getUser" align="center">${user.hGrant }</td>
+											<td class="getUser" align="center">${user.age }</td>
+											<td class="getUser" align="center">${user.hProfile }</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -92,7 +92,7 @@
 								<button class="btn btn-primary" type="button"
 									onclick="fn_userDel()">삭제</button>
 								<button class="btn btn-primary" type="button"
-									onclick="location.href='downloadExcel'">엑셀 다운로드</button>
+									onclick="location.href='downloadExcel2'">엑셀 다운로드</button>
 							</div>
 							<!-- 버튼 끝 -->
 						</div>
@@ -110,16 +110,12 @@
 					<div id="select" class="select" align="center">
 						<h1>User List</h1>
 						<br>
-						<form name="dele" id="dele" action="getUserdelete" method="post">
-							<!-- hidden input tag 로 seq 값을 담음 -->
-							<input type="hidden" name="hellonoteId" id="hellonoteId">
+						<form name="dele" id="dele" action="deleteUserProc" method="post">
+						<input type="hidden" name="hellonoteId">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
 										<label> ID : </label> <span id="hellonoteId"></span>
-									</div>
-									<div class="field-wrap">
-										<label> PW : </label> <span id="pw"></span>
 									</div>
 									<label> GENDER : </label> <span id="gender"></span>
 								</div>
@@ -149,30 +145,25 @@
 						<h1>Update User</h1>
 						<br>
 						<form action="updateUser" id="UpdForm" name="UpdForm">
-							<input type="hidden" name="hellonoteId" id="hellonoteId">
 							<div class="field-wrap">
 								<div class="field-wrap">
-									<label> ID : </label> <input type="text" required
-										autocomplete="off" name="hellonoteId" />
+									<label> ID : </label> <span id="hellonoteId"></span>
 								</div>
-								<div class="field-wrap">
-									<label> PW : </label> <input type="password" required
-										autocomplete="off" name="pw" />
-								</div>
-								<label> GENDER : </label> <input type="text" required
-									autocomplete="off" name="gender" />
+								<label> GENDER : </label> <span id="gender"></span>
 							</div>
 							<div class="field-wrap">
-								<label> HGRANT : </label> <input type="text" required
-									autocomplete="off" name="hGrant" />
+								<label> HGRANT : &nbsp;</label><select name="hGrant">
+									<option value="M">M</option>
+									<option value="U">U</option>
+
+								</select>
 							</div>
 							<div class="field-wrap">
-								<label> AGE : </label> <input type="text" required
-									autocomplete="off" name="age" />
+								<label>AGE : </label><span id="age"></span>
 							</div>
 							<div class="field-wrap">
-								<label> HPROFILE : </label> <input type="text" required
-									autocomplete="off" name="hProfile" />
+								<label>HPROFILE</label><br>
+								<textarea name="hProfile" readonly></textarea>
 							</div>
 							<br>
 							<div align="center">

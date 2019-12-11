@@ -27,9 +27,9 @@ public class UserDAO {
 		return mybatis.selectList("UserDAO.getUserListMap", user);
 	}
 
-	// 등록
-	public int insertUser(UserVO dto) {
-		return mybatis.insert("UserDAO.insertUser", dto);
+	// 회원가입 프로시저
+	public int insertUserSignUp(UserVO vo) {
+		return mybatis.insert("UserDAO.insertUserSignUp", vo);
 	}
 
 	// 수정
@@ -45,5 +45,15 @@ public class UserDAO {
 	// 단건 삭제
 	public int getUserdelete(UserVO vo) {
 		return mybatis.delete("UserDAO.getUserdelete", vo);
+	}
+	
+	// 유저 삭제 proc
+	public int deleteUserProc(UserVO vo) {
+		return mybatis.delete("UserDAO.deleteUserProc", vo);
+	}
+	
+	// 유저 리스트 삭제 proc
+	public int deleteUserListProc(UserVO vo) {
+		return mybatis.delete("UserDAO.deleteUserListProc", vo);
 	}
 }

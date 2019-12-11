@@ -63,27 +63,28 @@ public class UserController {
 		return "user/signup";
 	}
 
-	@RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
-	public String loginCheck(HttpSession session, HttpServletRequest request, HttpServletResponse reponse, UserVO vo) {
+	/*  안씀
+	 * @RequestMapping(value = "/loginCheck", method = RequestMethod.GET) public
+	 * String loginCheck(HttpSession session, HttpServletRequest request,
+	 * HttpServletResponse reponse, UserVO vo) {
+	 * 
+	 * UserVO temp = new UserVO(); temp = userService.getUser(vo); if
+	 * (temp.getHellonoteId() == null) { //
+	 * logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !!
+	 * return "layout/login"; }
+	 * 
+	 * session.setAttribute("hellonoteId", temp.getHellonoteId());
+	 * session.setAttribute("pw", temp.getPw());
+	 * 
+	 * return "redirect:mainPage"; }
+	 */
 
-		UserVO temp = new UserVO();
-		temp = userService.getUser(vo);
-		if (temp.getHellonoteId() == null) {
-			// logger.info("Welcome home! The client locale is {}.", locale); // 로그찍거 !!
-			return "layout/login";
-		}
-
-		session.setAttribute("hellonoteId", temp.getHellonoteId());
-		session.setAttribute("pw", temp.getPw());
-
-		return "redirect:mainPage";
-	}
-
-	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-
-		return "main/main/mainPage";
-	}
+	/*
+	 * @RequestMapping(value = "/mainPage", method = RequestMethod.GET) public
+	 * String home(Locale locale, Model model) {
+	 * 
+	 * return "main/main/mainPage"; }
+	 */
 
 	// 관리자 페이지 이동
 	@RequestMapping(value = { "/user/*" }, method = RequestMethod.GET)

@@ -34,6 +34,7 @@
 <!-- <script -->
 <%-- 	src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"/>"></script> --%>
 <%-- <script src="<c:url value="/resources/assets/js/theme.js"/>"></script> --%>
+
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -57,12 +58,11 @@
 					<!-- 					<li class="nav-item" role="presentation"><a -->
 					<!-- 						class="nav-link active" href="index.html"><i -->
 					<!-- 							class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li> -->
-<<<<<<< HEAD
+
 					<li class="nav-item" role="presentation"><a
 						class="nav-link active" href="${pageContext.request.contextPath}/translate"><i
 							class="fas fa-tachometer-alt"></i><span> 번역기</span></a></li>
-=======
->>>>>>> branch 'master' of https://github.com/Original9/HelloNote.git
+
 					<!-- 					<li class="nav-item" role="presentation"><a -->
 					<!-- 						class="nav-link active" -->
 					<%-- 						href="${pageContext.request.contextPath}/menuList/calendar"><i --%>
@@ -185,68 +185,27 @@
 							<li class="nav-item dropdown no-arrow mx-1" role="presentation">
 								<div class="nav-item dropdown no-arrow">
 									<button class="btn btn-primary dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false" type="button">
+										data-toggle="dropdown" aria-expanded="false" type="button" onclick="chatButton()">
 										<i class="fas fa-envelope fa-fw"></i><span
-											class="badge badge-danger badge-counter">7</span>
+											class="badge badge-danger badge-counter">new</span>
 									</button>
 									<div
 										class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in"
 										role="menu">
-										<h6 class="dropdown-header">alerts center</h6>
-										<a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle"
-													src="<c:url value="/resources/assets/img/avatars/avatar4.jpeg"/>">
-												<div class="bg-success status-indicator"></div>
+										<h6 class="dropdown-header">회원간 실시간 채팅</h6>
+										<div >
+											<div id="chatWindow" style="overflow-y:auto; height: 500px">
 											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>Hi there! I am wondering if you can help me
-														with a problem I've been having.</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle"
-													src="<c:url value="/resources/assets/img/avatars/avatar2.jpeg"/>">
-												<div class="status-indicator"></div>
-											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>I have the photos that you ordered last month!</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle"
-													src="<c:url value="/resources/assets/img/avatars/avatar3.jpeg"/>">
-												<div class="bg-warning status-indicator"></div>
-											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>Last month's report looks great, I am very
-														happy with the progress so far, keep up the good work!</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="dropdown-list-image mr-3">
-												<img class="rounded-circle"
-													src="<c:url value="/resources/assets/img/avatars/avatar5.jpeg"/>">
-												<div class="bg-success status-indicator"></div>
-											</div>
-											<div class="font-weight-bold">
-												<div class="text-truncate">
-													<span>Am I a good boy? The reason I ask is because
-														someone told me that people say this to all dogs, even if
-														they aren't good...</span>
-												</div>
-												<p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-											</div>
-										</a><a class="text-center dropdown-item small text-gray-500"
-											href="#">Show All Alerts</a>
+												<textarea rows="2" cols="41" placeholder="메세지를 입력하세요" maxlength="100" id="inputMessage">
+												</textarea><br>
+												 <input type="button" class="btn btn-primary" value="send" onclick="send()" style="width:310px; height:50px" >											
+											
+											<textarea id="messageWindow" rows="2" cols="50" readonly="readonly" style="display:none"></textarea>
+											
+										</div>
+										
+										<a class="text-center dropdown-item small text-gray-500"
+											href="#">Show All Chatting</a>
 									</div>
 								</div>
 								<div
@@ -322,6 +281,195 @@
 			</div>
 		</div>
 	</div>
+	<!-- 채팅 관련 script -->
+	<script type="text/javascript">
+
+	
+ var textarea = document.getElementById("messageWindow"); 
+ //var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
+ var webSocket = new WebSocket('ws://localhost/hellonote/chat.do'); 
+ var inputMessage = document.getElementById('inputMessage');
+ 
+ function chatButton(){
+	 
+	 textarea.value="";
+	 msg = {
+			 
+			 fromId : "${hellonoteId}"		 
+			 
+		 };
+	 
+	 
+	 $.ajax({
+	 		type: "post",
+	 		url: "/hellonote/chatList",
+	 		dataType: "json",
+	 		data: msg,
+	 		success: function(response){
+	 			var chatList= response;
+	 			var sessionId = "${hellonoteId}";
+	 			console.log(sessionId);
+	 			
+	 			
+	 			
+	 			for(var i = 0; i< chatList.length ; i++){
+		 			if(chatList[i].fromId == sessionId){// from_id 사용자 ID일시 사용자가 보낸 메세지다.
+		 			
+		 				$('#chatWindow').append("<a class='d-flex align-items-center dropdown-item' align='left'>"
+		 										+"<div style='float:right;'>"
+								 				+"</div>"
+												+"<div class='dropdown-list-image mr-3' style='float:right'>" 
+												+ " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar4.jpeg'/>>"
+								 				+ "<div class='bg-success status-indicator'></div>"
+								 				+ "</div>"
+								 				+"<div class='font-weight-bold'>" 
+								 				+"<div style='width:280px; word-wrap:break-word;'>"
+								 				+ chatList[i].chatContent + "\n"
+								 				+"</div>"
+								 				+"<p class='small text-gray-500 mb-0'>"
+								 				+chatList[i].chatTime
+								 				+"</p>"
+								 				+"</div>"
+								 				+"</a>");
+		 			}else{
+		 				$('#chatWindow').append("<a class='d-flex align-items-center dropdown-item'>"
+		 										+"<div class='dropdown-list-image mr-3' style='float:left'>" 
+		 										+ " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar5.jpeg'/>>"
+								 				+ "<div class='bg-success status-indicator'></div>"
+								 				+ "</div>"
+								 				+"<div class='font-weight-bold'>" 
+								 				+"<div style='width:280px; word-wrap:break-word;'>"
+								 				+ chatList[i].chatContent + "\n"
+								 				+"</div>"
+								 				+"</div style='float:left'>"
+								 				+"<p class='small text-gray-500 mb-0'>"
+								 				+chatList[i].chatTime
+								 				+"</p>"
+								 				+"</div>"
+								 				+"</a>");
+		 				
+		 			}
+		 			
+	 			}
+	 			chatAreaScroll(); 
+				
+	 		}
+	 	});
+ }
+ webSocket.onerror = function(event) { onError(event) };
+ webSocket.onopen = function(event) { onOpen(event) };
+ webSocket.onmessage = function(event) { onMessage(event) };
+ 
+ function onMessage(event) {
+	 var result = JSON.parse(event.data);
+	 console.log(result);
+	 if(result.cmd == "msg") {
+		 console.log(result);
+		 $('#chatWindow').append("<a class='d-flex align-items-center dropdown-item'>"
+					+"<div class='dropdown-list-image mr-3' style='float:left'>" 
+					+ " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar5.jpeg'/>>"
+	 				+ "<div class='bg-success status-indicator'></div>"
+	 				+ "</div>"
+	 				+"<div class='font-weight-bold'>" 
+	 				+"<div class='text-truncate'>"
+	 				+"<div style='width:280px; word-wrap:break-word;'>"
+	 				+ result.chatContent + "\n"
+	 				+"</div>"
+	 				+"</div>"
+	 				+"<p class='small text-gray-500 mb-0'>"
+	 				+result.chatTime
+	 				+"</p>"
+	 				+"</div>"
+	 				+"</a>"); 		 
+	 } else if( result.cmd = "board") {
+		 var list = JSON.parse(result.msg);
+		 for(i=0; i< list.length; i++) {
+			 textarea.value += list[i].seq + "\n" +list[i].boardTitle;		
+		 }
+	 }
+	  
+	 chatAreaScroll(); 
+ }
+ 
+ function onOpen(event) { textarea.value += "연결 성공\n"; }
+ function onError(event) { 
+	 console.log(event); 
+ 	alert(event.data); 
+ }
+ function send() {  // 저장 할때는 여기서 ajax호출해서 값을 넣어줘야한다.
+ 	let today = new Date();
+ 	let year = today.getFullYear();
+ 	let month = today.getMonth() + 1;
+ 	let date = today.getDate();
+ 	let hour = today.getHours();
+ 	let min = today.getMinutes();
+ 	let sec = today.getSeconds();
+	 msg = {
+		 
+		 fromId : "${hellonoteId}",
+		 toId : "all",
+		 chatContent : inputMessage.value,
+		 chatTime : year+"-"+month+"-"+date+" "+hour+":"+min+":"+sec,		 
+		 cmd : "msg"
+	 };
+ 
+ 	$.ajax({
+ 		type: "post",
+ 		url: "/hellonote/insertChat",
+ 		dataType: "json",
+ 		data: msg,
+ 		success: function(response){
+ 		}
+ 	});
+ 
+ 	$('#chatWindow').append("<a class='d-flex align-items-center dropdown-item' align='left'>"
+				+"<div style='float:right;'>"
+				+"</div>"
+			+"<div class='dropdown-list-image mr-3' style='float:right'>" 
+			+ " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar4.jpeg'/>>"
+				+ "<div class='bg-success status-indicator'></div>"
+				+ "</div>"
+				+"<div class='font-weight-bold'>" 
+				+"<div class='text-truncate'>"
+				+"<<div style='width:280px; word-wrap:break-word;'>>"
+				+ msg.chatContent + "\n"
+				+"</div>"
+				+"</div>"
+				+"<p class='small text-gray-500 mb-0'>"
+				+year+"-"+month+"-"+date+" "+hour+":"+min+":"+sec
+				+"</p>"
+				+"</div>"
+				+"</a>"); 
+	webSocket.send(  JSON.stringify( msg )   ); 
+	inputMessage.value = "";
+	
+	chatAreaScroll(); 
+ } 
+ 
+ function getBoard() { 
+	 msg = {
+		 cmd : "board",
+		 id : "",
+		 msg : ""
+	 }
+	webSocket.send(  JSON.stringify( msg )   ); 
+	
+ } 
+ 
+ function chatAreaScroll() {
+	//using jquery
+	/* var textArea = $('#messageWindow');
+	textArea.scrollTop( textArea[0].scrollHeight - textArea.height() );
+	textArea.scrollTop( textArea[0].scrollHeight); */
+	//using javascript
+	var textarea = document.getElementById('messageWindow');
+	textarea.scrollTop = textarea.scrollHeight;
+	
+	var chatarea = document.getElementById('chatWindow');
+	chatarea.scrollTop = chatWindow.scrollHeight;
+}
+</script>
+	
 </body>
 
 </html>

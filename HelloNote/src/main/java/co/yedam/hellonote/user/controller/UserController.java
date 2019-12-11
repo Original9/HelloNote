@@ -57,7 +57,7 @@ public class UserController {
 		return "redirect:getUserList";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 
 		return "layout/login";

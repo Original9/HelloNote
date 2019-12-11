@@ -26,6 +26,20 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	// 아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.POST)
+	public int postIdCheck(UserVO vo) {
+		UserVO idCheck = userService.idCheck(vo);
+
+		int result = 0;
+
+		if (idCheck != null) {
+			result = 1;
+		}
+		return result;
+	}
+
 	// 회원가입 등록처리 프로시저
 	@RequestMapping("/user/insertUserSignUp")
 	public String insertUserSignUp(UserVO vo) {

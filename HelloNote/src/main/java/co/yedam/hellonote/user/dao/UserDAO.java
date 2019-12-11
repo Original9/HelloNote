@@ -55,4 +55,9 @@ public class UserDAO {
 	public int deleteUserListProc(UserVO vo) {
 		return mybatis.delete("UserDAO.deleteUserListProc", vo);
 	}
+
+	// 아이디 중복체크
+	public UserVO idCheck(UserVO vo) {
+		return mybatis.selectOne("UserDAO.idCheck", vo);
+	}
 }

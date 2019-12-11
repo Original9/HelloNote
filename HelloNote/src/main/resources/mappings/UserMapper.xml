@@ -75,11 +75,12 @@
 		parameterType="user">
 		{ call proc_signup(#{hellonoteId},#{pw},#{gender},#{hGrant},#{age},#{hProfile}) }
 	</insert>
-<!-- 	
-	아이디 확인
-	<select id="idCheck" resultType="user" -->
 	
-	
+	<!-- 아이디 중복 체크 -->	
+	<select id="idCheck" resultType="user">
+		SELECT HELLONOTE_ID FROM HELLONOTE_USERS
+		WHERE HELLONOTE_ID = #{hellonoteId}
+	</select>
 	
 
 </mapper>

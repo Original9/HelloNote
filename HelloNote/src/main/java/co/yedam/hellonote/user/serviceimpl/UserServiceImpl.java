@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDAO userDAO;
 
-
 	@Override
 	public UserVO getUser(UserVO vo) {
 		return userDAO.getUser(vo);
@@ -73,6 +72,11 @@ public class UserServiceImpl implements UserService {
 			userDAO.deleteUserListProc(vo);
 		}
 		return 0;
+	}
+
+	@Override
+	public UserVO idCheck(UserVO vo) {
+		return userDAO.idCheck(vo);
 	}
 
 }

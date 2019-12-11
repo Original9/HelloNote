@@ -61,10 +61,10 @@
 					<!-- 							class="fas fa-tachometer-alt"></i><span> AccountBook </span></a></li> -->
 				</ul>
 				<ul class="nav navbar-nav text-light">
-					<li class="nav-item" role="presentation"><a
+					<li class="nav-item defaultMenu" role="presentation"><a
 						class="nav-link active"
 						href="${pageContext.request.contextPath}/translate"><i
-							class="fas fa-tachometer-alt"></i><span> 번역기</span></a></li>
+							class="fas fa-tachometer-alt"></i><span id="9">번역기</span></a></li>
 				</ul>
 				<div class="text-center d-none d-md-inline">
 					<button class="btn rounded-circle border-0" id="sidebarToggle"

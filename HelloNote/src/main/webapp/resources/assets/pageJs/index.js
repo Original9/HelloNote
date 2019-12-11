@@ -17,7 +17,17 @@ $(function() {
 	deleteMenu();
 	// 메뉴 수정 함수
 	editMenuModal();
+	// 기본 메뉴 드래그 함수
+	defaultMenuDraggable();
+	
 })
+
+function defaultMenuDraggable() {
+	$('.defaultMenu').draggable({
+		revert : true,
+		helper : "clone"
+	});
+}
 
 function editMenuModal() {
 	$('#editMenu').on(
@@ -130,9 +140,8 @@ function addingMenuDynamically() {
 	$('#accordionSidebar').append(
 			'<li class="nav-item" role="presentation" id="' + menuId
 					+ '"><a class="nav-link active" href="' + menuTypePage
-					+ '?menuId=' + menuId + '">' + iconType + '<span id="'+
-					menuTypenumber+'">'
-					+ menuName + '</span></a></li>');
+					+ '?menuId=' + menuId + '">' + iconType + '<span id="'
+					+ menuTypenumber + '">' + menuName + '</span></a></li>');
 }
 
 // 메뉴 타입에 따라 아이콘 변경하는 함수
@@ -142,11 +151,12 @@ function iconSelector(i) {
 	if (i == 2)
 		iconType = '<i class="fas fa-sticky-note"></i>', menuTypePage = 'memo';
 	if (i == 3)
-		iconType = '<i class="fas fa-birthday-cake"></i>'; 
+		iconType = '<i class="fas fa-birthday-cake"></i>';
 	if (i == 4)
 		iconType = '<i class="fas fa-money-check"></i>';
 	if (i == 5)
-		iconType = '<i class="far fa-credit-card"></i>', menuTypePage = 'bankaccount';
+		iconType = '<i class="far fa-credit-card"></i>',
+				menuTypePage = 'bankaccount';
 	if (i == 6)
 		iconType = '<i class="fas fa-tasks"></i>';
 }
@@ -221,28 +231,31 @@ function menuSortHandler(newIndex, oldIndex, elementId) {
 
 function menuInsert() {
 
-	$('#addConfirm').on('click', function() {
-		var $menuName = $('#menuName').val().trim();
-		var $menuTypenumber = $('#menuType').val();
-		if (menuName == '') {
-			alert('메뉴 이름을 입력하세요');
-			return;
-		}
+	$('#addConfirm').on(
+			'click',
+			function() {
+				var $menuName = $('#menuName').val().trim();
+				var $menuTypenumber = $('#menuType').val();
+				if (menuName == '') {
+					alert('메뉴 이름을 입력하세요');
+					return;
+				}
 
-		$.ajax({
-			url : 'insertMenu',
-			data : {
-				menuName : $menuName,
-				menuTypenumber : $menuTypenumber
-			},
-			dataType : 'json',
-			success : function(data) {
-				menuId = data, menuName = $menuName, menuTypenumber = $menuTypenumber;
-				iconSelector(menuTypenumber);
-				addingMenuDynamically();
-				$('#menuName').val('');
-				$('#addMenuModal').hide();
-			}
-		})
-	})
+				$.ajax({
+					url : 'insertMenu',
+					data : {
+						menuName : $menuName,
+						menuTypenumber : $menuTypenumber
+					},
+					dataType : 'json',
+					success : function(data) {
+						menuId = data, menuName = $menuName,
+								menuTypenumber = $menuTypenumber;
+						iconSelector(menuTypenumber);
+						addingMenuDynamically();
+						$('#menuName').val('');
+						$('#addMenuModal').hide();
+					}
+				})
+			})
 }

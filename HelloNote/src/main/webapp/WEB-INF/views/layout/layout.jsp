@@ -2,8 +2,6 @@
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="sec"
-   uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 
@@ -60,11 +58,6 @@
                <!--                <li class="nav-item" role="presentation"><a -->
                <!--                   class="nav-link active" href="index.html"><i -->
                <!--                      class="fas fa-tachometer-alt"></i><span> D-DAY</span></a></li> -->
-
-               <li class="nav-item" role="presentation"><a
-                  class="nav-link active" href="${pageContext.request.contextPath}/translate"><i
-                     class="fas fa-tachometer-alt"></i><span> 번역기</span></a></li>
-
                <!--                <li class="nav-item" role="presentation"><a -->
                <!--                   class="nav-link active" -->
                <%--                   href="${pageContext.request.contextPath}/menuList/calendar"><i --%>
@@ -207,7 +200,7 @@
                               <div >
                                  <div id="chatWindow" style="overflow-y:auto; height: 500px">
                                  </div>
-                                    <textarea rows="2" cols="41" placeholder="메세지를 입력하세요"  id="inputMessage">
+                                    <textarea rows="2" cols="41" placeholder="메세지를 입력하세요" maxlength="100" id="inputMessage">
                                     </textarea><br>
                                      <input type="button" class="btn btn-primary" value="send" onclick="send()" style="width:310px; height:50px" >                                 
                                  
@@ -321,10 +314,10 @@
              var sessionId = "${hellonoteId}";
              console.log(sessionId);
              
-             var id = "<sec:authentication property='principal.hellonoteId' />";
-             console.log(id);
+             
+             
              for(var i = 0; i< chatList.length ; i++){
-                if(chatList[i].fromId == id){// from_id 사용자 ID일시 사용자가 보낸 메세지다.
+                if(chatList[i].fromId == sessionId){// from_id 사용자 ID일시 사용자가 보낸 메세지다.
                 
                    $('#chatWindow').append("<a class='d-flex align-items-center dropdown-item' align='left'>"
                                      +"<div style='float:right;'>"
@@ -442,7 +435,7 @@
             + "</div>"
             +"<div class='font-weight-bold'>" 
             +"<div class='text-truncate'>"
-            +"<div style='width:280px; word-wrap:break-word;'>"
+            +"<<div style='width:280px; word-wrap:break-word;'>>"
             + msg.chatContent + "\n"
             +"</div>"
             +"</div>"

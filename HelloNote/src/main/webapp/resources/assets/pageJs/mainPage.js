@@ -1,6 +1,6 @@
 $(function() {
 	// 위젯 드롭 함수
-	widgetDropped();
+//	widgetDropped();
 	// 위젯 리스트 함수
 	getWidgetList();
 
@@ -11,7 +11,11 @@ function getWidgetList(){
 		url : 'getWidgetList',
 		dataType : 'json',
 		success : function(data){
-			console.log(data);
+			$(data).each(function(){
+				// 위젯의 타입을 가져옴
+				$mtn = this.menuTypeNumber
+				
+			})
 		}
 	})
 }

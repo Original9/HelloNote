@@ -75,6 +75,11 @@
 		parameterType="user">
 		{ call proc_signup(#{hellonoteId},#{pw},#{gender},#{hGrant},#{age},#{hProfile}) }
 	</insert>
+<!-- 	
+	아이디 확인
+	<select id="idCheck" resultType="user" -->
+	
+	
 	
 
 </mapper>

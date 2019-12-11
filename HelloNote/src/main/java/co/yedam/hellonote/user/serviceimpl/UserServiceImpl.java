@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDAO userDAO;
 
+
 	@Override
 	public UserVO getUser(UserVO vo) {
 		return userDAO.getUser(vo);
@@ -74,11 +75,4 @@ public class UserServiceImpl implements UserService {
 		return 0;
 	}
 
-//	@Override
-//	public int userIdCheck(String hellonoteId) {
-//		userDAO = userSqlSession.getMapper (UserService.class);
-//		
-//		return userDAO.
-//	}
-//	
 }

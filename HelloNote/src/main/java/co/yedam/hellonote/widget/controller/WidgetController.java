@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +21,8 @@ public class WidgetController {
 	
 	@RequestMapping("getWidgetList")
 	public List<WidgetVO> getWidgetList(WidgetVO vo, HttpSession session){
-		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
 		return service.getWidgetList(vo); 
 	}
 	

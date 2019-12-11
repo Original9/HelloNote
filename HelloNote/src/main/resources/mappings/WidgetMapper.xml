@@ -10,7 +10,7 @@
 		 		menu_id,
 		 		z_index,
 		 		menu_typenumber
- 		from 	${hellonoteId}_widget;
+ 		from 	${hellonoteId}_widget
  	</select>
  	<insert id="insertWidget" parameterType="widget">
  		insert into ${hellonoteId}_widget(

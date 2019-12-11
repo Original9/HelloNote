@@ -58,6 +58,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String homelogin(Locale locale, Model model) {
+
+		return "layout/login";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 
 		return "layout/login";

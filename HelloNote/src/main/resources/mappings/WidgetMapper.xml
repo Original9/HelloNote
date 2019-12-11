@@ -10,10 +10,10 @@
 		 		menu_id,
 		 		z_index,
 		 		menu_typenumber
- 		from 	kang_widget;
+ 		from 	${hellonoteId}_widget;
  	</select>
  	<insert id="insertWidget" parameterType="widget">
- 		insert into kang_widget(
+ 		insert into ${hellonoteId}_widget(
  			widgets_seq,
  			x_location,
  			y_location,
@@ -30,4 +30,13 @@
 			#{menuTypenumber} 			
  		)
  	</insert>
+ 	<update id="updateWidget" parameterType="widget">
+ 		update ${hellonoteId}_widget
+ 		set x_location = #{xLocation}, y_location = #{yLocation}
+ 		where widgets_seq = #{widgetsSeq}
+ 	</update>
+ 	<delete id="deleteWidget" parameterType="widget">
+ 		delete from ${hellonoteId}_widget
+ 		where widgets_seq = #{widgetsSeq}
+ 	</delete>
  </mapper>

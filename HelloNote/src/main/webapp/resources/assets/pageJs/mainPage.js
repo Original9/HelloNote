@@ -1,8 +1,20 @@
 $(function() {
 	// 위젯 드롭 함수
 	widgetDropped();
+	// 위젯 리스트 함수
+	getWidgetList();
 
 })
+
+function getWidgetList(){
+	$.ajax({
+		url : 'getWidgetList',
+		dataType : 'json',
+		success : function(data){
+			console.log(data);
+		}
+	})
+}
 
 function widgetDropped() {
 	$('#widgetContainer')

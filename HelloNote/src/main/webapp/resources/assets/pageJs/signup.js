@@ -42,9 +42,7 @@ function signupbutton() {
 $(function() {
 	$(".idCheck").click(function() {
 
-		var query = {
-			hellonoteId : $("#hellnoteId").val()
-		};
+		var query = {hellonoteId : $("#hellnoteId").val()};
 
 		$.ajax({
 			url : "idCheck",

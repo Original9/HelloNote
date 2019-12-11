@@ -171,9 +171,9 @@ input[type=text]{
       //수정   
       $('#btnUpdateAccountBook').on('click',function(){
          
-          var date = $('[name="accountbookUpdateDate"]').val();
+         var date = $('[name="accountbookUpdateDate"]').val();
          var purpose = $('select[name="updateAccountBookPurpose"]').val();
-         var price = $('input:text[name="updatePrice"]').html();
+         var price = $('input:text[name="updatePrice"]').html($("#updatePrice").html());
          var translation = $('input:text[name="updateTranslation"]').val();
          $.ajax({ 
              url: "updateAccountBook.json", 
@@ -220,7 +220,7 @@ input[type=text]{
       <div class="col-5">
          <h5>
             Balance: <input type="text" class="form-control" id="balance"
-               name="balance">
+               name="balance" readonly>
          </h5>
       </div>
       <input type="button" class="btn btn-primary" id="csutomcheck"

@@ -3,6 +3,8 @@ package co.yedam.hellonote.memo.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +19,8 @@ public class RestMemoController {
 
 	@RequestMapping(value = "insertMemo")
 	public int insertMemo(MemoVO vo, HttpSession session) {
-		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
 		
 		int a = service.insertMemo(vo);
 		return a;
@@ -25,7 +28,8 @@ public class RestMemoController {
 
 	@RequestMapping("memoSortHandling")
 	public void sortHandling(MemoVO vo, HttpSession session) {
-		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
    
 
 		service.sortHandling1(vo);
@@ -34,7 +38,8 @@ public class RestMemoController {
 	
 	@RequestMapping("deleteHandling")
 	public void deleteHandling(HttpSession session, MemoVO vo) {
-		vo.setHellonoteId((String) session.getAttribute("hellonoteId"));
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
 		
 		service.deleteHandling(vo);
 		service.deleteMemo(vo);
@@ -42,7 +47,8 @@ public class RestMemoController {
 
 	@RequestMapping("updateMemo")
 	public void updateMemo(HttpSession session, MemoVO vo) {
-		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
 		
 		service.updateMemo(vo);
 	}

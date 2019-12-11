@@ -1,6 +1,6 @@
 $(function() {
 	// 위젯 드롭 함수
-	widgetDropped();
+//	widgetDropped();
 	// 위젯 리스트 함수
 	getWidgetList();
 

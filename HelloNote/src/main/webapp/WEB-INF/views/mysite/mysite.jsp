@@ -117,7 +117,7 @@
 										autocomplete="off" name="siteId" />
 								</div>
 								<div class="field-wrap">
-									<label>Password </label> <input type="password" required
+									<label>Password </label> <input type="text" required
 										autocomplete="off" name="sitePw" />
 								</div>
 							</div>
@@ -201,7 +201,7 @@
 									autocomplete="off" name="siteId" />
 							</div>
 							<div class="field-wrap">
-								<label>Password : </label> <input type="password" required
+								<label>Password : </label> <input type="text" required
 									autocomplete="off" name="sitePw" />
 							</div>
 							<div class="field-wrap">

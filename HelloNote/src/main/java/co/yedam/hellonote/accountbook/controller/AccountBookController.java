@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ import co.yedam.hellonote.accountbook.vo.AccountBookVO;
 @Controller
 public class AccountBookController {
 	
-	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	
 
 	@Autowired
 	AccountBookService accountBookService;
@@ -44,7 +45,7 @@ public class AccountBookController {
 	@RequestMapping("/getAccountBookList.json")
 	@ResponseBody
 	public List<AccountBookVO>getAccountBookList(HttpSession session, AccountBookVO vo){
-		
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		//vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
 //		vo.setAccountbookSeq(session.getAttribute("accountBook"));
@@ -81,7 +82,6 @@ public class AccountBookController {
 	@RequestMapping(value="/updateAccountBook.json", consumes="application/json", method=RequestMethod.PUT)
 	@ResponseBody
 	public AccountBookVO updateAccountbook(@RequestBody AccountBookVO vo, Model model, HttpSession session) {
-		
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		//vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
@@ -92,6 +92,8 @@ public class AccountBookController {
 	// 엑셀출력
 	@RequestMapping("/downloadExcel")
 	public ModelAndView excelView(AccountBookVO vo) throws IOException {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
 		List<AccountBookVO> list = accountBookService.getAccountBookList(vo);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String[] header = { "accountbookSeq", "accountbookDate", "accountbookTranslation", "accountbookPrice", "accountbookPurpose",};

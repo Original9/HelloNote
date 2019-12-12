@@ -38,7 +38,12 @@
 	</sec:authorize>
 	<!-- admin 권한만 보이게 -->
 	<h2>접속 ID: "${hellonoteId}" 접속 pw: "${pw}"</h2>
-	<div id="widgetContainer"></div>
+	<div id="widgetContainer">
+		<div id="deleteHolder" class="deleteHolder"
+			style="position: absolute; bottom: 80px; right: 0px;margin ">
+			<i class="fas fa-trash fa-lg trashbin"></i>
+		</div>
+	</div>
 
 
 </body>

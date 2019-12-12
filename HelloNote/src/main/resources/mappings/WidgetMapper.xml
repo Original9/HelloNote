@@ -51,4 +51,14 @@
 		where 	memo_order = 1
 		and		menu_id = #{menuId}
 	</select>
+	<update id="zIndexUpdate" parameterType="widget">
+		update ${hellonoteId}_widget
+		set z_index = 2
+		where widgets_seq = #{widgetsSeq}
+	</update>
+	<update id="zIndexUpdateHandler" parameterType="widget">
+	update ${hellonoteId}_widget
+	set z_index = 1
+	where widgets_seq != #{widgetsSeq}	
+	</update>
  </mapper>

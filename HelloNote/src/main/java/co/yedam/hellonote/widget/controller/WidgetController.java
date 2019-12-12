@@ -33,4 +33,18 @@ public class WidgetController {
 		vo.setHellonoteId(userDetails.getUsername());
 		return service.widgetContent(vo);
 	}
+	
+	@RequestMapping("updateWidget")
+	public void updateWidget(WidgetVO vo) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		service.updateWidget(vo);
+	}
+	
+	@RequestMapping("zIndexUpdate")
+	public void zIndexUpdate(WidgetVO vo) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		service.zIndexUpdate(vo);
+	}
 }

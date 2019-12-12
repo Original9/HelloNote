@@ -267,7 +267,7 @@
 					<tiles:insertAttribute name="body" />
 				</div>
 			</div>
-			<footer class="bg-white sticky-footer">
+			<footer class="bg-white sticky-footer" style="display : flex">
 				<div class="container my-auto">
 					<div class="text-center my-auto copyright">
 						<span>Copyright © Brand 2019</span>

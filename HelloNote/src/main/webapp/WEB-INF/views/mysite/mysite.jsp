@@ -144,7 +144,7 @@
 							</div>
 							<br>
 							<div align="center">
-								<button class="btn btn-primary">Add</button>
+								<button class="btn btn-primary" type="submit">Add</button>
 							</div>
 						</form>
 					</div>

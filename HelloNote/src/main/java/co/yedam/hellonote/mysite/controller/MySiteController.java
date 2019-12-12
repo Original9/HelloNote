@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +39,9 @@ public class MySiteController {
 	// 목록조회
 	@RequestMapping("/mysite")
 	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p) {
-		svo.setUserId("kwon");
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		svo.setUserId(userDetails.getUsername());
 		// MySite key값
 		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
 		model.addAttribute("paging", p);
@@ -46,18 +50,22 @@ public class MySiteController {
 	}
 
 	// 등록 처리
-	@RequestMapping("/mysite/insertMySite")
+	@RequestMapping("/insertMySite")
 	public String insertMySite(MySiteVO vo) {
-		vo.setUserId("kwon");
-		vo.setMenuId("8");
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		vo.setUserId(userDetails.getUsername());
 		mySiteService.insertMySite(vo);
 		return "redirect:getMySiteList";
 	}
 
 	// 삭제 처리
-	@RequestMapping("/mysite/deleteMySite")
+	@RequestMapping("/deleteMySite")
 	public String deleteMySite(@RequestParam int[] rowCheck, MySiteVO vo) {
-		vo.setUserId("kwon");
+		UserDetails userDetails =
+				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		vo.setUserId(userDetails.getUsername());
 		mySiteService.deleteMySite(rowCheck, vo);
 		return "redirect:getMySiteList";
 	}
@@ -76,35 +84,47 @@ public class MySiteController {
 
 	// 단건 조회
 	@ResponseBody
-	@RequestMapping("/mysite/getMySite")
+	@RequestMapping("/getMySite")
 	public MySiteVO getMySite(MySiteVO vo) {
-		vo.setUserId("kwon");
+		UserDetails userDetails =
+				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		vo.setUserId(userDetails.getUsername());
 		return mySiteService.getMySite(vo);
 	}
 
 	// 단건 삭제
-	@RequestMapping("/mysite/getMySitedelete")
+	@RequestMapping("/getMySitedelete")
 	public String getMySitedelete(MySiteVO vo) {
-		vo.setUserId("kwon");
+		UserDetails userDetails =
+				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		vo.setUserId(userDetails.getUsername());
 		mySiteService.getMySitedelete(vo);
 		return "redirect:getMySiteList";
 	}
 
 	// 수정
-	@RequestMapping(value = "/mysite/updateMySite", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
+	@RequestMapping(value = "/updateMySite", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
 	)
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
 	public MySiteVO updateMySite(@RequestBody MySiteVO vo) {
-		vo.setUserId("kwon");
+		UserDetails userDetails =
+				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		vo.setUserId(userDetails.getUsername());
 		mySiteService.updateMySite(vo);
 		return mySiteService.getMySite(vo);
 
 	}
 
 	// 엑셀출력
-	@RequestMapping("/mysite/downloadExcel")
+	@RequestMapping("/downloadExcel")
 	public ModelAndView excelView(MySiteVO vo) throws IOException {
-		vo.setUserId("kwon");
+		UserDetails userDetails =
+				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		vo.setUserId(userDetails.getUsername());
 		List<Map<String, Object>> list = mySiteService.getMySiteListMap(vo);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String[] header = { "siteId", "sitePw", "siteAddr", "siteMemo", "title", "menuId", "mySiteSeq", "siteDate" };

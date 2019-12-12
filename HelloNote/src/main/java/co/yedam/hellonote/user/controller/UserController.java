@@ -106,11 +106,11 @@ public class UserController {
 	}
 
 	// 엑셀출력
-	@RequestMapping("/user/downloadExcel2")
+	@RequestMapping("/admin/downloadExcel2")
 	public ModelAndView excelView(UserVO vo) throws IOException {
 		List<Map<String, Object>> list = userService.getUserListMap(vo);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String[] header = { "hellonoteId", "pw", "gender", "hGrant", "age", "hProfile" };
+		String[] header = { "hellonoteId", "gender", "hGrant", "age", "hProfile" };
 		map.put("headers", header);
 		map.put("filename", "excel_userlist");
 		map.put("datas", list);

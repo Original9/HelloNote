@@ -1,6 +1,7 @@
 package co.yedam.hellonote.widget.serviceimpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,11 @@ public class WidgetServiceImpl implements WidgetService{
 	@Override
 	public void updateWidget(WidgetVO vo) {
 		dao.updateWidget(vo);
+	}
+
+	@Override
+	public Map<String, Object> getWidgetContent(WidgetVO vo) {
+		return dao.getWidgetContent(vo);
 	}
 
 }

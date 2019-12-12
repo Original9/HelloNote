@@ -1,6 +1,7 @@
 package co.yedam.hellonote.widget.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class WidgetDAO {
 
 	public void updateWidget(WidgetVO vo) {
 		batis.update("WidgetDAO.updateWidget", vo);
+	}
+	
+	public Map<String, Object> getWidgetContent(WidgetVO vo){
+		return batis.selectOne("WidgetDAO.getWidgetContent", vo);
 	}
 }

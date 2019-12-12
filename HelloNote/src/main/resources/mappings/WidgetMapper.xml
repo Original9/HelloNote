@@ -39,4 +39,7 @@
  		delete from ${hellonoteId}_widget
  		where widgets_seq = #{widgetsSeq}
  	</delete>
+ 	<select id="getWidgetContent" parameterType="widget">
+ 		select * from ${hellonote
+ 	</select>
  </mapper>

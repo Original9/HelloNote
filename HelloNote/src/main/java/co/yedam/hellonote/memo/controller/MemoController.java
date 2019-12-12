@@ -20,7 +20,7 @@ public class MemoController {
 	MemoService service;
 	
 	@RequestMapping("/memo")
-	public String getBoardList(HttpServletRequest request, Model model, HttpSession session, MemoVO vo) {
+	public String getMemoList(HttpServletRequest request, Model model, HttpSession session, MemoVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		vo.setMenuId(Integer.parseInt(request.getParameter("menuId")));

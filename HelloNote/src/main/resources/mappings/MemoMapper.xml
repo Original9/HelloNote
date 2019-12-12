@@ -92,15 +92,4 @@
 		)
 		and menu_id = #{menuId}
 	</update>
-	<select id="widgetMemo" resultType="memo" parameterType="memo">
-		select	memo_title,
-				memo_place,
-				memo_text,
-				menu_id,
-				memo_seq,
-				memo_order
-		from 	${hellonoteId}_memo
-		where 	memo_order = 1;
-
-	</select>
 </mapper>

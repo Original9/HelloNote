@@ -20,17 +20,21 @@ function getWidgetList() {
 				// 위젯 데이터 담아줌
 				widgetData = this;
 
-				// 위젯 메뉴 타입에 따라 위젯 생성
-				switch ($mtn) {
-				case 1:
-					makeCalendarWidget();
-					break;
-				case 2:
-					makeMemoWidget();
-					break;
-				case 9:
-					makeTranslateWidget();
+				if ($mtn == 9) {
+					makeTranslateWidget(this.menuId, $mtn, this.xLocation, this.yLocation);
 				}
+
+				// 위젯 메뉴 타입에 따라 위젯 생성
+				// switch ($mtn) {
+				// case 1:
+				// makeCalendarWidget();
+				// break;
+				// case 2:
+				// makeMemoWidget();
+				// break;
+				// case 9:
+				// makeTranslateWidget();
+				// }
 
 			})
 		}
@@ -46,21 +50,23 @@ function makeMemoWidget() {
 		},
 		dataType : 'json',
 		success : function(data) {
-			
+
 			$('#widgetContainer').append('')
-			
+
 			widgetDraggable();
 		}
 	})
 }
 
 // 번역 위젯 생성
-function makeTranslateWidget() {
+function makeTranslateWidget(widgetId, widgetMenuType) {
 	$('#widgetContainer')
 			.append(
-					'<div style="width: 500px; height: 100px;" class="draggableWidget"> <form><div class="table-responsive"> <table class="table table-bordered"> <thead> <tr> <th> <div> <select id="src_lang"> <option value="kr">한국어</option> <option value="en">영어</option> <option value="jp">일본어</option> <option value="cn">중국어</option> <option value="de">독일어</option> </select> </div> </th> <th> <div> <select id="target_lang"> <option value="kr">한국어</option> <option value="en" selected>영어</option> <option value="jp">일본어</option> <option value="cn">중국어</option> <option value="de">독일어</option> </select> </div> </th> </tr> </thead> <tbody> <tr> <td> <textarea class="form-control" rows="5" id="inputText" placeholder="Type Here">안녕하세요</textarea></td> <td> <textarea class="form-control" rows="5" id="outputText" name="outputText" ></textarea></td> </tr> </tbody> </table> <div align="right"> <input type="button" class="btn btn-dark" value="번역하기" id="translate"> </div> </div> </form>'
+					'<div style="width: 500px; height: 100px;" class="draggableWidget" id="'
+							+ widgetId
+							+ '"> <form><div class="table-responsive"> <table class="table table-bordered"> <thead> <tr> <th> <div> <select id="src_lang"> <option value="kr">한국어</option> <option value="en">영어</option> <option value="jp">일본어</option> <option value="cn">중국어</option> <option value="de">독일어</option> </select> </div> </th> <th> <div> <select id="target_lang"> <option value="kr">한국어</option> <option value="en" selected>영어</option> <option value="jp">일본어</option> <option value="cn">중국어</option> <option value="de">독일어</option> </select> </div> </th> </tr> </thead> <tbody> <tr> <td> <textarea class="form-control" rows="5" id="inputText" placeholder="Type Here">안녕하세요</textarea></td> <td> <textarea class="form-control" rows="5" id="outputText" name="outputText" ></textarea></td> </tr> </tbody> </table> <div align="right"> <input type="button" class="btn btn-dark" value="번역하기" id="translate"> </div> </div> </form>'
 							+ '<input type="hidden" id="widgetMenuType" value="'
-							+ $spanId + '"> </div>');
+							+ widgetMenuType + '"> </div>');
 	translatingMethod();
 	widgetDraggable();
 }
@@ -105,7 +111,7 @@ function widgetDraggable() {
 	});
 }
 
-//번역 함수
+// 번역 함수
 function translatingMethod() {
 	$('#translate').click(function() {
 		console.log('tr')

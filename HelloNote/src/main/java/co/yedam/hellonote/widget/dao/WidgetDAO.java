@@ -26,12 +26,12 @@ public class WidgetDAO {
 	public void deleteWidget(WidgetVO vo) {
 		batis.delete("WidgetDAO.deleteWidget", vo);
 	}
-
+	
 	public void updateWidget(WidgetVO vo) {
 		batis.update("WidgetDAO.updateWidget", vo);
 	}
 	
-	public Map<String, Object> getWidgetContent(WidgetVO vo){
-		return batis.selectOne("WidgetDAO.getWidgetContent", vo);
+	public Map<String, Object> widgetMemo(WidgetVO vo){
+		return batis.selectOne("WidgetDAO.widgetMemo", vo);
 	}
 }

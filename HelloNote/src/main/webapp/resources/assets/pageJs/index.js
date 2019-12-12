@@ -159,6 +159,8 @@ function iconSelector(i) {
 				menuTypePage = 'bankaccount';
 	if (i == 6)
 		iconType = '<i class="fas fa-tasks"></i>';
+	if (i == 8)
+		iconType = '<i class="fas fa-id-card"></i>', menuTypePage = 'mysite';
 }
 function modalOpen() {
 	$('#addMenu').on('click', function() {
@@ -236,7 +238,7 @@ function menuInsert() {
 			function() {
 				var $menuName = $('#menuName').val().trim();
 				var $menuTypenumber = $('#menuType').val();
-				if (menuName == '') {
+				if ($menuName == '') {
 					alert('메뉴 이름을 입력하세요');
 					return;
 				}

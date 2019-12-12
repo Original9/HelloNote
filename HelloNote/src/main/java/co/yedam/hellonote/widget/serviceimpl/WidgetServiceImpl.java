@@ -11,11 +11,11 @@ import co.yedam.hellonote.widget.service.WidgetService;
 import co.yedam.hellonote.widget.vo.WidgetVO;
 
 @Service
-public class WidgetServiceImpl implements WidgetService{
+public class WidgetServiceImpl implements WidgetService {
 
 	@Autowired
 	WidgetDAO dao;
-	
+
 	@Override
 	public List<WidgetVO> getWidgetList(WidgetVO vo) {
 		return dao.getWidgetList(vo);
@@ -37,8 +37,15 @@ public class WidgetServiceImpl implements WidgetService{
 	}
 
 	@Override
-	public Map<String, Object> getWidgetContent(WidgetVO vo) {
-		return dao.getWidgetContent(vo);
+	public Map<String, Object> widgetContent(WidgetVO vo) {
+		switch (vo.getMenuTypeNumber()) {
+		case 2:
+			return dao.widgetMemo(vo);
+		case 3:
+			return null;
+		}
+		
+		return null;
 	}
 
 }

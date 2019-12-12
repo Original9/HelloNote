@@ -45,6 +45,7 @@
 					</div>
 					<!-- 목록 시작 -->
 					<form name="userForm" id="userForm" action='deleteMySite'>
+						<input type="hidden" name="menuId" value="${menuId }" />
 						<div class="table-responsive table mt-2">
 							<table class="table dataTable my-0 table-hover" id="tabledata">
 								<thead>

@@ -119,20 +119,20 @@ public class UserController {
 
 	// 단건 조회
 	@ResponseBody
-	@RequestMapping("/admin/getUser")
+	@RequestMapping("getUser")
 	public UserVO getUser(UserVO vo) {
 		return userService.getUser(vo);
 	}
 
 	// 단건 삭제
-	@RequestMapping("/admin/getUserdelete")
+	@RequestMapping("getUserdelete")
 	public String getUserdelete(UserVO vo) {
 		userService.getUserdelete(vo);
 		return "redirect:getUserList";
 	}
 
 	// 수정
-	@RequestMapping(value = "/admin/updateUser", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
+	@RequestMapping(value = "updateUser", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
 	)
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
 	public UserVO updateUser(@RequestBody UserVO vo) {

@@ -31,15 +31,8 @@
 	<sec:authorize access="isAuthenticated()">
    로그인 중
    </sec:authorize>
-	<!-- admin 권한만 보이게 -->
-	<sec:authorize access="hasAuthority('M')">
-		<button type="button" onclick="location.href='admin/getUserList'">버튼이보이면
-			ADMIN 이다~ 누르면 유저리스트로 간다</button>
-	</sec:authorize>
-	<!-- admin 권한만 보이게 -->
-	<h2>접속 ID: "${hellonoteId}" 접속 pw: "${pw}"</h2>
-	<div id="widgetContainer"></div>
 
+	<div id="widgetContainer"></div>
 
 </body>
 </html>

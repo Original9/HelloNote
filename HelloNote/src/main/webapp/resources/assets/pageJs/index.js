@@ -158,7 +158,7 @@ function iconSelector(i) {
 		iconType = '<i class="far fa-credit-card"></i>',
 				menuTypePage = 'bankaccount';
 	if (i == 6)
-		iconType = '<i class="fas fa-tasks"></i>';
+		iconType = '<i class="fas fa-tasks"></i>', menuTypePage = 'checkList';
 	if (i == 8)
 		iconType = '<i class="fas fa-id-card"></i>', menuTypePage = 'mysite';
 }

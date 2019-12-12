@@ -1,6 +1,7 @@
 package co.yedam.hellonote.widget.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,12 +19,18 @@ public class WidgetController {
 
 	@Autowired
 	WidgetService service;
-	
+
 	@RequestMapping("getWidgetList")
-	public List<WidgetVO> getWidgetList(WidgetVO vo, HttpSession session){
+	public List<WidgetVO> getWidgetList(WidgetVO vo, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		return service.getWidgetList(vo); 
+		return service.getWidgetList(vo);
 	}
-	
+
+	@RequestMapping("widgetContent")
+	public Map<String, Object> widgetContent(WidgetVO vo) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		return service.widgetContent(vo);
+	}
 }

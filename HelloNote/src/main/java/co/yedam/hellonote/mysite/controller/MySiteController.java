@@ -38,20 +38,21 @@ public class MySiteController {
 
 	// 목록조회
 	@RequestMapping("/mysite")
-	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p) {
+	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p, HttpServletRequest request) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		svo.setUserId(userDetails.getUsername());
+
 		// MySite key값
 		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
 		model.addAttribute("paging", p);
-
+		model.addAttribute("menuId", request.getParameter("menuId"));
 		return "main/mysite/mysite"; // jsp 경로
 	}
 
 	// 등록 처리
 	@RequestMapping("/insertMySite")
-	public String insertMySite(MySiteVO vo) {
+	public String insertMySite(MySiteVO vo, HttpServletRequest request) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
@@ -61,9 +62,8 @@ public class MySiteController {
 
 	// 삭제 처리
 	@RequestMapping("/deleteMySite")
-	public String deleteMySite(@RequestParam int[] rowCheck, MySiteVO vo) {
-		UserDetails userDetails =
-				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public String deleteMySite(@RequestParam int[] rowCheck, MySiteVO vo, HttpServletRequest request) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.deleteMySite(rowCheck, vo);
@@ -85,9 +85,8 @@ public class MySiteController {
 	// 단건 조회
 	@ResponseBody
 	@RequestMapping("/getMySite")
-	public MySiteVO getMySite(MySiteVO vo) {
-		UserDetails userDetails =
-				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public MySiteVO getMySite(MySiteVO vo, HttpServletRequest request) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		return mySiteService.getMySite(vo);
@@ -95,9 +94,8 @@ public class MySiteController {
 
 	// 단건 삭제
 	@RequestMapping("/getMySitedelete")
-	public String getMySitedelete(MySiteVO vo) {
-		UserDetails userDetails =
-				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public String getMySitedelete(MySiteVO vo, HttpServletRequest request) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.getMySitedelete(vo);
@@ -108,9 +106,8 @@ public class MySiteController {
 	@RequestMapping(value = "/updateMySite", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
 	)
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
-	public MySiteVO updateMySite(@RequestBody MySiteVO vo) {
-		UserDetails userDetails =
-				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public MySiteVO updateMySite(@RequestBody MySiteVO vo, HttpServletRequest request) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.updateMySite(vo);
@@ -120,9 +117,8 @@ public class MySiteController {
 
 	// 엑셀출력
 	@RequestMapping("/downloadExcel")
-	public ModelAndView excelView(MySiteVO vo) throws IOException {
-		UserDetails userDetails =
-				(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public ModelAndView excelView(MySiteVO vo, HttpServletRequest request) throws IOException {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		List<Map<String, Object>> list = mySiteService.getMySiteListMap(vo);

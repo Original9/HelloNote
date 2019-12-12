@@ -268,7 +268,7 @@ input[type=text]{
          </h5>
       </div>
       <input type="button" class="btn btn-primary" id="csutomcheck" name="csutomcheck" value="임의 내역 조회" data-toggle="modal" data-target="#myModal"> 
-      <input type="button" class="btn btn-primary" id="final" name="final" value="결산" onclick="location.href='downloadExcel'">
+      <input type="button" class="btn btn-primary" id="final" name="final" value="결산" onclick="location.href='downloadExcel2'">
       
 		
       <!--     The Modal -->

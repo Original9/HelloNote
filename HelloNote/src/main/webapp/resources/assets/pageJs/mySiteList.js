@@ -74,6 +74,7 @@ $(function() {
 		$('#select').show(); // 다시 상세보기창을 띄운다
 		// seq 선언 값
 		var seq = $(this).closest('tr').find('input').val(); // 클릭한버튼은 this
+		var ID = $('#good #menuId').val();
 		// closest 부모위
 		// find 배열 eq 1<
 		// 2번째부터 html
@@ -83,7 +84,8 @@ $(function() {
 			url : 'getMySite', // controller 부름 단건조회
 			type : 'GET', // 받아온다
 			data : {
-				mySiteSeq : seq
+				mySiteSeq : seq,
+				menuId : ID
 			}, // data는 {mySiteSeq:seq} 받아옴<input type="hidden"
 			// name="mySiteSeq" id="mySiteSeq"> 참고
 			dataType : 'json', // json 형식
@@ -100,6 +102,7 @@ $(function() {
 		$("#sitePw").html(data.sitePw);
 		$("#siteMemo").html(data.siteMemo);
 		$("#mySiteSeq").val(data.mySiteSeq);
+		$("#menuId").val(data.menuId);
 	}
 
 	// .name 은 클래스 사용 모든영역에 사용가능 #name은 유니크한 ID 그객체만 사용가능
@@ -148,7 +151,8 @@ function mySiteUpdate() {
 				siteId : siteId,
 				sitePw : sitePw,
 				siteMemo : siteMemo,
-				mySiteSeq : mySiteSeq
+				mySiteSeq : mySiteSeq,
+				menuId : $('#menuId').val()
 			}),
 			contentType : 'application/json',
 			success : getupdateHandler

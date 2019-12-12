@@ -88,7 +88,7 @@
 							<c:if test="${mySiteSearchVO.searchCondition=='siteAddr'}">selected</c:if>>주소</option>
 					</select> <input name="keyword" value="${mySiteSearchVO.keyword }"
 						class="form-control" style="width: 200px">
-					<button class="btn btn-primary">검색</button>
+					<button type="button" class="btn btn-primary">검색</button>
 					<button class="btn btn-primary" type="button"
 						onclick="location.href='mysite'">전체목록보기</button>
 				</form>
@@ -119,7 +119,7 @@
 					<div id="signup">
 						<h1>Add Site</h1>
 						<br>
-						<form action="insertMySite" method="post">
+						<form action="insertMySite" method="post" id="good" name="good">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
@@ -146,6 +146,7 @@
 							<div align="center">
 								<button class="btn btn-primary" type="submit">Add</button>
 							</div>
+							<input type="hidden" name="menuId" value="${menuId }" />
 						</form>
 					</div>
 				</div>
@@ -192,6 +193,7 @@
 								<button class="btn btn-primary" name="del"
 									onclick="fn_userDel2()" type="button">삭제</button>
 							</div>
+							<input type="hidden" name="menuId" value="${menuId }" />
 						</form>
 
 					</div>
@@ -229,6 +231,7 @@
 								<button class="btn btn-primary" name="change2" id="change2"
 									type="button">취소</button>
 							</div>
+							<input type="hidden" name="menuId" value="${menuId }" />
 						</form>
 					</div>
 					<!-- 수정 폼 체인지  끝-->
@@ -239,5 +242,6 @@
 		</div>
 	</div>
 	<!-- 상세보기 모달 창 끝  -->
+	<input type="hidden" id="menuId" value="${menuId }" />
 </body>
 </html>

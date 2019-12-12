@@ -7,10 +7,6 @@ function signupbutton() {
 		alert("아이디를 입력하세요.")
 		return false;
 	}
-	if (form.idDuplication.value != "idCheck") {
-		alert("아이디 중복체크를 해주세요.")
-		return false;
-	}
 
 	if (!form.pw.value) {
 		alert("비밀번호를 입력하세요.")
@@ -62,7 +58,7 @@ $(function() {
 			}
 		});
 	});
-	$("#userId").keyup(function() {
+	$("#hellonoteId").keyup(function() {
 		$(".result .msg").text("아이디를 확인해주십시오.");
 		$(".result .msg").attr("style", "color:#000");
 

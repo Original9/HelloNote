@@ -6,7 +6,6 @@
 
 	 <select id="getUserListMap" resultType="map">
 		SELECT 	HELLONOTE_ID "hellonoteId",
-				PW "pw",
 				GENDER "gender",
 				H_GRANT "hGrant",
 				AGE "age",

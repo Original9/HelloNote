@@ -6,7 +6,7 @@
   <mapper namespace="ChatDAO">
   <select id="getChatList" resultType="chat">
   	SELECT CHAT_ID, FROM_ID, TO_ID, CHAT_CONTENT, CHAT_TIME
-  	FROM CHAT
+  	FROM CHAT ORDER BY CHAT_ID
   
   </select>
   

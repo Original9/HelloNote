@@ -21,10 +21,6 @@
 </head>
 
 <body>
-	<form action="logout" method="post">
-		<button>로그아웃</button>
-	</form>
-
 	<!-- 로그인 정보 print -->
 	<sec:authentication property="principal.hellonoteId" />
 	<br>

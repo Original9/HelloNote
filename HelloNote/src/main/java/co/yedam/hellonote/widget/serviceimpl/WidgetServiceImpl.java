@@ -48,4 +48,10 @@ public class WidgetServiceImpl implements WidgetService {
 		return null;
 	}
 
+	@Override
+	public void zIndexUpdate(WidgetVO vo) {
+		dao.zIndexUpdate(vo);
+		dao.zIndexUpdateHandler(vo);
+	}
+
 }

@@ -34,4 +34,12 @@ public class WidgetDAO {
 	public Map<String, Object> widgetMemo(WidgetVO vo){
 		return batis.selectOne("WidgetDAO.widgetMemo", vo);
 	}
+	
+	public void zIndexUpdate(WidgetVO vo) {
+		batis.update("WidgetDAO.zIndexUpdate", vo);
+	}
+	
+	public void zIndexUpdateHandler(WidgetVO vo) {
+		batis.update("WidgetDAO.zIndexUpdateHandler", vo);
+	}
 }

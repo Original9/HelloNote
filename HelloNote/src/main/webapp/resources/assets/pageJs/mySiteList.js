@@ -52,6 +52,12 @@ function fn_userDel2() {
 	}
 }
 
+function getMySiteListForm() {
+	$('.getMySiteListForm').on('click', function() {
+		location.reload();
+	});
+}
+
 // 모달 function 호출
 $(function() {
 	mySiteUpdate();
@@ -74,7 +80,7 @@ $(function() {
 		$('#select').show(); // 다시 상세보기창을 띄운다
 		// seq 선언 값
 		var seq = $(this).closest('tr').find('input').val(); // 클릭한버튼은 this
-		var ID = $('#good #menuId').val();
+		var ID = $('#menuIda').val();
 		// closest 부모위
 		// find 배열 eq 1<
 		// 2번째부터 html
@@ -140,7 +146,7 @@ function mySiteUpdate() {
 		var sitePw = $('#UpdForm input[name="sitePw"]').val();
 		var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
 		var mySiteSeq = $('#dele #mySiteSeq').val();
-		
+
 		$.ajax({
 			url : "updateMySite",
 			method : 'PUT',
@@ -166,8 +172,12 @@ function getupdateHandler(data) {
 	$("#sitePw").html(data.sitePw);
 	$("#siteMemo").html(data.siteMemo);
 	$("#mySiteSeq").val(data.mySiteSeq);
-	
+
 	$('#changeform').hide();
 	location.reload();
-	
+
 }
+//userdatatable Jquery
+$(document).ready(function() {
+	$('#tabledata').DataTable();
+});

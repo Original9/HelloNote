@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,7 +39,8 @@ public class MySiteController {
 
 	// 목록조회
 	@RequestMapping("/mysite")
-	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p, HttpServletRequest request) {
+	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p, HttpServletRequest request,
+			HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		svo.setUserId(userDetails.getUsername());
@@ -46,7 +48,9 @@ public class MySiteController {
 		// MySite key값
 		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
 		model.addAttribute("paging", p);
-		model.addAttribute("menuId", request.getParameter("menuId"));
+		// model.addAttribute("menuId", request.getParameter("menuId"));
+		String menuId = request.getParameter("menuId");
+		session.setAttribute("menuId", menuId);
 		return "main/mysite/mysite"; // jsp 경로
 	}
 
@@ -57,7 +61,7 @@ public class MySiteController {
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.insertMySite(vo);
-		return "redirect:getMySiteList";
+		return "redirect:mysite?menuId=" + vo.getMenuId();
 	}
 
 	// 삭제 처리
@@ -67,7 +71,7 @@ public class MySiteController {
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.deleteMySite(rowCheck, vo);
-		return "redirect:getMySiteList";
+		return "redirect:mysite?menuId=" + vo.getMenuId();
 	}
 
 	// MySiteList 이동
@@ -94,12 +98,31 @@ public class MySiteController {
 
 	// 단건 삭제
 	@RequestMapping("/getMySitedelete")
-	public String getMySitedelete(MySiteVO vo, HttpServletRequest request) {
+	public String getMySitedelete(MySiteVO vo, HttpServletRequest request, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
+		String menuId = request.getParameter("menuId");
+		session.setAttribute("menuId", menuId);
 		mySiteService.getMySitedelete(vo);
-		return "redirect:getMySiteList";
+		return "redirect:mysite?menuId=" + vo.getMenuId();
+	}
+
+	// 전체 목록 보기 클릭버튼
+	@RequestMapping("/getMySiteListForm")
+	public String getMySiteListForm(Model model, MySiteSearchVO svo, Paging p, HttpServletRequest request,
+			HttpSession session) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		userDetails.getUsername();
+		svo.setUserId(userDetails.getUsername());
+
+		// MySite key값
+		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
+		model.addAttribute("paging", p);
+		// model.addAttribute("menuId", request.getParameter("menuId"));
+		String menuId = request.getParameter("menuId");
+		session.setAttribute("menuId", menuId);
+		return "redirect:mysite?menuId=" + svo.getMenuId();
 	}
 
 	// 수정

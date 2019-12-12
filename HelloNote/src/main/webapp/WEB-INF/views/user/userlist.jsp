@@ -53,10 +53,10 @@
 					</div>
 					<!-- 목록 시작 -->
 					<form name="userForm" id="userForm" action='deleteUserListProc'>
-					<input type="hidden" name="hellonoteId1">
+						<input type="hidden" name="hellonoteId1">
 						<div class="table-responsive table mt-2" id="dataTable"
 							role="grid" aria-describedby="dataTable_info">
-							<table class="table dataTable my-0" id="tabledata">
+							<table class="table dataTable my-0 table-hover" id="tabledata">
 								<thead>
 									<tr>
 										<th scope="col" width="10" align="center"><input
@@ -111,7 +111,7 @@
 						<h1>User List</h1>
 						<br>
 						<form name="dele" id="dele" action="deleteUserProc" method="post">
-						<input type="hidden" name="hellonoteId">
+							<input type="hidden" name="hellonoteId">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">

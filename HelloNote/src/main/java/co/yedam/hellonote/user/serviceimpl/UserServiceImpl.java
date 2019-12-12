@@ -31,9 +31,6 @@ public class UserServiceImpl implements UserService {
 	public List<Map<String, Object>> getUserListMap(UserVO vo) {
 		return userDAO.getUserListMap(vo);
 	}
-//	public int insertUser(UserVO dto) {		
-//		return userDAO.insertUser(dto);		
-//	} insert  필요한가
 
 	@Override
 	public int updateUser(UserVO dto) {

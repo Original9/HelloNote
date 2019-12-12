@@ -59,8 +59,11 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
 											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId">
+										<button type="button" class="idCheck">중복 체크</button>
+										<p class="result">
+											<span class="msg">아이디를 확인해주십시오.</span>
+										</p>
 									</div>
-									<div id="id_chech"></div>
 									<br> <br> <br>
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="password"
@@ -94,8 +97,7 @@
 								<hr>
 								<br>
 								<button class="btn btn-primary btn-block text-white btn-user"
-									onclick="signupbutton()" type="button">Register
-									Account</button>
+									onclick="signupbutton()" type="button" disabled="disabled" id="submit">Register Account</button>
 								<br>
 								<hr>
 							</form>

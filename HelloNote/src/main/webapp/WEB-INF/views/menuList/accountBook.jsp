@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +28,24 @@ input[type=text]{
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/assets/js/json.min.js"/>"></script>
+<!-- 구글 차트  -->
+<script src="//www.google.com/jsapi"></script>
+
+
 <meta charset="UTF-8">
 <meta name="viewport"
    content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <link rel="stylesheet"
    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-
-
+   
+   
 <title>AccountBook</title>
+
+
+
+
+
+
 
 <script>
    //ready 이벤트 작성
@@ -162,18 +173,22 @@ input[type=text]{
 //              .remove($("#tbodyList"));
 //    }
 
-   //모달 팝업 이벤트
+
+	
+
+   //수정
+   
    function updateAccountBook(accountbookSeq,accountbookPrice) {
-      $("#updatemodal").on('show.bs.modal', function(){
-         var userId = $(this).closest('tr').find('td').eq(3).html();
-         $('#updatePrice').html(accountbookPrice);
-         
-      //수정   
+	   var ap = (accountbookPrice);
+	   var aseq = accountbookSeq;
+      $("#updatemodal").on('shown.bs.modal', function(){
+         var userId = $(this).closest('tr').find('td').html();
+         console.log(userId);
       $('#btnUpdateAccountBook').on('click',function(){
          
          var date = $('[name="accountbookUpdateDate"]').val();
          var purpose = $('select[name="updateAccountBookPurpose"]').val();
-         var price = $('input:text[name="updatePrice"]').html($("#updatePrice").html());
+         var price = $('input:text[name="updatePrice"]').val();
          var translation = $('input:text[name="updateTranslation"]').val();
          $.ajax({ 
              url: "updateAccountBook.json", 
@@ -209,12 +224,41 @@ input[type=text]{
 
 
 
-   
+// 	var options = {
+// 		title : '항목 통계',
+// 		width : 400,
+// 		height : 500
+// 	};
+// 	google.load('visualization', '1.0', {
+// 		'packages' : [ 'corechart' ]
+// 	});
+// 	google.setOnLoadCallback(function() {
+// //차트에 넣을 data를 ajax 요청해서 가져옴
+// 	$.ajax({
+// 			url : "getAccountBookList",
+// 			method : "post",
+// 			type : "json",
+// 			success : function(data) {
+// 				//ajax결과를 chart에 맞는 data 형태로 가공
+// 				var chartData = [];
+// 				chartData.push([ '항목', '선택수' ])
+// 				for (i = 0; i < data.length; i++) {
+// 					var subarr = [ data[i].accountbookPurpose, (data[i].cnt) ];
+// 					chartData.push(subarr);
+// 				}
+// 				//챠트 그리기
+// 				var chart = new google.visualization.ColumnChart(document
+// 						.querySelector('#chart_div'));
+// 				chart.draw(google.visualization.arrayToDataTable(chartData),
+// 						options);
+// 			}
+// 		});
+// 	});
 </script>
 
 </head>
 <body>
-
+<div id="chart_div"></div>
    <div class="container">
       <h3>가 계 부</h3>
       <div class="col-5">
@@ -223,13 +267,10 @@ input[type=text]{
                name="balance" readonly>
          </h5>
       </div>
-      <input type="button" class="btn btn-primary" id="csutomcheck"
-         name="csutomcheck" value="임의 내역 조회" data-toggle="modal"
-         data-target="#myModal"> <input type="button"
-         class="btn btn-primary" id="final" name="final" value="내역출력"> <input
-         type="button" class="btn btn-primary" id="final" name="final"
-         value="통계">
-
+      <input type="button" class="btn btn-primary" id="csutomcheck" name="csutomcheck" value="임의 내역 조회" data-toggle="modal" data-target="#myModal"> 
+      <input type="button" class="btn btn-primary" id="final" name="final" value="결산" onclick="location.href='downloadExcel'">
+      
+		
       <!--     The Modal -->
       <!--  기간조회 및 항목 모달구현 -->
       <div class="container">
@@ -259,7 +300,6 @@ input[type=text]{
                            <option value="세금" id="tax" name="tax">세금</option>
                            <option value="경조사" id="event" name="event">경조사</option>
                            <option value="취미" id="hobby" name="hobby">취미</option>
-                           <option value="기타" id="other" name="other">기타</option>
                         </select>
                      </div>
                      <div class="modal-footer">

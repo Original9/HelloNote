@@ -29,9 +29,10 @@ public class UserController {
 	// 아이디 중복체크
 	@ResponseBody
 	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
-	public int postIdCheck(UserVO vo) {
-		UserVO idCheck = userService.idCheck(vo);
-
+	public int postIdCheck(HttpServletRequest request) throws Exception{
+		String hellonoteId = request.getParameter("hellonoteId");
+		UserVO idCheck = userService.idCheck(hellonoteId);
+		System.out.println(idCheck+"@@@@@@@@@@@@@");
 		int result = 0;
 
 		if (idCheck != null) {

@@ -97,7 +97,7 @@
 								<hr>
 								<br>
 								<button class="btn btn-primary btn-block text-white btn-user"
-									onclick="signupbutton()" type="button" disabled="disabled" id="submit">Register Account</button>
+									onclick="signupbutton()" type="button" disabled="disabled" id="btnSign">Register Account</button>
 								<br>
 								<hr>
 							</form>

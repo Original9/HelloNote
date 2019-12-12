@@ -13,28 +13,32 @@
 		<!-- 로그인페이지로가는걸 허가 -->
 		<security:intercept-url method="GET"
 			pattern="/" access="permitAll()" />
+		<!-- 아이디 중복체크 -->
+		<security:intercept-url method="POST"
+			pattern="/idCheck" access="permitAll()" />
 		<!-- 회원가입 페이지로 가는걸 허가 -->
 		<security:intercept-url method="GET"
-			pattern="signup" access="permitAll()" />
+			pattern="/signup" access="permitAll()" />
 		<!-- 회원가입 처리 하는걸 허가 -->
 		<security:intercept-url method="GET"
-			pattern="insertUserSignUp" access="permitAll()" />
+			pattern="/insertUserSignUp" access="permitAll()" />
 		<!-- 로그인 처리 해주는걸 허가 -->
 		<security:intercept-url method="GET"
 			pattern="/processLogin" access="permitAll()" />
 		<!-- admin 권한 설정 -->
 		<security:intercept-url
-			pattern="insertUserSignUp" access="hasAuthority('M')" />
-		<security:intercept-url pattern="deleteUser"
+			pattern="/insertUserSignUp" access="hasAuthority('M')" />
+		<security:intercept-url pattern="/deleteUser"
 			access="hasAuthority('M')" />
-		<security:intercept-url pattern="getUserList"
+		<security:intercept-url pattern="/getUserList"
 			access="hasAuthority('M')" />
 		<security:intercept-url
-			pattern="deleteUserListProc" access="hasAuthority('M')" />
+			pattern="/deleteUserListProc" access="hasAuthority('M')" />
 		<security:intercept-url
-			pattern="deleteUserProc" access="hasAuthority('M')" />
+			pattern="/deleteUserProc" access="hasAuthority('M')" />
 		<security:intercept-url
-			pattern="downloadExcel1" access="hasAuthority('M')" />
+			pattern="/downloadExcel1" access="hasAuthority('M')" />
+
 		<!-- user 권한설정 -->
 		<security:intercept-url pattern="/**"
 			access="isAuthenticated()" />

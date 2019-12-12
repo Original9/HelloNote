@@ -1,3 +1,7 @@
+.dropdown-item {
+	cursor : pointer;
+}
+
 #addMenu {
 	position: absolute;
 	color: white;

@@ -45,7 +45,8 @@
 				memo_text,
 				menu_id,
 				memo_seq,
-				memo_order
+				memo_order,
+				memo_place
 		from 	${hellonoteId}_memo
 		where 	memo_order = 1
 		and		menu_id = #{menuId}

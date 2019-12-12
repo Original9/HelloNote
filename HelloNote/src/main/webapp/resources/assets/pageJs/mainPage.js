@@ -14,48 +14,73 @@ function getWidgetList() {
 		url : 'getWidgetList',
 		dataType : 'json',
 		success : function(data) {
-			$(data).each(function() {
-				// 위젯의 메뉴 타입을 가져옴
-				$mtn = this.menuTypeNumber
-				// 위젯 데이터 담아줌
-				widgetData = this;
+			console.log(data)
+			$(data).each(
+					function() {
+						// 위젯의 메뉴 타입을 가져옴
+						$mtn = this.menuTypeNumber
+						// 위젯 데이터 담아줌
+						widgetData = this;
 
-				if ($mtn == 9) {
-					makeTranslateWidget(this.menuId, $mtn, this.xLocation, this.yLocation);
-				}
+						if ($mtn == 9) {
+							makeTranslateWidget(this.menuId, $mtn,
+									this.xLocation, this.yLocation);
+						} else {
+							// 위젯 타입에 따라 안의 내용을 ajax로 가져옴
+							getWidgetContentByType();
+						}
 
-				// 위젯 메뉴 타입에 따라 위젯 생성
-				// switch ($mtn) {
-				// case 1:
-				// makeCalendarWidget();
-				// break;
-				// case 2:
-				// makeMemoWidget();
-				// break;
-				// case 9:
-				// makeTranslateWidget();
-				// }
-
-			})
+					})
 		}
 	})
 }
 
-// 메모 위젯 생성
-function makeMemoWidget() {
+function getWidgetContentByType() {
 	$.ajax({
-		url : 'widgetMemo',
+		url : 'widgetContent',
 		data : {
+			menuTypeNumber : widgetData.menuTypeNumber,
 			menuId : widgetData.menuId
 		},
 		dataType : 'json',
 		success : function(data) {
-
-			$('#widgetContainer').append('')
-
-			widgetDraggable();
+			console.log(data);
+			switch (widgetData.menuTypeNumber) {
+			case 2:
+				makeMemoWidget(data);
+				break;
+			}
 		}
 	})
+}
+
+var flag = false;
+// 메모 위젯 생성
+function makeMemoWidget(data) {
+
+	if (data.MEMO_PLACE == null) {
+		data.MEMO_PLACE = '';
+	}
+
+	$(
+			'<a id="'
+					+ widgetData.menuId
+					+ '" class="memo draggableWidget"'
+					// +' href="memo?menuId='
+					// + data.MENU_ID
+					// + '"'
+					+ '> <div class="title-box"> <h3 class="title">'
+					+ data.MEMO_TITLE
+					+ '</h3> </div> <div class="text-box"> <p class="text">'
+					+ data.MEMO_TEXT
+					+ '</p> </div> <div class="location-box"> <p id="location${list.memoSeq}" class="text">'
+					+ data.MEMO_PLACE + '</p> </div> </a>').appendTo(
+			'#widgetContainer').on('click', function() {
+		if (!flag)
+			location.href = 'memo?menuId=' + data.MENU_ID;
+	});
+
+	widgetDraggable();
 }
 
 // 번역 위젯 생성
@@ -104,8 +129,14 @@ function widgetDraggable() {
 	$('#widgetContainer .draggableWidget').draggable({
 		// 위젯은 컨테이너 안에만 이동 가능
 		containment : '#widgetContainer',
+		start : function() {
+			flag = true;
+		},
 		// 위젯 이동이 멈추면 이벤트 실행
 		stop : function() {
+			setTimeout(function(){
+				flag = false;
+			}, 100);
 			console.log($(this).css('left'));
 		}
 	});

@@ -45,6 +45,7 @@
 					</div>
 					<!-- 목록 시작 -->
 					<form name="userForm" id="userForm" action='deleteMySite'>
+						<input type="hidden" name="menuId" value="${menuId }" />
 						<div class="table-responsive table mt-2">
 							<table class="table dataTable my-0 table-hover" id="tabledata">
 								<thead>
@@ -117,7 +118,7 @@
 										autocomplete="off" name="siteId" />
 								</div>
 								<div class="field-wrap">
-									<label>Password </label> <input type="password" required
+									<label>Password </label> <input type="text" required
 										autocomplete="off" name="sitePw" />
 								</div>
 							</div>
@@ -201,7 +202,7 @@
 									autocomplete="off" name="siteId" />
 							</div>
 							<div class="field-wrap">
-								<label>Password : </label> <input type="password" required
+								<label>Password : </label> <input type="text" required
 									autocomplete="off" name="sitePw" />
 							</div>
 							<div class="field-wrap">

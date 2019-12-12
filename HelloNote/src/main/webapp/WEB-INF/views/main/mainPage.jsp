@@ -45,6 +45,7 @@
 		</div>
 	</div>
 
+	<div id="widgetContainer"></div>
 
 </body>
 </html>

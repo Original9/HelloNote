@@ -28,7 +28,7 @@ public class UserController {
 
 	// 아이디 중복체크
 	@ResponseBody
-	@RequestMapping(value = "/user/idCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
 	public int postIdCheck(UserVO vo) {
 		UserVO idCheck = userService.idCheck(vo);
 
@@ -41,7 +41,7 @@ public class UserController {
 	}
 
 	// 회원가입 등록처리 프로시저
-	@RequestMapping("/user/insertUserSignUp")
+	@RequestMapping("insertUserSignUp")
 	public String insertUserSignUp(UserVO vo) {
 		vo.sethGrant("U");
 		userService.insertUserSignUp(vo);
@@ -49,14 +49,14 @@ public class UserController {
 	}
 
 	// 프로시저 단건삭제
-	@RequestMapping("/admin/deleteUserProc")
+	@RequestMapping("deleteUserProc")
 	public String deleteUserProc(UserVO vo) {
 		userService.deleteUserProc(vo);
 		return "redirect:getUserList";
 	}
 
 	// 프로시저 리스트 삭제 처리
-	@RequestMapping("/admin/deleteUserListProc")
+	@RequestMapping("deleteUserListProc")
 	public String deleteUserListProc(@RequestParam String[] rowCheck, UserVO vo) {
 		userService.deleteUserListProc(rowCheck, vo);
 		return "redirect:getUserList";
@@ -68,7 +68,7 @@ public class UserController {
 		return "layout/login";
 	}
 
-	@RequestMapping(value = "user/signup", method = RequestMethod.GET)
+	@RequestMapping(value = "signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {
 
 		return "user/signup";
@@ -92,21 +92,21 @@ public class UserController {
 	}
 
 	// 유저 리스트 페이지
-	@RequestMapping("/admin/getUserList")
+	@RequestMapping("getUserList")
 	public String getUserList(Model model, UserVO vo) {
 		model.addAttribute("user", userService.getUserList(vo));
 		return "main/user/userlist"; // jsp 경로
 	}
 
 	// 삭제 처리
-	@RequestMapping("/admin/deleteUser")
+	@RequestMapping("deleteUser")
 	public String deleteUser(@RequestParam String[] rowCheck, UserVO vo) {
 		userService.deleteUser(rowCheck, vo);
 		return "redirect:getUserList";
 	}
 
 	// 엑셀출력
-	@RequestMapping("/admin/downloadExcel2")
+	@RequestMapping("downloadExcel1")
 	public ModelAndView excelView(UserVO vo) throws IOException {
 		List<Map<String, Object>> list = userService.getUserListMap(vo);
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -119,20 +119,20 @@ public class UserController {
 
 	// 단건 조회
 	@ResponseBody
-	@RequestMapping("/admin/getUser")
+	@RequestMapping("getUser")
 	public UserVO getUser(UserVO vo) {
 		return userService.getUser(vo);
 	}
 
 	// 단건 삭제
-	@RequestMapping("/admin/getUserdelete")
+	@RequestMapping("getUserdelete")
 	public String getUserdelete(UserVO vo) {
 		userService.getUserdelete(vo);
 		return "redirect:getUserList";
 	}
 
 	// 수정
-	@RequestMapping(value = "/admin/updateUser", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
+	@RequestMapping(value = "updateUser", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
 	)
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
 	public UserVO updateUser(@RequestBody UserVO vo) {

@@ -242,7 +242,7 @@
 											class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
 										<sec:authorize access="hasAuthority('M')">
 											<a class="dropdown-item" role="presentation"
-												onclick="location.href='admin/getUserList'"> <i
+												onclick="location.href='getUserList'"> <i
 												class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings
 											</a>
 										</sec:authorize>

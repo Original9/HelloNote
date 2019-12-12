@@ -42,4 +42,8 @@ public class MemoDAO {
 	public void deleteHandling(MemoVO vo) {
 		batis.update("MemoDAO.deleteHandling", vo);
 	}
+	
+	public MemoVO widgetMemo(MemoVO vo) {
+		return batis.selectOne("MemoDAO.widgetMemo", vo);
+	}
 }

@@ -32,18 +32,6 @@
 		memo_seq=#{memoSeq}
 		and menu_id=#{menuId}
 	</update>
-	<update id="sortHandling" parameterType="memo">
-		update kang_memo
-		set
-		memo_order = (select memo_order from kang_memo where
-		memo_seq=#{memoSeq})
-		where memo_order=#{memoOrder}
-
-		update kang_memo
-		set
-		memo_order=#{memoOrder}
-		where memo_seq=#{memoSeq}
-	</update>
 	<insert id="insertMemo" parameterType="memo">
 		<selectKey order="BEFORE" keyProperty="memoSeq"
 			resultType="int">
@@ -61,8 +49,11 @@
 		'Text',
 		#{memoSeq},
 		#{menuId},
-		(select
-		nvl(max(memo_order), 0)+1 from kang_memo)
+			(
+				select nvl(max(memo_order), 0)+1
+				from kang_memo
+				where menu_id=#{menuId}
+			)
 		)
 	</insert>
 	<update id="sortHandling1" parameterType="memo">
@@ -93,8 +84,23 @@
 		${hellonoteId}_memo
 		set memo_order = memo_order - 1
 		where memo_order >
-		(select memo_order from ${hellonoteId}_memo where memo_seq =
-		#{memoSeq} and menu_id = #{menuId})
+		(
+			select memo_order
+			from ${hellonoteId}_memo
+			where memo_seq = #{memoSeq}
+			and menu_id = #{menuId}
+		)
 		and menu_id = #{menuId}
 	</update>
+	<select id="widgetMemo" resultType="memo" parameterType="memo">
+		select	memo_title,
+				memo_place,
+				memo_text,
+				menu_id,
+				memo_seq,
+				memo_order
+		from 	${hellonoteId}_memo
+		where 	memo_order = 1;
+
+	</select>
 </mapper>

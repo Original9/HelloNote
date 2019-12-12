@@ -44,4 +44,9 @@ public class MemoServiceImpl implements MemoService {
 		dao.deleteHandling(vo);
 	}
 
+	@Override
+	public MemoVO widgetMemo(MemoVO vo) {
+		return dao.widgetMemo(vo);
+	}
+
 }

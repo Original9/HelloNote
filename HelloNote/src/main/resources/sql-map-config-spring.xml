@@ -29,6 +29,8 @@
 			alias="widget" />
 		<typeAlias type="co.yedam.hellonote.chat.ChatVO"
 			alias="chat" />
+		<typeAlias type="co.yedam.hellonote.dday.vo.DDayVO"
+			alias="dday"/>
 	</typeAliases>
 
 </configuration>

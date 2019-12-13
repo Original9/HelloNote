@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int updateUserChange(UserVO dto) {
+		dto.setPw(bcryptPasswordEncoder.encode(dto.getPw()));
 		return userDAO.updateUserChange(dto);
 	}
 	

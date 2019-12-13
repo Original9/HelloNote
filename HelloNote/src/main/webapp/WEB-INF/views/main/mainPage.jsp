@@ -25,8 +25,6 @@
 	<h2>
 		접속 ID:
 		<sec:authentication property="principal.hellonoteId" />
-		접속 pw:
-		<sec:authentication property="principal.pw" />
 		접속 GRANT:
 		<sec:authentication property="principal.hGrant" />
 	</h2>

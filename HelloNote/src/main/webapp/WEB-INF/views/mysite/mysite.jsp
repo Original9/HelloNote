@@ -191,7 +191,7 @@
 					<!-- 수정 폼 체인지 -->
 					<div id="changeform" class="changeform" style="display: none"
 						align="center">
-						<h2>Update mySite</h2>
+						<h2>Update MySite</h2>
 						<br>
 						<form action="updateMySite" id="UpdForm" name="UpdForm">
 							<input type="hidden" name="mySiteSeq" id="mySiteSeq">

@@ -317,7 +317,6 @@
 		}
 
 
-	출처: https://cofs.tistory.com/12 [CofS]
 		
 
 		function chatButton() {

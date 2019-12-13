@@ -31,6 +31,8 @@
 			alias="chat" />
 		<typeAlias type="co.yedam.hellonote.checklist.vo.CheckListVO" 
 			alias="checkList" />
+		<typeAlias type="co.yedam.hellonote.dday.vo.DDayVO"
+			alias="dday"/>
 	</typeAliases>
 
 </configuration>

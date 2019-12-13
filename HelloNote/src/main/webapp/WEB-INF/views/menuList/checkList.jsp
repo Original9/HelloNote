@@ -84,7 +84,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			getCheckList() //내가 해야할것만 가져온다.
+			getCheckList() //내가 해야할것을 가져온다.
 		});
 
 		function getCheckList() {
@@ -112,18 +112,34 @@
 
 								$('.list-group')
 										.append(
-
 												'<li class="list-group-item"><div id="checkItem'
-									+ data[idx].checklistSeq
-									+ '" class="row align-items-center no-gutters"><div class="row align-items-center no-gutters"><div class="col mr-2" id="'
-									+ data[idx].checklistMission
-									+ '"><strong>'
+							+ data[idx].checklistSeq
+							+ '" class="row align-items-center no-gutters"><div class="row align-items-center no-gutters" style="width:70%">'
+														+ '<div class="col-auto"><div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="formCheck-'
+							+ data[idx].checklistSeq
+							+ '"><label class="custom-control-label" for="formCheck-'
+							+ data[idx].checklistSeq
+							+'"> </label></div></div>'
+														+ '<div class="col-8" id="'
+							+ data[idx].checklistMission
+							+ '"><strong>'
 														+ data[idx].checklistMission
-														+ '</strong></h6></div><div class="col-auto"><div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="formCheck-'
-									+ data[idx].checklistSeq
-									+ '"><label class="custom-control-label" for="formCheck-'
-									+ data[idx].checklistSeq
-									+'"> </label></div></div></div></li>')
+														+ '</strong></h6></div>'
+														+ '</div>'
+														+ '<div class="col-3" align="right"><input class="btn btn-primary" id="deleteCheckList'
+							+data[idx].checklistSeq
+							+'" type="button" value="삭제"></div>'
+														+ '</li>')
+
+								//삭제버튼처리
+								var delbutton = $('#deleteCheckdeleteCheckList'
+										+ data[idx].checklistSeq);
+								delbutton.on("click", function(e) {
+
+									deleteCheck(data[idx].checklistSeq);
+
+								});
+								
 								//체크박스 가져오기
 								var strcheckbox = $('#formCheck-'
 										+ data[idx].checklistSeq);
@@ -151,6 +167,18 @@
 							});
 		}
 
+		function deleteCheck(seq){
+			$.ajax({
+				url : "deleteChecklist",
+				method : 'PUT',
+				dataType : 'json',
+				data : JSON.stringify({
+					checklistSeq : seq,
+					checklistStatus : tf,
+				}),
+				contentType : 'application/json'
+			});
+		}
 		function updateCheck(seq, ischecked) {
 			var tf;
 			if (ischecked) {

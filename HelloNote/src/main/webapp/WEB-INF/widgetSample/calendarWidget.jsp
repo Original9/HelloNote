@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<!-- select * from kang_calendar where sysdate between start_date and end_date and menu_id =2;  
-	sysdate가 start_date와 end_date사이에 있는 행을 가져온다.(오늘일정)  -->
+<!-- select title from kang_calendar where sysdate between start_date and end_date and menu_id =2;  
+	title 컬럼을 list로 받아와서 아래에 오늘은 프로젝트하는 날입니가 여기에 append로 넣으면 됨 (id 값은 알아서 정하셈) -->
 
 <body id="page-top">
     <div id="wrapper">
@@ -18,7 +18,7 @@
                                         <form>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="username"><strong>*오늘은 프로젝트를 하는 날입니다 *</strong></label></div>
+                                                    <div class="form-group"><label for="username"><strong>*오늘은 프로젝트를 하는 날입니다 *</strong></label></div>                                                    
                                                 </div>
                                                
                                             </div>

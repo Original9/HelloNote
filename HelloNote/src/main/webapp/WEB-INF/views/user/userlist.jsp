@@ -106,27 +106,33 @@
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
-										<label> ID : </label> <span id="hellonoteId"></span>
+										<label for="ID"><strong>ID :&nbsp;</strong></label><span
+											id="hellonoteId"></span>
 									</div>
-									<label> GENDER : </label> <span id="gender"></span>
+									<label for="Gender"><strong>Gender :&nbsp;</strong></label><span
+										id="gender"></span>
 								</div>
 								<div class="field-wrap">
-									<label> HGANT : </label> <span id="hGrant"></span>
+									<label for="Grant"><strong>Grant :&nbsp;</strong></label><span
+										id="hGrant"></span>
 								</div>
 							</div>
 							<div class="field-wrap">
-								<label> AGE : </label> <span id="age"></span>
+								<label for="Age"><strong>Age :&nbsp;</strong></label><span
+									id="age"></span>
 							</div>
 							<div class="field-wrap">
-								<label> HPROFILE : </label> <span id="hProfile"></span>
+								<label for="Profile"><strong>Profile :&nbsp;</strong></label><span
+									id="hProfile"></span>
 							</div>
 							<br>
-							<div align="center">
-								<button class="btn btn-primary" name="change" id="change"
+							<div class="form-group">
+								<button class="btn btn-primary btn-sm" name="change" id="change"
 									type="button">수정</button>
-								<button class="btn btn-primary" name="del"
-									onclick="fn_userDel2()" type="button">삭제</button>
+								<button class="btn btn-primary btn-sm" name="del"
+									onclick="fn_userDel2()" type="button">취소</button>
 							</div>
+
 						</form>
 
 					</div>
@@ -138,30 +144,39 @@
 						<form action="updateUser" id="UpdForm" name="UpdForm">
 							<div class="field-wrap">
 								<div class="field-wrap">
-									<label> ID : </label> <span id="hellonoteId"></span>
+									<label for="ID"><strong>ID :&nbsp;</strong></label><span
+										id="hellonoteId"></span>
 								</div>
-								<label> GENDER : </label> <span id="gender"></span>
+								<label for="Gender"><strong>Gender :&nbsp;</strong></label><span
+									id="gender"></span>
 							</div>
 							<div class="field-wrap">
-								<label> HGRANT : &nbsp;</label><select name="hGrant">
+								<label for="HGRANT"><strong>Hgrant :&nbsp;</strong></label><select
+									name="hGrant">
 									<option value="M">M</option>
 									<option value="U">U</option>
 
 								</select>
 							</div>
 							<div class="field-wrap">
-								<label>AGE : </label><span id="age"></span>
+								<label for="Age"><strong>Age :&nbsp;</strong></label><span
+									id="age"></span>
 							</div>
-							<div class="field-wrap">
-								<label>HPROFILE</label><br>
-								<textarea name="hProfile" readonly></textarea>
+
+							<div class="form-row">
+								<div class="col">
+									<div class="form-group">
+										<label for="HPROFILE"><strong>HPROFILE</strong></label><br>
+										<textarea style="resize: none; width: 100%; height: 100px;"
+											name="hProfile" readonly></textarea>
+									</div>
+								</div>
 							</div>
-							<br>
-							<div align="center">
-								<button class="btn btn-primary" name="updatebutton"
-									id="updatebutton" type="button">수정</button>
-								<button class="btn btn-primary" name="change2" id="change2"
-									type="button">취소</button>
+							<div class="form-group">
+								<button class="btn btn-primary btn-sm" name="updatebutton"
+									id="updatebutton" type="button">Save</button>
+								<button class="btn btn-primary btn-sm" name="change2"
+									id="change2" type="button">취소</button>
 							</div>
 						</form>
 					</div>

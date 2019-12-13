@@ -305,7 +305,7 @@
 	<script type="text/javascript">
 		var textarea = document.getElementById("messageWindow");
 		//var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
-		var webSocket = new WebSocket('ws://192.168.0.63/hellonote/chat.do');
+		var webSocket = new WebSocket('ws://localhost/hellonote/chat.do');
 		var inputMessage = document.getElementById('inputMessage');
 		
 		function enterkey() {

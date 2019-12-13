@@ -19,8 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		UserVO vo = new UserVO();
 		vo.setHellonoteId(username);
 		vo = dao.getUser(vo);
-		System.out.println("##################################" + vo);
-		System.out.println("##################################" + vo.getHellonoteId());
+
 		// 사용자가 존재하지 않는 경우
 		if (vo == null) {
 			throw new UsernameNotFoundException("no user");

@@ -21,6 +21,9 @@ public interface UserService {
 
 	// 수정
 	public int updateUser(UserVO vo);
+	
+	// 회원정보 수정
+	public int updateUserChange(UserVO vo);
 
 	// 삭제
 	public int deleteUser(String[] list, UserVO vo);

@@ -9,6 +9,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -152,7 +155,9 @@ public class UserController {
 	)
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
 	public UserVO ChangeInfo(@RequestBody UserVO vo) {
-		userService.updateUser(vo);
+		userService.updateUserChange(vo);
+		// 세션에 사용자 정보를 다시 변경
+		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
 		return userService.getUser(vo);
 	}
 }

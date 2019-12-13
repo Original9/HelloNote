@@ -36,6 +36,10 @@ public class UserDAO {
 		return mybatis.update("UserDAO.updateUser", dto);
 	}
 
+	// 회원정보 수정
+	public int updateUserChange(UserVO dto) {
+		return mybatis.update("UserDAO.updateUserChange", dto);
+	}
 	// 삭제
 	public int deleteUser(UserVO vo) {
 		return mybatis.delete("UserDAO.deleteUser", vo);

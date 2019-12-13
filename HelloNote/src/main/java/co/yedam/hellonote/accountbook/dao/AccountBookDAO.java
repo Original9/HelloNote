@@ -23,7 +23,6 @@ public class AccountBookDAO {
 		
 	}
 	
-	
 	//가계부 등록
 	public int insertAccountBook(AccountBookVO vo) {
 		return mybatis.insert("AccountBookDAO.insertAccountBook", vo);
@@ -38,6 +37,9 @@ public class AccountBookDAO {
 		return mybatis.update("AccountBookDAO.updateAccountBook", vo);
 	}
 
-	
+	//구글 차트
+	public List<AccountBookVO>chartAccountBook(AccountBookVO vo){
+		return mybatis.selectList("AccountBookDAO.chartAccountBook", vo);
+	}
 	
 }

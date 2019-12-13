@@ -28,7 +28,7 @@ public class WidgetController {
 	}
 
 	@RequestMapping("widgetContent")
-	public Map<String, Object> widgetContent(WidgetVO vo) {
+	public List<Map<String, Object>> widgetContent(WidgetVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		return service.widgetContent(vo);

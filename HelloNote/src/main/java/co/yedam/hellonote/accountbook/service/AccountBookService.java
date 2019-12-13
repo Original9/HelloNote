@@ -23,6 +23,7 @@ public interface AccountBookService {
 	// 수정
 	int updateAccountBook(AccountBookVO vo);
 	
-	
+	// 구글 차트
+	List<AccountBookVO>chartAccountBook(AccountBookVO vo);
 	
 }

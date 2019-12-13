@@ -153,7 +153,7 @@ function iconSelector(i) {
 	if (i == 3)
 		iconType = '<i class="fas fa-birthday-cake"></i>';
 	if (i == 4)
-		iconType = '<i class="fas fa-money-check"></i>';
+		iconType = '<i class="fas fa-money-check"></i>', menuTypePage = 'accountBook';
 	if (i == 5)
 		iconType = '<i class="far fa-credit-card"></i>',
 				menuTypePage = 'bankaccount';

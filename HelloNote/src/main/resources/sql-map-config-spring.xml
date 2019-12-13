@@ -29,6 +29,8 @@
 			alias="widget" />
 		<typeAlias type="co.yedam.hellonote.chat.ChatVO"
 			alias="chat" />
+		<typeAlias type="co.yedam.hellonote.checklist.vo.CheckListVO" 
+			alias="checkList" />
 	</typeAliases>
 
 </configuration>

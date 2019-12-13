@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+<!-- select * from kang_calendar where sysdate between start_date and end_date and menu_id =2;  
+	sysdate가 start_date와 end_date사이에 있는 행을 가져온다.(오늘일정)  -->
 
 <body id="page-top">
     <div id="wrapper">

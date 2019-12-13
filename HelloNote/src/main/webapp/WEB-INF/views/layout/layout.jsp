@@ -238,7 +238,8 @@
 									<div
 										class="dropdown-menu shadow dropdown-menu-right animated--grow-in"
 										role="menu">
-										<a class="dropdown-item" role="presentation" href="#"><i
+										<a class="dropdown-item" role="presentation"
+											onclick="location.href='getProfile'"><i
 											class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
 										<sec:authorize access="hasAuthority('M')">
 											<a class="dropdown-item" role="presentation"
@@ -267,7 +268,7 @@
 					<tiles:insertAttribute name="body" />
 				</div>
 			</div>
-			<footer class="bg-white sticky-footer" style="display : flex">
+			<footer class="bg-white sticky-footer" style="display: flex">
 				<div class="container my-auto">
 					<div class="text-center my-auto copyright">
 						<span>Copyright © Brand 2019</span>

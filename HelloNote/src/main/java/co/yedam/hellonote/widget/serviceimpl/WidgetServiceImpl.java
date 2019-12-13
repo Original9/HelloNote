@@ -37,7 +37,7 @@ public class WidgetServiceImpl implements WidgetService {
 	}
 
 	@Override
-	public Map<String, Object> widgetContent(WidgetVO vo) {
+	public List<Map<String, Object>> widgetContent(WidgetVO vo) {
 		switch (vo.getMenuTypeNumber()) {
 		case 2:
 			return dao.widgetMemo(vo);

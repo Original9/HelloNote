@@ -8,5 +8,6 @@ public class CheckListVO {
 	String checklistStatus;
 	String menuId;
 	int checklistSeq;
-
+	String hellonoteId;
+//왜안수정요.?
 }

@@ -21,6 +21,7 @@
 </head>
 
 <body>
+	<!-- admin 권한만 보이게 -->
 	<h2>
 		접속 ID:
 		<sec:authentication property="principal.hellonoteId" />
@@ -29,14 +30,12 @@
 		접속 GRANT:
 		<sec:authentication property="principal.hGrant" />
 	</h2>
-	<div id="widgetContainer">
+	<div id="widgetContainer" style="position: relative;">
 		<div id="deleteHolder" class="deleteHolder"
-			style="position: absolute; bottom: 80px; right: 0px;">
+			style="position: absolute; bottom: 10px; padding: 60px 0; width: 98.7%; text-align: center;">
 			<i class="fas fa-trash fa-lg trashbin"></i>
 		</div>
 	</div>
-
-	<div id="widgetContainer"></div>
 
 </body>
 </html>

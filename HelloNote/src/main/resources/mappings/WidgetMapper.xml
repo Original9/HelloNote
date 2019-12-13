@@ -13,6 +13,9 @@
  		from 	${hellonoteId}_widget
  	</select>
  	<insert id="insertWidget" parameterType="widget">
+ 		<selectKey resultType="int" keyProperty="widgetsSeq" order="BEFORE">
+ 			(select nvl(max(widgets_seq),0)+1 from kang_widget)
+ 		</selectKey>
  		insert into ${hellonoteId}_widget(
  			widgets_seq,
  			x_location,
@@ -22,12 +25,12 @@
  			menu_typenumber
  		)
  		values(
- 			(select nvl(max(widgets_seq),0)+1 from kang_widget),
+ 			#{widgetsSeq},
 			null,
 			null,
 			#{menuId},
-			#{zIndex},
-			#{menuTypenumber} 			
+			1,
+			#{menuTypeNumber} 			
  		)
  	</insert>
  	<update id="updateWidget" parameterType="widget">

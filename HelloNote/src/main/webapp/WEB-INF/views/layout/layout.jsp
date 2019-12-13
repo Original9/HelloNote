@@ -244,13 +244,13 @@
 										<sec:authorize access="hasAuthority('M')">
 											<a class="dropdown-item" role="presentation"
 												onclick="location.href='getUserList'"> <i
-												class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings
+												class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;UserList
 											</a>
 										</sec:authorize>
 
-										<a class="dropdown-item" role="presentation" href="#"><i
+									<!-- 	<a class="dropdown-item" role="presentation" href="#"><i
 											class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity
-											log</a>
+											log</a> -->
 										<div class="dropdown-divider"></div>
 										<form action="logout" method="post">
 											<a class="dropdown-item" role="presentation" type="submit"

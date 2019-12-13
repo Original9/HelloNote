@@ -80,10 +80,11 @@ public class UserController {
 		return "main/main/mainPage";
 	}
 
-	@RequestMapping(value = "/getProfile", method = RequestMethod.GET)
-	public String getProfile(Locale locale, Model model) {
-
-		return "main/user/profile";
+	// 프로필이동
+	@RequestMapping("getProfile")
+	public String getProfile(Model model, UserVO vo) {
+		model.addAttribute("user", userService.getUserList(vo));
+		return "main/user/profile"; // jsp 경로
 	}
 
 	// 관리자 페이지 이동
@@ -143,6 +144,14 @@ public class UserController {
 	)
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
 	public UserVO updateUser(@RequestBody UserVO vo) {
+		userService.updateUser(vo);
+		return userService.getUser(vo);
+	}
+
+	@RequestMapping(value = "ChangeInfo", method = RequestMethod.PUT, consumes = "application/json" // 요청헤더
+	)
+	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
+	public UserVO ChangeInfo(@RequestBody UserVO vo) {
 		userService.updateUser(vo);
 		return userService.getUser(vo);
 	}

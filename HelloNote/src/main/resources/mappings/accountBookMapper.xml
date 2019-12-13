@@ -6,11 +6,12 @@
 
 <select id="getAccountBookList" resultType="accountBook">
 		SELECT
+		MENU_ID, 
 		ACCOUNTBOOK_SEQ , 
 		ACCOUNTBOOK_DATE , 
 		ACCOUNTBOOK_TRANSLATION , 
 		ACCOUNTBOOK_PRICE , 
-		ACCOUNTBOOK_PURPOSE 
+		ACCOUNTBOOK_PURPOSE
 		FROM
 		${hellonoteId}_ACCOUNTBOOK
 		<!--  특정 기간 및 항목 선택 조회 -->
@@ -35,6 +36,7 @@
 	</selectKey>  
 		insert into ${hellonoteId}_ACCOUNTBOOK 
 		(
+		MENU_ID,
 		ACCOUNTBOOK_SEQ,
 		ACCOUNTBOOK_DATE, 
 		ACCOUNTBOOK_PURPOSE, 
@@ -43,6 +45,7 @@
 		)
 		values
 		 ( 
+		#{menuId},
 		#{accountbookSeq },
 		#{accountbookDate  },
 		#{accountbookPurpose},
@@ -55,6 +58,7 @@
 <delete id="deleteAccountBook" parameterType="accountBook">
 		DELETE FROM ${hellonoteId}_ACCOUNTBOOK
 		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
+		AND MENU_ID = ${menuId}
 
 </delete>
 
@@ -66,6 +70,7 @@
 		ACCOUNTBOOK_PRICE = #{accountbookPrice} , 
 		ACCOUNTBOOK_TRANSLATION = #{accountbookTranslation}
 		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
+		and MENU_ID = #{menuId}
 
 </update>
 

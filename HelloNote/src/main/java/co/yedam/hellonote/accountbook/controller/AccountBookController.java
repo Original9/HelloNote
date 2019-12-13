@@ -42,7 +42,8 @@ public class AccountBookController {
 	public List<AccountBookVO> getAccountBookList(HttpSession session, AccountBookVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		// vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+		vo.setMenuId((String)session.getAttribute("menuId"));
+		//vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
 //		vo.setAccountbookSeq(session.getAttribute("accountBook"));
 //		vo.setMenuId(request.getParameter("menuId"));
 		return accountBookService.getAccountBookList(vo);
@@ -54,7 +55,8 @@ public class AccountBookController {
 	public AccountBookVO insertAccountBook(@RequestBody AccountBookVO vo, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		// vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+		vo.setMenuId((String)session.getAttribute("menuId"));
+		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
 		accountBookService.insertAccountBook(vo);
 		return vo;
 
@@ -66,7 +68,8 @@ public class AccountBookController {
 	public Map deleteAccountBook(AccountBookVO vo, Model model, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		// vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+		vo.setMenuId((String)session.getAttribute("menuId"));
+		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
 		accountBookService.deleteAccountBook(vo);
 		Map result = new HashMap<Integer, Object>();
 		result.put("result", Boolean.TRUE);
@@ -80,7 +83,8 @@ public class AccountBookController {
 	public AccountBookVO updateAccountbook(@RequestBody AccountBookVO vo, Model model, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		// vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
+		vo.setMenuId((String)session.getAttribute("menuId"));
+		vo.setHellonoteId((String)session.getAttribute("hellonoteId"));
 		accountBookService.updateAccountBook(vo);
 		return vo;
 	}

@@ -82,7 +82,10 @@ input[type=text]{
                url : "getAccountBookList.json",
                method : "POST",
                dataType : "json",
-               data : $("#searchfrm").serialize(),
+               data : {
+            	   searchfrm : $("#searchfrm").serialize(),
+            	   menuId : $('#menuId').val()
+               },
                success : getAccountBookListHandler
 
             });
@@ -105,7 +108,7 @@ input[type=text]{
       var sum = 0;
 
       for (i = 0; i < data.length; i++) {
-         $("<tr>")
+         $("<tr>").append($('<input type=\'hidden\' id=\'menuId\'>').val(data[i].menuId))
                .append($("<td>").html(data[i].accountbookSeq))
                .append($("<td>").html(data[i].accountbookDate))
                .append($("<td>").html(data[i].accountbookPurpose))
@@ -133,18 +136,22 @@ input[type=text]{
             url : "insertAccountBook.json",
             method : "post",
             dataType : "json",
-            data : param,
+            data : {
+            	param,
+            	menuId : $('#menuId').val()
+            },
             contentType : "application/json",
             success : getAccountBookList
          });
 
       });
    }
-
+   //.append()menuId
    //등록 처리 결과
    function insertAccountBookHandler(data) {
       //입력할 데이터를 td태그로 추가하여 입력
-      $("<tr>").append(parseDate($("<td>").html(data.accountbookSeq)))
+      $("<tr>").append($('<input type=\'hidden\' id=\'menuId\'>').val(data[i].menuId))
+      		 .append(parseDate($("<td>").html(data.accountbookSeq)))
              .append($("<td>").html(data.accountbookDate))
              .append($("<td>").html(data.accountbookPurpose))
              .append($("<td>").html(data.accountbookPrice))

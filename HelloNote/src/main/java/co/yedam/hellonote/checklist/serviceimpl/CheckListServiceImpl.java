@@ -17,26 +17,23 @@ public class CheckListServiceImpl implements CheckListService{
 	
 	@Override
 	public List<CheckListVO> getCheckList(CheckListVO vo) {
-		// TODO Auto-generated method stub
-		return dao.getCheckList();
+		return dao.getCheckList(vo);
 	}
 
 	@Override
 	public int deleteList(CheckListVO vo) {
-		// TODO Auto-generated method stub
-		return dao.deleteList();
+		return dao.deleteList(vo);
 	}
 
 	@Override
 	public int insertList(CheckListVO vo) {
-		// TODO Auto-generated method stub
-		return dao.insertList();
+		return dao.insertList(vo);
 	}
 
 	@Override
 	public int updateList(CheckListVO vo) {
-		// TODO Auto-generated method stub
-		return dao.updateList();
+		System.out.println("serviceimpl");
+		return dao.updateList(vo);
 	}
 
 }

@@ -107,28 +107,29 @@
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
-										<label> TITLE </label> <input type="text" required
-											autocomplete="off" name="title" />
+										<label for="Title"><strong>Title&nbsp;</strong></label><input
+											type="text" required autocomplete="off" name="title" />
 									</div>
 									<div class="field-wrap">
-										<label> ADDR </label> <input type="text" required
-											autocomplete="off" name="siteAddr" />
+										<label for="Address"><strong>Address&nbsp;</strong></label> <input
+											type="text" required autocomplete="off" name="siteAddr" />
 									</div>
-									<label> ID or Email </label> <input type="text" required
-										autocomplete="off" name="siteId" />
+									<label for="ID OR Email"><strong>ID OR Email
+											&nbsp;</strong></label><input type="text" required autocomplete="off"
+										name="siteId" />
 								</div>
 								<div class="field-wrap">
-									<label>Password </label> <input type="text" required
-										autocomplete="off" name="sitePw" />
+									<label for="Password"><strong>Password&nbsp;</strong></label><input
+										type="text" required autocomplete="off" name="sitePw" />
 								</div>
 							</div>
 							<div class="field-wrap">
-								<label>Memo</label>
+								<label for="MEMO"><strong>MEMO&nbsp;</strong></label>
 								<textarea name="siteMemo"></textarea>
 							</div>
 							<br>
 							<div align="center">
-								<button class="btn btn-primary" type="submit">Add</button>
+								<button class="btn btn-primary btn-sm" type="submit">추가</button>
 							</div>
 							<input type="hidden" id="menuIda" name="menuId" value="${menuId}" />
 						</form>
@@ -157,25 +158,30 @@
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
-										<label> TITLE : </label> <span id="title"></span>
+										<label for="Title"><strong>Title :&nbsp;</strong></label><span
+											id="title"></span>
 									</div>
 									<div class="field-wrap">
-										<label> ADDR : </label> <span id="siteAddr"></span>
+										<label for="Address"><strong>Address :&nbsp;</strong></label><span
+											id="siteAddr"></span>
 									</div>
-									<label> ID or Email : </label> <span id="siteId"></span>
+									<label for="ID OR Email"><strong>ID OR Email
+											:&nbsp;</strong></label><span id="siteId"></span>
 								</div>
 								<div class="field-wrap">
-									<label>Password : </label> <span id="sitePw"></span>
+									<label for="Password"><strong>Password :&nbsp;</strong></label><span
+										id="sitePw"></span>
 								</div>
 							</div>
 							<div class="field-wrap">
-								<label>Memo : </label> <span id="siteMemo"></span>
+								<label for="Memo"><strong>Memo :&nbsp;</strong></label><span
+									id="siteMemo"></span>
 							</div>
 							<br>
-							<div align="center">
-								<button class="btn btn-primary" name="change" id="change"
+							<div class="form-group">
+								<button class="btn btn-primary btn-sm" name="change" id="change"
 									type="button">수정</button>
-								<button class="btn btn-primary" name="del"
+								<button class="btn btn-primary btn-sm" name="del"
 									onclick="fn_userDel2()" type="button">삭제</button>
 							</div>
 
@@ -185,36 +191,60 @@
 					<!-- 수정 폼 체인지 -->
 					<div id="changeform" class="changeform" style="display: none"
 						align="center">
-						<h1>Update mySite</h1>
+						<h2>Update mySite</h2>
 						<br>
 						<form action="updateMySite" id="UpdForm" name="UpdForm">
 							<input type="hidden" name="mySiteSeq" id="mySiteSeq">
-							<div class="field-wrap">
-								<div class="field-wrap">
-									<label> TITLE : </label> <input type="text" required
-										autocomplete="off" name="title" />
+							<div class="form-row">
+								<div class="col">
+									<div class="form-group">
+										<label for="Title"><strong>Title</strong></label><input
+											class="form-control" type="text" autocomplete="off"
+											name="title">
+									</div>
 								</div>
-								<div class="field-wrap">
-									<label> ADDR : </label> <input type="text" required
-										autocomplete="off" name="siteAddr" />
+							</div>
+							<div class="form-row">
+								<div class="col">
+									<div class="form-group">
+										<label for="Address"><strong>Address</strong></label><input
+											class="form-control" type="text" autocomplete="off"
+											name="siteAddr">
+									</div>
 								</div>
-								<label> ID or Email : </label> <input type="text" required
-									autocomplete="off" name="siteId" />
+								<div class="form-row">
+									<div class="col">
+										<div class="form-group">
+											<label for="ID OR Email"><strong>ID OR Email</strong></label><input
+												class="form-control" type="text" autocomplete="off"
+												name="siteId">
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col">
+										<div class="form-group">
+											<label for="Password"><strong>Password</strong></label><input
+												class="form-control" type="text" autocomplete="off"
+												name="sitePw">
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="field-wrap">
-								<label>Password : </label> <input type="text" required
-									autocomplete="off" name="sitePw" />
+							<div class="form-row">
+								<div class="col">
+									<div class="form-group">
+										<label for="MEMO"><strong>MEMO</strong></label><br>
+										<textarea style="resize: none; width: 100%; height: 100px;"
+											name="siteMemo"></textarea>
+									</div>
+								</div>
 							</div>
-							<div class="field-wrap">
-								<label>Memo : </label>
-								<textarea name="siteMemo"></textarea>
-							</div>
-							<br>
-							<div align="center">
-								<button class="btn btn-primary" name="updatebutton"
-									id="updatebutton" type="button">수정</button>
-								<button class="btn btn-primary" name="change2" id="change2"
-									type="button">취소</button>
+							<div class="form-group">
+								<button class="btn btn-primary btn-sm" name="updatebutton"
+									id="updatebutton" type="button">저장</button>
+								<button class="btn btn-primary btn-sm" name="change2"
+									id="change2" type="button">취소</button>
 							</div>
 							<input type="hidden" name="menuId" value="${menuId }" />
 						</form>

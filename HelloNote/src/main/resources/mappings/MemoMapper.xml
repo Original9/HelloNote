@@ -35,7 +35,7 @@
 	<insert id="insertMemo" parameterType="memo">
 		<selectKey order="BEFORE" keyProperty="memoSeq"
 			resultType="int">
-			select nvl(max(memo_seq), 0)+1 from kang_memo
+			select nvl(max(memo_seq), 0)+1 from ${hellonoteId}_memo
 		</selectKey>
 		insert into ${hellonoteId}_memo(
 		memo_title,

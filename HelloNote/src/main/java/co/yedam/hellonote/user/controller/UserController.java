@@ -29,10 +29,10 @@ public class UserController {
 	// 아이디 중복체크
 	@ResponseBody
 	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
-	public int postIdCheck(HttpServletRequest request) throws Exception{
+	public int postIdCheck(HttpServletRequest request) throws Exception {
 		String hellonoteId = request.getParameter("hellonoteId");
 		UserVO idCheck = userService.idCheck(hellonoteId);
-		System.out.println(idCheck+"@@@@@@@@@@@@@");
+		System.out.println(idCheck + "@@@@@@@@@@@@@");
 		int result = 0;
 
 		if (idCheck != null) {
@@ -78,6 +78,12 @@ public class UserController {
 	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "main/main/mainPage";
+	}
+
+	@RequestMapping(value = "/getProfile", method = RequestMethod.GET)
+	public String getProfile(Locale locale, Model model) {
+
+		return "main/user/profile";
 	}
 
 	// 관리자 페이지 이동

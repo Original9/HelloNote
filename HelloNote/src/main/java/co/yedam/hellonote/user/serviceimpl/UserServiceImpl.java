@@ -31,9 +31,6 @@ public class UserServiceImpl implements UserService {
 	public List<Map<String, Object>> getUserListMap(UserVO vo) {
 		return userDAO.getUserListMap(vo);
 	}
-//	public int insertUser(UserVO dto) {		
-//		return userDAO.insertUser(dto);		
-//	} insert  필요한가
 
 	@Override
 	public int updateUser(UserVO dto) {
@@ -56,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int insertUserSignUp(UserVO vo) {
-		vo.setPw(Password.encryptSimpleTest(vo.getPw()));
+		//vo.setPw(Password.encryptSimpleTest(vo.getPw()));
 		return userDAO.insertUserSignUp(vo);
 	}
 
@@ -75,8 +72,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO idCheck(UserVO vo) {
-		return userDAO.idCheck(vo);
+	public UserVO idCheck(String hellonoteId) {
+		return userDAO.idCheck(hellonoteId);
 	}
 
 }

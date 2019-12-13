@@ -1,6 +1,7 @@
 package co.yedam.hellonote.widget.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class WidgetDAO {
 	}
 
 	public int insertWidget(WidgetVO vo) {
-		return batis.insert("WidgetDAO.insertWidget", vo);
+		batis.insert("WidgetDAO.insertWidget", vo);
+		return vo.getWidgetsSeq();
 	}
 
 	public void deleteWidget(WidgetVO vo) {
@@ -28,5 +30,17 @@ public class WidgetDAO {
 
 	public void updateWidget(WidgetVO vo) {
 		batis.update("WidgetDAO.updateWidget", vo);
+	}
+
+	public List<Map<String, Object>> widgetMemo(WidgetVO vo) {
+		return batis.selectList("WidgetDAO.widgetMemo", vo);
+	}
+
+	public void zIndexUpdate(WidgetVO vo) {
+		batis.update("WidgetDAO.zIndexUpdate", vo);
+	}
+
+	public void zIndexUpdateHandler(WidgetVO vo) {
+		batis.update("WidgetDAO.zIndexUpdateHandler", vo);
 	}
 }

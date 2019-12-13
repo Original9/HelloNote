@@ -12,4 +12,5 @@ public class WidgetVO {
 	private int zIndex;
 	private int menuTypeNumber;
 	private String hellonoteId;
+
 }

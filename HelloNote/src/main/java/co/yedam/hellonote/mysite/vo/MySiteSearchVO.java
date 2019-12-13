@@ -9,5 +9,6 @@ public class MySiteSearchVO extends MySiteVO {
 	private String searchCondition;
 	private int start;
 	private int end;
+	private int menuId;
 
 }

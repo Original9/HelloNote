@@ -86,7 +86,7 @@ public class AccountBookController {
 	}
 
 	// 엑셀출력
-	@RequestMapping("/downloadExcel")
+	@RequestMapping("/downloadExcel2")
 	public ModelAndView excelView(AccountBookVO vo) throws IOException {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());

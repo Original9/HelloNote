@@ -20,4 +20,5 @@ public interface MemoService {
 
 	public void deleteHandling(MemoVO vo);
 	
+	public MemoVO widgetMemo(MemoVO vo);
 }

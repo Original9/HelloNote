@@ -36,5 +36,5 @@ public interface UserService {
 	public int deleteUserListProc(String[] list, UserVO vo);
 
 	// 아이디 중복 체크
-	public UserVO idCheck(UserVO vo);
+	public UserVO idCheck(String hellonoteId);
 }

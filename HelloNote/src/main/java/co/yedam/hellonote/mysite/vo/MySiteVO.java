@@ -13,7 +13,7 @@ public class MySiteVO {
 	private String siteAddr;
 	private String siteMemo;
 	private String title;
-	private String menuId;
+	private int menuId;
 	private int mySiteSeq;
 	private Date siteDate;
 	

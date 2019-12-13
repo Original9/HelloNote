@@ -1,5 +1,7 @@
 package co.yedam.hellonote.memo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +53,13 @@ public class RestMemoController {
 		vo.setHellonoteId(userDetails.getUsername());
 		
 		service.updateMemo(vo);
+	}
+	
+	@RequestMapping("widgetMemo")
+	public MemoVO widgetMemo(MemoVO vo){
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		
+		return service.widgetMemo(vo);
 	}
 }

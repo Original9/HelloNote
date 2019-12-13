@@ -80,6 +80,7 @@ public int updateCalendar(HttpServletRequest request, CalendarVO vo) {
 	UserDetails userDetails =
 			(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	
+	
 	HttpSession session = request.getSession();
 	vo.setHellonoteId(userDetails.getUsername());
 	vo.setMenuId((String)session.getAttribute("menuId"));

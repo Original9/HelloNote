@@ -9,8 +9,6 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=480ceff9c2681fcc01d860ea5612d68e&libraries=services"></script>
 <script src="<c:url value="/resources/assets/pageJs/memo.js" />"></script>
-<link rel="stylesheet"
-	href="<c:url value="/resources/assets/css/memo.css"/>">
 </head>
 <body>
 	<ul class="memoul" id="memoul">

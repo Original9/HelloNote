@@ -71,4 +71,13 @@
 		delete from ${hellonoteId}_${menuTableName}
 		where menu_id = #{menuId}
 	</delete>
+	<update id="menuDeleteHandling1" parameterType="menu">
+		update	${hellonoteId}_usermenu
+		set 	menu_index = menu_index - 1
+		where 	menu_index > (
+					select menu_index
+					from ${hellonoteId}_usermenu
+					where menu_id = #{menuId}
+				)
+	</update>
 </mapper>

@@ -42,7 +42,13 @@ public class MenuDAO {
 		return batis.selectOne("MenuDAO.menuType", vo);
 	}
 	
+	// 삭제된 메뉴의 콘텐츠들 삭제
 	public void menuDeleteHandling(MenuVO vo) {
 		batis.delete("MenuDAO.menuDeleteHandling", vo);
+	}
+	
+	// 메뉴 삭제 후 순서 정리
+	public void menuDeleteHandling1(MenuVO vo) {
+		batis.update("MenuDAO.menuDeleteHandling1", vo);
 	}
 }

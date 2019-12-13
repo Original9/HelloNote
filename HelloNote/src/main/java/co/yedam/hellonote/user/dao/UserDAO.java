@@ -57,7 +57,7 @@ public class UserDAO {
 	}
 
 	// 아이디 중복체크
-	public UserVO idCheck(UserVO vo) {
-		return mybatis.selectOne("UserDAO.idCheck", vo);
+	public UserVO idCheck(String hellonoteId) {
+		return mybatis.selectOne("UserDAO.idCheck", hellonoteId);
 	}
 }

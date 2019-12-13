@@ -12,22 +12,13 @@
 </head>
 <!-- CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/mySiteList.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/fonts/fontawesome-all.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/css/mainFont.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 <link rel="stylesheet"
 	href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
 <!-- JS -->
-<script
-	src='<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>'></script>
-<script src='<c:url value="/resources/assets/js/jquery.min.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/chart.min.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/theme.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/json.min.js"/>'></script>
@@ -53,10 +44,10 @@
 					</div>
 					<!-- 목록 시작 -->
 					<form name="userForm" id="userForm" action='deleteUserListProc'>
-					<input type="hidden" name="hellonoteId1">
+						<input type="hidden" name="hellonoteId1">
 						<div class="table-responsive table mt-2" id="dataTable"
 							role="grid" aria-describedby="dataTable_info">
-							<table class="table dataTable my-0" id="tabledata">
+							<table class="table dataTable my-0 table-hover" id="tabledata">
 								<thead>
 									<tr>
 										<th scope="col" width="10" align="center"><input
@@ -92,7 +83,7 @@
 								<button class="btn btn-primary" type="button"
 									onclick="fn_userDel()">삭제</button>
 								<button class="btn btn-primary" type="button"
-									onclick="location.href='downloadExcel2'">엑셀 다운로드</button>
+									onclick="location.href='downloadExcel1'">엑셀 다운로드</button>
 							</div>
 							<!-- 버튼 끝 -->
 						</div>
@@ -111,7 +102,7 @@
 						<h1>User List</h1>
 						<br>
 						<form name="dele" id="dele" action="deleteUserProc" method="post">
-						<input type="hidden" name="hellonoteId">
+							<input type="hidden" name="hellonoteId">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">

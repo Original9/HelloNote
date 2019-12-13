@@ -40,7 +40,8 @@ function fn_userDel() {
 
 	var agree = confirm("삭제 하시겠습니까?");
 	if (agree) {
-		$('#userForm input[name="hellonoteId1"]').val($(this).closest('tr').find('td').val());
+		$('#userForm input[name="hellonoteId1"]').val(
+				$(this).closest('tr').find('td').val());
 		document.userForm.submit();
 	}
 }
@@ -49,7 +50,8 @@ function fn_userDel() {
 function fn_userDel2() {
 	var agree = confirm("삭제 하시겠습니까?");
 	if (agree) {
-		$('#dele input[name="hellonoteId"]').val($('#dele #hellonoteId').html());
+		$('#dele input[name="hellonoteId"]')
+				.val($('#dele #hellonoteId').html());
 		document.dele.submit();
 	}
 }
@@ -92,17 +94,23 @@ $(function() {
 	$('#getUserModal .close').on('click', function() {
 		$('#getUserModal').hide();
 	})
- 
+
 	// change라는 ID버튼을 클릭시 수정모달로 show 해준다음 select 는 hide
-	$('#change').on('click', function() {
-		$('#UpdForm #hellonoteId').html($("#dele #hellonoteId").html());
-		$('#UpdForm #gender').html($("#dele #gender").html());
-		$('#UpdForm select[name="hGrant"]').val($("#dele #hGrant").html());
-		$('#UpdForm #age').html($("#dele #age").html());
-		$('#UpdForm textarea[name="hProfile"]').val($("#dele #hProfile").html());
-		$('#changeform').show();
-		$('#select').hide();
-	})
+	$('#change')
+			.on(
+					'click',
+					function() {
+						$('#UpdForm #hellonoteId').html(
+								$("#dele #hellonoteId").html());
+						$('#UpdForm #gender').html($("#dele #gender").html());
+						$('#UpdForm select[name="hGrant"]').val(
+								$("#dele #hGrant").html());
+						$('#UpdForm #age').html($("#dele #age").html());
+						$('#UpdForm textarea[name="hProfile"]').val(
+								$("#dele #hProfile").html());
+						$('#changeform').show();
+						$('#select').hide();
+					})
 
 	// 수정모달에서 change2(취소버튼)클릭시 다시 select(상세보기모달)로 show 해준다음 changeform은 hide
 	$('#change2').on('click', function() {
@@ -114,10 +122,10 @@ $(function() {
 function UserUpdate() {
 	// 수정 버튼 클릭
 	$('#updatebutton').on('click', function() {
-		// span tag는 FORM ID 에 ID .html 
-		// input태그는 (form ID input 종류select or input["name=이름"]).val()  
-		var gender = $('#UpdForm #gender').html(); 
-		var hGrant = $('#UpdForm select[name="hGrant"]').val(); 
+		// span tag는 FORM ID 에 ID .html
+		// input태그는 (form ID input 종류select or input["name=이름"]).val()
+		var gender = $('#UpdForm #gender').html();
+		var hGrant = $('#UpdForm select[name="hGrant"]').val();
 		var age = $('#UpdForm #age').html();
 		var hProfile = $('#UpdForm textarea[name="hProfile"]').val();
 		var hellonoteId = $('#UpdForm #hellonoteId').html();

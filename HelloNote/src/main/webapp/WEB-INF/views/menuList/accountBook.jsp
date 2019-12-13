@@ -6,6 +6,10 @@
 <html>
 <head>
 <style>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+
 input[type=text]{
   width: 100%;
   padding: 12px 20px;
@@ -16,13 +20,11 @@ input[type=text]{
   box-sizing: border-box;
 }
 </style>
-<link rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<!--    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
@@ -31,14 +33,18 @@ input[type=text]{
 <!-- 구글 차트  -->
 <script src="//www.google.com/jsapi"></script>
 
-
 <meta charset="UTF-8">
 <meta name="viewport"
    content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <link rel="stylesheet"
    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-   
-   
+ 
+ <!--  data tables -->
+<script src="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<!-- <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script> -->
+
+
 <title>AccountBook</title>
 
 
@@ -48,12 +54,17 @@ input[type=text]{
 
 
 <script>
+
    //ready 이벤트 작성
    $(function() {
       getAccountBookList();
+       
       insertAccountBook();
+      
       deleteAccountBook();
+      
       updateAccountBook();
+      
    });
 
    //목록 조회 요청
@@ -64,7 +75,7 @@ input[type=text]{
          var fdate = $('#accountbookFirstDate').val();
          var ldate = $('#accountbookLastDate').val();
          if (fdate > ldate) {
-            alert('날짜 선택이 잘못 되었습니다.');
+            alert('날짜 선택이 잘못 되었습니다. 날짜를 다시 확인해 주세요.');
          } else {
             $("#searchfrm")
             $.ajax({
@@ -91,7 +102,7 @@ input[type=text]{
    function getAccountBookListHandler(data) {
       $("tbody").empty();
       //List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
-      var a = 0;
+      var sum = 0;
 
       for (i = 0; i < data.length; i++) {
          $("<tr>")
@@ -103,15 +114,15 @@ input[type=text]{
                .append($('<td>').html('<button class="btn btn-danger" id=\'btnDelete\'>삭제</button>'))
                //.append($('<td>').html('<button class="btn btn-danger" id="btnDelete'+ i + '" onclick="deleteAccountBook(\'btnDelete' + i + '\')">삭제</button>'))
                 //.append($('<td>').html('<button class="btn btn-primary" name="btnUpdate", id="btnUpdate'+ i + '" data-toggle="modal" data-target="#updatemodal" onclick="updateAccountBook('+data[i].accountbookSeq+')">수정</button>'))
-                .append($('<td>').html('<button class="btn btn-primary" name="btnUpdate", id="btnUpdate'+ i + '" data-toggle="modal" data-target="#updatemodal" onclick="updateAccountBook('+data[i].accountbookSeq+', '+data[i].accountbookPrice+')">수정</button>'))
-                .append($('<input type=\'hidden\' id=\'hidden_accountbookSeq\'>').val(data[i].accountbookSeq))
+               .append($('<td>').html('<button class="btn btn-primary" name="btnUpdate", id="btnUpdate'+ i + '" data-toggle="modal" data-target="#updatemodal" onclick="updateAccountBook('+data[i].accountbookSeq+', '+data[i].accountbookPrice+')">수정</button>'))
+             //   .append($('<input type=\'hidden\' id=\'hidden_accountbookSeq\'>').val(data[i].accountbookSeq))
                .appendTo($("#tbodyList"))
-               a += data[i].accountbookPrice;
+               sum += data[i].accountbookPrice;
 
-               $('[name="balance"]').attr('value',a);
+               $('[name="balance"]').attr('value',sum);
                
       }
-      
+	    $('#accountBookTable').dataTable();
    }
 
    //등록
@@ -194,7 +205,8 @@ input[type=text]{
              url: "updateAccountBook.json", 
              method: 'PUT', 
              dataType: 'json', 
-             data: JSON.stringify({accountbookDate:date, accountbookPurpose:purpose , accountbookPrice:price , accountbookTranslation:translation, accountbookSeq:accountbookSeq }),  // 필드명 : 값
+             // 필드명 : 값
+             data: JSON.stringify({accountbookDate:date, accountbookPurpose:purpose , accountbookPrice:price , accountbookTranslation:translation, accountbookSeq:accountbookSeq }),
              contentType: 'application/json', 
              success: getAccountBookList
              //date: accountbookUpdateDate, 
@@ -213,52 +225,55 @@ input[type=text]{
              .replaceAll($("<td>").html(data.accountbookTranslation))
    }
    
-//     for(var i =0; i < data.length; i += 1){
-//           if(data[i].amount >= 0) {
-//             income += data[i].amount;
-//           } else {
-//             spending += data[i].amount;
-//           }
-//         }
-   
+
+//항목별 통계 차트
+
+	
+
+
+	var options = {
+		title : '항목 통계',
+		width : 200,
+		height : 200,
+		backgroundColor: '#f8f9fc'
+
+		
+	};
+	google.load('visualization', '1.0', {
+		'packages' : [ 'corechart' ]
+	});
+	google.setOnLoadCallback(function() {
+//차트에 넣을 data를 ajax 요청해서 가져옴
+	$.ajax({
+			url : "chartAccountBook",
+			method : "post",
+			type : "json",
+			success : function(data) {
+				//ajax결과를 chart에 맞는 data 형태로 가공
+				var chartData = [];
+				chartData.push([ '항목', '비율' ])
+				for (i = 0; i < data.length; i++) {
+					var subarr = [ data[i].accountbookPurpose, (data[i].accountbookPercent) ];
+					chartData.push(subarr);
+				}
+				//챠트 그리기
+				var chart = new google.visualization.PieChart(document
+						.querySelector('#piechart'));
+				chart.draw(google.visualization.arrayToDataTable(chartData),
+						options);
+			}
+		});
+	});
 
 
 
-// 	var options = {
-// 		title : '항목 통계',
-// 		width : 400,
-// 		height : 500
-// 	};
-// 	google.load('visualization', '1.0', {
-// 		'packages' : [ 'corechart' ]
-// 	});
-// 	google.setOnLoadCallback(function() {
-// //차트에 넣을 data를 ajax 요청해서 가져옴
-// 	$.ajax({
-// 			url : "getAccountBookList",
-// 			method : "post",
-// 			type : "json",
-// 			success : function(data) {
-// 				//ajax결과를 chart에 맞는 data 형태로 가공
-// 				var chartData = [];
-// 				chartData.push([ '항목', '선택수' ])
-// 				for (i = 0; i < data.length; i++) {
-// 					var subarr = [ data[i].accountbookPurpose, (data[i].cnt) ];
-// 					chartData.push(subarr);
-// 				}
-// 				//챠트 그리기
-// 				var chart = new google.visualization.ColumnChart(document
-// 						.querySelector('#chart_div'));
-// 				chart.draw(google.visualization.arrayToDataTable(chartData),
-// 						options);
-// 			}
-// 		});
-// 	});
 </script>
 
 </head>
 <body>
-<div id="chart_div"></div>
+<!-- <div id="chart_div"></div> -->
+
+   <div id="piechart" align="right" style="width: 1px; height: 1px;"></div>
    <div class="container">
       <h3>가 계 부</h3>
       <div class="col-5">
@@ -266,12 +281,13 @@ input[type=text]{
             Balance: <input type="text" class="form-control" id="balance"
                name="balance" readonly>
          </h5>
+			 
       </div>
       <input type="button" class="btn btn-primary" id="csutomcheck" name="csutomcheck" value="임의 내역 조회" data-toggle="modal" data-target="#myModal"> 
       <input type="button" class="btn btn-primary" id="final" name="final" value="결산" onclick="location.href='downloadExcel'">
+	  
       
 		
-      <!--     The Modal -->
       <!--  기간조회 및 항목 모달구현 -->
       <div class="container">
          <form id="searchfrm" name="searchfrm">
@@ -314,6 +330,7 @@ input[type=text]{
          </form>
       </div>
       <!--  기간조회 및 항목 모달구현 종료 -->
+	 
 
 
       <!--  수정 -->
@@ -385,11 +402,17 @@ input[type=text]{
             <option value="취미" id="hobby" name="hobby">취미</option>
             <option value="기타" id="other" name="other">기타</option>
          </select> &nbsp;
+         
+          
+          
          <div class="input-group-addon">비고</div>
          <label class="sr-only" for="inlineFormInput">Transaction</label> <input
             type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
             id="accountbookTranslation" name="accountbookTranslation"> <label
             class="sr-only" for="inlineFormInputGroup">Amount</label>
+            
+          
+         
          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
             <div class="input-group-addon">금액</div>
             <input type="text" id="accountbookPrice" name="accountbookPrice"
@@ -401,18 +424,38 @@ input[type=text]{
       </form>
       <div id="accountBookList">
          <table class="table" id="accountBookTable">
-            <tr id="tr" name="tr">
+         <thead>
+            <tr id="tr">
                <th>#</th>
                <th>날짜</th>
                <th>이용 목적</th>
                <th>금액</th>
                <th>비고</th>
+               <th>수정</th>
+               <th>삭제</th>
             </tr>
+            </thead>
             <tbody id="tbodyList">
             </tbody>
+  
          </table>
       </div>
    </div>
+<!-- <table id="sample-table"> -->
+<!--     <thead> -->
+<!--         <tr> -->
+<!--             <th>title-1</th> -->
+<!--             <th>title-2</th> -->
+<!--         </tr> -->
+<!--     </thead> -->
+<!--     <tbody> -->
+<!--         <tr> -->
+<!--             <td>data-1</td> -->
+<!--             <td>data-2</td> -->
+<!--             <td>data-3</td> -->
+<!--         </tr> -->
+<!--     </tbody> -->
+<!-- </table> -->
 </body>
 
 

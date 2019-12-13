@@ -47,6 +47,7 @@
 	</h2>
 	
 <h1>${hellonoteId}</h1>
+
 	<div id="wrapper">
 		<div class="d-flex flex-column" id="content-wrapper">
 			<div id="content">

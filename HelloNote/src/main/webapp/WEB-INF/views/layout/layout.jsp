@@ -206,12 +206,9 @@
 										<div>
 											<div id="chatWindow" style="overflow-y: auto; height: 500px">
 											</div>
-											<textarea rows="2" cols="41" placeholder="메세지를 입력하세요"
-												id="inputMessage">
-                                    </textarea>
-											<br> <input type="button" class="btn btn-primary"
-												value="send" onclick="send()"
-												style="width: 310px; height: 50px">
+											<textarea rows="2" cols="41" placeholder="메세지를 입력하세요"	id="inputMessage" onkeyup="enterkey();"></textarea>
+											<br> <input id="sendMsg" type="button" class="btn btn-primary"
+												value="send" onclick="send()" 	style="width: 310px; height: 50px">
 
 											<textarea id="messageWindow" rows="2" cols="50"
 												readonly="readonly" style="display: none"></textarea>
@@ -308,8 +305,20 @@
 	<script type="text/javascript">
 		var textarea = document.getElementById("messageWindow");
 		//var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
-		var webSocket = new WebSocket('ws://localhost/hellonote/chat.do');
+		var webSocket = new WebSocket('ws://192.168.0.63/hellonote/chat.do');
 		var inputMessage = document.getElementById('inputMessage');
+		
+		function enterkey() {
+	        if (window.event.keyCode == 13) {
+	 
+	             // 엔터키가 눌렸을 때 실행할 내용
+	            send();
+	        }
+		}
+
+
+	출처: https://cofs.tistory.com/12 [CofS]
+		
 
 		function chatButton() {
 
@@ -338,19 +347,14 @@
 
 									$('#chatWindow')
 											.append(
-													"<a class='d-flex align-items-center dropdown-item' align='left'>"
-															+ "<div style='float:right;'>"
-															+ "</div>"
-															+ "<div class='dropdown-list-image mr-3' style='float:right'>"
-															+ " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar4.jpeg'/>>"
-															+ "<div class='bg-success status-indicator'></div>"
-															+ "</div>"
-															+ "<div class='font-weight-bold'>"
-															+ "<div style='width:280px; word-wrap:break-word;'>"
+													"<a class='d-flex align-items-center dropdown-item' >"
+															+ "<div class='font-weight-bold' style='float:right;'>"
+															+ "<div style='width:260px; word-wrap:break-word; text-align:right;'>"
 															+ chatList[i].chatContent
 															+ "\n"
 															+ "</div>"
-															+ "<p class='small text-gray-500 mb-0'>"
+															+ "</div>"
+															+ "<p class='small text-gray-500 mb-0' style='text-align:right;'>"
 															+ chatList[i].chatTime
 															+ "</p>" + "</div>"
 															+ "</a>");
@@ -364,6 +368,8 @@
 															+ "</div>"
 															+ "<div class='font-weight-bold'>"
 															+ "<div style='width:280px; word-wrap:break-word;'>"
+															+ chatList[i].fromId
+															+ ": "
 															+ chatList[i].chatContent
 															+ "\n"
 															+ "</div>"
@@ -391,10 +397,11 @@
 			onMessage(event)
 		};
 
-		function onMessage(event) {
+		function onMessage(event) { //지금 받은 메세지는 다 왼쪽에 출력시키고 있다. 내가 보낸 메세지도 받나 
 			var result = JSON.parse(event.data);
 			console.log(result);
-			if (result.cmd == "msg") {
+			var id = "<sec:authentication property='principal.hellonoteId' />";
+			if (result.cmd == 'msg' && result.fromId != id) { // fromid 가 내가 아닐때 출력해야한다. 
 				console.log(result);
 				$('#chatWindow')
 						.append(
@@ -406,18 +413,13 @@
 										+ "<div class='font-weight-bold'>"
 										+ "<div class='text-truncate'>"
 										+ "<div style='width:280px; word-wrap:break-word;'>"
-										+ result.chatContent
+										+ result.fromId+": "+result.chatContent
 										+ "\n"
 										+ "</div>"
 										+ "</div>"
 										+ "<p class='small text-gray-500 mb-0'>"
 										+ result.chatTime + "</p>" + "</div>"
 										+ "</a>");
-			} else if (result.cmd = "board") {
-				var list = JSON.parse(result.msg);
-				for (i = 0; i < list.length; i++) {
-					textarea.value += list[i].seq + "\n" + list[i].boardTitle;
-				}
 			}
 
 			chatAreaScroll();
@@ -438,9 +440,9 @@
 			let hour = today.getHours();
 			let min = today.getMinutes();
 			let sec = today.getSeconds();
+			var id = "<sec:authentication property='principal.hellonoteId' />";
 			msg = {
-
-				fromId : "${hellonoteId}",
+				fromId : id,
 				toId : "all",
 				chatContent : inputMessage.value,
 				chatTime : year + "-" + month + "-" + date + " " + hour + ":"
@@ -459,19 +461,14 @@
 
 			$('#chatWindow')
 					.append(
-							"<a class='d-flex align-items-center dropdown-item' align='left'>"
-									+ "<div style='float:right;'>"
+							"<a class='d-flex align-items-center dropdown-item' >"
+									+ "<div class='font-weight-bold' style='float:right;'>"
+									+ "<div style='width:260px; word-wrap:break-word; text-align:right;'>"
+									+ msg.chatContent
+									+ "\n"
 									+ "</div>"
-									+ "<div class='dropdown-list-image mr-3' style='float:right'>"
-									+ " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar4.jpeg'/>>"
-									+ "<div class='bg-success status-indicator'></div>"
 									+ "</div>"
-									+ "<div class='font-weight-bold'>"
-									+ "<div class='text-truncate'>"
-									+ "<div style='width:280px; word-wrap:break-word;'>"
-									+ msg.chatContent + "\n" + "</div>"
-									+ "</div>"
-									+ "<p class='small text-gray-500 mb-0'>"
+									+ "<p class='small text-gray-500 mb-0' style='text-align:right;'>"
 									+ year + "-" + month + "-" + date + " "
 									+ hour + ":" + min + ":" + sec + "</p>"
 									+ "</div>" + "</a>");

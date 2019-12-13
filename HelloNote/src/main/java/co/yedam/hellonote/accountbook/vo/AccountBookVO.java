@@ -23,6 +23,7 @@ public class AccountBookVO {
 	private String accountbookFirstDate; //기간조회 첫 번째로 선택하는 날짜
 	private String accountbookLastDate; //기간조회  두 번째로 선택하는 날짜
 	private String hellonoteId; // 메뉴 ID
+	private int accountbookPercent;
 	
 	
 

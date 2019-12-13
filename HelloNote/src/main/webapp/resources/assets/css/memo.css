@@ -25,8 +25,8 @@
 .memo {
 	all: unset;
 	text-decoration: none;
-	color: white !important;
-	background: #4e73df;
+	color: black !important;
+	background: #e8e800;
 	display: block;
 	height: 10em;
 	width: 10em;

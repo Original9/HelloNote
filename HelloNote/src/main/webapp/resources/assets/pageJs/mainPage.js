@@ -33,25 +33,18 @@ function getWidgetList() {
 		dataType : 'json',
 		success : function(data) {
 			console.log(data)
-			$(data)
-					.each(
-							function() {
-								// 위젯의 메뉴 타입을 가져옴
-								var $mtn = this.menuTypeNumber
-								// 위젯 데이터 담아줌
-								var widgetData = this;
-								console.log(this);
-								if ($mtn == 9) {
-									makeTranslateWidget(this);
-								} else {
-									// 위젯 타입에 따라 안의 내용을 ajax로 가져옴
-									getWidgetContentByType(this.widgetsSeq,
-											this.menuId, this.menuTypeNumber,
-											this.xlocation, this.ylocation,
-											this.zindex);
-								}
-
-							})
+			$(data).each(
+					function() {
+						// 위젯의 메뉴 타입을 가져옴
+						var $mtn = this.menuTypeNumber
+						// 위젯 데이터 담아줌
+						var widgetData = this;
+						console.log(this);
+						// 위젯 타입에 따라 안의 내용을 ajax로 가져옴
+						getWidgetContentByType(this.widgetsSeq, this.menuId,
+								this.menuTypeNumber, this.xlocation,
+								this.ylocation, this.zindex);
+					})
 		}
 	})
 }
@@ -60,6 +53,11 @@ function getWidgetList() {
 // 위젯에 widgetsSeq는 id, menuId는 menuid attribute로 붙일 것
 function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 		ylocation, zindex) {
+	if (menuTypeNumber == 9) {
+		makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation, zindex);
+		return;
+	}
+
 	$.ajax({
 		url : 'widgetContent',
 		data : {
@@ -68,9 +66,10 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 		},
 		dataType : 'json',
 		success : function(data) {
+			console.log(data);
 			switch (parseInt(menuTypeNumber)) {
 			case 2:
-				makeMemoWidget(data, widgetsSeq, xlocation, ylocation, zindex);
+				makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex);
 				break;
 			}
 		}
@@ -80,56 +79,48 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 var flag = false;
 
 // 메모 위젯 생성
-function makeMemoWidget(data, widgetsSeq, xlocation, ylocation, zindex) {
-
-	console.log('memo!')
-	
-	if (data.MEMO_PLACE == null) {
-		data.MEMO_PLACE = '';
-	}
+function makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 
 	$(
-			'<a id="'
+			'<div class="grid-item"><a id="'
 					+ widgetsSeq
 					+ '" class="memo draggableWidget" menuid="'
-					+ data.MENU_ID
+					+ menuId
 					+ '" style="left:'
 					+ xlocation
 					+ '; top:'
 					+ ylocation
 					+ '; z-index:'
 					+ zindex
-					+ '"> <div class="title-box"> <h3 class="title">'
-					+ data.MEMO_TITLE
-					+ '</h3> </div> <div class="text-box"> <p class="text">'
-					+ data.MEMO_TEXT
-					+ '</p> </div> <div class="location-box"> <p id="location${list.memoSeq}" class="text">'
-					+ data.MEMO_PLACE + '</p> </div> </a>').appendTo(
+					+ '">  <div> <h3> </h3> </div> </a></div>').appendTo(
 			'#widgetContainer').on('click', function() {
 		if (!flag)
-			location.href = 'memo?menuId=' + data.MENU_ID;
+			location.href = 'memo?menuId=' + menuId;
 	});
 
+	$(data).each(function(){
+		$('a#'+widgetsSeq+' div h3').append(this.MEMO_TITLE+'<br>');
+	})
+	
 	widgetDraggable();
 }
 
 // 번역 위젯 생성
-function makeTranslateWidget(wData) {
+function makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation, zindex) {
 	$('#widgetContainer')
 			.append(
 					'<div style="width: 500px; height: 100px; left: '
-							+ wData.xlocation
+							+ xlocation
 							+ '; top: '
-							+ wData.ylocation
+							+ ylocation
 							+ '; z-index:'
-							+ wData.zindex
-							+ '" class="draggableWidget" id="'
-							+ wData.widgetsSeq
+							+ zindex
+							+ '" menuTypeNumber="'
+							+ menuTypeNumber
+							+ '" class="draggableWidget grid-item" id="'
+							+ widgetsSeq
 							+ '"> <form><div class="table-responsive"> <table class="table table-bordered"> <thead> <tr> <th> <div> <select id="src_lang"> <option value="kr">한국어</option> <option value="en">영어</option> <option value="jp">일본어</option> <option value="cn">중국어</option> <option value="de">독일어</option> </select> </div> </th> <th> <div> <select id="target_lang"> <option value="kr">한국어</option> <option value="en" selected>영어</option> <option value="jp">일본어</option> <option value="cn">중국어</option> <option value="de">독일어</option> </select> </div> </th> </tr> </thead> <tbody> <tr> <td> <textarea class="form-control" rows="5" id="inputText" placeholder="Type Here">안녕하세요</textarea></td> <td> <textarea class="form-control" rows="5" id="outputText" name="outputText" ></textarea></td> </tr> </tbody> </table> <div align="right"> <input type="button" class="btn btn-dark" value="번역하기" id="translate"> </div> </div> </form>'
-							+ '<input type="hidden" id="menuTypeNumber" value="'
-							+ wData.menuTypeNumber
-							+ '"><input type="hidden" id="menuId" value="'
-							+ wData.menuId + '" </div>');
+							+ '</div>');
 	translatingMethod();
 	widgetDraggable();
 }
@@ -142,18 +133,24 @@ function widgetDropped() {
 						accept : ".nav-item",
 						drop : function(event, ui) {
 							var $menuId = $(ui.draggable).attr('id');
-							var $menuTypeNumber = $(ui.draggable).find('span').attr('id');
+							var $menuTypeNumber = $(ui.draggable).find('span')
+									.attr('id');
 
 							var check = true;
 							// 이미 있는 위젯인지 체크
-							$('.draggableWidget').each(function() {
-								if($(this).attr('menuid') == $menuId)
-									check = false;
-							});
+							$('.draggableWidget')
+									.each(
+											function() {
+												if ($(this).attr('menuid') == $menuId
+														|| $(this)
+																.attr(
+																		'menutypenumber') == $menuTypeNumber)
+													check = false;
+											});
 
-							if(!check)
+							if (!check)
 								return;
-							
+
 							$.ajax({
 								url : 'insertWidget',
 								data : {
@@ -161,12 +158,12 @@ function widgetDropped() {
 									menuTypeNumber : $menuTypeNumber
 								},
 								dataType : 'json',
-								success : function(data){
-									getWidgetContentByType(data, $menuId, $menuTypeNumber, 0,
-											0, 1);
+								success : function(data) {
+									getWidgetContentByType(data, $menuId,
+											$menuTypeNumber, 0, 0, 1);
 								}
 							})
-							
+
 						}
 					})
 }

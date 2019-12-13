@@ -105,9 +105,7 @@
 			//체크리스트초기화
 			$(".list-group").empty();
 
-			$
-					.each(
-							data,
+			$.each(data,
 							function(idx, name) {
 
 								$('.list-group')
@@ -132,7 +130,7 @@
 														+ '</li>')
 
 								//삭제버튼처리
-								var delbutton = $('#deleteCheckdeleteCheckList'
+								var delbutton = $('#deleteCheckList'
 										+ data[idx].checklistSeq);
 								delbutton.on("click", function(e) {
 
@@ -170,13 +168,13 @@
 		function deleteCheck(seq){
 			$.ajax({
 				url : "deleteChecklist",
-				method : 'PUT',
+				method : 'DELETE',
 				dataType : 'json',
 				data : JSON.stringify({
-					checklistSeq : seq,
-					checklistStatus : tf,
+					checklistSeq : seq
 				}),
-				contentType : 'application/json'
+				contentType : 'application/json',
+				success : getCheckList
 			});
 		}
 		function updateCheck(seq, ischecked) {
@@ -221,34 +219,34 @@
 			}
 		});
 
-		//체크리스트 수정
-		function mySiteUpdate() {
-			// 수정 버튼 클릭
-			$('#updatebutton').on('click', function() {
-				var title = $('#UpdForm input:text[name="title"]').val();
-				var siteAddr = $('#UpdForm input:text[name="siteAddr"]').val();
-				var siteId = $('#UpdForm input:text[name="siteId"]').val();
-				var sitePw = $('#UpdForm input[name="sitePw"]').val();
-				var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
-				var mySiteSeq = $('#dele #mySiteSeq').val();
+// 		//체크리스트 수정
+// 		function mySiteUpdate() {
+// 			// 수정 버튼 클릭
+// 			$('#updatebutton').on('click', function() {
+// 				var title = $('#UpdForm input:text[name="title"]').val();
+// 				var siteAddr = $('#UpdForm input:text[name="siteAddr"]').val();
+// 				var siteId = $('#UpdForm input:text[name="siteId"]').val();
+// 				var sitePw = $('#UpdForm input[name="sitePw"]').val();
+// 				var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
+// 				var mySiteSeq = $('#dele #mySiteSeq').val();
 
-				$.ajax({
-					url : "updateMySite",
-					method : 'PUT',
-					dataType : 'json',
-					data : JSON.stringify({
-						title : title,
-						siteAddr : siteAddr,
-						siteId : siteId,
-						sitePw : sitePw,
-						siteMemo : siteMemo,
-						mySiteSeq : mySiteSeq
-					}),
-					contentType : 'application/json',
-					success : getCheckList
-				});
-			});
-		}
+// 				$.ajax({
+// 					url : "updateMySite",
+// 					method : 'PUT',
+// 					dataType : 'json',
+// 					data : JSON.stringify({
+// 						title : title,
+// 						siteAddr : siteAddr,
+// 						siteId : siteId,
+// 						sitePw : sitePw,
+// 						siteMemo : siteMemo,
+// 						mySiteSeq : mySiteSeq
+// 					}),
+// 					contentType : 'application/json',
+// 					success : getCheckList
+// 				});
+// 			});
+// 		}
 	</script>
 
 

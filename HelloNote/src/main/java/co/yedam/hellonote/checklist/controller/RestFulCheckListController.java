@@ -54,4 +54,14 @@ public class RestFulCheckListController {
 		return vo;
 	}
 	
+	@RequestMapping(value="/deleteChecklist",method=RequestMethod.DELETE ,consumes ="application/json")
+	public CheckListVO deleteCheckList(@RequestBody CheckListVO vo,HttpSession session ) {
+		System.out.println("controller");
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		vo.setMenuId((String)session.getAttribute("menuId"));
+		checkListService.deleteList(vo);
+		return vo;
+	}
+	
 }

@@ -33,8 +33,8 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="p-5">
-									<div class="text-center">
-										<h4 class="text-dark mb-4">Welcome Back!</h4>
+									<div class="text-center"> 
+										<h4 class="text-dark mb-4">Hello Note Login ~ !</h4>
 									</div>
 									<form class="user" action="processLogin" method="POST">
 										<div class="form-group">
@@ -62,11 +62,11 @@
 										<hr>
 									</form>
 									<div class="text-center">
-										<a class="small" href="forgot-password.html">Forgot
-											Password?</a>
+										<a class="small" href="forgot-password.html">시간보고 Password
+											찾기 추가 </a>
 									</div>
 									<div class="text-center">
-										<a class="small" href="signup">Create an Account!</a>
+										<a class="small" href="signup">회원가입</a>
 									</div>
 								</div>
 							</div>

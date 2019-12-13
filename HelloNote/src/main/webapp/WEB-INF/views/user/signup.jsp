@@ -51,14 +51,15 @@
 					<div class="col-lg-7">
 						<div class="p-5">
 							<div class="text-center">
-								<h4 class="text-dark mb-4">Create an Account!</h4>
+								<h4 class="text-dark mb-4">회원 가입</h4>
+								<br>
 							</div>
 							<form class="signUp" name="signUp" id="signUp"
 								action="insertUserSignUp">
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId">
+											id="hellonoteId" placeholder="ID" name="hellonoteId">
 									</div>
 									<div class="col-sm-6">
 										<button type="button" class="idCheck">중복 체크</button>
@@ -71,12 +72,12 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 
 										<input class="form-control form-control-user" type="password"
-											id="pw" placeholder="pw" name="pw">
+											id="pw" placeholder="Password" name="pw">
 									</div>
 
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="password"
-											id="pwcheck" placeholder="pwcheck" name="pwcheck">
+											id="pwcheck" placeholder="PasswordCheck" name="pwcheck">
 
 									</div>
 								</div>
@@ -85,7 +86,7 @@
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="age" placeholder="age" name="age">
+											id="age" placeholder="Age" name="age">
 									</div>
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="text"
@@ -95,19 +96,19 @@
 								</div>
 								<br>
 								<div class="col-sm-6">
-									성별 : <select name="gender">
+									<label for="성별"><strong>성별:&nbsp;</strong></label> <select
+										name="gender">
 										<option selected>선택</option>
 										<option value="M">M</option>
 										<option value="F">F</option>
 									</select>
 								</div>
-
 								<br>
 								<hr>
 								<br>
 								<button class="btn btn-primary btn-block text-white btn-user"
 									onclick="signupbutton()" type="button" disabled="disabled"
-									id="btnSign">Register Account</button>
+									id="btnSign">회원가입 완료</button>
 								<br>
 								<hr>
 							</form>

@@ -82,7 +82,7 @@ var flag = false;
 function makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 
 	$(
-			'<div class="grid-item"><a id="'
+			'<a id="'
 					+ widgetsSeq
 					+ '" class="memo draggableWidget" menuid="'
 					+ menuId
@@ -92,7 +92,7 @@ function makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex) 
 					+ ylocation
 					+ '; z-index:'
 					+ zindex
-					+ '">  <div> <h3> </h3> </div> </a></div>').appendTo(
+					+ '">  <div> <h3> </h3> </div> </a>').appendTo(
 			'#widgetContainer').on('click', function() {
 		if (!flag)
 			location.href = 'memo?menuId=' + menuId;
@@ -135,7 +135,7 @@ function widgetDropped() {
 							var $menuId = $(ui.draggable).attr('id');
 							var $menuTypeNumber = $(ui.draggable).find('span')
 									.attr('id');
-
+							console.log($menuId);
 							var check = true;
 							// 이미 있는 위젯인지 체크
 							$('.draggableWidget')

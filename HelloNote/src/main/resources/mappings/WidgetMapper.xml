@@ -1,62 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="WidgetDAO">
- 	<select parameterType="widget" resultType="widget" id="getWidgetList">
- 		select 	widgets_seq,
-		 		x_location,
-		 		y_location,
-		 		menu_id,
-		 		z_index,
-		 		menu_typenumber
- 		from 	${hellonoteId}_widget
- 	</select>
- 	<insert id="insertWidget" parameterType="widget">
- 		<selectKey resultType="int" keyProperty="widgetsSeq" order="BEFORE">
- 			(select nvl(max(widgets_seq),0)+1 from kang_widget)
- 		</selectKey>
- 		insert into ${hellonoteId}_widget(
- 			widgets_seq,
- 			x_location,
- 			y_location,
- 			menu_id,
- 			z_index,
- 			menu_typenumber
- 		)
- 		values(
- 			#{widgetsSeq},
-			null,
-			null,
+
+<mapper namespace="WidgetDAO">
+	<select parameterType="widget" resultType="widget"
+		id="getWidgetList">
+		select widgets_seq,
+		x_location,
+		y_location,
+		menu_id,
+		z_index,
+		menu_typenumber
+		from ${hellonoteId}_widget
+	</select>
+	<insert id="insertWidget" parameterType="widget">
+		<selectKey resultType="int" keyProperty="widgetsSeq"
+			order="BEFORE">
+			(select nvl(max(widgets_seq),0)+1 from ${hellonoteId}_widget)
+		</selectKey>
+		insert into ${hellonoteId}_widget(
+		widgets_seq,
+		x_location,
+		y_location,
+		menu_id,
+		z_index,
+		menu_typenumber
+		)
+		values(
+		#{widgetsSeq},
+		null,
+		null,
+		<if test="menuId != 0">
 			#{menuId},
-			1,
-			#{menuTypeNumber} 			
- 		)
- 	</insert>
- 	<update id="updateWidget" parameterType="widget">
- 		update ${hellonoteId}_widget
- 		set x_location = #{xLocation}, y_location = #{yLocation}
- 		where widgets_seq = #{widgetsSeq}
- 	</update>
- 	<delete id="deleteWidget" parameterType="widget">
- 		delete from ${hellonoteId}_widget
- 		where widgets_seq = #{widgetsSeq}
- 	</delete>
- 	<select id="widgetMemo" resultType="map" parameterType="widget">
-		select	memo_title
-		from 	${hellonoteId}_memo
-		where 	memo_order <![CDATA[ <= ]]> 5
-		and		menu_id = #{menuId}
+		</if>
+		<if test="menuId == 0">
+			null,
+		</if>
+		1,
+		#{menuTypeNumber}
+		)
+	</insert>
+	<update id="updateWidget" parameterType="widget">
+		update ${hellonoteId}_widget
+		set x_location = #{xLocation}, y_location = #{yLocation}
+		where widgets_seq = #{widgetsSeq}
+	</update>
+	<delete id="deleteWidget" parameterType="widget">
+		delete from ${hellonoteId}_widget
+		where widgets_seq = #{widgetsSeq}
+	</delete>
+	<select id="widgetMemo" resultType="map" parameterType="widget">
+		select memo_title
+		from ${hellonoteId}_memo
+		where memo_order <![CDATA[ <= ]]>
+		5
+		and menu_id = #{menuId}
 		order by memo_order
 	</select>
 	<update id="zIndexUpdate" parameterType="widget">
-		update ${hellonoteId}_widget
+		update
+		${hellonoteId}_widget
 		set z_index = 2
 		where widgets_seq = #{widgetsSeq}
 	</update>
 	<update id="zIndexUpdateHandler" parameterType="widget">
-	update ${hellonoteId}_widget
-	set z_index = 1
-	where widgets_seq != #{widgetsSeq}	
+		update ${hellonoteId}_widget
+		set z_index = 1
+		where widgets_seq != #{widgetsSeq}
 	</update>
- </mapper>
+</mapper>

@@ -1,63 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="UserDAO">
 
-	 <select id="getUserListMap" resultType="map">
-		SELECT 	HELLONOTE_ID "hellonoteId",
-				GENDER "gender",
-				H_GRANT "hGrant",
-				AGE "age",
-				H_PROFILE "hProfile"
-		  FROM  HELLONOTE_USERS
-		  ORDER BY HELLONOTE_ID DESC
+	<select id="getUserListMap" resultType="map">
+		SELECT HELLONOTE_ID
+		"hellonoteId",
+		GENDER "gender",
+		H_GRANT "hGrant",
+		AGE "age",
+		H_PROFILE "hProfile"
+		FROM HELLONOTE_USERS
+		ORDER BY HELLONOTE_ID DESC
 	</select>
-	
+
 	<select id="getUserList" resultType="user" parameterType="user">
-		SELECT HELLONOTE_ID,
-			   PW,
-			   GENDER,
-			   H_GRANT,
-			   AGE,
-			   H_PROFILE
+		SELECT
+		HELLONOTE_ID,
+		PW,
+		GENDER,
+		H_GRANT,
+		AGE,
+		H_PROFILE
 		FROM HELLONOTE_USERS
 	</select>
 	<select id="getUser" parameterType="user" resultType="user">
-		SELECT HELLONOTE_ID,
-			   PW,
-			   GENDER,
-			   H_GRANT,
-			   AGE,
-			   H_PROFILE
+		SELECT
+		HELLONOTE_ID,
+		PW,
+		GENDER,
+		H_GRANT,
+		AGE,
+		H_PROFILE
 		FROM HELLONOTE_USERS
 		WHERE hellonote_id=#{hellonoteId}
 	</select>
-	
+
 	<!-- SELECT DELETE -->
 	<delete id="getUserdelete" parameterType="user">
 		DELETE HELLONOTE_USERS
-		WHERE  HELLONOTE_ID = #{hellonoteId}
+		WHERE HELLONOTE_ID = #{hellonoteId}
 	</delete>
-	
-	
+
+
 	<!-- DELETE -->
 	<delete id="deleteUser" parameterType="user">
 		DELETE HELLONOTE_USERS
-		WHERE  HELLONOTE_ID = #{hellonoteId}
+		WHERE HELLONOTE_ID = #{hellonoteId}
 	</delete>
-	
+
 	<!-- UPDATE -->
 	<update id="updateUser" parameterType="user">
 		UPDATE HELLONOTE_USERS SET
-			   GENDER = #{gender},
-			   H_GRANT = #{hGrant},
-			   AGE = #{age},
-			   H_PROFILE = #{hProfile}
+		GENDER = #{gender},
+		H_GRANT = #{hGrant},
+		AGE = #{age},
+		H_PROFILE = #{hProfile}
 		WHERE HELLONOTE_ID = #{hellonoteId}
 	</update>
-	
-	<!-- proc select delete-->
+
+	<update id="updateUserChange" parameterType="user">
+		UPDATE HELLONOTE_USERS SET
+		GENDER = #{gender},
+		PW = #{pw},
+		H_GRANT = #{hGrant},
+		AGE = #{age},
+		H_PROFILE = #{hProfile}
+		WHERE HELLONOTE_ID = #{hellonoteId}
+	</update>
+
+	<!-- proc select delete -->
 	<delete id="deleteUserProc" statementType="CALLABLE"
 		parameterType="user">
 		{ call proc_userleave(#{hellonoteId}) }
@@ -68,18 +81,21 @@
 		parameterType="user">
 		{ call proc_userleave(#{hellonoteId}) }
 	</delete>
-	
-	<!-- proc insert signup hGrant는 컨트롤러에서 default U가 입력됨-->
+
+	<!-- proc insert signup hGrant는 컨트롤러에서 default U가 입력됨 -->
 	<insert id="insertUserSignUp" statementType="CALLABLE"
 		parameterType="user">
-		{ call proc_signup(#{hellonoteId},#{pw},#{gender},#{hGrant},#{age},#{hProfile}) }
+		{ call
+		proc_signup(#{hellonoteId},#{pw},#{gender},#{hGrant},#{age},#{hProfile})
+		}
 	</insert>
-	
-	<!-- 아이디 중복 체크 -->	
+
+	<!-- 아이디 중복 체크 -->
 	<select id="idCheck" resultType="user">
-		SELECT HELLONOTE_ID FROM HELLONOTE_USERS
+		SELECT HELLONOTE_ID FROM
+		HELLONOTE_USERS
 		WHERE HELLONOTE_ID = #{hellonoteId}
 	</select>
-	
+
 
 </mapper>

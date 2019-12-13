@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import co.yedam.hellonote.mysite.Password.Password;
 import co.yedam.hellonote.user.dao.UserDAO;
 import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
@@ -16,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	BCryptPasswordEncoder bcryptPasswordEncoder;
 
 	@Override
 	public UserVO getUser(UserVO vo) {
@@ -38,6 +41,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public int updateUserChange(UserVO dto) {
+		return userDAO.updateUserChange(dto);
+	}
+	
+	@Override
 	public int deleteUser(String[] list, UserVO vo) {
 		for (int i = 0; i < list.length; i++) {
 			vo.setHellonoteId(list[i]);
@@ -53,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int insertUserSignUp(UserVO vo) {
-		//vo.setPw(Password.encryptSimpleTest(vo.getPw()));
+		vo.setPw(bcryptPasswordEncoder.encode(vo.getPw()));
 		return userDAO.insertUserSignUp(vo);
 	}
 

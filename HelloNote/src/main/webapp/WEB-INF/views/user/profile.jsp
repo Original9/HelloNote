@@ -45,8 +45,6 @@
 		접속 GRANT:
 		<sec:authentication property="principal.hGrant" />
 	</h2>
-	
-<h1>${hellonoteId}</h1>
 
 	<div id="wrapper">
 		<div class="d-flex flex-column" id="content-wrapper">
@@ -59,7 +57,7 @@
 								<div class="card-body text-center shadow">
 									<img class="rounded-circle mb-3 mt-4"
 										src="${pageContext.request.contextPath}/resources/assets/img/dogs/image2.jpeg"
-										width="160" height="160">
+										width="160" height="200">
 									<div class="mb-3">
 										<button class="btn btn-primary btn-sm" type="button">Change
 											Photo</button>
@@ -71,34 +69,70 @@
 							<div class="col">
 								<div class="card shadow mb-3">
 									<div class="card-header py-3">
-										<p class="text-primary m-0 font-weight-bold">Change
-											Info</p>
+										<p class="text-primary m-0 font-weight-bold">Change Info</p>
 									</div>
 									<div class="card-body">
 										<form name="ChangeInfo" id="ChangeInfo" action='ChangeInfo'>
-											<input type="hidden" name="hellonoteId">
+
 											<div class="form-row">
 												<div class="col">
 													<div class="form-group">
 														<label for="hellonoteId"><strong>hellonoteId</strong></label><input
 															class="form-control" type="text"
-															placeholder=<sec:authentication property="principal.hellonoteId" />
+															value="<sec:authentication property="principal.hellonoteId" />"
 															name="hellonoteId" id="hellonoteId" readonly>
 													</div>
 												</div>
 												<div class="col">
 													<div class="form-group">
 														<label for="pw"><strong>PW</strong></label><input
-															class="form-control" type="password" placeholder="******"
+															class="form-control" type="password" placeholder=******
 															name="pw" id="pw">
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label for="pwch"><strong>PWCH</strong></label><input
+															class="form-control" type="password" placeholder=******
+															name="pwch" id="pwch">
 													</div>
 												</div>
 											</div>
 											<div class="form-row">
 												<div class="col">
 													<div class="form-group">
+														<label for="hellonoteId"><strong>Gender</strong></label><input
+															class="form-control" type="text"
+															value="<sec:authentication property="principal.gender" />"
+															name="gender" id="gender" readonly>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label for="hellonoteId"><strong>hGrant</strong></label><input
+															class="form-control" type="text"
+															value="<sec:authentication property="principal.hGrant" />"
+															name="hGrant" id="hGrant" readonly>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<label for="hellonoteId"><strong>age</strong></label><input
+															class="form-control" type="text"
+															value="<sec:authentication property="principal.age" />"
+															name="age" id="age" readonly>
+													</div>
+
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="col">
+													<div class="form-group">
 														<label for="hProfile"><strong>hProfile</strong></label> <br>
-														<textarea name="hProfile"></textarea>
+														<textarea
+															style="resize: none; width: 100%; height: 100px;"
+															name="hProfile"><sec:authentication
+																property="principal.hProfile" /></textarea>
 													</div>
 												</div>
 											</div>

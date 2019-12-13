@@ -59,29 +59,28 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
 											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId">
+									</div>
+									<div class="col-sm-6">
 										<button type="button" class="idCheck">중복 체크</button>
 										<p class="result">
-											<span class="msg">아이디를 확인해주십시오.</span>
+											<span class="msg">아이디 중복 체크 해주세요.</span>
 										</p>
 									</div>
-									<br> <br> <br>
+								</div>
+								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
+
 										<input class="form-control form-control-user" type="password"
 											id="pw" placeholder="pw" name="pw">
 									</div>
+
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="password"
 											id="pwcheck" placeholder="pwcheck" name="pwcheck">
+
 									</div>
 								</div>
 
-								<div class="col-sm-6">
-									성별 : <select name="gender">
-										<option selected>선택</option>
-										<option value="M">M</option>
-										<option value="F">F</option>
-									</select>
-								</div>
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
@@ -92,12 +91,23 @@
 										<input class="form-control form-control-user" type="text"
 											id="hProfile" placeholder="hProfile" name="hProfile">
 									</div>
+
 								</div>
-								<br> <br>
+								<br>
+								<div class="col-sm-6">
+									성별 : <select name="gender">
+										<option selected>선택</option>
+										<option value="M">M</option>
+										<option value="F">F</option>
+									</select>
+								</div>
+
+								<br>
 								<hr>
 								<br>
 								<button class="btn btn-primary btn-block text-white btn-user"
-									onclick="signupbutton()" type="button" disabled="disabled" id="btnSign">Register Account</button>
+									onclick="signupbutton()" type="button" disabled="disabled"
+									id="btnSign">Register Account</button>
 								<br>
 								<hr>
 							</form>

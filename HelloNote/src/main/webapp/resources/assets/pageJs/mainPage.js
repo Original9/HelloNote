@@ -1,16 +1,27 @@
 $(function() {
 	// 위젯 드롭 함수
-	// widgetDropped();
+	widgetDropped();
 	// 위젯 리스트 함수
 	getWidgetList();
 	// 위젯 삭제 함수
 	widgetDeleteHolder();
 })
 
+// 위젯 드롭시 삭제
 function widgetDeleteHolder() {
 	$('#deleteHolder').droppable({
+		accept : '.draggableWidget',
 		drop : function(event, ui) {
-			console.log(ui);
+
+			$.ajax({
+				url : 'deleteWidget',
+				data : {
+					widgetsSeq : ui.draggable[0].id
+				},
+				success : function() {
+					$(ui.draggable).remove();
+				}
+			})
 		}
 	})
 }
@@ -22,36 +33,44 @@ function getWidgetList() {
 		dataType : 'json',
 		success : function(data) {
 			console.log(data)
-			$(data).each(function() {
-				// 위젯의 메뉴 타입을 가져옴
-				var $mtn = this.menuTypeNumber
-				// 위젯 데이터 담아줌
-				var widgetData = this;
+			$(data)
+					.each(
+							function() {
+								// 위젯의 메뉴 타입을 가져옴
+								var $mtn = this.menuTypeNumber
+								// 위젯 데이터 담아줌
+								var widgetData = this;
+								console.log(this);
+								if ($mtn == 9) {
+									makeTranslateWidget(this);
+								} else {
+									// 위젯 타입에 따라 안의 내용을 ajax로 가져옴
+									getWidgetContentByType(this.widgetsSeq,
+											this.menuId, this.menuTypeNumber,
+											this.xlocation, this.ylocation,
+											this.zindex);
+								}
 
-				if ($mtn == 9) {
-					makeTranslateWidget(this);
-				} else {
-					// 위젯 타입에 따라 안의 내용을 ajax로 가져옴
-					getWidgetContentByType(this);
-				}
-
-			})
+							})
 		}
 	})
 }
 
-function getWidgetContentByType(wData) {
+// 화면 로드 시 위젯 타입에 따라 데이터 가져옴
+// 위젯에 widgetsSeq는 id, menuId는 menuid attribute로 붙일 것
+function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
+		ylocation, zindex) {
 	$.ajax({
 		url : 'widgetContent',
 		data : {
-			menuTypeNumber : wData.menuTypeNumber,
-			menuId : wData.menuId
+			menuTypeNumber : menuTypeNumber,
+			menuId : menuId
 		},
 		dataType : 'json',
 		success : function(data) {
-			switch (wData.menuTypeNumber) {
+			switch (parseInt(menuTypeNumber)) {
 			case 2:
-				makeMemoWidget(data, wData);
+				makeMemoWidget(data, widgetsSeq, xlocation, ylocation, zindex);
 				break;
 			}
 		}
@@ -59,22 +78,27 @@ function getWidgetContentByType(wData) {
 }
 
 var flag = false;
-// 메모 위젯 생성
-function makeMemoWidget(data, wData) {
 
+// 메모 위젯 생성
+function makeMemoWidget(data, widgetsSeq, xlocation, ylocation, zindex) {
+
+	console.log('memo!')
+	
 	if (data.MEMO_PLACE == null) {
 		data.MEMO_PLACE = '';
 	}
 
 	$(
 			'<a id="'
-					+ wData.widgetsSeq
-					+ '" class="memo draggableWidget" style="left:'
-					+ wData.xlocation
+					+ widgetsSeq
+					+ '" class="memo draggableWidget" menuid="'
+					+ data.MENU_ID
+					+ '" style="left:'
+					+ xlocation
 					+ '; top:'
-					+ wData.ylocation
+					+ ylocation
 					+ '; z-index:'
-					+ wData.zindex
+					+ zindex
 					+ '"> <div class="title-box"> <h3 class="title">'
 					+ data.MEMO_TITLE
 					+ '</h3> </div> <div class="text-box"> <p class="text">'
@@ -117,22 +141,32 @@ function widgetDropped() {
 					{
 						accept : ".nav-item",
 						drop : function(event, ui) {
-							$spanId = $(ui.draggable).find('span').attr('id');
+							var $menuId = $(ui.draggable).attr('id');
+							var $menuTypeNumber = $(ui.draggable).find('span').attr('id');
 
-							if ($spanId == '9') {
-								if ($('#widgetContainer').find('#translate')
-										.attr('id') == null) {
-									makeTranslateWidget();
+							var check = true;
+							// 이미 있는 위젯인지 체크
+							$('.draggableWidget').each(function() {
+								if($(this).attr('menuid') == $menuId)
+									check = false;
+							});
+
+							if(!check)
+								return;
+							
+							$.ajax({
+								url : 'insertWidget',
+								data : {
+									menuId : $menuId,
+									menuTypeNumber : $menuTypeNumber
+								},
+								dataType : 'json',
+								success : function(data){
+									getWidgetContentByType(data, $menuId, $menuTypeNumber, 0,
+											0, 1);
 								}
-							} else if ($spanId == '') {
-
-							} else {
-								$('#widgetContainer')
-										.append(
-												'<div style="width: 100px; height: 100px; background-color: black;" class="draggableWidget"></div>');
-
-							}
-
+							})
+							
 						}
 					})
 }

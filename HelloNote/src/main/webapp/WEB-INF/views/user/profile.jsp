@@ -45,7 +45,8 @@
 		접속 GRANT:
 		<sec:authentication property="principal.hGrant" />
 	</h2>
-
+	
+<h1>${hellonoteId}</h1>
 	<div id="wrapper">
 		<div class="d-flex flex-column" id="content-wrapper">
 			<div id="content">
@@ -65,64 +66,44 @@
 								</div>
 							</div>
 						</div>
-						${hellonoteId}
 						<div class="row">
 							<div class="col">
 								<div class="card shadow mb-3">
 									<div class="card-header py-3">
 										<p class="text-primary m-0 font-weight-bold">Change
-											Password</p>
+											Info</p>
 									</div>
 									<div class="card-body">
-										<form name="ChangePW" id="ChangePW" action='ChangePW'>
+										<form name="ChangeInfo" id="ChangeInfo" action='ChangeInfo'>
+											<input type="hidden" name="hellonoteId">
 											<div class="form-row">
 												<div class="col">
 													<div class="form-group">
 														<label for="hellonoteId"><strong>hellonoteId</strong></label><input
 															class="form-control" type="text"
-															placeholder="hellonoteId" name="hellonoteId"
-															id="hellonoteId" readonly>
+															placeholder=<sec:authentication property="principal.hellonoteId" />
+															name="hellonoteId" id="hellonoteId" readonly>
 													</div>
 												</div>
 												<div class="col">
 													<div class="form-group">
 														<label for="pw"><strong>PW</strong></label><input
-															class="form-control" type="password"
-															placeholder="Password" name="pw" id="pw">
+															class="form-control" type="password" placeholder="******"
+															name="pw" id="pw">
+													</div>
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="col">
+													<div class="form-group">
+														<label for="hProfile"><strong>hProfile</strong></label> <br>
+														<textarea name="hProfile"></textarea>
 													</div>
 												</div>
 											</div>
 											<div class="form-group">
 												<button class="btn btn-primary btn-sm" name="updatebutton"
 													id="updatebutton" type="button">Save Password</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<div class="card shadow mb-3">
-									<div class="card-header py-3">
-										<p class="text-primary m-0 font-weight-bold">Change
-											hProfile</p>
-									</div>
-									<div class="card-body">
-										<form name="ChangeProfile" id="ChangeProfile"
-											action='ChangeProfile'>
-											<div class="form-row">
-												<div class="col">
-													<div class="form-group">
-														<label for="hProfile"><strong>hProfile</strong></label> <br>
-														<textarea>MEMO</textarea>
-													</div>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<button class="btn btn-primary btn-sm" type="submit">Save
-													hProfile</button>
 											</div>
 										</form>
 									</div>

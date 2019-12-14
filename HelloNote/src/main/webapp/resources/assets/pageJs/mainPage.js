@@ -76,11 +76,24 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 				makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation,
 						zindex);
 				break;
+
+			case 3:
+				makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation,
+						zindex);
+				break;
 			}
 		}
 	})
 }
 
+// 가계부 위젯 생성 함수
+function makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
+
+	
+	
+}
+
+// 캘린더 위젯 생성 함수
 function makeCalendarWidget(data, menuId, widgetsSeq, xlocation, ylocation,
 		zindex) {
 	$(
@@ -96,13 +109,15 @@ function makeCalendarWidget(data, menuId, widgetsSeq, xlocation, ylocation,
 					+ zindex
 					+ '"><div id="wrapper"> <div class="row"> <div class="col"> <div class="card shadow mb-3"> <div class="card-header py-3"> <p class="text-primary m-0 font-weight-bold">오늘 일정</p> </div> <div class="card-body"> <form> <div class="form-row"> <div class="col"> <div class="form-group"><label for="username"><strong>*오늘은 프로젝트를 하는 날입니다 *</strong></label></div> </div> </div> <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">캘린더 바로가기</button></div> </form> </div> </div> </div> </div> </div></div>')
 			.appendTo('#widgetContainer');
-	
-	$(data).each(function(){
-		console.log(this.TITLE);
-		console.log($('div#'+widgetsSeq).find('label'));
-		$('#widgetContainer #'+widgetsSeq).find('label').append('<br><strong>'+this.TITLE+'</strong>');
-	})
-	
+
+	$(data).each(
+			function() {
+				console.log(this.TITLE);
+				console.log($('div#' + widgetsSeq).find('label'));
+				$('#widgetContainer #' + widgetsSeq).find('label').append(
+						'<br><strong>' + this.TITLE + '</strong>');
+			})
+
 	widgetDraggable();
 }
 

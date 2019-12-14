@@ -41,12 +41,15 @@
 		)
 	</insert>
 	<update id="updateWidget" parameterType="widget">
-		update ${hellonoteId}_widget
-		set x_location = #{xLocation}, y_location = #{yLocation}
+		update
+		${hellonoteId}_widget
+		set x_location = #{xLocation}, y_location =
+		#{yLocation}
 		where widgets_seq = #{widgetsSeq}
 	</update>
 	<delete id="deleteWidget" parameterType="widget">
-		delete from ${hellonoteId}_widget
+		delete from
+		${hellonoteId}_widget
 		where widgets_seq = #{widgetsSeq}
 	</delete>
 	<select id="widgetMemo" resultType="map" parameterType="widget">
@@ -57,11 +60,23 @@
 		and menu_id = #{menuId}
 		order by memo_order
 	</select>
-	<select id="widgetCalendar" resultType="map" parameterType="widget">
-		select title 
-		from ${hellonoteId}_calendar 
-		where sysdate between start_date and end_date 
+	<select id="widgetCalendar" resultType="map"
+		parameterType="widget">
+		select title
+		from ${hellonoteId}_calendar
+		where sysdate
+		between start_date and end_date
 		and menu_id =#{menuId}
+	</select>
+	<select id="widgetAccountBook" resultType="map"
+		parameterType="widget">
+		SELECT 		ACCOUNBOOK_PURPOSE as accountbookPurpose,
+					SUM((ACCOUNTBOOK_PRICE/price)*100 ) as accountbookPercent
+		FROM 		${hellonoteId}_ACCOUNTBOOK,(
+						SELECT SUM (ACCOUNTBOOK_PRICE) price
+						FROM ${hellonoteId}_ACCOUNTBOOK
+					)
+		GROUP BY 	ACCOUNBOOK_PURPOSE, price;
 	</select>
 	<update id="zIndexUpdate" parameterType="widget">
 		update
@@ -70,7 +85,8 @@
 		where widgets_seq = #{widgetsSeq}
 	</update>
 	<update id="zIndexUpdateHandler" parameterType="widget">
-		update ${hellonoteId}_widget
+		update
+		${hellonoteId}_widget
 		set z_index = 1
 		where widgets_seq != #{widgetsSeq}
 	</update>

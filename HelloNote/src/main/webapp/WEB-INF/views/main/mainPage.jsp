@@ -9,6 +9,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery UI Draggable - Constrain movement</title>
+<script src="//www.google.com/jsapi"></script>
+<script src="<c:url value="/resources/assets/js/json.min.js" />"></script>
 <style>
 #widgetContainer {
 	width: 100%;

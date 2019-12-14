@@ -43,6 +43,8 @@ public class WidgetServiceImpl implements WidgetService {
 			return dao.widgetCalendar(vo);
 		case 2:
 			return dao.widgetMemo(vo);
+		case 4:
+//			return dao.
 		case 3:
 			return null;
 		}

@@ -54,7 +54,8 @@ function getWidgetList() {
 function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 		ylocation, zindex) {
 	if (menuTypeNumber == 9) {
-		makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation, zindex);
+		makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation,
+				zindex);
 		return;
 	}
 
@@ -66,14 +67,43 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 		},
 		dataType : 'json',
 		success : function(data) {
-			console.log(data);
 			switch (parseInt(menuTypeNumber)) {
+			case 1:
+				makeCalendarWidget(data, menuId, widgetsSeq, xlocation,
+						ylocation, zindex);
+				break;
 			case 2:
-				makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex);
+				makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation,
+						zindex);
 				break;
 			}
 		}
 	})
+}
+
+function makeCalendarWidget(data, menuId, widgetsSeq, xlocation, ylocation,
+		zindex) {
+	$(
+			'<div id="'
+					+ widgetsSeq
+					+ '" class="draggableWidget" menuid="'
+					+ menuId
+					+ '" style=" width : 300px; left : '
+					+ xlocation
+					+ '; top : '
+					+ ylocation
+					+ '; z-index : '
+					+ zindex
+					+ '"><div id="wrapper"> <div class="row"> <div class="col"> <div class="card shadow mb-3"> <div class="card-header py-3"> <p class="text-primary m-0 font-weight-bold">오늘 일정</p> </div> <div class="card-body"> <form> <div class="form-row"> <div class="col"> <div class="form-group"><label for="username"><strong>*오늘은 프로젝트를 하는 날입니다 *</strong></label></div> </div> </div> <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">캘린더 바로가기</button></div> </form> </div> </div> </div> </div> </div></div>')
+			.appendTo('#widgetContainer');
+	
+	$(data).each(function(){
+		console.log(this.TITLE);
+		console.log($('div#'+widgetsSeq).find('label'));
+		$('#widgetContainer #'+widgetsSeq).find('label').append('<br><strong>'+this.TITLE+'</strong>');
+	})
+	
+	widgetDraggable();
 }
 
 var flag = false;
@@ -82,31 +112,25 @@ var flag = false;
 function makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 
 	$(
-			'<a id="'
-					+ widgetsSeq
-					+ '" class="memo draggableWidget" menuid="'
-					+ menuId
-					+ '" style="left:'
-					+ xlocation
-					+ '; top:'
-					+ ylocation
-					+ '; z-index:'
-					+ zindex
+			'<a id="' + widgetsSeq + '" class="memo draggableWidget" menuid="'
+					+ menuId + '" style="left:' + xlocation + '; top:'
+					+ ylocation + '; z-index:' + zindex
 					+ '">  <div> <h3> </h3> </div> </a>').appendTo(
 			'#widgetContainer').on('click', function() {
 		if (!flag)
 			location.href = 'memo?menuId=' + menuId;
 	});
 
-	$(data).each(function(){
-		$('a#'+widgetsSeq+' div h3').append(this.MEMO_TITLE+'<br>');
+	$(data).each(function() {
+		$('a#' + widgetsSeq + ' div h3').append(this.MEMO_TITLE + '<br>');
 	})
-	
+
 	widgetDraggable();
 }
 
 // 번역 위젯 생성
-function makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation, zindex) {
+function makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation,
+		zindex) {
 	$('#widgetContainer')
 			.append(
 					'<div style="width: 500px; height: 100px; left: '

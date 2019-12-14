@@ -57,6 +57,12 @@
 		and menu_id = #{menuId}
 		order by memo_order
 	</select>
+	<select id="widgetCalendar" resultType="map" parameterType="widget">
+		select title 
+		from ${hellonoteId}_calendar 
+		where sysdate between start_date and end_date 
+		and menu_id =#{menuId}
+	</select>
 	<update id="zIndexUpdate" parameterType="widget">
 		update
 		${hellonoteId}_widget

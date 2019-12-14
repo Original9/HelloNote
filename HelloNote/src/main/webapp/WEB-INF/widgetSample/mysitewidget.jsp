@@ -35,7 +35,7 @@
 			</div>
 		</h3>
 
-
+	<!-- GO 누르면 SiteAddr 값받아와서 주소로 이동 SITE 에는 siteTitle 불러옴 클릭시 ID/PW 불러옴-->
 		<div class="card-body" id="accordion" role="tablist"
 			aria-multiselectable="true">
 			<div class="panel">

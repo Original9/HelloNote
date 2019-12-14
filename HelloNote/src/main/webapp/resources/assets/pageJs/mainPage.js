@@ -77,7 +77,7 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 						zindex);
 				break;
 
-			case 3:
+			case 4:
 				makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation,
 						zindex);
 				break;
@@ -89,8 +89,52 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 // 가계부 위젯 생성 함수
 function makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 
+	// $('<div id="piechart"
+	// align="center"></div>').appendTo('#widgetContainer');
+
+	$('#widgetContainer').append(
+			'<div id="' + widgetsSeq
+					+ '" class="draggableWidget" style="left : ' + xlocation
+					+ '; top: ' + ylocation + '; z-index: ' + zindex
+					+ '; height: 200px; width: 200px" menuid="' + menuId + '" align="center"></div>');
+
+	google.load('visualization', '1.0', {
+		'packages' : [ 'corechart' ],
+		callback : function() {
+			drawChart(data, widgetsSeq);
+		}
+
+	});
 	
-	
+	widgetDraggable();
+}
+
+// 차트 그려주는 함수 개같은거
+function drawChart(data, widgetsSeq) {
+	var options = {
+		// 크기 조절 및 배경색상, 배경색은 우리 프로젝트 색상으로 맞춰놓음
+		title : '항목 통계',
+		width : 200,
+		height : 200,
+		backgroundColor : '#f8f9fc'
+	};
+
+	// 차트에 넣을 data를 ajax 요청해서 가져옴
+	// ajax결과를 chart에 맞는 data 형태로 가공
+	var chartData = [];
+	chartData.push([ '항목', '비율' ])
+	// 차트에 표시하기 위한 항목과 퍼센트
+	for (i = 0; i < data.length; i++) {
+		var subarr = [ data[i].accountbookPurpose, (data[i].accountbookPercent) ];
+		chartData.push(subarr);
+	}
+	// 챠트 그리기
+	var chart = new google.visualization.PieChart($('#widgetContainer div#'+widgetsSeq)[0]); // <--
+	// piechart
+	// 차트로
+	// 그려서
+	// 생성
+	chart.draw(google.visualization.arrayToDataTable(chartData), options);
 }
 
 // 캘린더 위젯 생성 함수
@@ -101,23 +145,25 @@ function makeCalendarWidget(data, menuId, widgetsSeq, xlocation, ylocation,
 					+ widgetsSeq
 					+ '" class="draggableWidget" menuid="'
 					+ menuId
-					+ '" style=" width : 300px; left : '
+					+ '" style=" width : 162px; left : '
 					+ xlocation
 					+ '; top : '
 					+ ylocation
 					+ '; z-index : '
 					+ zindex
-					+ '"><div id="wrapper"> <div class="row"> <div class="col"> <div class="card shadow mb-3"> <div class="card-header py-3"> <p class="text-primary m-0 font-weight-bold">오늘 일정</p> </div> <div class="card-body"> <form> <div class="form-row"> <div class="col"> <div class="form-group"><label for="username"><strong>*오늘은 프로젝트를 하는 날입니다 *</strong></label></div> </div> </div> <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">캘린더 바로가기</button></div> </form> </div> </div> </div> </div> </div></div>')
+					+ '"><div id="wrapper"> <div class="row"> <div class="col"> <div class="card shadow mb-3"> <div class="card-header py-3"> <p class="text-primary m-0 font-weight-bold">오늘 일정</p> </div> <div class="card-body"> <div class="form-row"> <div class="col"> <div class="form-group"><label for="username"></label></div> </div> </div> <div class="form-group"><button class="btn btn-primary btn-sm">캘린더 바로가기</button></div> </div> </div> </div> </div> </div></div>')
 			.appendTo('#widgetContainer');
 
+	
+	$('#widgetContainer #' + widgetsSeq).find('button').on('click', function(){
+		window.location.href = 'calendar?menuId='+menuId;
+	})
 	$(data).each(
 			function() {
-				console.log(this.TITLE);
-				console.log($('div#' + widgetsSeq).find('label'));
 				$('#widgetContainer #' + widgetsSeq).find('label').append(
-						'<br><strong>' + this.TITLE + '</strong>');
+						'<div><strong>' + this.TITLE + '</strong><div>');
 			})
-
+	$('#widgetContainer #' + widgetsSeq).find('label').not(':has(strong)').append('<strong>오늘 일정은 없습니다.</strong>');
 	widgetDraggable();
 }
 

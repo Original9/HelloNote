@@ -41,7 +41,7 @@ public class WidgetDAO {
 	}
 	
 	public List<Map<String, Object>> widgetAccountBook(WidgetVO vo){
-		return batis.selectList("WidgetDAO.widgetAccountBook");
+		return batis.selectList("WidgetDAO.widgetAccountBook", vo);
 	}
 
 	public void zIndexUpdate(WidgetVO vo) {

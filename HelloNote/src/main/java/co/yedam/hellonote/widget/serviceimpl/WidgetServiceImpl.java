@@ -44,11 +44,16 @@ public class WidgetServiceImpl implements WidgetService {
 		case 2:
 			return dao.widgetMemo(vo);
 		case 4:
-//			return dao.
+			System.out.println("this is account book");
+			System.out.println(vo.getMenuTypeNumber());
+			System.out.println(vo.getMenuId());
+			System.out.println(vo.getHellonoteId());
+			
+			return dao.widgetAccountBook(vo);
 		case 3:
 			return null;
 		}
-		
+
 		return null;
 	}
 

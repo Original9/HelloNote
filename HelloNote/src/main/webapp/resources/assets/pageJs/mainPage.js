@@ -5,6 +5,7 @@ $(function() {
 	getWidgetList();
 	// 위젯 삭제 함수
 	widgetDeleteHolder();
+
 })
 
 // 위젯 드롭시 삭제
@@ -81,22 +82,30 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 				makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation,
 						zindex);
 				break;
+
+			case 8:
+				makeMySite(data, menuId, widgetsSeq, xlocation, ylocaiton,
+						zindex);
+				break;
 			}
 		}
 	})
 }
 
+// 아이디 위젯 생성 함수
+function makeMySite(data, menuId, widgetsSeq, xlocation, ylocaiton, zindex) {
+	console.log(data);
+}
+
 // 가계부 위젯 생성 함수
 function makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
-
-	// $('<div id="piechart"
-	// align="center"></div>').appendTo('#widgetContainer');
 
 	$('#widgetContainer').append(
 			'<div id="' + widgetsSeq
 					+ '" class="draggableWidget" style="left : ' + xlocation
 					+ '; top: ' + ylocation + '; z-index: ' + zindex
-					+ '; height: 200px; width: 200px" menuid="' + menuId + '" align="center"></div>');
+					+ '; height: 200px; width: 200px" menuid="' + menuId
+					+ '" align="center"></div>');
 
 	google.load('visualization', '1.0', {
 		'packages' : [ 'corechart' ],
@@ -105,7 +114,7 @@ function makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation, zindex)
 		}
 
 	});
-	
+
 	widgetDraggable();
 }
 
@@ -129,7 +138,8 @@ function drawChart(data, widgetsSeq) {
 		chartData.push(subarr);
 	}
 	// 챠트 그리기
-	var chart = new google.visualization.PieChart($('#widgetContainer div#'+widgetsSeq)[0]); // <--
+	var chart = new google.visualization.PieChart($('#widgetContainer div#'
+			+ widgetsSeq)[0]); // <--
 	// piechart
 	// 차트로
 	// 그려서
@@ -154,16 +164,16 @@ function makeCalendarWidget(data, menuId, widgetsSeq, xlocation, ylocation,
 					+ '"><div id="wrapper"> <div class="row"> <div class="col"> <div class="card shadow mb-3"> <div class="card-header py-3"> <p class="text-primary m-0 font-weight-bold">오늘 일정</p> </div> <div class="card-body"> <div class="form-row"> <div class="col"> <div class="form-group"><label for="username"></label></div> </div> </div> <div class="form-group"><button class="btn btn-primary btn-sm">캘린더 바로가기</button></div> </div> </div> </div> </div> </div></div>')
 			.appendTo('#widgetContainer');
 
-	
-	$('#widgetContainer #' + widgetsSeq).find('button').on('click', function(){
-		window.location.href = 'calendar?menuId='+menuId;
+	$('#widgetContainer #' + widgetsSeq).find('button').on('click', function() {
+		window.location.href = 'calendar?menuId=' + menuId;
 	})
 	$(data).each(
 			function() {
 				$('#widgetContainer #' + widgetsSeq).find('label').append(
 						'<div><strong>' + this.TITLE + '</strong><div>');
 			})
-	$('#widgetContainer #' + widgetsSeq).find('label').not(':has(strong)').append('<strong>오늘 일정은 없습니다.</strong>');
+	$('#widgetContainer #' + widgetsSeq).find('label').not(':has(strong)')
+			.append('<strong>오늘 일정은 없습니다.</strong>');
 	widgetDraggable();
 }
 

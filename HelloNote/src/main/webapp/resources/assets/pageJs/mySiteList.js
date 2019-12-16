@@ -64,10 +64,19 @@ $(function() {
 
 	// 입력 모달창 열기
 	// #specification ID 를 .on('click') 클릭시 , function() 실행
-	$('#specification').on('click', function() {
-		// mySiteModal 이라는 ID를 show 해준다
-		$('#mySiteModal').show();
-	})
+	$('#specification').on(
+			'click',
+			function() {
+				// mySiteModal 이라는 ID를 show 해준다
+				$('#mySiteModal').show();
+				var form = document.userForm;
+				if (form.siteAddr.value.search != "https://"
+						|| form.siteAddr.value.search != "http://") {
+					alert("주소에 https 또는 http를 입력해주세요.");
+					$('#siteAddr').focus();
+					return false;
+				}
+			})
 
 	// 입력 모달창 닫기(열기와 같은 원리 hide는 숨겨줌)
 	$('#mySiteModal .close').on('click', function() {
@@ -76,16 +85,19 @@ $(function() {
 
 	// 상세보기 모달창 열기
 	$('.getMySite').on('click', function() {
-		$('#changeform').hide(); // 수정폼으로 close 했을시 남아있는 수정 form을 숨겨준다
+		$('#changeform').hide(); // 수정폼으로 close 했을시 남아있는 수정 form을
+		// 숨겨준다
 		$('#select').show(); // 다시 상세보기창을 띄운다
 		// seq 선언 값
-		var seq = $(this).closest('tr').find('input').val(); // 클릭한버튼은 this
+		var seq = $(this).closest('tr').find('input').val(); // 클릭한버튼은
+		// this
 		var ID = $('#menuIda').val();
 		// closest 부모위
 		// find 배열 eq 1<
 		// 2번째부터 html
 		// 값넣어줌
-		$('#getMySiteModal').show(); // getMySiteModal id 값의 모달을 show 해줌
+		$('#getMySiteModal').show(); // getMySiteModal id 값의 모달을 show
+		// 해줌
 		$.ajax({ // ajax 비동기식 실행
 			url : 'getMySite', // controller 부름 단건조회
 			type : 'GET', // 받아온다
@@ -136,34 +148,47 @@ $(function() {
 		$('#changeform').hide();
 	})
 });
+
 // 사용자 수정 요청
 function mySiteUpdate() {
 	// 수정 버튼 클릭
-	$('#updatebutton').on('click', function() {
-		var title = $('#UpdForm input:text[name="title"]').val();
-		var siteAddr = $('#UpdForm input:text[name="siteAddr"]').val();
-		var siteId = $('#UpdForm input:text[name="siteId"]').val();
-		var sitePw = $('#UpdForm input[name="sitePw"]').val();
-		var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
-		var mySiteSeq = $('#dele #mySiteSeq').val();
+	$('#updatebutton').on(
+			'click',
+			function() {
+				var form = document.UpdForm;
+				if (form.siteAddr.value.search != "https" + "://"
+						|| form.siteAddr.value.search != "http://") {
+					alert("주소에 https:// 또는 http://를 입력해주세요.");
+					$('#siteAddr').focus();
+					return false;
+				} else {
+					return true;
+				}
+				
+				var title = $('#UpdForm input:text[name="title"]').val();
+				var siteAddr = $('#UpdForm input:text[name="siteAddr"]').val();
+				var siteId = $('#UpdForm input:text[name="siteId"]').val();
+				var sitePw = $('#UpdForm input[name="sitePw"]').val();
+				var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
+				var mySiteSeq = $('#dele #mySiteSeq').val();
 
-		$.ajax({
-			url : "updateMySite",
-			method : 'PUT',
-			dataType : 'json',
-			data : JSON.stringify({
-				title : title,
-				siteAddr : siteAddr,
-				siteId : siteId,
-				sitePw : sitePw,
-				siteMemo : siteMemo,
-				mySiteSeq : mySiteSeq,
-				menuId : $('#menuId').val()
-			}),
-			contentType : 'application/json',
-			success : getupdateHandler
-		});
-	});
+				$.ajax({
+					url : "updateMySite",
+					method : 'PUT',
+					dataType : 'json',
+					data : JSON.stringify({
+						title : title,
+						siteAddr : siteAddr,
+						siteId : siteId,
+						sitePw : sitePw,
+						siteMemo : siteMemo,
+						mySiteSeq : mySiteSeq,
+						menuId : $('#menuId').val()
+					}),
+					contentType : 'application/json',
+					success : getupdateHandler
+				});
+			});
 }
 function getupdateHandler(data) {
 	$("#title").html(data.title);
@@ -177,7 +202,7 @@ function getupdateHandler(data) {
 	location.reload();
 
 }
-//userdatatable Jquery
+// userdatatable Jquery
 $(document).ready(function() {
 	$('#tabledata').DataTable();
 });

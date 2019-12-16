@@ -1,5 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- 	값 가져오는 SQL QUERY -->
+		SELECT 	CHECKLIST_SEQ checklist_Seq,
+				CHECKLIST_STATUS ,
+				CHECKLIST_MISSION ,
+				MENU_ID 
+		FROM 	(SELECT 	CHECKLIST_SEQ,
+							CHECKLIST_STATUS ,
+							CHECKLIST_MISSION ,
+							MENU_ID  
+				FROM 		${hellonoteId}_check 
+				ORDER BY 	CHECKLIST_SEQ DESC)
+		WHERE 	<![CDATA[ rownum <=5]]>   
+		AND 	CHECKLIST_STATUS = 'f'
+		AND		MENU_ID = #{menuId}
+	
+<!-- 			삭제쿼리 -->
+<!--  		sqlquery -->
+<%--  		DELETE ${hellonoteId}_check --%>
+<%--  		WHERE CHECKLIST_SEQ = #{checklistSeq} --%>
+
+<!-- 			업데이트쿼리 -->
+			 		UPDATE ${hellonoteId}_check
+ 		SET
+ 		CHECKLIST_STATUS = #{checklistStatus}
+ 		WHERE checklist_seq = #{checklistSeq}
+
 <body>
 	<table class="table_layout">
 		<colgroup>
@@ -8,46 +34,9 @@
 			<col width="50%">
 		</colgroup>
 		<thead>
-			<tr>
-				<th>
-					<form action="insertCheckList">
-						<div class="form-row">
-							<div class="col">
-								<input class="form-control" id="submittext" style="width: 700px">
-							</div>
-							<div class="col" align="right">
-								<input class="btn btn-primary" id="submitCheckList"
-									type="button" value="추가">
-							</div>
-						</div>
-
-
-						<!-- 					<p align="right"> -->
-						<!-- 						<input class="btn btn-primary" id="submitCheckList" type="button" -->
-						<!-- 							value="추가"> -->
-						<!-- 					</p> -->
-					</form>
-
-				</th>
-			</tr>
+			
 		</thead>
 		<tr>
-			<!-- 			<th> -->
-			<!-- 				<form action="insertCheckList"> -->
-			<!-- 					<p> -->
-			<!-- 						<input class="form-control" id="submittext" style="width: 260px"> -->
-			<!-- 						&nbsp;&nbsp;&nbsp; <input class="btn btn-primary" -->
-			<!-- 							id="submitCheckList" type="button" value="추가"> -->
-			<!-- 					</p> -->
-
-			<!-- 										<p align="right"> -->
-			<!-- 											<input class="btn btn-primary" id="submitCheckList" type="button" -->
-			<!-- 												value="추가"> -->
-			<!-- 										</p> -->
-			<!-- 				</form> -->
-
-			<!-- 			</th> -->
-
 			<td>
 				<div class="card shadow mb-4" style="width: 1000">
 					<div class="card-header py-3">
@@ -74,6 +63,9 @@
 <!-- 										type="button" value="삭제"> -->
 <!-- 								</div> -->
 <!-- 							</div></li> -->
+
+
+<!-- 이런식으로 들어갈 예쩡 -->
 					</ul>
 
 				</div>
@@ -86,13 +78,13 @@
 
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function() {//시작하자마자 getCheckList5 함수 호출해서
 			getCheckList() //내가 해야할것을 가져온다.
 		});
 
 		function getCheckList() {
 			$.ajax({
-				url : 'getCheckList',
+				url : 'getCheckListT5', //맨위에 쿼리있음
 				type : 'GET',
 				//contentType:'application/json;charset=utf-8',
 				dataType : 'json',
@@ -136,7 +128,7 @@
 								var delbutton = $('#deleteCheckList'
 										+ data[idx].checklistSeq);
 								delbutton.on("click", function(e) {
-									deleteCheck(data[idx].checklistSeq);
+									deleteCheck(data[idx].checklistSeq); //삭제이벤트 발생
 								});
 								delbutton.hide();
 								$('#checkItem'+data[idx].checklistSeq).mouseenter(function(){
@@ -167,7 +159,7 @@
 															.is(":checked") == true;
 													updateCheck(
 															data[idx].checklistSeq,
-															ischecked,data[idx].checklistMission)
+															ischecked,data[idx].checklistMission) //클릭시 체크박스 업데이트 이벤트발생.
 				
 												});
 												
@@ -176,7 +168,7 @@
 
 		function deleteCheck(seq){
 			$.ajax({
-				url : "deleteChecklist",
+				url : "deleteChecklist", //삭제쿼리 위에있음.
 				method : 'DELETE',
 				dataType : 'json',
 				data : JSON.stringify({
@@ -186,6 +178,8 @@
 				success : getCheckList
 			});
 		}
+		
+
 		function updateCheck(seq, ischecked,checklistMission) {
 			var tf; //db에 들어가는 값.
 			var xline=$('#'+checklistMission+ seq);
@@ -198,7 +192,7 @@
 			}
 
 			$.ajax({
-				url : "updateChecklist",
+				url : "updateChecklist", //업데이트쿼리 위에있음.
 				method : 'PUT',
 				dataType : 'json',
 				data : JSON.stringify({
@@ -209,26 +203,6 @@
 			});
 		}
 
-		$(document).on("click", "#submitCheckList", function(e) {
-			var valuetext = $('#submittext').val();
-			if (valuetext) {
-				//db에 추가
-				$.ajax({
-					url : "insertList",
-					method : 'post',
-					dataType : 'json',
-					data : JSON.stringify({
-						checklistMission : valuetext,
-						checklistStatus : "f",
-					}),
-					contentType : 'application/json',
-					success : getCheckList
-				});
-
-			} else {
-				alert('입력누락');
-			}
-		});
 
 	</script>
 

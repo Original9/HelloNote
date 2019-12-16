@@ -20,7 +20,7 @@
 	</select>
 
 	<!-- DELETE -->
-	<delete id="deleteCheckList" parameterType="checkList">
+	<delete id="deleteList" parameterType="int">
 		DELETE ${hellonoteId}_check
 		WHERE CHECKLIST_SEQ = #{checklistSeq}
 	</delete>

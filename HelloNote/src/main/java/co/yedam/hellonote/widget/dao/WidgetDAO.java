@@ -36,6 +36,14 @@ public class WidgetDAO {
 		return batis.selectList("WidgetDAO.widgetMemo", vo);
 	}
 
+	public List<Map<String, Object>> widgetCalendar(WidgetVO vo) {
+		return batis.selectList("WidgetDAO.widgetCalendar", vo);
+	}
+	
+	public List<Map<String, Object>> widgetAccountBook(WidgetVO vo){
+		return batis.selectList("WidgetDAO.widgetAccountBook", vo);
+	}
+
 	public void zIndexUpdate(WidgetVO vo) {
 		batis.update("WidgetDAO.zIndexUpdate", vo);
 	}

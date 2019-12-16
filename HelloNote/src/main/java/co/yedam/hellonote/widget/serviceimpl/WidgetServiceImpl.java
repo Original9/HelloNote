@@ -40,13 +40,20 @@ public class WidgetServiceImpl implements WidgetService {
 	public List<Map<String, Object>> widgetContent(WidgetVO vo) {
 		switch (vo.getMenuTypeNumber()) {
 		case 1:
-//			return 
+			return dao.widgetCalendar(vo);
 		case 2:
 			return dao.widgetMemo(vo);
+		case 4:
+			System.out.println("this is account book");
+			System.out.println(vo.getMenuTypeNumber());
+			System.out.println(vo.getMenuId());
+			System.out.println(vo.getHellonoteId());
+			
+			return dao.widgetAccountBook(vo);
 		case 3:
 			return null;
 		}
-		
+
 		return null;
 	}
 

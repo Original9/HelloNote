@@ -32,7 +32,6 @@ public class CheckListServiceImpl implements CheckListService{
 
 	@Override
 	public int updateList(CheckListVO vo) {
-		System.out.println("serviceimpl");
 		return dao.updateList(vo);
 	}
 

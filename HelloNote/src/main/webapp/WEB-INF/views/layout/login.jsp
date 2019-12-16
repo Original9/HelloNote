@@ -33,7 +33,7 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="p-5">
-									<div class="text-center"> 
+									<div class="text-center">
 										<h4 class="text-dark mb-4">Hello Note Login ~ !</h4>
 									</div>
 									<form class="user" action="processLogin" method="POST">
@@ -59,7 +59,14 @@
 										</div>
 										<button class="btn btn-primary btn-block text-white btn-user"
 											type="submit">Login</button>
-										<hr>
+										<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+											<script>
+												alert("잘못 된 회원정보 입니다.")
+											</script>
+											<c:remove var="SPRING_SECURITY_LAST_EXCEPTION"
+												scope="session" />
+										</c:if>
+										<hr> 
 									</form>
 									<div class="text-center">
 										<a class="small" href="forgot-password.html">시간보고 Password

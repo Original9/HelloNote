@@ -96,8 +96,6 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 
 // 체크 리스트 위젯 생성 함수
 function makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
-	console.log(data);
-
 	$('#widgetContainer')
 			.append(
 					'<div id="'
@@ -111,14 +109,53 @@ function makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 							+ '; z-index: '
 							+ zindex
 							+ '" class="card shadow draggableWidget"> <div class="card-header py-3"> <h6 class="text-primary font-weight-bold m-0">Todo List</h6> </div> <ul class="list-group list-group-flush" style="list-style-type: none;"> </ul> </div>');
-	$(data).each(
-			function() {
-				var checkData = this;
-				$('#widgetContainer div#' + widgetsSeq).find('ul').append(
-						'<li style="margin-left: 10px;" checklistseq="' + checkData.CHECKLIST_SEQ + '">'
-								+ checkData.CHECKLIST_MISSION + '</li>');
-			});
+
+	if (data.length == 0) {
+		$('#widgetContainer div#' + widgetsSeq).find('ul').append(
+				'<li style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px"><strong>Nothing to do</strong></li>');
+	}
+
+	$(data)
+			.each(
+					function(i) {
+						var checkData = this;
+						$('#widgetContainer div#' + widgetsSeq)
+								.find('ul')
+								.append(
+										'<li style="margin-left: 10px;" checklistseq="'
+												+ checkData.CHECKLIST_SEQ
+												+ '"><div class="custom-control custom-checkbox" style="display: inline;"><input class="custom-control-input" type="checkbox" id="formCheck-'
+												+ i
+												+ '"><label class="custom-control-label" for="formCheck-'
+												+ i + '"> </label></div>'
+												+ checkData.CHECKLIST_MISSION
+												+ '</li>');
+					});
 	widgetDraggable();
+	checkUpdate($('#widgetContainer div#' + widgetsSeq));
+}
+
+function checkUpdate(widgetItem) {
+	$(widgetItem).find('input').on(
+			'click',
+			function() {
+
+				var $menuId = parseInt($(this).parent().parent().parent()
+						.parent().attr('menuid'));
+
+				var $checkListSeq = parseInt($(this).parent().parent().attr(
+						'checklistseq'));
+				$.ajax({
+					url : 'widgetCheckListUpdate',
+					data : {
+						checklistSeq : $checkListSeq,
+						menuId : $menuId
+					},
+					success : function() {
+						console.log('checklist update success');
+					}
+				})
+			})
 }
 
 // 아이디 위젯 생성 함수
@@ -165,7 +202,6 @@ function makeMySite(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 						$('#goButton' + i).on(
 								'click',
 								function() {
-									// console.log(siteData.SITE_ADDR);
 									window.open('http://' + siteData.SITE_ADDR,
 											'_blank');
 								});

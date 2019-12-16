@@ -97,7 +97,7 @@
 							CHECKLIST_MISSION ,
 							MENU_ID  
 				FROM 		${hellonoteId}_check 
-				ORDER BY 	CHECKLIST_SEQ DESC)
+				ORDER BY 	CHECKLIST_SEQ)
 		WHERE 	<![CDATA[ rownum <= 5]]>   
 		AND 	CHECKLIST_STATUS = 'f'
 		AND		MENU_ID = #{menuId}
@@ -113,5 +113,22 @@
 		${hellonoteId}_widget
 		set z_index = 1
 		where widgets_seq != #{widgetsSeq}
+	</update>
+	<update id="widgetCheckListUpdate" parameterType="widget">
+	<selectKey order="BEFORE" resultType="String" keyProperty="checklistStatus">
+		select 	checklist_status 
+		from 	${hellonoteId}_check 
+		where 	checklist_seq = #{checklistSeq} 
+		and 	menu_id = #{menuId}
+	</selectKey>
+		UPDATE 	${hellonoteId}_check
+		<if test='checklistStatus == "t"'>
+			SET	CHECKLIST_STATUS = 'f'
+		</if>
+		<if test='checklistStatus == "f"'>
+			SET	CHECKLIST_STATUS = 't'
+		</if>
+ 		WHERE 	checklist_seq = #{checklistSeq}
+ 		AND 	MENU_ID = #{menuId}
 	</update>
 </mapper>

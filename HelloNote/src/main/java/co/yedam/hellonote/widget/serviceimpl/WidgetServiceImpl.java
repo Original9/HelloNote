@@ -77,4 +77,9 @@ public class WidgetServiceImpl implements WidgetService {
 		dao.zIndexUpdateHandler(vo);
 	}
 
+	@Override
+	public void widgetCheckListUpdate(WidgetVO vo) {
+		dao.widgetCheckListUpdate(vo);
+	}
+
 }

@@ -21,10 +21,10 @@
 <%--  		WHERE CHECKLIST_SEQ = #{checklistSeq} --%>
 
 <!-- 			업데이트쿼리 -->
-<%-- 			 		UPDATE ${hellonoteId}_check --%>
-<!--  		SET -->
-<%--  		CHECKLIST_STATUS = #{checklistStatus} --%>
-<%--  		WHERE checklist_seq = #{checklistSeq} --%>
+			 		UPDATE ${hellonoteId}_check
+ 		SET
+ 		CHECKLIST_STATUS = #{checklistStatus}
+ 		WHERE checklist_seq = #{checklistSeq}
 
 <body>
 	<table class="table_layout">

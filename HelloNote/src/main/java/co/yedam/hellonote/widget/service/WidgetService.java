@@ -13,4 +13,5 @@ public interface WidgetService {
 	public void updateWidget(WidgetVO vo);
 	public List<Map<String, Object>> widgetContent(WidgetVO vo);
 	public void zIndexUpdate(WidgetVO vo);
+	public void widgetCheckListUpdate(WidgetVO vo);
 }

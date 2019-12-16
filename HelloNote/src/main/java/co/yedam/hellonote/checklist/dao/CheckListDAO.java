@@ -32,10 +32,4 @@ public class CheckListDAO {
 		System.out.println("dao");
 		return sqltem.update("CheckListDAO.updateList", vo);
 	}
-	
-	public List<CheckListVO> getCheckListT5(CheckListVO vo){
-		vo.setHellonoteId(vo.getHellonoteId().toUpperCase());
-		return sqltem.selectList("CheckListDAO.getCheckListT5", vo);
-		
-	}
 }

@@ -63,9 +63,6 @@
 									</div>
 									<div class="col-sm-6">
 										<button type="button" class="idCheck">중복 체크</button>
-										<p class="result">
-											<span class="msg">아이디 중복 체크 해주세요.</span>
-										</p>
 									</div>
 								</div>
 								<div class="form-group row">

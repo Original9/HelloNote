@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<!-- 	값 가져오는 SQL QUERY -->
-<!-- 		 SELECT CHECKLIST_SEQ checklist_Seq, -->
-<!-- 					CHECKLIST_STATUS , -->
-<!-- 					CHECKLIST_MISSION , -->
-<!-- 					MENU_ID  -->
-<!-- 				FROM (SELECT CHECKLIST_SEQ, -->
-<!-- 						CHECKLIST_STATUS , -->
-<!-- 						CHECKLIST_MISSION , -->
-<%-- 						MENU_ID  FROM ${hellonoteId}_check  --%>
-<!-- 						order by CHECKLIST_SEQ DESC) -->
-		 <![CDATA[ where rownum <=5]]>   
-<!-- 		and CHECKLIST_STATUS = 'f'  -->
+<!-- 	값 가져오는 SQL QUERY -->
+		SELECT 	CHECKLIST_SEQ checklist_Seq,
+				CHECKLIST_STATUS ,
+				CHECKLIST_MISSION ,
+				MENU_ID 
+		FROM 	(SELECT 	CHECKLIST_SEQ,
+							CHECKLIST_STATUS ,
+							CHECKLIST_MISSION ,
+							MENU_ID  
+				FROM 		${hellonoteId}_check 
+				ORDER BY 	CHECKLIST_SEQ DESC)
+		WHERE 	<![CDATA[ rownum <=5]]>   
+		AND 	CHECKLIST_STATUS = 'f'
+		AND		MENU_ID = #{menuId}
 	
 <!-- 			삭제쿼리 -->
 <!--  		sqlquery -->

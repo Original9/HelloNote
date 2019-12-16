@@ -87,6 +87,21 @@
 		from	${hellonoteId}_mysite
 		where	menu_id=#{menuId}
 	</select>
+	<select id="widgetCheckList" resultType="map" parameterType="widget">
+		SELECT 	CHECKLIST_SEQ checklist_Seq,
+				CHECKLIST_STATUS ,
+				CHECKLIST_MISSION ,
+				MENU_ID 
+		FROM 	(SELECT 	CHECKLIST_SEQ,
+							CHECKLIST_STATUS ,
+							CHECKLIST_MISSION ,
+							MENU_ID  
+				FROM 		${hellonoteId}_check 
+				ORDER BY 	CHECKLIST_SEQ DESC)
+		WHERE 	<![CDATA[ rownum <= 5]]>   
+		AND 	CHECKLIST_STATUS = 'f'
+		AND		MENU_ID = #{menuId}
+	</select>
 	<update id="zIndexUpdate" parameterType="widget">
 		update
 		${hellonoteId}_widget

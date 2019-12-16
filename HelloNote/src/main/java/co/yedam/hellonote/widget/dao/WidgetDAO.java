@@ -43,6 +43,10 @@ public class WidgetDAO {
 	public List<Map<String, Object>> widgetAccountBook(WidgetVO vo){
 		return batis.selectList("WidgetDAO.widgetAccountBook", vo);
 	}
+	
+	public List<Map<String, Object>> widgetMySite(WidgetVO vo){
+		return batis.selectList("WidgetDAO.widgetMySite", vo);
+	}
 
 	public void zIndexUpdate(WidgetVO vo) {
 		batis.update("WidgetDAO.zIndexUpdate", vo);

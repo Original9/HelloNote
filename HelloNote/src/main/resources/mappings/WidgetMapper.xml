@@ -76,8 +76,16 @@
 						SELECT SUM (ACCOUNTBOOK_PRICE) price
 						FROM ${hellonoteId}_ACCOUNTBOOK
 					)
-<!-- 		WHERE 		MENU_ID = #{menuId} -->
+		WHERE 		MENU_ID = #{menuId}
 		GROUP BY 	ACCOUNTBOOK_PURPOSE, price
+	</select>
+	<select id="widgetMySite" resultType="map" parameterType="widget">
+		select	site_id,
+				site_pw,
+				site_addr,
+				title
+		from	${hellonoteId}_mysite
+		where	menu_id=#{menuId}
 	</select>
 	<update id="zIndexUpdate" parameterType="widget">
 		update

@@ -19,6 +19,11 @@ public class CheckListServiceImpl implements CheckListService{
 	public List<CheckListVO> getCheckList(CheckListVO vo) {
 		return dao.getCheckList(vo);
 	}
+	@Override
+	public List<CheckListVO> getCheckListT5(CheckListVO vo)
+	{
+		return dao.getCheckListT5(vo);
+	}
 
 	@Override
 	public int deleteList(CheckListVO vo) {

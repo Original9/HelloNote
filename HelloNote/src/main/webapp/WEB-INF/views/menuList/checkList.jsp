@@ -122,12 +122,12 @@
 							+ data[idx].checklistSeq
 							+'"> </label></div></div>'
 														+ '<div class="col-8" id="'
-							+ data[idx].checklistMission
+							+ data[idx].checklistMission+ data[idx].checklistSeq
 							+ '"><strong>'
-														+ data[idx].checklistMission
-														+ '</strong></h6></div>'
-														+ '</div>'
-														+ '<div class="col-3" align="right"><input class="btn btn-primary" id="deleteCheckList'
+							+ data[idx].checklistMission
+							+ '</strong></h6></div>'
+							+ '</div>'
+							+ '<div class="col-3" align="right"><input class="btn btn-primary" id="deleteCheckList'
 							+data[idx].checklistSeq
 							+'" type="button" value="삭제"></div>'
 														+ '</li>')
@@ -136,10 +136,17 @@
 								var delbutton = $('#deleteCheckList'
 										+ data[idx].checklistSeq);
 								delbutton.on("click", function(e) {
-
 									deleteCheck(data[idx].checklistSeq);
-
 								});
+								delbutton.hide();
+								$('#checkItem'+data[idx].checklistSeq).mouseenter(function(){
+									delbutton.show();
+									
+								});
+								$('#checkItem'+data[idx].checklistSeq).mouseleave(function(){
+									delbutton.hide();
+								});
+								
 								
 								//체크박스 가져오기
 								var strcheckbox = $('#formCheck-'
@@ -147,8 +154,10 @@
 								//체크박스 db에서의 값 넣어주기
 								if (data[idx].checklistStatus != "f") {
 									strcheckbox.prop("checked", true);
+									var xline=$('#'+data[idx].checklistMission+ data[idx].checklistSeq);
+									xline.prop('style').textDecoration="line-through wavy #24bffb";
 								}
-
+								
 								//체크박스 이벤트 걸어서 클릭시 db에 업데이트 하기
 								strcheckbox
 										.on(
@@ -156,15 +165,12 @@
 												function(e) {
 													var ischecked = strcheckbox
 															.is(":checked") == true;
-
 													updateCheck(
 															data[idx].checklistSeq,
-															ischecked)
-
-													alert(strcheckbox
-															.is(":checked") == true);//체크되어있는지 없는지 확인				
-												})
-
+															ischecked,data[idx].checklistMission)
+				
+												});
+												
 							});
 		}
 
@@ -180,12 +186,15 @@
 				success : getCheckList
 			});
 		}
-		function updateCheck(seq, ischecked) {
-			var tf;
+		function updateCheck(seq, ischecked,checklistMission) {
+			var tf; //db에 들어가는 값.
+			var xline=$('#'+checklistMission+ seq);
 			if (ischecked) {
 				tf = "t";
+				xline.prop('style').textDecoration="line-through wavy #24bffb";
 			} else {
 				tf = "f";
+				xline.prop('style').textDecoration="";
 			}
 
 			$.ajax({
@@ -198,7 +207,6 @@
 				}),
 				contentType : 'application/json'
 			});
-
 		}
 
 		$(document).on("click", "#submitCheckList", function(e) {
@@ -222,34 +230,6 @@
 			}
 		});
 
-// 		//체크리스트 수정
-// 		function mySiteUpdate() {
-// 			// 수정 버튼 클릭
-// 			$('#updatebutton').on('click', function() {
-// 				var title = $('#UpdForm input:text[name="title"]').val();
-// 				var siteAddr = $('#UpdForm input:text[name="siteAddr"]').val();
-// 				var siteId = $('#UpdForm input:text[name="siteId"]').val();
-// 				var sitePw = $('#UpdForm input[name="sitePw"]').val();
-// 				var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
-// 				var mySiteSeq = $('#dele #mySiteSeq').val();
-
-// 				$.ajax({
-// 					url : "updateMySite",
-// 					method : 'PUT',
-// 					dataType : 'json',
-// 					data : JSON.stringify({
-// 						title : title,
-// 						siteAddr : siteAddr,
-// 						siteId : siteId,
-// 						sitePw : sitePw,
-// 						siteMemo : siteMemo,
-// 						mySiteSeq : mySiteSeq
-// 					}),
-// 					contentType : 'application/json',
-// 					success : getCheckList
-// 				});
-// 			});
-// 		}
 	</script>
 
 

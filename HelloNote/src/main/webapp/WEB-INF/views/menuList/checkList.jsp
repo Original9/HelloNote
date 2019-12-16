@@ -54,23 +54,26 @@
 						<h6 class="text-primary font-weight-bold m-0">Todo List</h6>
 					</div>
 					<ul class="list-group list-group-flush">
-						<!-- 					<li class="list-group-item"> -->
-						<!-- 							<div class="row align-items-center no-gutters"> -->
-						<!-- 								<div class="col mr-2"> -->
-						<!-- 									<h6 class="mb-0"> -->
-						<!-- 										<strong>점심 미팅</strong> -->
-						<!-- 									</h6> -->
-						<!-- 									                                        <span class="text-xs">10:30 AM</span> -->
-						<!-- 								</div> -->
-						<!-- 								<div class="col-auto"> -->
-						<!-- 									<div class="custom-control custom-checkbox"> -->
-						<!-- 										<input class="custom-control-input" type="checkbox" checked="checked" -->
-						<!-- 											id="formCheck-1"><label class="custom-control-label" -->
-						<!-- 											for="formCheck-1"></label> -->
-						<!-- 									</div> -->
-						<!-- 								</div> -->
-						<!-- 							</div> -->
-						<!-- 						</li> -->
+<!-- 						<li class="list-group-item"><div id="checkItem1" -->
+<!-- 								class="row align-items-center no-gutters"> -->
+<!-- 								<div class="row align-items-center no-gutters" -->
+<!-- 									style="width: 70%"> -->
+<!-- 									<div class="col-auto"> -->
+<!-- 										<div class="custom-control custom-checkbox"> -->
+<!-- 											<input class="custom-control-input" type="checkbox" -->
+<!-- 												id="formCheck-1"><label class="custom-control-label" -->
+<!-- 												for="formCheck-1"> </label> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="col-8" id="댕댕콘"> -->
+<!-- 										<strong>댕댕콘</strong> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-3" align="right"> -->
+<!-- 									<input class="btn btn-primary" id="deleteCheckList1" -->
+<!-- 										type="button" value="삭제"> -->
+<!-- 								</div> -->
+<!-- 							</div></li> -->
 					</ul>
 
 				</div>

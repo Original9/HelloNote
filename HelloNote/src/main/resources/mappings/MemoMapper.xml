@@ -51,7 +51,7 @@
 		#{menuId},
 			(
 				select nvl(max(memo_order), 0)+1
-				from ${hellonoteId}_memo
+				from kang_memo
 				where menu_id=#{menuId}
 			)
 		)

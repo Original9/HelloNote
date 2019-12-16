@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MenuDAO">
+	<select id="menuList" parameterType="menu" resultType="menu">
+		select
+		menu_id,
+		menu_name,
+		menu_index,
+		menu_typenumber
+		from
+		${hellonoteId}_usermenu
+		order by menu_index
+	</select>
+	<update id="sortHandling1" parameterType="menu">
+		update ${hellonoteId}_usermenu
+		<if test="oldOrder lt menuIndex">
+			set menu_index = menu_index - 1
+			where menu_index between
+			#{oldOrder} and #{menuIndex}
+		</if>
+		<if test="oldOrder gt menuIndex">
+			set menu_index = menu_index + 1
+			where menu_index between
+			#{menuIndex} and #{oldOrder}
+		</if>
+		and menu_index != #{oldOrder}
+	</update>
+	<update id="sortHandling2" parameterType="menu">
+		update
+		${hellonoteId}_usermenu
+		set menu_index = #{menuIndex}
+		where menu_id =
+		#{menuId}
+	</update>
+	<insert id="insertMenu" parameterType="menu">
+		<selectKey order="BEFORE" keyProperty="menuId"
+			resultType="int">
+			select nvl(max(menu_id), 0) + 1 
+			from ${hellonoteId}_usermenu
+		</selectKey>
+		insert into ${hellonoteId}_usermenu(
+		menu_id,
+		menu_name,
+		menu_index,
+		menu_typenumber
+		)
+		values(
+		#{menuId},
+		#{menuName},
+		(select nvl(max(menu_index), 0) + 1 from ${hellonoteId}_usermenu),
+		#{menuTypenumber}
+		)
+	</insert>
+	<delete id="deleteMenu" parameterType="menu">
+		delete from ${hellonoteId}_usermenu
+		where menu_id = #{menuId}
+	</delete>
+	<update id="editMenu" parameterType="menu">
+		update ${hellonoteId}_usermenu
+		set menu_name = #{menuName}
+		where menu_id = #{menuId}
+	</update>
+	<select id="menuType" parameterType="menu" resultType="int">
+		select menu_typenumber 
+		from ${hellonoteId}_usermenu
+		where menu_id = #{menuId}
+	</select>
+	<delete id="menuDeleteHandling" parameterType="menu">
+		delete from ${hellonoteId}_${menuTableName}
+		where menu_id = #{menuId}
+	</delete>
+	<update id="menuDeleteHandling1" parameterType="menu">
+		update	${hellonoteId}_usermenu
+		set 	menu_index = menu_index - 1
+		where 	menu_index > (
+					select menu_index
+					from ${hellonoteId}_usermenu
+					where menu_id = #{menuId}
+				)
+	</update>
+</mapper>

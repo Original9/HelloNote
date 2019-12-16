@@ -80,6 +80,11 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 						zindex);
 				break;
 
+			case 6:
+				makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation,
+						zindex);
+				break;
+
 			case 8:
 				makeMySite(data, menuId, widgetsSeq, xlocation, ylocation,
 						zindex);
@@ -87,6 +92,33 @@ function getWidgetContentByType(widgetsSeq, menuId, menuTypeNumber, xlocation,
 			}
 		}
 	})
+}
+
+// 체크 리스트 위젯 생성 함수
+function makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
+	console.log(data);
+
+	$('#widgetContainer')
+			.append(
+					'<div id="'
+							+ widgetsSeq
+							+ '" menuid="'
+							+ menuId
+							+ '" style="width : 300px; left: '
+							+ xlocation
+							+ '; top: '
+							+ ylocation
+							+ '; z-index: '
+							+ zindex
+							+ '" class="card shadow draggableWidget"> <div class="card-header py-3"> <h6 class="text-primary font-weight-bold m-0">Todo List</h6> </div> <ul class="list-group list-group-flush" style="list-style-type: none;"> </ul> </div>');
+	$(data).each(
+			function() {
+				var checkData = this;
+				$('#widgetContainer div#' + widgetsSeq).find('ul').append(
+						'<li style="margin-left: 10px;" checklistseq="' + checkData.CHECKLIST_SEQ + '">'
+								+ checkData.CHECKLIST_MISSION + '</li>');
+			});
+	widgetDraggable();
 }
 
 // 아이디 위젯 생성 함수
@@ -130,10 +162,13 @@ function makeMySite(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 												+ this.SITE_PW
 												+ '</div> </div>');
 						var siteData = this;
-						$('#goButton' + i).on('click', function() {
-							// console.log(siteData.SITE_ADDR);
-							window.open('http://' + siteData.SITE_ADDR, '_blank');
-						});
+						$('#goButton' + i).on(
+								'click',
+								function() {
+									// console.log(siteData.SITE_ADDR);
+									window.open('http://' + siteData.SITE_ADDR,
+											'_blank');
+								});
 					})
 	widgetDraggable();
 }

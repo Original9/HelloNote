@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 	값 가져오는 SQL QUERY -->
-<!-- 		 SELECT CHECKLIST_SEQ checklist_Seq, -->
-<!-- 					CHECKLIST_STATUS , -->
-<!-- 					CHECKLIST_MISSION , -->
-<!-- 					MENU_ID  -->
-<!-- 				FROM (SELECT CHECKLIST_SEQ, -->
-<!-- 						CHECKLIST_STATUS , -->
-<!-- 						CHECKLIST_MISSION , -->
-<%-- 						MENU_ID  FROM ${hellonoteId}_check  --%>
-<!-- 						order by CHECKLIST_SEQ DESC) -->
-		 <![CDATA[ where rownum <=5]]>   
-<!-- 		and CHECKLIST_STATUS = 'f'  -->
+		SELECT 	CHECKLIST_SEQ checklist_Seq,
+				CHECKLIST_STATUS ,
+				CHECKLIST_MISSION ,
+				MENU_ID 
+		FROM 	(SELECT 	CHECKLIST_SEQ,
+							CHECKLIST_STATUS ,
+							CHECKLIST_MISSION ,
+							MENU_ID  
+				FROM 		${hellonoteId}_check 
+				ORDER BY 	CHECKLIST_SEQ DESC)
+		WHERE 	<![CDATA[ rownum <=5]]>   
+		AND 	CHECKLIST_STATUS = 'f'
+		AND		MENU_ID = #{menuId}
 <body>
 	<table class="table_layout">
 		<colgroup>
@@ -27,25 +29,6 @@
 							<h6 class="text-primary font-weight-bold m-0">Todo List</h6>
 						</div>
 						<ul class="list-group list-group-flush">
-							<!--  이런 예시로 들어갈 예정 ul안에 내용 다 무시. -->
-<!-- 							<li class="list-group-item"><div id="checkItem1" -->
-<!-- 									class="row align-items-center no-gutters"> -->
-<!-- 									<div class="row align-items-center no-gutters" -->
-<!-- 										style="width: 70%"> -->
-<!-- 										<div class="col-auto"> -->
-<!-- 											<div class="custom-control custom-checkbox"> -->
-<!-- 												<input class="custom-control-input" type="checkbox" -->
-<!-- 													id="formCheck-1" disabled=""><label -->
-<!-- 													class="custom-control-label" for="formCheck-1"> </label> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-8" id="테스트"> -->
-<!-- 											<strong>테스트</strong> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div></li> -->
-<!-- 							</li>  -->
-							
 						</ul>
 
 					</div>

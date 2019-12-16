@@ -54,6 +54,9 @@ public class WidgetServiceImpl implements WidgetService {
 		case 3:
 			return null;
 
+		case 6:
+			return dao.widgetCheckList(vo);
+			
 		case 8:
 			List<Map<String, Object>> list = dao.widgetMySite(vo);
 

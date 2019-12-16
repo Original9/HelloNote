@@ -33,6 +33,15 @@ public class RestFulCheckListController {
 		return checkListService.getCheckList(vo);
 	}
 	
+	@RequestMapping(value="/getCheckListT5",method=RequestMethod.GET)
+	public List<CheckListVO> getCheckListT5(HttpServletRequest request,Model model, CheckListVO vo){
+		UserDetails userDetails =(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		HttpSession session = request.getSession();
+		vo.setHellonoteId(userDetails.getUsername());
+		vo.setMenuId((String)session.getAttribute("menuId"));
+		return checkListService.getCheckListT5(vo);
+	}
+	
 	
 	@RequestMapping(value="/insertList",method=RequestMethod.POST ,consumes ="application/json")
 	public CheckListVO insertList(@RequestBody CheckListVO vo,HttpSession session ) {

@@ -53,16 +53,19 @@ function signupbutton() {
 		$("#gender").focus();
 		return false;
 	}
+	
 	if (!form.age.value) {
 		alert("나이를 입력해주세요.")
 		$("#age").focus();
 		return false;
 	}
+	
 	if (!form.hProfile.value) {
 		alert("간단한 자기소개를 입력해주세요.")
 		$("#hProfile").focus();
 		return false;
 	}
+	
 	alert("가입이 완료 되었습니다.")
 	document.signUp.submit();
 }

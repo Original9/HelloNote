@@ -52,7 +52,7 @@
         <!-- 일정 추가 MODAL -->
         <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content" style='width:290px;' >
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
@@ -69,27 +69,27 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-title">일정명</label>
+                                <label class="col-xs-4" for="edit-title"><p>제목&nbsp;&nbsp;</p></label>
                                 <input class="inputModal" type="text" name="edit-title" id="edit-title"
                                     required="required" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-start">시작</label>
-                                <input type="text" name="edit-start" id="edit-start" />
+                                <label class="col-xs-5" for="edit-start"><p>시작&nbsp;&nbsp;</p> </label>
+                                <input class="inputModal" type="text" name="edit-start" id="edit-start" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-end">끝</label>
+                                <label class="col-xs-4" for="edit-end"><p>종료&nbsp;&nbsp;</p></label>
                                 <input class="inputModal" type="text" name="edit-end" id="edit-end" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-type">구분</label>
-                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
+                                <label class="col-xs-4" for="edit-type"><P>구분&nbsp;&nbsp;</P></label>
+                                <select class="inputModal" type="text" name="edit-type" id="edit-type"  style='width:160px;'>
                                     <option value="카테고리1">★★★★</option>
                                     <option value="카테고리2">★★★</option>
                                     <option value="카테고리3">★★</option>
@@ -99,8 +99,8 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-color">색상</label>
-                                <select class="inputModal" name="color" id="edit-color">
+                                <label class="col-xs-4" for="edit-color"><p>색상 &nbsp;</p></label>
+                                <select class="inputModal" name="color" id="edit-color" style='width:160px;'>
                                     <option value="#D25565" style="color:#D25565;">빨간색</option>
                                     <option value="#9775fa" style="color:#9775fa;">보라색</option>
                                     <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
@@ -116,8 +116,7 @@
                         <div class="row">
                         	
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-desc">설명</label><br>
-                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc" id="edit-desc"></textarea>
+                                <textarea rows="4" cols="80" class="inputModal" name="edit-desc" id="edit-desc" style='width:205px'></textarea>
                             </div>
                         </div>
                     </div>

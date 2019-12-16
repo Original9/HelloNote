@@ -154,40 +154,88 @@
 									<div
 										class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in"
 										role="menu">
-										<h6 class="dropdown-header">alerts center</h6>
+										<h1 class="dropdown-header">계산기</h1>
 										<a class="d-flex align-items-center dropdown-item" href="#">
 											<div class="mr-3">
-												<div class="bg-primary icon-circle">
-													<i class="fas fa-file-alt text-white"></i>
-												</div>
+												<table height=250 width=250 align=center cellpadding="0">
+													<tr>
+														<td colspan=5 align=center><input type="textarea"
+															id="showText" style="width: 100%; height: 100%;" onkeydown="calculateEnterkey();" ></td>
+													</tr>
+
+													<tr>
+														<td colspan=3 align=center><input type="button"
+															id="clearBtn" onclick=clearAll() value="clr"
+															style="width: 100%; height: 100%;"></td>
+														<td colspan=2 align=left><input type="button"
+															id="equal" onclick=getResult() value="="
+															style="width: 100%; height: 100%;"></td>
+													</tr>
+
+													<tr>
+														<th align=center><input type=button id=1 value=1
+															onclick=selectedBtn(1) style="width: 100%; height: 100%;"></th>
+														<th align=center><input type=button id=2 value=2
+															onclick=selectedBtn(2) style="width: 100%; height: 100%;"></th>
+														<th align=center><input type=button id=3 value=3
+															onclick=selectedBtn(3) style="width: 100%; height: 100%;"></th>
+														<th align=center><input type=button id=plus value=+
+															onclick=selectedOp('+')
+															style="width: 100%; height: 100%;"></th>
+														<th align=left><input type=button id=square value=x^y
+															onclick=selectedOp('^')
+															style="width: 100%; height: 100%;"></th>
+													</tr>
+
+													<tr>
+														<td align=center><input type=button id=4 value=4
+															onclick=selectedBtn(4) style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=5 value=5
+															onclick=selectedBtn(5) style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=6 value=6
+															onclick=selectedBtn(6) style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=minus
+															value="-" onclick=selectedOp('-')
+															style="width: 100%; height: 100%;"></td>
+														<td align=left><input type=button id=sin value="sin"
+															onclick=mathText('_sin')
+															style="width: 100%; height: 100%;"></td>
+													</tr>
+													<tr>
+														<td align=center><input type=button id=7 value=7
+															onclick=selectedBtn(7) style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=8 value=8
+															onclick=selectedBtn(8) style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=9 value=9
+															onclick=selectedBtn(9) style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=multi value=*
+															onclick=selectedOp('*')
+															style="width: 100%; height: 100%;"></td>
+														<td align=left><input type=button id=cos value=cos
+															onclick=mathText('_cos')
+															style="width: 100%; height: 100%;"></td>
+													</tr>
+													<tr>
+														<td align=center><input type=button id=0 value=0
+															onclick=selectedBtn(0) style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id="plusNMinus"
+															value=" " onclick=changeSign()
+															style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=dot value="."
+															onclick=selectedBtn('.')
+															style="width: 100%; height: 100%;"></td>
+														<td align=center><input type=button id=divide
+															value="/" onclick=selectedOp('/')
+															style="width: 100%; height: 100%;"></td>
+														<td align=left><input type=button id=tan value="tan"
+															onclick=mathText('_tan')
+															style="width: 100%; height: 100%;"></td>
+													</tr>
+												</table>
 											</div>
-											<div>
-												<span class="small text-gray-500">December 12, 2019</span>
-												<p>A new monthly report is ready to download!</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="mr-3">
-												<div class="bg-success icon-circle">
-													<i class="fas fa-donate text-white"></i>
-												</div>
-											</div>
-											<div>
-												<span class="small text-gray-500">December 7, 2019</span>
-												<p>$290.29 has been deposited into your account!</p>
-											</div>
-										</a> <a class="d-flex align-items-center dropdown-item" href="#">
-											<div class="mr-3">
-												<div class="bg-warning icon-circle">
-													<i class="fas fa-exclamation-triangle text-white"></i>
-												</div>
-											</div>
-											<div>
-												<span class="small text-gray-500">December 2, 2019</span>
-												<p>Spending Alert: We've noticed unusually high spending
-													for your account.</p>
-											</div>
+											
 										</a><a class="text-center dropdown-item small text-gray-500"
-											href="#">Show All Alerts</a>
+											href="#">calculate</a>
 									</div>
 								</div>
 							</li>
@@ -514,7 +562,7 @@
 			</div>
 		</div>
 	</div>
-
+<script src="<c:url value="/resources/assets/pageJs/calculate.js"/>"></script>
 </body>
 
 </html>

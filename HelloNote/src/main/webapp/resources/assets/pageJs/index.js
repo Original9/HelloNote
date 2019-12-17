@@ -67,6 +67,10 @@ function editMenuHandler() {
 					alert('메뉴 이름을 입력하세요')
 					return;
 				}
+				if($('#editName').val().length > 50){
+						alert('메뉴 이름이 너무 깁니다');
+						return;
+				}
 				// ajax로 정보처리
 				$.ajax({
 					url : 'editMenu',
@@ -240,6 +244,11 @@ function menuInsert() {
 				var $menuTypenumber = $('#menuType').val();
 				if ($menuName == '') {
 					alert('메뉴 이름을 입력하세요');
+					return;
+				}
+				
+				if($menuName.length > 50){
+					alert('메뉴 이름이 너무 깁니다');
 					return;
 				}
 

@@ -51,7 +51,7 @@ public class AccountBookController {
 	public AccountBookVO insertAccountBook(@RequestBody AccountBookVO vo, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-
+		
 		accountBookService.insertAccountBook(vo);
 		return vo;
 
@@ -121,7 +121,8 @@ public class AccountBookController {
 		}
 		return resultList;
 	}
-
+	
+	//구글차트
 	@RequestMapping("/chartAccountBook")
 	@ResponseBody
 	public List<Map<String, Object>> getChartData(AccountBookVO vo) {

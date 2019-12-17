@@ -51,7 +51,7 @@
 											
 											<hr>
 										</div>
-										<button class="btn btn-primary btn-block text-white btn-user"
+										<button id="user" name="user" class="btn btn-primary btn-block text-white btn-user"
 											type="submit">Login</button>
 										<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 											<script>

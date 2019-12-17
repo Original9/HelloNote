@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -36,7 +37,7 @@
 		class="org.springframework.web.servlet.view.BeanNameViewResolver"></beans:bean>
 
 	<!-- Tiles -->
-	<beans:bean id="tilesConfigurer" 
+	<beans:bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
@@ -59,13 +60,17 @@
 	</beans:bean>
 
 	<!-- WebSocket Handler 웹소켓을 위한 핸들러 -->
-	<beans:bean id="myHandler" class="co.yedam.hellonote.chat.SpringSocketHandler"/>
+	<beans:bean id="myHandler"
+		class="co.yedam.hellonote.chat.SpringSocketHandler" />
 	<websocket:handlers>
-		<websocket:mapping path="/chat.do" handler="myHandler"/>
+		<websocket:mapping path="/chat.do"
+			handler="myHandler" />
 		<websocket:handshake-interceptors>
-			<beans:bean class="co.yedam.hellonote.chat.HandshakeInterceptor"/>
+			<beans:bean
+				class="co.yedam.hellonote.chat.HandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
+
 
 </beans:beans>
 

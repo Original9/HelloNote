@@ -1,13 +1,17 @@
 package co.yedam.hellonote.user.controller;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,13 +25,80 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
 import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
+import freemarker.core.ParseException;
 
 @Controller
 public class UserController {
+
+	// NaverLoginVO
+	private String apiResult = null;
+
 	@Autowired
 	UserService userService;
+
+	// 1. 첫 로그인 페이지 (홈페이지 열자마자 보이는 화면)
+	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
+	public String home(Locale locale, Model model, HttpSession session) {
+		// 네이버 아이디로 인증 URL을 생성하기 위하여 UserVO클래스의 getAuthorizationUrl메소드 호출
+		UserVO vo = new UserVO();
+		String naverAuthUrl = vo.getAuthorizationUrl(session);
+		model.addAttribute("url", naverAuthUrl);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@11111111111" + naverAuthUrl);
+		return "layout/login";
+	}
+
+	// 2. 네이버 아이디로 로그인 성공 시에 돌아올 페이지
+	@RequestMapping(value = "/Mainpage/Callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+			throws IOException, ParseException {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22222222222");
+		UserVO vo = new UserVO();
+		OAuth2AccessToken oauthToken;
+		oauthToken = vo.getAccessToken(session, code, state);
+
+		// 1. 로그인 사용자 정보를 읽어온다.
+		apiResult = vo.getUserProfile(oauthToken); // String형식의 json데이터
+		System.out.println("여기는 콜백의 apiResult::: " + apiResult);
+		// "id":"76298500","age":"20-29","gender":"F","email":"je708@naver.com","name":"\ubc15\uc9c0\uc6d0","birthday":"04-10"
+
+//		// 2. String형식인 apiResult를 json 형태로 바꿈
+//		JSONParser parser = new JSONParser();
+//		Object obj = null;
+//		try {
+//			obj = parser.parse(apiResult);
+//		} catch (org.json.simple.parser.ParseException e) {
+//			e.printStackTrace();
+//		}
+//		JSONObject jsonObj = (JSONObject) obj;
+//
+//		// 3. 데이터 파싱 후 vo에 set
+//		JSONObject response_obj = (JSONObject) jsonObj.get("response");
+//
+//		String strangeName = (String) response_obj.get("name"); // 유니코드 이름
+//		String normalName = Normalizer.normalize(strangeName, Normalizer.Form.NFC); // 유니코드를 한글로 변환
+
+		// insert 후에 조회를 해서 다시 가져오지 않기 때문에 여기서 값을 넣은 후 밑에서 세션에 저장을 해야 다른 페이지에서 세션 값으로 쓸
+		// 수 있음
+//		vo.setHellonoteId("hellonoteId");
+//		vo.setPw("pw");
+//		vo.setGender("gender");
+//		vo.setAge("age");
+//		vo.sethProfile("hProfile");
+//		vo.sethGrant("hGrant");
+//
+//		// 4. 파싱한 정보가 DB에 있는지 확인하고 없으면 DB에 insert -> 계정 상태까지 체크하고 리턴
+//		userService.insertUserSignUp(vo);
+
+		// 5. security에 setContext으로 값을 담아줌
+		SecurityContextHolder.getContext()
+				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
+
+		return "/HelloNote/Mainpage";
+	}
 
 	// 아이디 중복체크
 	@ResponseBody
@@ -75,18 +146,20 @@ public class UserController {
 		return "redirect:getUserList";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String homelogin(Locale locale, Model model) {
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String homelogin(Locale locale, Model model) {
+//
+//		return "layout/login";
+//	}
 
-		return "layout/login";
-	}
-
+	// 회원 가입 페이지
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {
 
 		return "user/signup";
 	}
 
+	// 메인 페이지
 	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "main/main/mainPage";
@@ -111,7 +184,7 @@ public class UserController {
 		return x;
 	}
 
-	// 유저 리스트 페이지
+	// 유저 리스트 페이지(권한 M 만 볼 수 있음)
 	@RequestMapping("getUserList")
 	public String getUserList(Model model, UserVO vo) {
 		model.addAttribute("user", userService.getUserList(vo));

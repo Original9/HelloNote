@@ -35,7 +35,6 @@ public class UserController {
 	public int postIdCheck(HttpServletRequest request) throws Exception {
 		String hellonoteId = request.getParameter("hellonoteId");
 		UserVO idCheck = userService.idCheck(hellonoteId);
-		System.out.println(idCheck + "@@@@@@@@@@@@@");
 		int result = 0;
 
 		if (idCheck != null) {
@@ -54,9 +53,19 @@ public class UserController {
 
 	// 프로시저 단건삭제
 	@RequestMapping("deleteUserProc")
-	public String deleteUserProc(UserVO vo) {
+	public String admindeleteUserProc(UserVO vo) {
 		userService.deleteUserProc(vo);
 		return "redirect:getUserList";
+	}
+	
+	// 회원 탈퇴
+	@RequestMapping("selfDeleteUser")
+	public String uesrdeleteuser(UserVO vo) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		userService.deleteUserProc(vo);
+		SecurityContextHolder.getContext().setAuthentication(null); // 유저 프로시저 삭제 후 세션 값 제거
+		return "redirect:/logout";
 	}
 
 	// 프로시저 리스트 삭제 처리

@@ -43,6 +43,7 @@ function fn_userDel() {
 		$('#userForm input[name="hellonoteId1"]').val(
 				$(this).closest('tr').find('td').val());
 		document.userForm.submit();
+		alert("삭제되었습니다.");
 	}
 }
 
@@ -52,7 +53,9 @@ function fn_userDel2() {
 	if (agree) {
 		$('#dele input[name="hellonoteId"]')
 				.val($('#dele #hellonoteId').html());
+		
 		document.dele.submit();
+		alert("삭제되었습니다.");
 	}
 }
 

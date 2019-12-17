@@ -48,6 +48,7 @@ function fn_userDel() {
 function fn_userDel2() {
 	var agree = confirm("삭제 하시겠습니까?");
 	if (agree) {
+		alert("삭제 되었습니다.");
 		document.dele.submit();
 	}
 }
@@ -64,19 +65,11 @@ $(function() {
 
 	// 입력 모달창 열기
 	// #specification ID 를 .on('click') 클릭시 , function() 실행
-	$('#specification').on(
-			'click',
-			function() {
-				// mySiteModal 이라는 ID를 show 해준다
-				$('#mySiteModal').show();
-				var form = document.userForm;
-				if (form.siteAddr.value.search != "https://"
-						|| form.siteAddr.value.search != "http://") {
-					alert("주소에 https 또는 http를 입력해주세요.");
-					$('#siteAddr').focus();
-					return false;
-				}
-			})
+	$('#specification').on('click', function() {
+		// mySiteModal 이라는 ID를 show 해준다
+		$('#mySiteModal').show();
+
+	})
 
 	// 입력 모달창 닫기(열기와 같은 원리 hide는 숨겨줌)
 	$('#mySiteModal .close').on('click', function() {
@@ -152,43 +145,39 @@ $(function() {
 // 사용자 수정 요청
 function mySiteUpdate() {
 	// 수정 버튼 클릭
-	$('#updatebutton').on(
-			'click',
-			function() {
-				var form = document.UpdForm;
-				if (form.siteAddr.value.search != "https" + "://"
-						|| form.siteAddr.value.search != "http://") {
-					alert("주소에 https:// 또는 http://를 입력해주세요.");
-					$('#siteAddr').focus();
-					return false;
-				} else {
-					return true;
-				}
-				
-				var title = $('#UpdForm input:text[name="title"]').val();
-				var siteAddr = $('#UpdForm input:text[name="siteAddr"]').val();
-				var siteId = $('#UpdForm input:text[name="siteId"]').val();
-				var sitePw = $('#UpdForm input[name="sitePw"]').val();
-				var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
-				var mySiteSeq = $('#dele #mySiteSeq').val();
+	$('#updatebutton').on('click', function() {
 
-				$.ajax({
-					url : "updateMySite",
-					method : 'PUT',
-					dataType : 'json',
-					data : JSON.stringify({
-						title : title,
-						siteAddr : siteAddr,
-						siteId : siteId,
-						sitePw : sitePw,
-						siteMemo : siteMemo,
-						mySiteSeq : mySiteSeq,
-						menuId : $('#menuId').val()
-					}),
-					contentType : 'application/json',
-					success : getupdateHandler
-				});
-			});
+		var agree = confirm("수정 하시겠습니까?");
+
+		var title = $('#UpdForm input:text[name="title"]').val();
+		var siteAddr = $('#UpdForm input:text[name="siteAddr"]').val();
+		var siteId = $('#UpdForm input:text[name="siteId"]').val();
+		var sitePw = $('#UpdForm input[name="sitePw"]').val();
+		var siteMemo = $('#UpdForm textarea[name="siteMemo"]').val();
+		var mySiteSeq = $('#dele #mySiteSeq').val();
+		
+		if (!agree) {
+			alert("취소 하였습니다.")
+			return false;
+		}
+		
+		$.ajax({
+			url : "updateMySite",
+			method : 'PUT',
+			dataType : 'json',
+			data : JSON.stringify({
+				title : title,
+				siteAddr : siteAddr,
+				siteId : siteId,
+				sitePw : sitePw,
+				siteMemo : siteMemo,
+				mySiteSeq : mySiteSeq,
+				menuId : $('#menuId').val()
+			}),
+			contentType : 'application/json',
+			success : getupdateHandler
+		});
+	});
 }
 function getupdateHandler(data) {
 	$("#title").html(data.title);
@@ -199,6 +188,7 @@ function getupdateHandler(data) {
 	$("#mySiteSeq").val(data.mySiteSeq);
 
 	$('#changeform').hide();
+	alert("수정 되었습니다.");
 	location.reload();
 
 }

@@ -35,8 +35,6 @@
 		<security:intercept-url
 			pattern="/deleteUserListProc" access="hasAuthority('M')" />
 		<security:intercept-url
-			pattern="/deleteUserProc" access="hasAuthority('M')" />
-		<security:intercept-url
 			pattern="/downloadExcel1" access="hasAuthority('M')" />
 
 		<!-- user 권한설정 -->

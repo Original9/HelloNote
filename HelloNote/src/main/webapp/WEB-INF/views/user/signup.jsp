@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>User-Table</title>
+<title>회원가입</title>
 </head>
 <!-- CSS -->
 <link rel="stylesheet"
@@ -59,7 +59,7 @@
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="hellonoteId" placeholder="ID" name="hellonoteId">
+											id="hellonoteId" placeholder="아이디" name="hellonoteId">
 									</div>
 									<div class="col-sm-6">
 										<button type="button" class="idCheck">중복 체크</button>
@@ -69,12 +69,12 @@
 									<div class="col-sm-6 mb-3 mb-sm-0">
 
 										<input class="form-control form-control-user" type="password"
-											id="pw" placeholder="Password" name="pw">
+											id="pw" placeholder="비밀번호" name="pw">
 									</div>
 
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="password"
-											id="pwcheck" placeholder="PasswordCheck" name="pwcheck">
+											id="pwcheck" placeholder="비밀번호 체크" name="pwcheck">
 
 									</div>
 								</div>
@@ -83,11 +83,11 @@
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="age" placeholder="Age" name="age">
+											id="age" placeholder="나이" name="age">
 									</div>
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="text"
-											id="hProfile" placeholder="hProfile" name="hProfile">
+											id="hProfile" placeholder="자기소개" name="hProfile">
 									</div>
 
 								</div>
@@ -96,8 +96,8 @@
 									<label for="성별"><strong>성별:&nbsp;</strong></label> <select
 										name="gender">
 										<option selected>선택</option>
-										<option value="M">M</option>
-										<option value="F">F</option>
+										<option value="M">남자</option>
+										<option value="F">여자</option>
 									</select>
 								</div>
 								<br>

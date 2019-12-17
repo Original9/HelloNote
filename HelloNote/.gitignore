@@ -4,3 +4,5 @@
 .sts4-cache/*
 bin/*
 target/*
+
+!forImport/*

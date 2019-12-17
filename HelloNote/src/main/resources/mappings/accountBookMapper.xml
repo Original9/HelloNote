@@ -5,8 +5,8 @@
 <mapper namespace="AccountBookDAO">
 
 <select id="getAccountBookList" resultType="accountBook">
-		SELECT
-		MENU_ID, 
+		SELECT 
+		MENU_ID  accountbook_Menuid , 
 		ACCOUNTBOOK_SEQ , 
 		ACCOUNTBOOK_DATE , 
 		ACCOUNTBOOK_TRANSLATION , 
@@ -17,11 +17,11 @@
 		<!--  특정 기간 및 항목 선택 조회 -->
 		<where>
 		<if test= "accountbookFirstDate != null and accountbookFirstDate != '' " >
-	 	ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
+	 	AND ACCOUNTBOOK_DATE BETWEEN   #{accountbookFirstDate} and #{accountbookLastDate}
 	 	</if>
 	 	
-	 	<if test= " accountbookPurpose != '항목을 선택해 주세요' and accountbookPurpose != '' and accountbookPurpose !=null">
-	 	ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
+	 	<if test= "accountbookPurpose != '항목을 선택해 주세요' and accountbookPurpose != '' and accountbookPurpose !=null">
+	 	AND ACCOUNTBOOK_PURPOSE=#{accountbookPurpose} 
 	 	</if>
 		</where>
 		
@@ -36,21 +36,21 @@
 	</selectKey>  
 		insert into ${hellonoteId}_ACCOUNTBOOK 
 		(
-		MENU_ID,
 		ACCOUNTBOOK_SEQ,
 		ACCOUNTBOOK_DATE, 
 		ACCOUNTBOOK_PURPOSE, 
-		ACCOUNTBOOK_TRANSLATION, 
-		ACCOUNTBOOK_PRICE
+		ACCOUNTBOOK_PRICE,
+		ACCOUNTBOOK_TRANSLATION,
+		MENU_ID
 		)
 		values
 		 ( 
-		#{menuId},
 		#{accountbookSeq },
 		#{accountbookDate  },
 		#{accountbookPurpose},
+		#{accountbookPrice},
 		#{accountbookTranslation},
-		#{accountbookPrice} 
+		#{accountbookMenuid}
 		)
 
 </insert>
@@ -58,7 +58,6 @@
 <delete id="deleteAccountBook" parameterType="accountBook">
 		DELETE FROM ${hellonoteId}_ACCOUNTBOOK
 		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
-		AND MENU_ID = ${menuId}
 
 </delete>
 
@@ -70,7 +69,6 @@
 		ACCOUNTBOOK_PRICE = #{accountbookPrice} , 
 		ACCOUNTBOOK_TRANSLATION = #{accountbookTranslation}
 		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
-		and MENU_ID = #{menuId}
 
 </update>
 

@@ -5,30 +5,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css"/>
 <style>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
-
-input[type=text]{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+/*  input[type=text]{  */
+/*    width: 100%;  */
+/*    padding: 12px 20px;  */
+/*    margin: 8px 0;  */
+/*    display: inline-block;  */
+/*    border: 1px solid #ccc;  */
+/*    border-radius: 4px;  */
+/*    box-sizing: border-box;  */
+/*  }  */
 </style>
 <!-- <link rel="stylesheet" -->
 <!--    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/assets/js/json.min.js"/>"></script>
 <!-- 구글 차트  -->
 <script src="//www.google.com/jsapi"></script>
@@ -40,9 +32,9 @@ input[type=text]{
    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
  
  <!--  data tables -->
-<script src="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<!-- <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
 
 <title>AccountBook</title>
@@ -63,13 +55,37 @@ input[type=text]{
       
       deleteAccountBook();
       
-      updateAccountBook();
-      
+      //updateAccountBook();
+      //alert("dd");    
+    
    });
+   
+   /* 	function modalshow(){
+	   
+		  $('#updatemodal').show();
+	}  */
 
+	
+	function madalhide(){
+		$("#updatemodal").hide();
+	}
+	
+	
+	function mymodalshow(){
+		$("#myModal").show();
+	}
+	
+	
+	function mymodalhide(){
+		$("#myModal").hide();
+	}
+	
    //목록 조회 요청
    function getAccountBookList() {
       // 특정 기간 / 항목별  / 특정기간+항목으로 내역 조회
+      
+      $("#updatemodal").hide();
+     
       $('#btnIns').on('click', function() {
          //날짜 잘못 입력했을 시 경고창
          var fdate = $('#accountbookFirstDate').val();
@@ -82,20 +98,18 @@ input[type=text]{
                url : "getAccountBookList.json",
                method : "POST",
                dataType : "json",
-               data : {
-            	   searchfrm : $("#searchfrm").serialize(),
-            	   menuId : $('#menuId').val()
-               },
+               data :  $("#searchfrm").serialize(),
                success : getAccountBookListHandler
-
             });
          }
       });
-
+	  
       //메인에 출력되는 전체 내역 조회   
+
       $.ajax({
          url : "getAccountBookList.json",
          type : "json",
+         //data : $("#searchfrm").serialize(),
          success : getAccountBookListHandler
       });
 
@@ -106,9 +120,9 @@ input[type=text]{
       $("tbody").empty();
       //List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
       var sum = 0;
-
+      	  
       for (i = 0; i < data.length; i++) {
-         $("<tr>").append($('<input type=\'hidden\' id=\'menuId\'>').val(data[i].menuId))
+         $("<tr>").append($('<input type=\'hidden\' id=\'accountbookMenuid\'>').val(data[i].accountbookMenuid))
                .append($("<td>").html(data[i].accountbookSeq))
                .append($("<td>").html(data[i].accountbookDate))
                .append($("<td>").html(data[i].accountbookPurpose))
@@ -116,49 +130,58 @@ input[type=text]{
                .append($("<td>").html(data[i].accountbookTranslation))
                .append($('<td>').html('<button class="btn btn-danger" id=\'btnDelete\'>삭제</button>'))
                //.append($('<td>').html('<button class="btn btn-danger" id="btnDelete'+ i + '" onclick="deleteAccountBook(\'btnDelete' + i + '\')">삭제</button>'))
-                //.append($('<td>').html('<button class="btn btn-primary" name="btnUpdate", id="btnUpdate'+ i + '" data-toggle="modal" data-target="#updatemodal" onclick="updateAccountBook('+data[i].accountbookSeq+')">수정</button>'))
-               .append($('<td>').html('<button class="btn btn-primary" name="btnUpdate", id="btnUpdate'+ i + '" data-toggle="modal" data-target="#updatemodal" onclick="updateAccountBook('+data[i].accountbookSeq+', '+data[i].accountbookPrice+')">수정</button>'))
-             //   .append($('<input type=\'hidden\' id=\'hidden_accountbookSeq\'>').val(data[i].accountbookSeq))
+               .append($('<td>').html('<button class="btn btn-primary" name="btnUpdate", id="btnUpdate'+ i + '" data-toggle="modal" data-target="updatemodal" onclick="updateAccountBook('+data[i].accountbookSeq+','+data[i].accountbookPrice+',\''+data[i].accountbookTranslation+'\',\''+data[i].accountbookDate+'\',\''+data[i].accountbookPurpose+'\' )">수정</button>'))
+               //.append($('<td>').html('<button class="btn btn-primary" id="btnUpdate" data-toggle="modal" data-target="updatemodal" onclick="modalshow()">수정</button>'))
+               .append($('<input type=\'hidden\' id=\'hidden_accountbookSeq\'>').val(data[i].accountbookSeq))
                .appendTo($("#tbodyList"))
-               sum += data[i].accountbookPrice;
+               sum = sum + data[i].accountbookPrice;
 
-               $('[name="balance"]').attr('value',sum);
+               $('[name="consumption"]').attr('value',sum);
                
       }
-	    $('#accountBookTable').dataTable();
+      $("#myModal").hide();
+	  $('#accountBookTable').dataTable();
    }
 
    //등록
    function insertAccountBook() {
-      $("#submit").click(function() {
-         var param = JSON.stringify($("#submitFrm").serializeObject());
+      $("#insertBtn").click(function() {
+    	var a = $('#accountbookPrice').val();
+    	var d = $('#accountbookDate').val();
+    	var f = $('#accountbookPurpose').val();
+    	if (a == ''){
+    		alert("금액을 입력해 주세요.");
+    		preventDefault();
+    	}
+    	else if(d == ''){
+    		alert("날짜를 입력해 주세요.");
+    		preventDefault();
+    	}
+    	
+//     	else if(f == '항목을 선택해 주세요'){  
+//     		alert('항목을 선택해 주세요');
+//     		preventDefault();
+//     	}
+    	
+		var b= $('#jb-radio-2').prop('checked');
+		var c= $('#accountbookPrice').val()*(-1);
+			if(b){
+				$('#accountbookPrice').val(c);
+
+ 
+			}
+			var param = JSON.stringify($("#submitFrm").serializeObject());
+			
          $.ajax({
             url : "insertAccountBook.json",
             method : "post",
             dataType : "json",
-            data : {
-            	param,
-            	menuId : $('#menuId').val()
-            },
-            contentType : "application/json",
-            success : getAccountBookList
+            data : param,
+            contentType : "application/json"
          });
-
+         location.reload();
       });
    }
-   //.append()menuId
-   //등록 처리 결과
-   function insertAccountBookHandler(data) {
-      //입력할 데이터를 td태그로 추가하여 입력
-      $("<tr>").append($('<input type=\'hidden\' id=\'menuId\'>').val(data[i].menuId))
-      		 .append(parseDate($("<td>").html(data.accountbookSeq)))
-             .append($("<td>").html(data.accountbookDate))
-             .append($("<td>").html(data.accountbookPurpose))
-             .append($("<td>").html(data.accountbookPrice))
-             .append($("<td>").html(data.accountbookTranslation))
-             .appendTo($("#tbodyList"));
-   }
-
    //삭제
    function deleteAccountBook() {
       //삭제 버튼 클릭
@@ -173,6 +196,7 @@ input[type=text]{
          contentType : 'application/json',
          dataType : 'json',
          data : {
+        	 
             accountbookSeq : hidden_accountbookSeq
          },
          success : getAccountBookList
@@ -193,21 +217,37 @@ input[type=text]{
 
 
 	
-
+	
+	
+	//modal show event
+	
+	
    //수정
-   
-   function updateAccountBook(accountbookSeq,accountbookPrice) {
-	   var ap = (accountbookPrice);
-	   var aseq = accountbookSeq;
-      $("#updatemodal").on('shown.bs.modal', function(){
-         var userId = $(this).closest('tr').find('td').html();
-         console.log(userId);
-      $('#btnUpdateAccountBook').on('click',function(){
-         
+   function updateAccountBook(accountbookSeq,accountbookprice,accountbooktranslation,accountbookdate,accountbookpurpose) {
+	  
+	
+	   $("#updatemodal").show();
+	   $('[name="accountbookUpdateDate"]').val(accountbookdate);
+	   $('input:text[name="updatePrice"]').val(accountbookprice);
+	   $('input:text[name="updateTranslation"]').val(accountbooktranslation);
+	   $('select[name="updateAccountBookPurpose"]').val(accountbookpurpose);
+	   
+	   $("#updateAccountBookBtn").click(function() {     
          var date = $('[name="accountbookUpdateDate"]').val();
          var purpose = $('select[name="updateAccountBookPurpose"]').val();
          var price = $('input:text[name="updatePrice"]').val();
          var translation = $('input:text[name="updateTranslation"]').val();
+         if(price == ''){
+        	 alert('금액을 입력해 주세요.');
+        	 preventDefault();
+        	 
+         }
+         else if(date == ''){
+        	 alert('날짜를 입력해 주세요.');
+        	 preventDefault();
+         }
+
+         
          $.ajax({ 
              url: "updateAccountBook.json", 
              method: 'PUT', 
@@ -219,10 +259,10 @@ input[type=text]{
              //date: accountbookUpdateDate, 
              
          });
+    
       });
-      });
-   }
    
+	}
    
    
    function updateAccountBookHandler(){
@@ -240,7 +280,7 @@ input[type=text]{
 
 	var options = {
 		title : '항목 통계',
-		width : 200,
+		width : 300,
 		height : 200,
 		backgroundColor: '#f8f9fc'
 
@@ -260,44 +300,55 @@ input[type=text]{
 				var chartData = [];
 				chartData.push([ '항목', '비율' ])
 				for (i = 0; i < data.length; i++) {
-					var subarr = [ data[i].accountbookPurpose, (data[i].accountbookPercent) ];
+					var subarr = [ data[i].accountbookPurpose, data[i].accountbookPercent];
 					chartData.push(subarr);
 				}
 				//챠트 그리기
-				var chart = new google.visualization.PieChart(document
-						.querySelector('#piechart'));
+				var chart = new google.visualization.ColumnChart(document
+						.querySelector('#chart_div'));
 				chart.draw(google.visualization.arrayToDataTable(chartData),
 						options);
 			}
 		});
 	});
 
+	
+	//버튼 클릭 사라짐 테스트
 
+	
 
 </script>
 
+
 </head>
 <body>
-<!-- <div id="chart_div"></div> -->
+<div id="chart_div" style="width: 1px; height: 1px" ></div>
 
-   <div id="piechart" align="right" style="width: 1px; height: 1px;"></div>
+<!--    <div id="piechart" align="right" style="width: 1px; height: 1px;"></div> -->
    <div class="container">
       <h3>가 계 부</h3>
+      <input type="button" class="btn btn-primary" id="insertCard"  value="카드 등록"><br>
+      은 행 :&nbsp;<input type="text" class="form-control-sm-7" id="bankName"><br><br>
+     계 좌 이 름 :&nbsp;<input type="text" class="form-control-sm-7" id="accountName"><br><br>
+      계 좌 번 호 :&nbsp;<input type="text" class="form-control-sm-7" id="accountNumber"><br><br>
       <div class="col-5">
-         <h5>
-            Balance: <input type="text" class="form-control" id="balance"
-               name="balance" readonly>
-         </h5>
-			 
+      <h5>
+            소 비 금 액: <input type="text" class="form-control" id="consumption" name="consumption" readonly>
+      </h5>
       </div>
-      <input type="button" class="btn btn-primary" id="csutomcheck" name="csutomcheck" value="임의 내역 조회" data-toggle="modal" data-target="#myModal"> 
-      <input type="button" class="btn btn-primary" id="final" name="final" value="결산" onclick="location.href='downloadExcel'">
+       <div class="col-5">
+       계 좌 잔 액 : <input type="text" class="form-control-sm-7" id="balance"> 		 
+       </div>
+       최 종 잔 액 : <input type="text" class="form-control-sm-7" id="finalBalance">    
+      <input type="button" class="btn btn-primary" id="csutomcheck" name="csutomcheck" value="임의 내역 조회" onclick="mymodalshow()" data-toggle="modal" data-target="myModal"> 
+      <input type="button" class="btn btn-primary" id="final" name="final" value="결산" onclick="location.href='downloadExcel2'">
 	  
       
 		
       <!--  기간조회 및 항목 모달구현 -->
       <div class="container">
          <form id="searchfrm" name="searchfrm">
+<%--          <input type="hidden" id="accountbookMenuid" value="${param.menuId}"> --%>
             <div class="modal" id="myModal">
                <div class="modal-dialog">
                   <div class="modal-content">
@@ -316,8 +367,8 @@ input[type=text]{
 
                         항목을 선택해 주세요 <select class="custom-select custom-select-sm mb-1"
                            id="accountbookPurpose" name="accountbookPurpose">
-                           <option selected>항목을 선택해 주세요</option>
-                           <option value="교통비" id="trans" name="trans">교통비</option>
+<!--                            <option selected id="choiceSelect" name="choiceSelect">항목을 선택해 주세요</option> -->
+                           <option selected value="교통비" id="trans" name="trans">교통비</option>
                            <option value="식비" id="foodExpense" name="foodExpense">식비</option>
                            <option value="급여" id="salary" name="salary">급여</option>
                            <option value="세금" id="tax" name="tax">세금</option>
@@ -328,8 +379,8 @@ input[type=text]{
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger"
                            data-dismiss="modal" id="btnIns" name="btnIns">조회</button>
-                        <button type="button" class="btn btn-danger"
-                           data-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-danger" id="madalcancel" 
+                           data-dismiss="modal" onclick="mymodalhide()">취소</button>
                      </div>
                   </div>
                </div>
@@ -341,10 +392,9 @@ input[type=text]{
 
 
       <!--  수정 -->
-      <form id="updatefrm" name="updatefrm">
-      <div class="container">
-         <form id="updatefrm" name="updatefrm">
-            <div class="modal" id="updatemodal">
+
+        <div class="modal" id="updatemodal">
+      		<form id="updatefrm" name="updatefrm">
                <div class="modal-dialog">
                   <div class="modal-content">
 
@@ -359,7 +409,7 @@ input[type=text]{
                            name="accountbookUpdateDate">
                         항목  <select class="custom-select custom-select-sm mb-1"
                            id="updateAccountBookPurpose" name="updateAccountBookPurpose">
-                           <option selected>항목을 선택해 주세요</option>
+<!--                            <option selected>항목을 선택해 주세요</option> -->
                            <option value="교통비" id="trans" name="trans">교통비</option>
                            <option value="식비" id="foodExpense" name="foodExpense">식비</option>
                            <option value="급여" id="salary" name="salary">급여</option>
@@ -374,23 +424,32 @@ input[type=text]{
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger"
-                           data-dismiss="modal" id="btnUpdateAccountBook" name="btnUpdateAccountBook">수정</button>
+                           id="updateAccountBookBtn" >수정</button>
                         <button type="button" class="btn btn-danger"
-                           data-dismiss="modal">취소</button>
+                           data-dismiss="modal" onclick="madalhide()">취소</button>
                      </div>
                   </div>
                </div>
+         	</form>
             </div>
-         </form>
-      </div>
-      </form>
+   
       <!--  수정 종료 -->
 
 
 
 
       <form id="submitFrm" name="submitFrm" class="form-inline">
-
+		
+		<input type="hidden" id="accountbookMenuid" name="accountbookMenuid" value="${param.menuId}">
+		<div class="custom-control custom-radio">
+                  <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
+                  <label class="custom-control-label" for="jb-radio-1">수입</label>
+               </div>
+               <div class="custom-control custom-radio">
+                  <input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input" checked="checked">
+                  <label class="custom-control-label" for="jb-radio-2" >지출</label>
+               </div>&nbsp;&nbsp;&nbsp;
+	
          <div class="input-group-addon">날짜</div>
          <label class="sr-only" for="example-date-input">Date</label> <input
             class="form-control mb-2 mr-sm-2 mb-sm-0" type="date"
@@ -400,8 +459,7 @@ input[type=text]{
          <div class="input-group-addon">항목</div>
          <select class="custom-select custom-select-sm mb-1"
             name="accountbookPurpose" id="accountbookPurpose">
-            <option selected>항목을 선택해 주세요</option>
-            <option value="교통비" id="trans" name="trans">교통비</option>
+            <option selected value="교통비" id="trans" name="trans">교통비</option>
             <option value="식비" id="foodexpense" name="foodexpense">식비</option>
             <option value="급여" id="salary" name="salary">급여</option>
             <option value="세금" id="tax" name="tax">세금</option>
@@ -415,7 +473,7 @@ input[type=text]{
          <div class="input-group-addon">비고</div>
          <label class="sr-only" for="inlineFormInput">Transaction</label> <input
             type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
-            id="accountbookTranslation" name="accountbookTranslation"> <label
+            id="accountbookTranslation" name="accountbookTranslation" placeholder = "특이사항을 입력 하세요."> <label
             class="sr-only" for="inlineFormInputGroup">Amount</label>
             
           
@@ -423,16 +481,16 @@ input[type=text]{
          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
             <div class="input-group-addon">금액</div>
             <input type="text" id="accountbookPrice" name="accountbookPrice"
-               class="form-control" aria-label="Amount (to the nearest dollar)">
+               class="form-control" aria-label="Amount (to the nearest dollar)" placeholder = "금액을 입력하세요.">
          </div>
-
-         <button type="button" id="submit" name="submit"
+		
+         <button type="button" id="insertBtn" name="insertBtn"
             class="btn btn-primary">Submit</button>
       </form>
       <div id="accountBookList">
          <table class="table" id="accountBookTable">
          <thead>
-            <tr id="tr">
+               <tr id="tr">
                <th>#</th>
                <th>날짜</th>
                <th>이용 목적</th>
@@ -441,10 +499,9 @@ input[type=text]{
                <th>수정</th>
                <th>삭제</th>
             </tr>
-            </thead>
-            <tbody id="tbodyList">
-            </tbody>
-  
+         </thead>
+         <tbody id="tbodyList">
+         </tbody>
          </table>
       </div>
    </div>

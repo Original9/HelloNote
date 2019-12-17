@@ -51,53 +51,61 @@
 					<div class="col-lg-7">
 						<div class="p-5">
 							<div class="text-center">
-								<h4 class="text-dark mb-4">Create an Account!</h4>
+								<h4 class="text-dark mb-4">회원 가입</h4>
+								<br>
 							</div>
 							<form class="signUp" name="signUp" id="signUp"
 								action="insertUserSignUp">
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
-											id="hellonoteId" placeholder="hellonoteId" name="hellonoteId">
-										<button type="button" class="idCheck">중복 체크</button>
-										<p class="result">
-											<span class="msg">아이디를 확인해주십시오.</span>
-										</p>
-									</div>
-									<br> <br> <br>
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input class="form-control form-control-user" type="password"
-											id="pw" placeholder="pw" name="pw">
+											id="hellonoteId" placeholder="ID" name="hellonoteId">
 									</div>
 									<div class="col-sm-6">
+										<button type="button" class="idCheck">중복 체크</button>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+
 										<input class="form-control form-control-user" type="password"
-											id="pwcheck" placeholder="pwcheck" name="pwcheck">
+											id="pw" placeholder="Password" name="pw">
+									</div>
+
+									<div class="col-sm-6">
+										<input class="form-control form-control-user" type="password"
+											id="pwcheck" placeholder="PasswordCheck" name="pwcheck">
+
 									</div>
 								</div>
 
+								<br>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input class="form-control form-control-user" type="text"
+											id="age" placeholder="Age" name="age">
+									</div>
+									<div class="col-sm-6">
+										<input class="form-control form-control-user" type="text"
+											id="hProfile" placeholder="hProfile" name="hProfile">
+									</div>
+
+								</div>
+								<br>
 								<div class="col-sm-6">
-									성별 : <select name="gender">
+									<label for="성별"><strong>성별:&nbsp;</strong></label> <select
+										name="gender">
 										<option selected>선택</option>
 										<option value="M">M</option>
 										<option value="F">F</option>
 									</select>
 								</div>
 								<br>
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input class="form-control form-control-user" type="text"
-											id="age" placeholder="age" name="age">
-									</div>
-									<div class="col-sm-6">
-										<input class="form-control form-control-user" type="text"
-											id="hProfile" placeholder="hProfile" name="hProfile">
-									</div>
-								</div>
-								<br> <br>
 								<hr>
 								<br>
 								<button class="btn btn-primary btn-block text-white btn-user"
-									onclick="signupbutton()" type="button" disabled="disabled" id="btnSign">Register Account</button>
+									onclick="signupbutton()" type="button" disabled="disabled"
+									id="btnSign">회원가입 완료</button>
 								<br>
 								<hr>
 							</form>

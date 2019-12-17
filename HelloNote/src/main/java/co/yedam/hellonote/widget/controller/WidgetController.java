@@ -33,32 +33,39 @@ public class WidgetController {
 		vo.setHellonoteId(userDetails.getUsername());
 		return service.widgetContent(vo);
 	}
-	
+
 	@RequestMapping("updateWidget")
 	public void updateWidget(WidgetVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		service.updateWidget(vo);
 	}
-	
+
 	@RequestMapping("zIndexUpdate")
 	public void zIndexUpdate(WidgetVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		service.zIndexUpdate(vo);
 	}
-	
+
 	@RequestMapping("deleteWidget")
 	public void deleteWidget(WidgetVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		service.deleteWidget(vo);
 	}
-	
+
 	@RequestMapping("insertWidget")
 	public int insertWidget(WidgetVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		return service.insertWidget(vo);
+	}
+
+	@RequestMapping("widgetCheckListUpdate")
+	public void widgetCheckListUpdate(WidgetVO vo) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		service.widgetCheckListUpdate(vo);
 	}
 }

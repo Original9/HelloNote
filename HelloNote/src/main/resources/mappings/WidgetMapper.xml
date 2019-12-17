@@ -1,62 +1,134 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="WidgetDAO">
- 	<select parameterType="widget" resultType="widget" id="getWidgetList">
- 		select 	widgets_seq,
-		 		x_location,
-		 		y_location,
-		 		menu_id,
-		 		z_index,
-		 		menu_typenumber
- 		from 	${hellonoteId}_widget
- 	</select>
- 	<insert id="insertWidget" parameterType="widget">
- 		<selectKey resultType="int" keyProperty="widgetsSeq" order="BEFORE">
- 			(select nvl(max(widgets_seq),0)+1 from kang_widget)
- 		</selectKey>
- 		insert into ${hellonoteId}_widget(
- 			widgets_seq,
- 			x_location,
- 			y_location,
- 			menu_id,
- 			z_index,
- 			menu_typenumber
- 		)
- 		values(
- 			#{widgetsSeq},
-			null,
-			null,
+
+<mapper namespace="WidgetDAO">
+	<select parameterType="widget" resultType="widget"
+		id="getWidgetList">
+		select widgets_seq,
+		x_location,
+		y_location,
+		menu_id,
+		z_index,
+		menu_typenumber
+		from ${hellonoteId}_widget
+	</select>
+	<insert id="insertWidget" parameterType="widget">
+		<selectKey resultType="int" keyProperty="widgetsSeq"
+			order="BEFORE">
+			(select nvl(max(widgets_seq),0)+1 from ${hellonoteId}_widget)
+		</selectKey>
+		insert into ${hellonoteId}_widget(
+		widgets_seq,
+		x_location,
+		y_location,
+		menu_id,
+		z_index,
+		menu_typenumber
+		)
+		values(
+		#{widgetsSeq},
+		null,
+		null,
+		<if test="menuId != 0">
 			#{menuId},
-			1,
-			#{menuTypeNumber} 			
- 		)
- 	</insert>
- 	<update id="updateWidget" parameterType="widget">
- 		update ${hellonoteId}_widget
- 		set x_location = #{xLocation}, y_location = #{yLocation}
- 		where widgets_seq = #{widgetsSeq}
- 	</update>
- 	<delete id="deleteWidget" parameterType="widget">
- 		delete from ${hellonoteId}_widget
- 		where widgets_seq = #{widgetsSeq}
- 	</delete>
- 	<select id="widgetMemo" resultType="map" parameterType="widget">
-		select	memo_title
-		from 	${hellonoteId}_memo
-		where 	memo_order <![CDATA[ <= ]]> 5
-		and		menu_id = #{menuId}
+		</if>
+		<if test="menuId == 0">
+			null,
+		</if>
+		1,
+		#{menuTypeNumber}
+		)
+	</insert>
+	<update id="updateWidget" parameterType="widget">
+		update
+		${hellonoteId}_widget
+		set x_location = #{xLocation}, y_location =
+		#{yLocation}
+		where widgets_seq = #{widgetsSeq}
+	</update>
+	<delete id="deleteWidget" parameterType="widget">
+		delete from
+		${hellonoteId}_widget
+		where widgets_seq = #{widgetsSeq}
+	</delete>
+	<select id="widgetMemo" resultType="map" parameterType="widget">
+		select memo_title
+		from ${hellonoteId}_memo
+		where memo_order <![CDATA[ <= ]]>
+		5
+		and menu_id = #{menuId}
 		order by memo_order
 	</select>
+	<select id="widgetCalendar" resultType="map"
+		parameterType="widget">
+		select title
+		from ${hellonoteId}_calendar
+		where sysdate
+		between start_date and end_date
+		and menu_id =#{menuId}
+	</select>
+	<select id="widgetAccountBook" resultType="map"
+		parameterType="widget">
+		SELECT 		ACCOUNTBOOK_PURPOSE as "accountbookPurpose",
+					SUM((ACCOUNTBOOK_PRICE/price)*100 ) as "accountbookPercent"
+		FROM 		${hellonoteId}_ACCOUNTBOOK,(
+						SELECT SUM (ACCOUNTBOOK_PRICE) price
+						FROM ${hellonoteId}_ACCOUNTBOOK
+					)
+		WHERE 		MENU_ID = #{menuId}
+		GROUP BY 	ACCOUNTBOOK_PURPOSE, price
+	</select>
+	<select id="widgetMySite" resultType="map" parameterType="widget">
+		select	site_id,
+				site_pw,
+				site_addr,
+				title
+		from	${hellonoteId}_mysite
+		where	menu_id=#{menuId}
+	</select>
+	<select id="widgetCheckList" resultType="map" parameterType="widget">
+		SELECT 	CHECKLIST_SEQ checklist_Seq,
+				CHECKLIST_STATUS ,
+				CHECKLIST_MISSION ,
+				MENU_ID 
+		FROM 	(SELECT 	CHECKLIST_SEQ,
+							CHECKLIST_STATUS ,
+							CHECKLIST_MISSION ,
+							MENU_ID  
+				FROM 		${hellonoteId}_check 
+				ORDER BY 	CHECKLIST_SEQ)
+		WHERE 	<![CDATA[ rownum <= 5]]>   
+		AND 	CHECKLIST_STATUS = 'f'
+		AND		MENU_ID = #{menuId}
+	</select>
 	<update id="zIndexUpdate" parameterType="widget">
-		update ${hellonoteId}_widget
+		update
+		${hellonoteId}_widget
 		set z_index = 2
 		where widgets_seq = #{widgetsSeq}
 	</update>
 	<update id="zIndexUpdateHandler" parameterType="widget">
-	update ${hellonoteId}_widget
-	set z_index = 1
-	where widgets_seq != #{widgetsSeq}	
+		update
+		${hellonoteId}_widget
+		set z_index = 1
+		where widgets_seq != #{widgetsSeq}
 	</update>
- </mapper>
+	<update id="widgetCheckListUpdate" parameterType="widget">
+	<selectKey order="BEFORE" resultType="String" keyProperty="checklistStatus">
+		select 	checklist_status 
+		from 	${hellonoteId}_check 
+		where 	checklist_seq = #{checklistSeq} 
+		and 	menu_id = #{menuId}
+	</selectKey>
+		UPDATE 	${hellonoteId}_check
+		<if test='checklistStatus == "t"'>
+			SET	CHECKLIST_STATUS = 'f'
+		</if>
+		<if test='checklistStatus == "f"'>
+			SET	CHECKLIST_STATUS = 't'
+		</if>
+ 		WHERE 	checklist_seq = #{checklistSeq}
+ 		AND 	MENU_ID = #{menuId}
+	</update>
+</mapper>

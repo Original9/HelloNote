@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CheckListDAO">
+
+	<select id="getCheckListMap" resultType="checkList">
+		SELECT CHECKLIST_SEQ "checkListSeq",
+		CHECKLIST_STATUS "checkListStatus",
+		CHECKLIST_MISSION "checkListMission",
+		MENU_ID "menuId"
+		FROM ${hellonoteId}_check
+<!-- 		ORDER BY 1 describe -->
+	</select>
+
+	<!-- 전체 건수 -->
+	<select id="getMaxSeq" resultType="int">
+		SELECT max(CHECKLIST_SEQ)
+		FROM ${hellonoteId}_check
+	</select>
+
+	<!-- DELETE -->
+	<delete id="deleteList" parameterType="int">
+		DELETE ${hellonoteId}_check
+		WHERE CHECKLIST_SEQ = #{checklistSeq}
+	</delete>
+	<!-- INSERT -->
+	<insert id="insertList">
+		<selectKey order="BEFORE" resultType="int"
+			keyProperty="checklistSeq">
+			SELECT NVL(MAX(CHECKLIST_SEQ),0)+1 FROM ${hellonoteId}_check
+		</selectKey>
+		INSERT INTO  ${hellonoteId}_check ( CHECKLIST_SEQ,
+		CHECKLIST_STATUS,
+		CHECKLIST_MISSION,
+		MENU_ID)
+		VALUES ( #{checklistSeq},
+		#{checklistStatus},
+		#{checklistMission},
+		#{menuId})
+	</insert>
+
+	<!-- UPDATE -->
+	<update id="updateList" parameterType="checkList">
+		UPDATE ${hellonoteId}_check
+		SET
+		CHECKLIST_STATUS = #{checklistStatus}
+		WHERE checklist_seq = #{checklistSeq}
+
+	</update>
+
+	<!-- SELECT -->
+	<select id="getCheckList" parameterType="checkList"
+		resultType="checkList">
+		SELECT CHECKLIST_SEQ "checkListSeq",
+		CHECKLIST_STATUS "checkListStatus",
+		CHECKLIST_MISSION "checkListMission",
+		MENU_ID "menuId"
+		FROM ${hellonoteId}_check
+		ORDER BY CHECKLIST_SEQ
+	</select>
+	
+	<select id="getCheckListT5" parameterType="checkList"	resultType="checkList">
+		SELECT CHECKLIST_SEQ checklist_Seq,
+					CHECKLIST_STATUS ,
+					CHECKLIST_MISSION ,
+					MENU_ID 
+				FROM (SELECT CHECKLIST_SEQ,
+						CHECKLIST_STATUS ,
+						CHECKLIST_MISSION ,
+						MENU_ID  FROM ${hellonoteId}_check 
+						order by CHECKLIST_SEQ DESC)
+		<![CDATA[ where rownum <=5]]>  
+		and CHECKLIST_STATUS = 'f'
+<!-- 		ORDER BY CHECKLIST_SEQ describe  -->
+	</select>
+
+
+</mapper>

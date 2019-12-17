@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="CalendarDAO">
+  
+  	<!-- 사용자가 캘린더에 등록한 일정 모두 조회 -->
+  	<select id="getCalendarList" resultType="calendar">
+  		SELECT CALENDAR_SEQ,
+  			   concat(concat(to_char(START_DATE,'yyyy-mm-dd'),'T'),to_char(START_DATE,'hh24:mi')) AS START_DATE,
+  			   concat(concat(to_char(END_DATE,'yyyy-mm-dd'),'T'),to_char(END_DATE,'hh24:mi')) AS END_DATE,
+  			   TYPE,
+  			   USER_NAME,
+  			   BACKGROUND_COLOR,
+  			   TEXT_COLOR,
+  			   ALL_DAY,
+  			   MENU_ID,
+  			   DESCRIPTION,
+  			   title
+  	     FROM ${hellonoteId}_CALENDAR
+  	     WHERE MENU_ID='${menuId}'
+  	     ORDER BY CALENDAR_SEQ
+  	
+  	</select>
+  	
+  	<!-- 캘린더에 등록한 일정 삭제 -->
+  	<delete id="deleteCalendar" parameterType="calendar">
+  	  		DELETE from ${hellonoteId}_CALENDAR
+  	  		WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi') AND MENU_ID='${menuId}'
+  	</delete>
+  	
+  	<!-- 캘린더에 일정 등록 -->
+  	<insert id="insertCalendar" parameterType="calendar" >
+  		 <selectKey order="BEFORE" resultType="int" keyProperty="calendarSeq">
+  			SELECT NVL(MAX(CALENDAR_SEQ)+1,1) 
+  			FROM ${hellonoteId}_CALENDAR
+  		</selectKey>
+  	
+  		INSERT INTO ${hellonoteId}_CALENDAR(CALENDAR_SEQ,
+                          START_DATE,
+                          END_DATE,
+                          TYPE,
+                          USER_NAME,
+                          BACKGROUND_COLOR,
+                          TEXT_COLOR,
+                          ALL_DAY, 
+                          MENU_ID,
+                          DESCRIPTION,
+                          TITLE)
+  		 			VALUES(#{calendarSeq},
+                           to_date(#{startDate},'yyyy-mm-dd hh24 mi'),
+                           to_date(#{endDate},'yyyy-mm-dd hh24 mi'),
+                           #{type},
+                           '나',   <!-- # "" 붙여준다   $ 그냥 값가져오는거-->
+                           #{backgroundColor},
+                           #{textColor},
+                           #{allDay},
+                           #{menuId}, <!-- 메뉴 세션값 불러오면 여기 대체해야한다. -->
+                           #{description},
+                           #{title})
+  	
+  	</insert>
+  	
+  	<!-- SEQ 번호 얻기 -->
+  	<select id="getCalendarSeq" parameterType="calendar" resultType="calendar">
+  		SELECT CALENDAR_SEQ 
+  			FROM ${hellonoteId}_CALENDAR
+  			WHERE TITLE=#{title} AND START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi') AND MENU_ID='${menuId}'
+  	</select>
+  	
+  	<!-- 캘린더에 등록된 일정 수정 -->
+  	<update id="updateCalendar" parameterType="calendar">
+  	
+  		UPDATE ${hellonoteId}_CALENDAR
+  		SET TITLE= #{title},
+  		    START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi'),
+  		    END_DATE= to_date(#{endDate},'yyyy-mm-dd hh24 mi'),
+  		    TYPE= #{type},
+  		    BACKGROUND_COLOR= #{backgroundColor},
+  		    ALL_DAY= #{allDay},
+  		    DESCRIPTION= #{description}
+  		WHERE CALENDAR_SEQ = #{calendarSeq} AND MENU_ID= ${menuId}
+  		
+  	
+  	</update>
+  	
+  	<!-- 드래그엔 드랍 일정 수정 -->
+  	<update id="dragAnddropReviseCalendar" parameterType="calendar">
+  		UPDATE ${hellonoteId}_CALENDAR
+  		   SET START_DATE= to_date(#{startDate},'yyyy-mm-dd hh24 mi'),
+  		   	   END_DATE= to_date(#{endDate},'yyyy-mm-dd hh24 mi')
+  		   WHERE TITLE=#{title} 
+  	
+  	</update>
+  	
+    <!-- 캘린더 정보 업데이트 -->
+   <!-- <update id="updateCalendar" parameterType="calendar">
+    	UPDATE ${hellonoteId}_CALENDAR
+    	   SET TITLE= ,
+    	   	   START_DATE= ,
+    	   	   END_DATE=  ,
+    	   	   TYPE=  ,
+    	   	   COLOR= ,
+    	   	   DESCRIPTION= 
+    	   	WHERE TITLE =     
+    </update> -->
+  
+  </mapper>

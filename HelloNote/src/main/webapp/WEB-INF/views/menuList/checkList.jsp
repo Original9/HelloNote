@@ -226,7 +226,8 @@
 														data[idx].checklistMission); //data[idx].checklistMission locaion
 
 												strongStr[0].innerText = inputtxt.val();
-											
+												strongStr.show();
+												inputtxt.hide();
 											}
 										})
 

@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDAO userDAO;
-	
+
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
 
@@ -35,8 +35,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserListMap(vo);
 	}
 
+	// 기존 사용 비밀번호와 변경할 비밀 번호 체크
 	@Override
 	public int updateUser(UserVO dto) {
+
 		return userDAO.updateUser(dto);
 	}
 
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService {
 		dto.setPw(bcryptPasswordEncoder.encode(dto.getPw()));
 		return userDAO.updateUserChange(dto);
 	}
-	
+
 	@Override
 	public int deleteUser(String[] list, UserVO vo) {
 		for (int i = 0; i < list.length; i++) {
@@ -64,6 +66,16 @@ public class UserServiceImpl implements UserService {
 	public int insertUserSignUp(UserVO vo) {
 		vo.setPw(bcryptPasswordEncoder.encode(vo.getPw()));
 		return userDAO.insertUserSignUp(vo);
+	}
+
+	@Override
+	public int insertNaverUserSignUp(UserVO vo) {
+		UserVO getvo = userDAO.getUser(vo);
+		if (getvo == null) {
+			vo.setPw(bcryptPasswordEncoder.encode(vo.getPw()));
+			return userDAO.insertUserSignUp(vo);
+		}
+		return 0;
 	}
 
 	@Override

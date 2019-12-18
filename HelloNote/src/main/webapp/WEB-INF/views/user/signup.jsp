@@ -11,7 +11,7 @@
 <title>회원가입</title>
 </head>
 <!-- CSS -->
-<link rel="styleshe et"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/mySiteList.css">

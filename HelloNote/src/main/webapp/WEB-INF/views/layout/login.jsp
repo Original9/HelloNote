@@ -177,6 +177,12 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 	<script src="<c:url value="/resources/assets/js/theme.js"/>"></script>
+	
+	<!-- 네이버 아이디로 회원가입시 띄우는 알러트 -->
+	<script type="text/javascript">
+	var message = '${msg}';
+	alert(msg);
+	</script>
 </body>
 
 </html>

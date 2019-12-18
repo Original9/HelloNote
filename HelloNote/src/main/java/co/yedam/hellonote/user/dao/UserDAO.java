@@ -31,6 +31,11 @@ public class UserDAO {
 		return mybatis.insert("UserDAO.insertUserSignUp", vo);
 	}
 
+	// 네이버 유저 회원가입 프로시저
+	public int insertNaverUserSignUp(UserVO vo) {
+		return mybatis.insert("UserDAO.insertUserSignUp", vo);
+	}
+
 	// 수정
 	public int updateUser(UserVO dto) {
 		return mybatis.update("UserDAO.updateUser", dto);
@@ -40,6 +45,7 @@ public class UserDAO {
 	public int updateUserChange(UserVO dto) {
 		return mybatis.update("UserDAO.updateUserChange", dto);
 	}
+
 	// 삭제
 	public int deleteUser(UserVO vo) {
 		return mybatis.delete("UserDAO.deleteUser", vo);

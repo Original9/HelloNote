@@ -1,6 +1,7 @@
 package co.yedam.hellonote.user.controller;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -60,7 +61,7 @@ public class UserController {
 		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = vo.getUserProfile(oauthToken); // String형식의 json데이터
 		System.out.println("여기는 콜백의 apiResult::: " + apiResult);
-		// "id":"76298500","age":"20-29","gender":"F","email":"je708@naver.com","name":"\ubc15\uc9c0\uc6d0","birthday":"04-10"
+		// "id":"53257059","nickname":"wjds****","profile_image":"프로필이미지주소","age":"20-29","gender":"M","email":"wjdskd06@naver.com","name":"\uc815\uc2b9\ucc2c","birthday":"03-10"}}
 
 		// 2. String 형식인 apiResult를 json 형태로 바꿈
 		JSONParser parser = new JSONParser();
@@ -70,21 +71,31 @@ public class UserController {
 		// 3. 데이터 파싱
 		// Top 레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-		// response의 nickname 값 파싱
-		String hellonoteId = (String) response_obj.get("email");
+
+		// 파싱할것들
+		String range = (String) response_obj.get("age");
 		String gender = (String) response_obj.get("gender");
 		String age = (String) response_obj.get("age");
+		String strangeName = (String) response_obj.get("name"); // 유니코드 이름
+		String normalName = Normalizer.normalize(strangeName, Normalizer.Form.NFC); // 유니코드를 한글로 변환
+		// 파싱한 값 출력
+		System.out.println("id" + gender + age + normalName);
 
-		System.out.println(hellonoteId + gender + age);
-		vo.setHellonoteId(hellonoteId);
+		// 회원가입에 담을 정보 age는 네이버에서 20~29 연령별로 나누기 때문에 특수문자를 자르기위함
+		vo.setHellonoteId("N"+(String) response_obj.get("id"));
 		vo.sethGrant("U");
 		vo.setPw("1234");
 		vo.setGender(gender);
-		vo.setAge(age);
-		vo.sethProfile("네이버 사용자 입니다.");
+		vo.setAge(range.substring(0, 2));
+		vo.sethProfile("네이버 사용자 입니다. 임시 비밀번호는 1234 입니다. 변경 부탁드립니다.");
 
-		userService.insertUserSignUp(vo);
+		// 알러트로 임시비밀번호 출력
+		model.addAttribute("msg", "네이버 이메일로 회원가입이 되셨습니다. 임시비밀번호는 1234 입니다 나중에 프로필에서 변경 부탁드립니다.");
 
+		// 후에 회원가입실행
+		userService.insertNaverUserSignUp(vo);
+
+		// 세션담기
 		SecurityContextHolder.getContext()
 				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
 

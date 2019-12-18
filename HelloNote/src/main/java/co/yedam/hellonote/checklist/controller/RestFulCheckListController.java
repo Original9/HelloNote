@@ -1,6 +1,5 @@
 package co.yedam.hellonote.checklist.controller;
 
-import java.io.Console;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.yedam.hellonote.calendar.vo.CalendarVO;
 import co.yedam.hellonote.checklist.service.CheckListService;
 import co.yedam.hellonote.checklist.vo.CheckListVO;
 
@@ -71,6 +69,18 @@ public class RestFulCheckListController {
 		vo.setMenuId((String)session.getAttribute("menuId"));
 		checkListService.deleteList(vo);
 		return vo;
+	}
+	
+	@RequestMapping("checkSortHandling")
+	public void sortHandling(CheckListVO vo, HttpSession session) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		vo.setMenuId((String)session.getAttribute("menuId"));
+		
+//		vo.
+//		#{oldOrder} and #{checklistOrder}
+		checkListService.checkSortHandling1(vo);
+		checkListService.checkSortHandling2(vo);
 	}
 	
 }

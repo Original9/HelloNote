@@ -68,12 +68,14 @@ public class UserServiceImpl implements UserService {
 		return userDAO.insertUserSignUp(vo);
 	}
 
+	// 프로시저는 return 값이 안넘어 오기 때문에 직접 return 1 을 직접넣어줌
 	@Override
 	public int insertNaverUserSignUp(UserVO vo) {
 		UserVO getvo = userDAO.getUser(vo);
 		if (getvo == null) {
 			vo.setPw(bcryptPasswordEncoder.encode(vo.getPw()));
-			return userDAO.insertUserSignUp(vo);
+			userDAO.insertUserSignUp(vo);
+			return 1;
 		}
 		return 0;
 	}

@@ -33,13 +33,13 @@ import co.yedam.hellonote.user.vo.UserVO;
 @Controller
 public class UserController {
 
-	// NaverLoginVO
+	// NaverLogin(그냥 NAVER LOGIN 때 쓸 NULL값 변수 선언)
 	private String apiResult = null;
 
 	@Autowired
 	UserService userService;
 
-	// 1. 첫 로그인 페이지 (홈페이지 열자마자 보이는 화면)
+	// 첫 로그인 페이지 (홈페이지 열자마자 보이는 화면)
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String home(Locale locale, Model model, HttpSession session) {
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 UserVO클래스의 getAuthorizationUrl메소드 호출
@@ -49,7 +49,7 @@ public class UserController {
 		return "layout/login";
 	}
 
-	// 2. 네이버 아이디로 로그인 성공 시에 돌아올 페이지
+	// 네이버 아이디로 로그인 성공 시에 돌아올 페이지
 	@RequestMapping(value = "/mainPage/Callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
@@ -101,9 +101,10 @@ public class UserController {
 		// 세션 담는다
 		SecurityContextHolder.getContext()
 				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
+		System.out.println(check);
 		if (1 == check) {
 			model.addAttribute("msg", "네이버 이메일로 회원가입이 되셨습니다. 임시비밀번호는 1234 입니다 나중에 프로필에서 변경 부탁드립니다.");
-			model.addAttribute("url", "mainPage");
+			model.addAttribute("url", "/hellonote/mainPage");
 			return "layout/naver";
 		} else {
 			// 회원 가입이 되어있으면 바로 메인페이지 이동

@@ -42,7 +42,6 @@ public class MySiteController {
 	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p, HttpServletRequest request,
 			HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		svo.setUserId(userDetails.getUsername());
 
 		// MySite key값
@@ -58,7 +57,6 @@ public class MySiteController {
 	@RequestMapping("/insertMySite")
 	public String insertMySite(MySiteVO vo, HttpServletRequest request) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.insertMySite(vo);
 		return "redirect:mysite?menuId=" + vo.getMenuId();
@@ -68,7 +66,6 @@ public class MySiteController {
 	@RequestMapping("/deleteMySite")
 	public String deleteMySite(@RequestParam int[] rowCheck, MySiteVO vo, HttpServletRequest request) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.deleteMySite(rowCheck, vo);
 		return "redirect:mysite?menuId=" + vo.getMenuId();
@@ -91,7 +88,6 @@ public class MySiteController {
 	@RequestMapping("/getMySite")
 	public MySiteVO getMySite(MySiteVO vo, HttpServletRequest request) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		return mySiteService.getMySite(vo);
 	}
@@ -100,7 +96,6 @@ public class MySiteController {
 	@RequestMapping("/getMySitedelete")
 	public String getMySitedelete(MySiteVO vo, HttpServletRequest request, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		String menuId = request.getParameter("menuId");
 		session.setAttribute("menuId", menuId);
@@ -113,7 +108,6 @@ public class MySiteController {
 	public String getMySiteListForm(Model model, MySiteSearchVO svo, Paging p, HttpServletRequest request,
 			HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		svo.setUserId(userDetails.getUsername());
 
 		// MySite key값
@@ -131,7 +125,6 @@ public class MySiteController {
 	@ResponseBody // return 값이 java객체를 json 구조로 바꿔준다 @RequestBody는 반대로
 	public MySiteVO updateMySite(@RequestBody MySiteVO vo, HttpServletRequest request) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		mySiteService.updateMySite(vo);
 		return mySiteService.getMySite(vo);
@@ -142,7 +135,6 @@ public class MySiteController {
 	@RequestMapping("/downloadExcel")
 	public ModelAndView excelView(MySiteVO vo, HttpServletRequest request) throws IOException {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		userDetails.getUsername();
 		vo.setUserId(userDetails.getUsername());
 		List<Map<String, Object>> list = mySiteService.getMySiteListMap(vo);
 		HashMap<String, Object> map = new HashMap<String, Object>();

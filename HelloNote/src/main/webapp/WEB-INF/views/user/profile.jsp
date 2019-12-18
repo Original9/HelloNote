@@ -41,7 +41,7 @@
 		<div class="d-flex flex-column" id="content-wrapper">
 			<div id="content">
 				<div class="container-fluid">
-					<h3 class="text-dark mb-4">Profile</h3>
+					<h3 class="text-dark mb-4">내 프로필</h3>
 					<div class="row mb-3">
 						<div class="col-lg-4">
 							<div class="card mb-3">
@@ -50,8 +50,7 @@
 										src="${pageContext.request.contextPath}/resources/assets/img/dogs/image2.jpeg"
 										width="160" height="200">
 									<div class="mb-3">
-										<button class="btn btn-primary btn-sm" type="button">Change
-											Photo</button>
+										<button class="btn btn-primary btn-sm" type="button">사진변경</button>
 									</div>
 								</div>
 							</div>
@@ -60,15 +59,15 @@
 							<div class="col">
 								<div class="card shadow mb-3">
 									<div class="card-header py-3">
-										<p class="text-primary m-0 font-weight-bold">Change Info</p>
+										<p class="text-primary m-0 font-weight-bold">회원정보 변경</p>
 									</div>
 									<div class="card-body">
-										<form name="ChangeInfo" id="ChangeInfo" action='ChangeInfo'>
-
+										<form name="ChangeInfo" id="ChangeInfo" action='selfDeleteUser'
+											method="post">
 											<div class="form-row">
 												<div class="col">
 													<div class="form-group">
-														<label for="hellonoteId"><strong>hellonoteId</strong></label><input
+														<label for="hellonoteId"><strong>아이디</strong></label><input
 															class="form-control" type="text"
 															value="<sec:authentication property="principal.hellonoteId" />"
 															name="hellonoteId" id="hellonoteId" readonly>
@@ -76,14 +75,14 @@
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label for="pw"><strong>PW</strong></label><input
+														<label for="pw"><strong>비밀번호</strong></label><input
 															class="form-control" type="password" placeholder=******
 															name="pw" id="pw">
 													</div>
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label for="pwch"><strong>PWCH</strong></label><input
+														<label for="pwch"><strong>비밀번호 확인</strong></label><input
 															class="form-control" type="password" placeholder=******
 															name="pwch" id="pwch">
 													</div>
@@ -92,7 +91,7 @@
 											<div class="form-row">
 												<div class="col">
 													<div class="form-group">
-														<label for="hellonoteId"><strong>Gender</strong></label><input
+														<label for="hellonoteId"><strong>성별</strong></label><input
 															class="form-control" type="text"
 															value="<sec:authentication property="principal.gender" />"
 															name="gender" id="gender" readonly>
@@ -100,7 +99,7 @@
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label for="hellonoteId"><strong>hGrant</strong></label><input
+														<label for="hellonoteId"><strong>권한</strong></label><input
 															class="form-control" type="text"
 															value="<sec:authentication property="principal.hGrant" />"
 															name="hGrant" id="hGrant" readonly>
@@ -108,18 +107,17 @@
 												</div>
 												<div class="col">
 													<div class="form-group">
-														<label for="hellonoteId"><strong>age</strong></label><input
+														<label for="hellonoteId"><strong>나이</strong></label><input
 															class="form-control" type="text"
 															value="<sec:authentication property="principal.age" />"
 															name="age" id="age" readonly>
 													</div>
-
 												</div>
 											</div>
 											<div class="form-row">
 												<div class="col">
 													<div class="form-group">
-														<label for="hProfile"><strong>hProfile</strong></label> <br>
+														<label for="hProfile"><strong>자기소개</strong></label> <br>
 														<textarea
 															style="resize: none; width: 100%; height: 100px;"
 															name="hProfile"><sec:authentication
@@ -129,7 +127,9 @@
 											</div>
 											<div class="form-group">
 												<button class="btn btn-primary btn-sm" name="updatebutton"
-													id="updatebutton" type="button">Save Password</button>
+													id="updatebutton" type="button">회원정보수정</button>
+												<button class="btn btn-primary btn-sm" name="deletebye"
+													id="deletebye" type="button" onclick="deleteUser()">회원탈퇴</button>
 											</div>
 										</form>
 									</div>

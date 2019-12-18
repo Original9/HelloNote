@@ -33,10 +33,10 @@
 <body>
 	<div id="wrapper">
 		<div class="container-fluid">
-			<h3 class="text-dark mb-4">User List</h3>
+			<h3 class="text-dark mb-4">사이트관리</h3>
 			<div class="card shadow">
 				<div class="card-header py-3">
-					<p class="text-primary m-0 font-weight-bold">User Info</p>
+					<p class="text-primary m-0 font-weight-bold">사이트 관리</p>
 				</div>
 				<!-- 리스트 DIV 시작 -->
 				<div class="card-body">
@@ -101,30 +101,30 @@
 				<span class="close">&times;</span>
 				<div class="tab-content">
 					<div id="signup">
-						<h1>Add Site</h1>
+						<h1>사이트 추가</h1>
 						<br>
 						<form action="insertMySite" method="post" id="good" name="good">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
-										<label for="Title"><strong>Title&nbsp;</strong></label><input
+										<label for="Title"><strong>사이트 이름&nbsp;</strong></label><input
 											type="text" required autocomplete="off" name="title" />
 									</div>
 									<div class="field-wrap">
-										<label for="Address"><strong>Address&nbsp;</strong></label> <input
+										<label for="Address"><strong>사이트 주소&nbsp;</strong></label> <input
 											type="text" required autocomplete="off" name="siteAddr" />
 									</div>
-									<label for="ID OR Email"><strong>ID OR Email
+									<label for="ID OR Email"><strong>아이디 혹은 이메일
 											&nbsp;</strong></label><input type="text" required autocomplete="off"
 										name="siteId" />
 								</div>
 								<div class="field-wrap">
-									<label for="Password"><strong>Password&nbsp;</strong></label><input
+									<label for="Password"><strong>비밀번호&nbsp;</strong></label><input
 										type="text" required autocomplete="off" name="sitePw" />
 								</div>
 							</div>
 							<div class="field-wrap">
-								<label for="MEMO"><strong>MEMO&nbsp;</strong></label>
+								<label for="MEMO"><strong>메모&nbsp;</strong></label>
 								<textarea name="siteMemo"></textarea>
 							</div>
 							<br>
@@ -149,7 +149,7 @@
 				<span class="close">&times;</span>
 				<div class="tab-content">
 					<div id="select" class="select" align="center">
-						<h1>My Site List</h1>
+						<h1>사이트 관리</h1>
 						<br>
 						<form name="dele" id="dele" action="getMySitedelete" method="post">
 							<!-- hidden input tag 로 seq 값을 담음 -->
@@ -158,23 +158,23 @@
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
-										<label for="Title"><strong>Title :&nbsp;</strong></label><span
+										<label for="Title"><strong>사이트 이름 :&nbsp;</strong></label><span
 											id="title"></span>
 									</div>
 									<div class="field-wrap">
-										<label for="Address"><strong>Address :&nbsp;</strong></label><span
+										<label for="Address"><strong>사이트 주소 :&nbsp;</strong></label><span
 											id="siteAddr"></span>
 									</div>
-									<label for="ID OR Email"><strong>ID OR Email
+									<label for="ID OR Email"><strong>아이디 혹은 이메일
 											:&nbsp;</strong></label><span id="siteId"></span>
 								</div>
 								<div class="field-wrap">
-									<label for="Password"><strong>Password :&nbsp;</strong></label><span
+									<label for="Password"><strong>패스워드 :&nbsp;</strong></label><span
 										id="sitePw"></span>
 								</div>
 							</div>
 							<div class="field-wrap">
-								<label for="Memo"><strong>Memo :&nbsp;</strong></label><span
+								<label for="Memo"><strong>메모 :&nbsp;</strong></label><span
 									id="siteMemo"></span>
 							</div>
 							<br>
@@ -191,14 +191,14 @@
 					<!-- 수정 폼 체인지 -->
 					<div id="changeform" class="changeform" style="display: none"
 						align="center">
-						<h2>Update MySite</h2>
+						<h2>사이트 관리 수정</h2>
 						<br>
 						<form action="updateMySite" id="UpdForm" name="UpdForm">
 							<input type="hidden" name="mySiteSeq" id="mySiteSeq">
 							<div class="form-row">
 								<div class="col">
 									<div class="form-group">
-										<label for="Title"><strong>Title</strong></label><input
+										<label for="Title"><strong>사이트 이름</strong></label><input
 											class="form-control" type="text" autocomplete="off"
 											name="title">
 									</div>
@@ -207,7 +207,7 @@
 							<div class="form-row">
 								<div class="col">
 									<div class="form-group">
-										<label for="Address"><strong>Address</strong></label><input
+										<label for="Address"><strong>사이트 주소</strong></label><input
 											class="form-control" type="text" autocomplete="off"
 											name="siteAddr">
 									</div>
@@ -215,7 +215,7 @@
 								<div class="form-row">
 									<div class="col">
 										<div class="form-group">
-											<label for="ID OR Email"><strong>ID OR Email</strong></label><input
+											<label for="ID OR Email"><strong>아이디 혹은 이메일</strong></label><input
 												class="form-control" type="text" autocomplete="off"
 												name="siteId">
 										</div>
@@ -224,7 +224,7 @@
 								<div class="form-row">
 									<div class="col">
 										<div class="form-group">
-											<label for="Password"><strong>Password</strong></label><input
+											<label for="Password"><strong>비밀번호</strong></label><input
 												class="form-control" type="text" autocomplete="off"
 												name="sitePw">
 										</div>
@@ -234,7 +234,7 @@
 							<div class="form-row">
 								<div class="col">
 									<div class="form-group">
-										<label for="MEMO"><strong>MEMO</strong></label><br>
+										<label for="MEMO"><strong>메모</strong></label><br>
 										<textarea style="resize: none; width: 100%; height: 100px;"
 											name="siteMemo"></textarea>
 									</div>

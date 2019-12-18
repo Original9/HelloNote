@@ -6,11 +6,12 @@
 
 	<select id="getCheckListMap" resultType="checkList">
 		SELECT CHECKLIST_SEQ "checkListSeq",
+		CHECKLIST_ORDER "checklistOrder",
 		CHECKLIST_STATUS "checkListStatus",
 		CHECKLIST_MISSION "checkListMission",
 		MENU_ID "menuId"
 		FROM ${hellonoteId}_check
-<!-- 		ORDER BY 1 describe -->
+		ORDER BY CHECKLIST_ORDER
 	</select>
 
 	<!-- 전체 건수 -->
@@ -30,14 +31,19 @@
 			keyProperty="checklistSeq">
 			SELECT NVL(MAX(CHECKLIST_SEQ),0)+1 FROM ${hellonoteId}_check
 		</selectKey>
+		 
 		INSERT INTO  ${hellonoteId}_check ( CHECKLIST_SEQ,
 		CHECKLIST_STATUS,
 		CHECKLIST_MISSION,
-		MENU_ID)
+		MENU_ID,
+		CHECKLIST_ORDER
+		)
 		VALUES ( #{checklistSeq},
 		#{checklistStatus},
-		#{checklistMission},
-		#{menuId})
+		#{checklistMission},  
+		#{menuId},
+		(SELECT NVL(MAX(CHECKLIST_ORDER),0)+1 FROM ${hellonoteId}_check)
+		)
 	</insert>
 
 	<!-- UPDATE -->
@@ -45,6 +51,9 @@
 		UPDATE ${hellonoteId}_check
 		SET
 		CHECKLIST_STATUS = #{checklistStatus}
+		<if test= "checklistMission != null and checklistMission != '' " >
+	 	,CHECKLIST_MISSION = #{checklistMission}
+	 	</if>
 		WHERE checklist_seq = #{checklistSeq}
 
 	</update>
@@ -55,9 +64,10 @@
 		SELECT CHECKLIST_SEQ "checkListSeq",
 		CHECKLIST_STATUS "checkListStatus",
 		CHECKLIST_MISSION "checkListMission",
+		CHECKLIST_ORDER  "checklistOrder",
 		MENU_ID "menuId"
 		FROM ${hellonoteId}_check
-		ORDER BY CHECKLIST_SEQ
+		ORDER BY CHECKLIST_ORDER
 	</select>
 	
 	<select id="getCheckListT5" parameterType="checkList"	resultType="checkList">
@@ -75,5 +85,29 @@
 <!-- 		ORDER BY CHECKLIST_SEQ describe  -->
 	</select>
 
+	<update id="checkSortHandling1" parameterType="checkList">
+		update ${hellonoteId}_check
+		<if test="oldOrder lt checklistOrder">
+			set CHECKLIST_ORDER = CHECKLIST_ORDER - 1
+			where CHECKLIST_ORDER between
+			#{oldOrder} and #{checklistOrder}
+		</if>
+		<if test="oldOrder gt checklistOrder">
+			set CHECKLIST_ORDER = CHECKLIST_ORDER + 1
+			where CHECKLIST_ORDER between
+			#{checklistOrder} and #{oldOrder}
+		</if>
+		and menu_id = #{menuId}
+		and CHECKLIST_ORDER != #{oldOrder}
+	</update>
+	
+	<update id="checkSortHandling2" parameterType="checkList">
+		update
+		${hellonoteId}_check
+		set CHECKLIST_ORDER = #{checklistOrder}
+		where checkList_Seq =
+		#{checklistSeq}
+		and menu_id = #{menuId}
+	</update>
 
 </mapper>

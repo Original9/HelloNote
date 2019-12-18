@@ -19,9 +19,12 @@ public interface UserService {
 	// 회원가입 프로시저
 	public int insertUserSignUp(UserVO vo);
 
+	// 네이버 유저 회원 가입 프로시저
+	public int insertNaverUserSignUp(UserVO vo);
+
 	// 수정
 	public int updateUser(UserVO vo);
-	
+
 	// 회원정보 수정
 	public int updateUserChange(UserVO vo);
 
@@ -30,11 +33,11 @@ public interface UserService {
 
 	// 단건삭제
 	int getUserdelete(UserVO vo);
-	
+
 	// proc 단건 삭제
-	
+
 	int deleteUserProc(UserVO vo);
-	
+
 	// proc 리스트 삭제
 	public int deleteUserListProc(String[] list, UserVO vo);
 

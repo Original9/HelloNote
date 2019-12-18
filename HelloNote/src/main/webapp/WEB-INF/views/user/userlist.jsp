@@ -32,10 +32,10 @@
 <body id="page-top">
 	<div id="wrapper">
 		<div class="container-fluid">
-			<h3 class="text-dark mb-4">User List</h3>
+			<h3 class="text-dark mb-4">회원 목록</h3>
 			<div class="card shadow">
 				<div class="card-header py-3">
-					<p class="text-primary m-0 font-weight-bold">User Info</p>
+					<p class="text-primary m-0 font-weight-bold">회원 정보</p>
 				</div>
 				<!-- 리스트 DIV 시작 -->
 				<div class="card-body">
@@ -52,11 +52,11 @@
 									<tr>
 										<th scope="col" width="10" align="center"><input
 											id="allCheck" type="checkbox" onclick="allChk(this);" /></th>
-										<th align="center" width="80">id</th>
-										<th align="center" width="50">gender</th>
-										<th align="center" width="50">hgrant</th>
-										<th align="center" width="50">age</th>
-										<th align="center" width="200">hprofile</th>
+										<th align="center" width="80">아이디</th>
+										<th align="center" width="50">성별</th>
+										<th align="center" width="50">권한</th>
+										<th align="center" width="50">나이</th>
+										<th align="center" width="200">자기소개</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -99,30 +99,30 @@
 				<span class="close">&times;</span>
 				<div class="tab-content">
 					<div id="select" class="select" align="center">
-						<h1>User List</h1>
+						<h1>회원 보기</h1>
 						<br>
 						<form name="dele" id="dele" action="deleteUserProc" method="post">
 							<input type="hidden" name="hellonoteId">
 							<div class="top-row">
 								<div class="field-wrap">
 									<div class="field-wrap">
-										<label for="ID"><strong>ID :&nbsp;</strong></label><span
+										<label for="ID"><strong>아이디 :&nbsp;</strong></label><span
 											id="hellonoteId"></span>
 									</div>
-									<label for="Gender"><strong>Gender :&nbsp;</strong></label><span
+									<label for="Gender"><strong>성별 :&nbsp;</strong></label><span
 										id="gender"></span>
 								</div>
 								<div class="field-wrap">
-									<label for="Grant"><strong>Grant :&nbsp;</strong></label><span
+									<label for="Grant"><strong>권한 :&nbsp;</strong></label><span
 										id="hGrant"></span>
 								</div>
 							</div>
 							<div class="field-wrap">
-								<label for="Age"><strong>Age :&nbsp;</strong></label><span
+								<label for="Age"><strong>나이 :&nbsp;</strong></label><span
 									id="age"></span>
 							</div>
 							<div class="field-wrap">
-								<label for="Profile"><strong>Profile :&nbsp;</strong></label><span
+								<label for="Profile"><strong>자기소개 :&nbsp;</strong></label><span
 									id="hProfile"></span>
 							</div>
 							<br>
@@ -139,19 +139,19 @@
 					<!-- 수정 폼 체인지 -->
 					<div id="changeform" class="changeform" style="display: none"
 						align="center">
-						<h1>Update User</h1>
+						<h1>회원 권한 수정</h1>
 						<br>
 						<form action="updateUser" id="UpdForm" name="UpdForm">
 							<div class="field-wrap">
 								<div class="field-wrap">
-									<label for="ID"><strong>ID :&nbsp;</strong></label><span
+									<label for="ID"><strong>아이디 :&nbsp;</strong></label><span
 										id="hellonoteId"></span>
 								</div>
-								<label for="Gender"><strong>Gender :&nbsp;</strong></label><span
+								<label for="Gender"><strong>성별 :&nbsp;</strong></label><span
 									id="gender"></span>
 							</div>
 							<div class="field-wrap">
-								<label for="HGRANT"><strong>Hgrant :&nbsp;</strong></label><select
+								<label for="HGRANT"><strong>권한 :&nbsp;</strong></label><select
 									name="hGrant">
 									<option value="M">M</option>
 									<option value="U">U</option>
@@ -159,14 +159,14 @@
 								</select>
 							</div>
 							<div class="field-wrap">
-								<label for="Age"><strong>Age :&nbsp;</strong></label><span
+								<label for="Age"><strong>나이 :&nbsp;</strong></label><span
 									id="age"></span>
 							</div>
 
 							<div class="form-row">
 								<div class="col">
 									<div class="form-group">
-										<label for="HPROFILE"><strong>HPROFILE</strong></label><br>
+										<label for="HPROFILE"><strong>자기소개</strong></label><br>
 										<textarea style="resize: none; width: 100%; height: 100px;"
 											name="hProfile" readonly></textarea>
 									</div>
@@ -174,7 +174,7 @@
 							</div>
 							<div class="form-group">
 								<button class="btn btn-primary btn-sm" name="updatebutton"
-									id="updatebutton" type="button">Save</button>
+									id="updatebutton" type="button">저장</button>
 								<button class="btn btn-primary btn-sm" name="change2"
 									id="change2" type="button">취소</button>
 							</div>

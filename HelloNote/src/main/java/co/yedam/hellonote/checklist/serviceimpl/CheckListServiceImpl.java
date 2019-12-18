@@ -40,4 +40,14 @@ public class CheckListServiceImpl implements CheckListService{
 		return dao.updateList(vo);
 	}
 
+	@Override
+	public void checkSortHandling1(CheckListVO vo) {
+		dao.checkSortHandling1(vo);
+	}
+	@Override
+	public void checkSortHandling2(CheckListVO vo) {
+		dao.checkSortHandling2(vo);
+		
+	}
+
 }

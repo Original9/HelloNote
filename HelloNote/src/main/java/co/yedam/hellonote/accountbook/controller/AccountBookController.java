@@ -50,6 +50,7 @@ public class AccountBookController {
 //			
 //		}
 		return "main/menuList/accountBook";
+		
 	}
 
 	// 전체 조회
@@ -76,11 +77,11 @@ public class AccountBookController {
 	// 삭제
 	@RequestMapping("/deleteAccountBook.json")
 	@ResponseBody
-	public Map deleteAccountBook(AccountBookVO vo, Model model, HttpSession session) {
+	public Map<String, Object> deleteAccountBook(AccountBookVO vo, Model model, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		accountBookService.deleteAccountBook(vo);
-		Map result = new HashMap<Integer, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("result", Boolean.TRUE);
 		return result;
 

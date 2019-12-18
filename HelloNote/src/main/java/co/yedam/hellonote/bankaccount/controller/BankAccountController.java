@@ -27,12 +27,15 @@ public class BankAccountController {
 	
 	//단건 조회
 	@ResponseBody
-	@RequestMapping("/getBankAccount")
+	@RequestMapping("/selectBankAccount")
 	public BankAccountVO selectBankAccount(BankAccountVO vo,HttpServletRequest request) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userDetails.getUsername();
 		return bankAccountService.selectBankAccount(vo);
 	}
+	
+	//등록
+	
 	
 	
 	

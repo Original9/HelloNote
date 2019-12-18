@@ -26,6 +26,11 @@ public class BankAccountDAO {
 	public int deleteBankAccount(BankAccountVO vo) {
 		return bankAccount.delete("BankAccountDAO.deleteBankAccount",vo);
 	};
+	
+	public BankAccountVO selectBankAccount(BankAccountVO vo) {
+		return bankAccount.selectOne("BankAccountDAO.selectBankAccount", vo);
+		
+	}
 //
 //	List<BankAccountVO> getAllBankList(BankAccountSearchVO svo) {
 //		return bankAccount.selectList("BankAccountDAO.getAllBankList",svo);

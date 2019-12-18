@@ -42,4 +42,9 @@ public class AccountBookDAO {
 		return mybatis.selectList("AccountBookDAO.chartAccountBook", vo);
 	}
 	
+	//지출 차트
+	public List<AccountBookVO>nagetiveChartAccountBook(AccountBookVO vo){
+		return mybatis.selectList("AccountBookDAO.nagetiveChartAccountBook", vo);
+	}
+	
 }

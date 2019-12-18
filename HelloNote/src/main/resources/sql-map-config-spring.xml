@@ -33,6 +33,8 @@
 			alias="checkList" />
 		<typeAlias type="co.yedam.hellonote.dday.vo.DDayVO"
 			alias="dday"/>
+		<typeAlias type="co.yedam.hellonote.bankaccount.vo.BankAccountVO"
+			alias="bankAccount" />	
 	</typeAliases>
 
 </configuration>

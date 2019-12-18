@@ -3,10 +3,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="BankAccountDAO">
-<select id="getBankAccount" resultType="bankAccount">
+<select id="selectBankAccount" resultType="bankAccount">
 		SELECT *
 		FROM
-		${hellonoteId}_BANKACCOUNTBOOK
-		WHERE BANKACCOUNTBOOK_SEQ = #{bankAccountSeq}
+		BH_BANKACCOUNT
+		WHERE BANKACOUNT_SEQ = #{bankAccountSeq}
+		<!--  ${hellonoteId} -->
 </select>
+
+<insert id="insertBankAccount" >
+	<selectKey order="BEFORE" resultType="int" keyProperty="accountbookSeq">
+		SELECT NVL(MAX(ACCOUNTBOOK_SEQ),0)+1 FROM BH_BANKACCOUNT
+	</selectKey>  
+
+	INSERT INTO BH_BANKACCOUNT
+	(
+	BANKACCOUNT_BANKNAME,
+	BANKACCOUNT_ACCOUNTNAME,
+	BANKACCOUNT_ACCOUNTNUMBER
+	)
+	
+	values
+	(
+	#{bankaccountbankName},
+	#{bankaccountAccountname},
+	#{bankaccountAccountnumber}
+	)
+
+</insert>
+
+
 </mapper>

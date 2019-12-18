@@ -18,9 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
-import co.yedam.hellonote.user.vo.UserVO;
-import lombok.EqualsAndHashCode;
-@EqualsAndHashCode(callSuper=false)
+@SuppressWarnings("unchecked")
 @Component
 public class CommonExcelView extends AbstractXlsxView {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommonExcelView.class);

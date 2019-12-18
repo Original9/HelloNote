@@ -38,4 +38,18 @@ public class CheckListDAO {
 		return sqltem.selectList("CheckListDAO.getCheckListT5", vo);
 		
 	}
+	public void checkSortHandling2(CheckListVO vo) {
+		
+		sqltem.update("CheckListDAO.checkSortHandling2",vo);
+	}
+	//체크리스트 순서변경시 정렬.
+	public void checkSortHandling1(CheckListVO vo) {
+		//시발??
+		sqltem.update("CheckListDAO.checkSortHandling1",vo);
+	}
+	
+
+ 
+	
+	
 }

@@ -61,7 +61,7 @@ function getMySiteListForm() {
 
 // 모달 function 호출
 $(function() {
-	mySiteUpdate();
+	mySiteUpdate();	
 
 	// 입력 모달창 열기
 	// #specification ID 를 .on('click') 클릭시 , function() 실행
@@ -146,6 +146,13 @@ $(function() {
 function mySiteUpdate() {
 	// 수정 버튼 클릭
 	$('#updatebutton').on('click', function() {
+		
+		// 링크 유효성
+		if (!UpdForm.siteAddr.value.startsWith("https://") && !UpdForm.siteAddr.value.startsWith("http://")) {
+			alert("https:// , http:// 를 넣어주세요.")
+			$("#UpdForm #siteAddr").focus();
+			return false;
+		}
 
 		var agree = confirm("수정 하시겠습니까?");
 

@@ -14,9 +14,9 @@ function signupbutton() {
 		return false;
 	}
 
-	// 패스워드 길이 제한
-	if (form.pw.value.length <= 2) {
-		alert("비밀번호는 3자리 이상으로 설정해주세요")
+	var password1RegExp = /^[a-zA-z0-9]{4,12}$/;
+	if (!password1RegExp.test(form.pwcheck.value)) {
+		alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다.")
 		$("#pw").focus();
 		$("#pw").val('');
 		$('#pwcheck').val('');
@@ -30,42 +30,24 @@ function signupbutton() {
 		return false;
 	}
 
-	// PW에 영문 숫자 혼용해야함 search 는 조회할때 str값 참조하기 때문에 앞에 str값이 와야함
-	var checkNumber = form.pw.value.search(/[0-9]/g);
-	var checkEnglish = form.pw.value.search(/[a-z]/ig);
-	if (checkNumber < 0 || checkEnglish < 0) {
-		alert("숫자와 영문자를 혼용하여야 합니다.");
-		// ID가 pw 인곳에 val을 '' 공백처리하고 포커스를 맞춘다
-		$('#pw').val('').focus();
-		$('#pwcheck').val('');
-		return false;
-	}
-	// // PW 값에 ID 가 포함 되었을때 false
-	// if (form.pw.value.search(hellonoteId) > -4) {
-	// alert("비밀번호에 아이디가 포함되었습니다.");
-	// $('#pw').val('').focus();
-	// $('#pwcheck').val('');
-	// return false;
-	// }
-
 	if (!form.gender.value) {
 		alert("성별을 선택해주세요.")
 		$("#gender").focus();
 		return false;
 	}
-	
+
 	if (!form.age.value) {
 		alert("나이를 입력해주세요.")
 		$("#age").focus();
 		return false;
 	}
-	
+
 	if (!form.hProfile.value) {
 		alert("간단한 자기소개를 입력해주세요.")
 		$("#hProfile").focus();
 		return false;
 	}
-	
+
 	alert("가입이 완료 되었습니다.")
 	document.signUp.submit();
 }
@@ -83,14 +65,6 @@ $(function() {
 			return false;
 		}
 
-		// 아이디 길이 제한
-		if (form.hellonoteId.value.length <= 3) {
-			alert("아이디는 4자리 이상으로 설정해주세요")
-			$("#hellonoteId").focus();
-			$('#hellonoteId').val('');
-			return false;
-		}
-
 		// ID안에 패턴공백검사
 		if (form.hellonoteId.value.search(/\s/) != -1) {
 			alert("아이디에 공백없이 입력해주세요.");
@@ -98,10 +72,10 @@ $(function() {
 			$('#hellonoteId').val('');
 			return false;
 		}
-		// 특수 문자가 있나 없나 체크
-		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-		if (special_pattern.test(form.hellonoteId.value) == true) {
-			alert("아이디에 특수문자 없이 입력해주세요.");
+		// 아이디는 영문 대소문자와 숫자 4~12자리로 입력
+		var special_pattern = /^[a-zA-z0-9]{4,12}$/;
+		if (!special_pattern.test(form.hellonoteId.value)) {
+			alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다");
 			$("#hellonoteId").focus();
 			$('#hellonoteId').val('');
 			return false;

@@ -132,6 +132,15 @@
 								<button class="btn btn-primary btn-sm" type="submit">추가</button>
 							</div>
 							<input type="hidden" id="menuIda" name="menuId" value="${menuId}" />
+							<script type="text/javascript">
+							function submit(){
+								if (!good.siteAddr.value.startsWith("https://") && !good.siteAddr.value.startsWith("http://")) {
+									alert("https:// , http:// 를 넣어주세요.")
+									$("#good #siteAddr").focus();
+									return false;
+								}
+							}
+							</script>
 						</form>
 					</div>
 				</div>

@@ -10,9 +10,13 @@
 	<!-- css 파일은 검사안하고 허가 시켜줌 -->
 	<security:http pattern="/resources/**" security="none" />
 	<security:http>
+
 		<!-- 로그인페이지로가는걸 허가 -->
 		<security:intercept-url method="GET"
 			pattern="/" access="permitAll()" />
+		<!-- 네이버 로그인 페이지 -->
+		<security:intercept-url method="GET"
+			pattern="/mainPage/Callback" access="permitAll()" />
 		<!-- 아이디 중복체크 -->
 		<security:intercept-url method="POST"
 			pattern="/idCheck" access="permitAll()" />

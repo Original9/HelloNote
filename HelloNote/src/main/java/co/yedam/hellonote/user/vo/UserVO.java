@@ -86,7 +86,7 @@ public class UserVO implements UserDetails {
 
 	private final static String CLIENT_ID = "0E1d9yjbXA7_tKyRjWOl";
 	private final static String CLIENT_SECRET = "hFqjKRxJwX";
-	private final static String REDIRECT_URI = "http://localhost/hellonote/Mainpage/Callback";
+	private final static String REDIRECT_URI = "http://localhost/hellonote/mainPage/Callback";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL */
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";

@@ -21,8 +21,10 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 
 import co.yedam.hellonote.user.login.NaverLoginApi;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+
 public class UserVO implements UserDetails {
 	String hellonoteId;
 	String pw;
@@ -30,6 +32,8 @@ public class UserVO implements UserDetails {
 	String hGrant;
 	String age;
 	String hProfile;
+	
+	
 
 	public String gethGrant() {
 		return hGrant;

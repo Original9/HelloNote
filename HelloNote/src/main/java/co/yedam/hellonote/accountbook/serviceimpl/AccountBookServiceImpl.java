@@ -45,9 +45,16 @@ public class AccountBookServiceImpl implements AccountBookService {
 	}
 
 	//구글 차트
+	@Override
 	public List<AccountBookVO>chartAccountBook(AccountBookVO vo){
 		return dao.chartAccountBook(vo);
 		
+	}
+	
+	//지출 차트
+	@Override
+	public List<AccountBookVO> nagetiveChartAccountBook(AccountBookVO vo) {
+		return dao.nagetiveChartAccountBook(vo);
 	}
 
 

@@ -26,4 +26,6 @@ public interface AccountBookService {
 	// 구글 차트
 	List<AccountBookVO>chartAccountBook(AccountBookVO vo);
 	
+	// 지수 차트
+	List<AccountBookVO>nagetiveChartAccountBook(AccountBookVO vo);
 }

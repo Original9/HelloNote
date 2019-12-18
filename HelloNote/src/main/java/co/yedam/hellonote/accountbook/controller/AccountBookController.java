@@ -23,16 +23,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.yedam.hellonote.accountbook.service.AccountBookService;
 import co.yedam.hellonote.accountbook.vo.AccountBookVO;
+import co.yedam.hellonote.bankaccount.service.BankAccountService;
+import co.yedam.hellonote.bankaccount.vo.BankAccountVO;
 
 @Controller
 public class AccountBookController {
 
 	@Autowired
 	AccountBookService accountBookService;
-
+	
+	@Autowired
+	BankAccountService bankaccountservice;
+	
 	@RequestMapping("/accountBook")
 	public String accoutBookList() {
-
+//		BankAccountVO bvo
+//		BankAccountVO bavo = bankaccountservice.selectBankAccount(bvo);
+//		
+//		//첫 방문
+//		if(bavo == null) {
+//			return "main/menuList/insertCard";
+//		}
+//		
+//		else {
+//			return "main/menuList/accountBook";
+//			
+//		}
 		return "main/menuList/accountBook";
 	}
 
@@ -89,7 +105,8 @@ public class AccountBookController {
 		List<AccountBookVO> list = accountBookService.getAccountBookList(vo);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String[] header = { "accountbookSeq", "accountbookDate", "accountbookTranslation", "accountbookPrice",
-				"accountbookPurpose", };
+				"accountbookPurpose"};
+		
 		map.put("headers", header);
 		map.put("filename", "excel_accountBook");
 		map.put("datas", convertListToMap(list)); // map 으로 변환해서 값 넘김
@@ -138,4 +155,23 @@ public class AccountBookController {
 		}
 		return list1;
 	}
+	
+	
+	@RequestMapping("/nagetiveChartAccountBook")
+	@ResponseBody
+	public List<Map<String, Object>> nagetivegetChartData(AccountBookVO vo) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		List<AccountBookVO> list = accountBookService.nagetiveChartAccountBook(vo);
+		List<Map<String, Object>> list1 = new ArrayList<Map<String, Object>>();
+		for (AccountBookVO item : list) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("accountbookPurpose", item.getAccountbookPurpose());
+			map.put("accountbookPercent", item.getAccountbookPercent());
+			list1.add(map);
+		}
+		return list1;
+	}
+	
+	
 }

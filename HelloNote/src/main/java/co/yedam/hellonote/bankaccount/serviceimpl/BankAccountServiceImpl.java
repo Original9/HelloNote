@@ -35,6 +35,11 @@ public class BankAccountServiceImpl implements BankAccountService{
 		return 0;
 	}
 
+	@Override
+	public BankAccountVO selectBankAccount(BankAccountVO vo) {
+		return bankAccountDAO.selectBankAccount(vo);
+	}
+
 //	@Override
 //	public List<BankAccountVO> getAllBankList() {
 //		// TODO Auto-generated method stub

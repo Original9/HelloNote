@@ -19,6 +19,8 @@ public interface BankAccountService {
 	
 	int deleteBankAccount(BankAccountVO vo); 
 	
+	BankAccountVO selectBankAccount(BankAccountVO vo);
+	
 //	List<BankAccountVO> getAllBankList();
 //	
 //	List<BankAccountVO> getMyBankList();

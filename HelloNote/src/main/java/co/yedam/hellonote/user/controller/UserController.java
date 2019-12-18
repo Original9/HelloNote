@@ -158,7 +158,7 @@ public class UserController {
 		return "redirect:getUserList";
 	}
 
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	@RequestMapping(value = "/home", method = RequestMethod.GET)
 //	public String homelogin(Locale locale, Model model) {
 //
 //		return "layout/login";

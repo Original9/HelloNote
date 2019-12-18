@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
+@SuppressWarnings("unchecked")
 @Component
 public class CommonExcelView extends AbstractXlsxView {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommonExcelView.class);

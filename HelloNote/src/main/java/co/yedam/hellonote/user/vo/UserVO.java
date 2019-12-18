@@ -26,6 +26,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class UserVO implements UserDetails {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String hellonoteId;
 	String pw;
 	String gender;

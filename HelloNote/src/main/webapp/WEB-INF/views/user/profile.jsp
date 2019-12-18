@@ -22,13 +22,21 @@
 	href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
 <!-- JS -->
-<script
-	src='<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>'></script>
-<script src='<c:url value="/resources/assets/js/jquery.min.js"/>'></script>
+<!-- <script -->
+<%-- 	src='<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>'></script> --%>
+<%-- <script src='<c:url value="/resources/assets/js/jquery.min.js"/>'></script> --%>
 <script src='<c:url value="/resources/assets/js/chart.min.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/theme.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/json.min.js"/>'></script>
 <script src='<c:url value="/resources/assets/pageJs/profile.js"/>'></script>
+
+<!-- 이미지 추가하는 버튼과 이미지부분 -->
+<script type="text/javascript">
+var contextpath =  "${pageContext.request.contextPath}";
+</script>
+<script src='<c:url value="/resources/assets/pageJs/prifileimg.js"/>'></script>
+
+<!-- end -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -46,12 +54,28 @@
 						<div class="col-lg-4">
 							<div class="card mb-3">
 								<div class="card-body text-center shadow">
-									<img class="rounded-circle mb-3 mt-4"
-										src="${pageContext.request.contextPath}/resources/assets/img/dogs/image2.jpeg"
-										width="160" height="200">
+									<!-- 에러시 기본이미지 대체 -->
+										<img id="thumbnail" class="rounded-circle mb-3 mt-4" width="160" height="200"
+										onerror="this.src='resources/assets/img/dogs/image2.jpeg'"> 
+
+
+								
+<!-- 									<img id="thumbnail" class="rounded-circle mb-3 mt-4" -->
+<%-- 										src="${pageContext.request.contextPath}/resources/assets/img/dogs/image2.jpeg" --%>
+<!-- 										width="160" height="200"> -->
 									<div class="mb-3">
-										<button class="btn btn-primary btn-sm" type="button">사진변경</button>
+										<button class="btn btn-primary btn-sm" type="button">업로드</button>
 									</div>
+									
+									<div class="filebox preview-image"> 
+									<input class="upload-name" value="파일선택" disabled="disabled" hidden="true">
+								 	<label for="input-file">파일가져오기</label> 
+								 	<input type="file" id="input-file" class="upload-hidden-img" hidden="true"> 
+								</div>
+									
+									
+									
+									
 								</div>
 							</div>
 						</div>

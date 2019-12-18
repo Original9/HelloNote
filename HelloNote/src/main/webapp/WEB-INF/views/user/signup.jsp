@@ -11,7 +11,7 @@
 <title>회원가입</title>
 </head>
 <!-- CSS -->
-<link rel="styleshe et"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/mySiteList.css">
@@ -106,6 +106,9 @@
 								<button class="btn btn-primary btn-block text-white btn-user"
 									onclick="signupbutton()" type="button" disabled="disabled"
 									id="btnSign">회원가입 완료</button>
+								<button id="user" name="user"
+									class="btn btn-primary btn-block text-white btn-user"
+									type="button" onclick="location.href='/hellonote/'">로그인</button>
 								<br>
 								<hr>
 							</form>

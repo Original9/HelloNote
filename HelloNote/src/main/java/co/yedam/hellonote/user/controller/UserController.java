@@ -33,13 +33,13 @@ import co.yedam.hellonote.user.vo.UserVO;
 @Controller
 public class UserController {
 
-	// NaverLoginVO
+	// NaverLogin(그냥 NAVER LOGIN 때 쓸 NULL값 변수 선언)
 	private String apiResult = null;
 
 	@Autowired
 	UserService userService;
 
-	// 1. 첫 로그인 페이지 (홈페이지 열자마자 보이는 화면)
+	// 첫 로그인 페이지 (홈페이지 열자마자 보이는 화면)
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String home(Locale locale, Model model, HttpSession session) {
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 UserVO클래스의 getAuthorizationUrl메소드 호출
@@ -49,7 +49,7 @@ public class UserController {
 		return "layout/login";
 	}
 
-	// 2. 네이버 아이디로 로그인 성공 시에 돌아올 페이지
+	// 네이버 아이디로 로그인 성공 시에 돌아올 페이지
 	@RequestMapping(value = "/mainPage/Callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
@@ -60,7 +60,7 @@ public class UserController {
 		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = vo.getUserProfile(oauthToken); // String형식의 json데이터
 		System.out.println("여기는 콜백의 apiResult::: " + apiResult);
-		// "id":"76298500","age":"20-29","gender":"F","email":"je708@naver.com","name":"\ubc15\uc9c0\uc6d0","birthday":"04-10"
+		// "id":"53257059","nickname":"wjds****","profile_image":"프로필이미지주소","age":"20-29","gender":"M","email":"wjdskd06@naver.com","name":"\uc815\uc2b9\ucc2c","birthday":"03-10"}}
 
 		// 2. String 형식인 apiResult를 json 형태로 바꿈
 		JSONParser parser = new JSONParser();
@@ -70,25 +70,46 @@ public class UserController {
 		// 3. 데이터 파싱
 		// Top 레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-		// response의 nickname 값 파싱
-		String hellonoteId = (String) response_obj.get("email");
-		String gender = (String) response_obj.get("gender");
-		String age = (String) response_obj.get("age");
 
-		System.out.println(hellonoteId + gender + age);
-		vo.setHellonoteId(hellonoteId);
+		// 파싱할것들
+		String range = (String) response_obj.get("age");
+		String gender = (String) response_obj.get("gender");
+		// String strangeName = (String) response_obj.get("name"); // 유니코드 이름
+		// String normalName = Normalizer.normalize(strangeName, Normalizer.Form.NFC);
+		// // 유니코드를 한글로 변환
+
+		// 회원가입에 담을 정보 age는 네이버에서 20~29 연령별로 나누기 때문에 특수문자를 자르기위함
+
+		vo.setHellonoteId("N" + (String) response_obj.get("id"));
 		vo.sethGrant("U");
 		vo.setPw("1234");
-		vo.setGender(gender);
-		vo.setAge(age);
-		vo.sethProfile("네이버 사용자 입니다.");
+		vo.sethProfile("네이버 사용자 입니다. 임시 비밀번호는 1234 입니다. 변경 부탁드립니다.");
 
-		userService.insertUserSignUp(vo);
+		// null 이 아니면 네이버에서 받아온 값 넣어주고 null이면 임의 값 넣는다
+		if (gender != null) {
+			vo.setGender(gender);
+		}
+		vo.setGender("M");
+		
+		if (range != null) {
+			vo.setAge(range.substring(0, range.indexOf("-")));
+		}
+		vo.setAge("20");
 
+		// 후에 회원가입실행 후 알러트로 안내 한 다음 메인페이지로 이동
+		int check = userService.insertNaverUserSignUp(vo);
+		// 세션 담는다
 		SecurityContextHolder.getContext()
 				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
-
-		return "redirect:/mainPage";
+		System.out.println(check);
+		if (1 == check) {
+			model.addAttribute("msg", "네이버 이메일로 회원가입이 되셨습니다. 임시비밀번호는 1234 입니다 나중에 프로필에서 변경 부탁드립니다.");
+			model.addAttribute("url", "/hellonote/mainPage");
+			return "layout/naver";
+		} else {
+			// 회원 가입이 되어있으면 바로 메인페이지 이동
+			return "redirect:/mainPage";
+		}
 	}
 
 	// 아이디 중복체크
@@ -137,7 +158,7 @@ public class UserController {
 		return "redirect:getUserList";
 	}
 
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	@RequestMapping(value = "/home", method = RequestMethod.GET)
 //	public String homelogin(Locale locale, Model model) {
 //
 //		return "layout/login";

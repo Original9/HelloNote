@@ -177,6 +177,7 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 	<script src="<c:url value="/resources/assets/js/theme.js"/>"></script>
+	
 </body>
 
 </html>

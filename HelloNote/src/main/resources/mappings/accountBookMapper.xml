@@ -74,12 +74,29 @@
 
 <select id="chartAccountBook" resultType="accountBook">
 
+		<![CDATA[
+		
+        SELECT
+		ACCOUNTBOOK_PURPOSE, (SUM((ACCOUNTBOOK_PRICE/price)*100 )) as accountbook_percent
+		FROM ${hellonoteId}_ACCOUNTBOOK, (SELECT SUM (ACCOUNTBOOK_PRICE) price FROM ${hellonoteId}_ACCOUNTBOOK WHERE ACCOUNTBOOK_PRICE > 0)
+        WHERE ACCOUNTBOOK_PRICE > 0
+		GROUP BY ACCOUNTBOOK_PURPOSE
 
+		]]>
+		
+
+</select>
+
+<select id="nagetiveChartAccountBook" resultType="accountBook">
+
+		<![CDATA[
 		SELECT
-		ACCOUNTBOOK_PURPOSE, SUM((ACCOUNTBOOK_PRICE/price)*100 ) as accountbook_percent
-		FROM  ${hellonoteId}_ACCOUNTBOOK, (SELECT SUM (ACCOUNTBOOK_PRICE) price FROM ${hellonoteId}_ACCOUNTBOOK)
-		GROUP BY ACCOUNTBOOK_PURPOSE, price
-
+		ACCOUNTBOOK_PURPOSE, (SUM((ACCOUNTBOOK_PRICE/price)*100 )) as accountbook_percent
+		FROM  ${hellonoteId}_ACCOUNTBOOK, (SELECT SUM (ACCOUNTBOOK_PRICE) price FROM ${hellonoteId}_ACCOUNTBOOK WHERE ACCOUNTBOOK_PRICE < 0)
+        WHERE ACCOUNTBOOK_PRICE < 0
+		GROUP BY ACCOUNTBOOK_PURPOSE
+		]]>
+		
 </select>
 
 

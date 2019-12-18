@@ -13,5 +13,10 @@ public interface CheckListService {
 	public int deleteList(CheckListVO vo);
 	public int insertList(CheckListVO vo);
 	public int updateList(CheckListVO vo);
+	
+	
+	public void checkSortHandling1(CheckListVO vo);
+	public void checkSortHandling2(CheckListVO vo);
+
 
 }

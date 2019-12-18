@@ -1,7 +1,6 @@
 package co.yedam.hellonote.user.controller;
 
 import java.io.IOException;
-import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -75,31 +74,41 @@ public class UserController {
 		// 파싱할것들
 		String range = (String) response_obj.get("age");
 		String gender = (String) response_obj.get("gender");
-		String age = (String) response_obj.get("age");
-		String strangeName = (String) response_obj.get("name"); // 유니코드 이름
-		String normalName = Normalizer.normalize(strangeName, Normalizer.Form.NFC); // 유니코드를 한글로 변환
-		// 파싱한 값 출력
-		System.out.println("id" + gender + age + normalName);
+		// String strangeName = (String) response_obj.get("name"); // 유니코드 이름
+		// String normalName = Normalizer.normalize(strangeName, Normalizer.Form.NFC);
+		// // 유니코드를 한글로 변환
 
 		// 회원가입에 담을 정보 age는 네이버에서 20~29 연령별로 나누기 때문에 특수문자를 자르기위함
-		vo.setHellonoteId("N"+(String) response_obj.get("id"));
+
+		vo.setHellonoteId("N" + (String) response_obj.get("id"));
 		vo.sethGrant("U");
 		vo.setPw("1234");
-		vo.setGender(gender);
-		vo.setAge(range.substring(0, 2));
 		vo.sethProfile("네이버 사용자 입니다. 임시 비밀번호는 1234 입니다. 변경 부탁드립니다.");
 
-		// 알러트로 임시비밀번호 출력
-		model.addAttribute("msg", "네이버 이메일로 회원가입이 되셨습니다. 임시비밀번호는 1234 입니다 나중에 프로필에서 변경 부탁드립니다.");
+		// null 이 아니면 네이버에서 받아온 값 넣어주고 null이면 임의 값 넣는다
+		if (gender != null) {
+			vo.setGender(gender);
+		}
+		vo.setGender("M");
+		
+		if (range != null) {
+			vo.setAge(range.substring(0, range.indexOf("-")));
+		}
+		vo.setAge("20");
 
-		// 후에 회원가입실행
-		userService.insertNaverUserSignUp(vo);
-
-		// 세션담기
+		// 후에 회원가입실행 후 알러트로 안내 한 다음 메인페이지로 이동
+		int check = userService.insertNaverUserSignUp(vo);
+		// 세션 담는다
 		SecurityContextHolder.getContext()
 				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
-
-		return "redirect:/mainPage";
+		if (1 == check) {
+			model.addAttribute("msg", "네이버 이메일로 회원가입이 되셨습니다. 임시비밀번호는 1234 입니다 나중에 프로필에서 변경 부탁드립니다.");
+			model.addAttribute("url", "mainPage");
+			return "layout/naver";
+		} else {
+			// 회원 가입이 되어있으면 바로 메인페이지 이동
+			return "redirect:/mainPage";
+		}
 	}
 
 	// 아이디 중복체크

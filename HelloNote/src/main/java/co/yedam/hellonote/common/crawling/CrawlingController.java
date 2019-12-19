@@ -1,6 +1,7 @@
 package co.yedam.hellonote.common.crawling;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class CrawlingController {
 	public Map<String, String> recipeCrawl(@RequestParam String recipeKeyword) throws IOException {
 		Document doc = Jsoup.connect("http://www.10000recipe.com/recipe/list.html?q=" + recipeKeyword).get();
 		System.out.println(recipeKeyword);
-		String url="http://www.10000recipe.com/recipe/list.html?q=" + recipeKeyword;
+		String url="http://www.10000recipe.com/recipe/list.html?q=" + URLEncoder.encode(recipeKeyword, "UTF-8");
 		System.out.println(url);
 		Document doc = Jsoup.connect(url).get();
 		System.out.println(doc);

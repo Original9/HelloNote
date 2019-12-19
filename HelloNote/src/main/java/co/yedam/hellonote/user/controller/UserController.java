@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import co.yedam.hellonote.user.service.NaverService;
 import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
 
@@ -38,13 +39,16 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	NaverService naverService;
 
 	// 첫 로그인 페이지 (홈페이지 열자마자 보이는 화면)
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String home(Locale locale, Model model, HttpSession session) {
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 UserVO클래스의 getAuthorizationUrl메소드 호출
 		UserVO vo = new UserVO();
-		String naverAuthUrl = vo.getAuthorizationUrl(session);
+		String naverAuthUrl = naverService.getAuthorizationUrl(session);
 		model.addAttribute("url", naverAuthUrl);
 		return "layout/login";
 	}
@@ -55,10 +59,10 @@ public class UserController {
 			throws IOException, ParseException {
 		UserVO vo = new UserVO();
 		OAuth2AccessToken oauthToken;
-		oauthToken = vo.getAccessToken(session, code, state);
+		oauthToken = naverService.getAccessToken(session, code, state);
 
 		// 1. 로그인 사용자 정보를 읽어온다.
-		apiResult = vo.getUserProfile(oauthToken); // String형식의 json데이터
+		apiResult = naverService.getUserProfile(oauthToken); // String형식의 json데이터
 		System.out.println("여기는 콜백의 apiResult::: " + apiResult);
 		// "id":"53257059","nickname":"wjds****","profile_image":"프로필이미지주소","age":"20-29","gender":"M","email":"wjdskd06@naver.com","name":"\uc815\uc2b9\ucc2c","birthday":"03-10"}}
 

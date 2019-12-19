@@ -71,6 +71,38 @@
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- Encoding 설정 -->
+		<beans:property name="defaultEncoding" value="UTF-8" />
+		<!-- Reload Cache 설정 -->
+		<beans:property name="cacheSeconds" value="5" />
+		<!-- basenames 설정: 아래처럼 하면 WEB-INF 밑의 message 폴더 아래의 labels로 시작하는 모든 Property -->
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>classpath:global.properties</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- MessageSource를 사용하기 위한 Accessor 설정 -->
+	<beans:bean id="messageSourceAccessor"
+		class="org.springframework.context.support.MessageSourceAccessor">
+		<beans:constructor-arg ref="messageSource" />
+	</beans:bean>
+
+	<!-- MessageSource를 사용하기위한 MessageUtils 매핑 -->
+	<beans:bean id="message" class="co.yedam.hellonote.common.MessageUtil">
+		<beans:property name="messageSourceAccessor"
+			ref="messageSourceAccessor" />
+	</beans:bean>
+
+	<!-- Default Location 설정 -->
+	<beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<beans:property name="defaultLocale" value="ko"></beans:property>
+	</beans:bean>
+
 
 </beans:beans>
 

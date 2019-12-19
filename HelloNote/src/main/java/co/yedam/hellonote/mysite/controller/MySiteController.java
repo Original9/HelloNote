@@ -41,13 +41,13 @@ public class MySiteController {
 	@RequestMapping("/mysite")
 	public String getMySiteList(Model model, MySiteSearchVO svo, Paging p, HttpServletRequest request,
 			HttpSession session) {
+		// 세션 값 받아옴 
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		svo.setUserId(userDetails.getUsername());
 
 		// MySite key값
 		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
 		model.addAttribute("paging", p);
-		// model.addAttribute("menuId", request.getParameter("menuId"));
 		String menuId = request.getParameter("menuId");
 		session.setAttribute("menuId", menuId);
 		return "main/mysite/mysite"; // jsp 경로
@@ -113,7 +113,6 @@ public class MySiteController {
 		// MySite key값
 		model.addAttribute("mySite", mySiteService.getMySiteList(svo, p));
 		model.addAttribute("paging", p);
-		// model.addAttribute("menuId", request.getParameter("menuId"));
 		String menuId = request.getParameter("menuId");
 		session.setAttribute("menuId", menuId);
 		return "redirect:mysite?menuId=" + svo.getMenuId();
@@ -159,11 +158,8 @@ public class MySiteController {
 			try {
 				setDisposition(fileName, request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// response.addHeader("Content-Disposition", "attachment; filename=" +
-			// fileName);
 			try {
 				Files.copy(file, response.getOutputStream());
 				response.getOutputStream().flush();

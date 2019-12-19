@@ -80,4 +80,8 @@
 					where menu_id = #{menuId}
 				)
 	</update>
+	<delete id="menuDeleteHandling2" parameterType="menu">
+		delete from ${hellonoteId}_widget
+		where menu_id=#{menuId}
+	</delete>
 </mapper>

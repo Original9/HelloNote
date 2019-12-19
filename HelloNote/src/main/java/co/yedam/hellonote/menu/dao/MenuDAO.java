@@ -51,4 +51,10 @@ public class MenuDAO {
 	public void menuDeleteHandling1(MenuVO vo) {
 		batis.update("MenuDAO.menuDeleteHandling1", vo);
 	}
+	
+	// 메뉴 삭제 전 위젯 삭제
+	public void menuDeleteHandling2(MenuVO vo) {
+		batis.delete("MenuDAO.menuDeleteHandling2", vo);
+	}
+	
 }

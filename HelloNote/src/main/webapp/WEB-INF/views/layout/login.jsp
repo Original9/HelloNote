@@ -72,15 +72,15 @@
 										<hr>
 										<br>
 									</form>
-									<div class="text-center">
+									<!-- 									<div class="text-center">
 										<a class="small" href="forgot-password.html">시간보고 Password
 											찾기 추가 </a>
-									</div>
+									</div> -->
 									<div class="text-center">
 										<a class="small" href="signup">회원가입</a>
 									</div>
 									<div class="text-center">
-										<p class="small" onclick="init()">*관리자 접속*</p>
+										<p class="small" onclick="init()">관리자 접속</p>
 									</div>
 								</div>
 							</div>
@@ -177,7 +177,7 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 	<script src="<c:url value="/resources/assets/js/theme.js"/>"></script>
-	
+
 </body>
 
 </html>

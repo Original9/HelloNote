@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
+import co.yedam.hellonote.user.service.NaverService;
 import co.yedam.hellonote.user.service.UserService;
 import co.yedam.hellonote.user.vo.UserVO;
 
@@ -38,27 +39,30 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	NaverService naverService;
 
 	// 첫 로그인 페이지 (홈페이지 열자마자 보이는 화면)
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String home(Locale locale, Model model, HttpSession session) {
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 UserVO클래스의 getAuthorizationUrl메소드 호출
 		UserVO vo = new UserVO();
-		String naverAuthUrl = vo.getAuthorizationUrl(session);
+		String naverAuthUrl = naverService.getAuthorizationUrl(session);
 		model.addAttribute("url", naverAuthUrl);
 		return "layout/login";
 	}
 
 	// 네이버 아이디로 로그인 성공 시에 돌아올 페이지
 	@RequestMapping(value = "/mainPage/Callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request)
 			throws IOException, ParseException {
 		UserVO vo = new UserVO();
 		OAuth2AccessToken oauthToken;
-		oauthToken = vo.getAccessToken(session, code, state);
+		oauthToken = naverService.getAccessToken(session, code, state);
 
 		// 1. 로그인 사용자 정보를 읽어온다.
-		apiResult = vo.getUserProfile(oauthToken); // String형식의 json데이터
+		apiResult = naverService.getUserProfile(oauthToken); // String형식의 json데이터
 		System.out.println("여기는 콜백의 apiResult::: " + apiResult);
 		// "id":"53257059","nickname":"wjds****","profile_image":"프로필이미지주소","age":"20-29","gender":"M","email":"wjdskd06@naver.com","name":"\uc815\uc2b9\ucc2c","birthday":"03-10"}}
 
@@ -104,7 +108,7 @@ public class UserController {
 		System.out.println(check);
 		if (1 == check) {
 			model.addAttribute("msg", "네이버 이메일로 회원가입이 되셨습니다. 임시비밀번호는 1234 입니다 나중에 프로필에서 변경 부탁드립니다.");
-			model.addAttribute("url", "/hellonote/mainPage");
+			model.addAttribute("url", request.getContextPath() + "/mainPage"); // getContextPath 앱 이름
 			return "layout/naver";
 		} else {
 			// 회원 가입이 되어있으면 바로 메인페이지 이동
@@ -158,16 +162,9 @@ public class UserController {
 		return "redirect:getUserList";
 	}
 
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public String homelogin(Locale locale, Model model) {
-//
-//		return "layout/login";
-//	}
-
 	// 회원 가입 페이지
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {
-
 		return "user/signup";
 	}
 

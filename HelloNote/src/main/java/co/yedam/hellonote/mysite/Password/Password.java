@@ -4,6 +4,7 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// MySite등록시 비밀번호 DB에 암호화 시키고 사용자가 눌러서확인시엔 복호화 시키는 클래스 
 public class Password {
 
 	private static final Logger log = LoggerFactory.getLogger(Password.class);

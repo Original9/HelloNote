@@ -1,5 +1,7 @@
 package co.yedam.hellonote.mysite.paging;
 
+// 페이징 처리 클래스
+
 public class Paging {
 	int pageUnit=10 ; 		//한페이지 출력할 레코드 건수
 	int pageSize=10 ; 		//페이지번호 수 (5) 1~ 5까지

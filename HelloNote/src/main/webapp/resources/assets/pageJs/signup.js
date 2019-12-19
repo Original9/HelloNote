@@ -14,9 +14,9 @@ function signupbutton() {
 		return false;
 	}
 
-	var password1RegExp = /^[a-zA-z0-9]{4,12}$/;
+	var password1RegExp = /^.*(?=.{4,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
 	if (!password1RegExp.test(form.pwcheck.value)) {
-		alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다.")
+		alert("영문, 숫자 혼합하여 6~20자리 이내로 입력해야합니다.")
 		$("#pw").focus();
 		$("#pw").val('');
 		$('#pwcheck').val('');

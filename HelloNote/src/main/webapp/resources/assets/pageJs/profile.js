@@ -12,6 +12,21 @@ $(document).ready(function() {
 		var hGrant = $('#ChangeInfo input[name="hGrant"]').val();
 		var hProfile = $('#ChangeInfo textarea[name="hProfile"]').val();
 
+		
+		if (!ChangeInfo.pw.value) {
+			alert("비밀번호를 입력하세요.")
+			$("#pw").focus();
+			return false;
+		}
+
+		var password1RegExp = /^.*(?=.{4,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+		if (!password1RegExp.test(ChangeInfo.pw.value)) {
+			alert("영문, 숫자 혼합하여 6~20자리 이내로 입력해야합니다.")
+			$("#pw").focus();
+			$("#pw").val('');
+			$('#pwch').val('');
+			return false;
+		}
 		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
 		if (ChangeInfo.pw.value != ChangeInfo.pwch.value) {
 			alert("비밀번호를 동일하게 입력하세요.")
@@ -19,17 +34,6 @@ $(document).ready(function() {
 			$('#pwch').val('');
 			return false;
 		}
-		// // 패스워드 길이 제한
-		// if (ChangeInfo.pw.value.length <= 2) {
-		// alert("비밀번호는 3자리 이상으로 설정해주세요")
-		// $("#pw").focus();
-		// }
-		// var checkNumber = ChangeInfo.pw.value.search(/[0-9]/g);
-		// var checkEnglish = ChangeInfo.pw.value.search(/[a-z]/ig);
-		// if (checkNumber < 0 || checkEnglish < 0) {
-		// alert("숫자와 영문자를 혼용하여야 합니다.");
-		// // ID가 pw 인곳에 val을 '' 공백처리하고 포커스를 맞춘다
-		// }
 
 		$.ajax({
 			url : "ChangeInfo",

@@ -359,7 +359,7 @@
 	<script type="text/javascript">
       var textarea = document.getElementById("messageWindow");
       //var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
-      var webSocket = new WebSocket('ws://localhost/hellonote/chat.do');
+      var webSocket = new WebSocket('ws://39.116.34.40/HelloNote/chat.do');
       var inputMessage = document.getElementById('inputMessage');
       
       function enterkey() {
@@ -376,6 +376,7 @@
       function chatButton() {
 
          textarea.value = "";
+         $('#chatWindow').empty();
          msg = {
 
             fromId : "${hellonoteId}"
@@ -385,7 +386,7 @@
          $
                .ajax({
                   type : "post",
-                  url : "/hellonote/chatList",
+                  url : "${pageContext.request.contextPath}/chatList",
                   dataType : "json",
                   data : msg,
                   success : function(response) {
@@ -505,7 +506,7 @@
 
          $.ajax({
             type : "post",
-            url : "/hellonote/insertChat",
+            url : "${pageContext.request.contextPath}/insertChat",
             dataType : "json",
             data : msg,
             success : function(response) {

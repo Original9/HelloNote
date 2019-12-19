@@ -34,7 +34,8 @@
 		<typeAlias type="co.yedam.hellonote.dday.vo.DDayVO"
 			alias="dday"/>
 		<typeAlias type="co.yedam.hellonote.bankaccount.vo.BankAccountVO"
-			alias="bankAccount" />	
+			alias="bankAccount" />
+		<typeAlias type="co.yedam.hellonote.common.crawling.recipe.RecipeVO" alias="recipe"/>	
 	</typeAliases>
 
 </configuration>

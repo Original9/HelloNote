@@ -6,9 +6,9 @@ import lombok.Data;
 public class BankAccountVO {
 	
 	int bankaccountSeq;
-	String bankaccountAccountname;
+	String bankaccountAccountname;//계좌이름
 	String menuId;
-	String bankaccountbankName; //계좌이름(사용자정의 가능)
+	String bankaccountBankname; //은행이름(사용자정의 가능)
 	String bankaccountOwner; //계좌주(사용자정의가능)
 	String bankaccountAccountnumber; //계좌번호(변경불가)
 //	int bankIndex; //(정렬순서)

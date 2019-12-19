@@ -27,7 +27,7 @@ import co.yedam.hellonote.bankaccount.service.BankAccountService;
 import co.yedam.hellonote.bankaccount.vo.BankAccountVO;
 
 @Controller
-public class AccountBookController {
+public class AccountBookNoCardController {
 
 	@Autowired
 	AccountBookService accountBookService;
@@ -35,7 +35,7 @@ public class AccountBookController {
 	@Autowired
 	BankAccountService bankaccountservice;
 	
-	@RequestMapping("/accountBook")
+	@RequestMapping("/accountBookNoCard")
 	public String accoutBookList(BankAccountVO bvo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		bvo.setHellonoteId(userDetails.getUsername());
@@ -47,12 +47,12 @@ public class AccountBookController {
 		}
 		
 		else {
-			return "main/menuList/accountBook";
+			return "main/menuList/accountBookNoCard";
 		}
 		
 	}
 	// 전체 조회
-	@RequestMapping("/getAccountBookList.json")
+	@RequestMapping("/getAccountBookListNoCard.json")
 	@ResponseBody
 	public List<AccountBookVO> getAccountBookList(HttpSession session, AccountBookVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -62,7 +62,7 @@ public class AccountBookController {
 	}
 
 	// 등록
-	@RequestMapping(value = "/insertAccountBook.json", consumes = "application/json")
+	@RequestMapping(value = "/insertAccountBookNoCard.json", consumes = "application/json")
 	public AccountBookVO insertAccountBook(@RequestBody AccountBookVO vo, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
@@ -73,7 +73,7 @@ public class AccountBookController {
 	}
 
 	// 삭제
-	@RequestMapping("/deleteAccountBook.json")
+	@RequestMapping("/deleteAccountBookNoCard.json")
 	@ResponseBody
 	public Map<String, Object> deleteAccountBook(AccountBookVO vo, Model model, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -86,7 +86,7 @@ public class AccountBookController {
 	}
 
 	// 수정
-	@RequestMapping(value = "/updateAccountBook.json", consumes = "application/json", method = RequestMethod.PUT)
+	@RequestMapping(value = "/updateAccountBookNoCard.json", consumes = "application/json", method = RequestMethod.PUT)
 	@ResponseBody
 	public AccountBookVO updateAccountbook(@RequestBody AccountBookVO vo, Model model, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -97,7 +97,7 @@ public class AccountBookController {
 	}
 
 	// 엑셀출력
-	@RequestMapping("/downloadExcel2")
+	@RequestMapping("/downloadExcelNoCard")
 	public ModelAndView excelView(AccountBookVO vo) throws IOException {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
@@ -139,7 +139,7 @@ public class AccountBookController {
 	}
 	
 	//구글차트
-	@RequestMapping("/chartAccountBook")
+	@RequestMapping("/chartAccountBookNoCard")
 	@ResponseBody
 	public List<Map<String, Object>> getChartData(AccountBookVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -156,7 +156,7 @@ public class AccountBookController {
 	}
 	
 	
-	@RequestMapping("/nagetiveChartAccountBook")
+	@RequestMapping("/nagetiveChartAccountBookNoCard")
 	@ResponseBody
 	public List<Map<String, Object>> nagetivegetChartData(AccountBookVO vo) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

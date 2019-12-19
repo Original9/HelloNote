@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
+// 엑셀 다운로드 해주는 클래스 SuppressWarnings 는 젠킨스 빌드시 에러 방지
 @SuppressWarnings("unchecked")
 @Component
 public class CommonExcelView extends AbstractXlsxView {

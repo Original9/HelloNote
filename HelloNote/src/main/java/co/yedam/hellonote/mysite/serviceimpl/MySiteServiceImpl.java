@@ -21,6 +21,7 @@ public class MySiteServiceImpl implements MySiteService {
 
 	@Override
 	public List<Map<String,Object>> getMySiteListMap(MySiteVO vo) {
+		// 복호화 후 리스트Map 형식으로 출력
 		vo.setSitePw(Password.decryptSimpleTest(vo.getSitePw()));
 		return dao.getMySiteListMap(vo);
 	}
@@ -42,6 +43,7 @@ public class MySiteServiceImpl implements MySiteService {
 
 		List<MySiteVO> list = dao.getMySiteList(svo);
 
+		// 조회마다 for문 돌려 복호화
 		for (MySiteVO vo : list) {
 			vo.setSitePw(Password.decryptSimpleTest(vo.getSitePw()));
 		}
@@ -52,6 +54,8 @@ public class MySiteServiceImpl implements MySiteService {
 
 	@Override
 	public int deleteMySite(int[] list, MySiteVO vo) {
+		
+		// 체크시 값을 리스트에 i 에 담아 삭제줌
 		for (int i = 0; i < list.length; i++) {
 			vo.setMySiteSeq(list[i]);
 			dao.deleteMySite(vo);
@@ -62,6 +66,7 @@ public class MySiteServiceImpl implements MySiteService {
 	// 암호화
 	@Override
 	public int insertMySite(MySiteVO vo) {
+		// 글 등록시 암호화 함 
 		vo.setSitePw(Password.encryptSimpleTest(vo.getSitePw()));
 		return dao.insertMySite(vo);
 	}
@@ -69,6 +74,7 @@ public class MySiteServiceImpl implements MySiteService {
 	// 암호화
 	@Override
 	public int updateMySite(MySiteVO vo) {
+		// 수정 등록 후에 암호화
 		vo.setSitePw(Password.encryptSimpleTest(vo.getSitePw()));
 		return dao.updateMySite(vo);
 	}
@@ -78,7 +84,7 @@ public class MySiteServiceImpl implements MySiteService {
 	public MySiteVO getMySite(MySiteVO vo) {
 		MySiteVO result = dao.getMySite(vo); // 암호화된 vo를 result에 담아 
 		result.setSitePw(Password.decryptSimpleTest(result.getSitePw())); // result로 decry 복호화 해서 return 해준다
-		return result;
+		return result; // 값을 result 에 담아줌
 	}
 
 	@Override

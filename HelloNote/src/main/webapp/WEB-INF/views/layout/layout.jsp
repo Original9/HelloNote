@@ -376,6 +376,7 @@
       function chatButton() {
 
          textarea.value = "";
+         #('chatWindow').empty();
          msg = {
 
             fromId : "${hellonoteId}"

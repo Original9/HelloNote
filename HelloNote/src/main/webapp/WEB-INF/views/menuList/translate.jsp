@@ -10,6 +10,8 @@
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"> -->
 <!-- <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css"> -->
 <!-- <link href="assets/css/mainFont.css" rel="stylesheet" type="text/css"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/assets/css/index.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -48,14 +50,14 @@
          
  <div class="container">
   <form>
-	  <h2>번역</h2>                                                                                     
+	  <h2>HELLONOTE 번역기</h2>                                                                                     
 	  <div class="table-responsive">
 	    <table class="table table-bordered">
 	      <thead>
 	        <tr>
 	          <th>
 	          	  <div>
-	          	  	<select id="src_lang">
+	          	  	<select id="src_lang" class="selectpicker" data-style="btn-primary">
 	          	  		<option value="kr">한국어</option>
 	          	  		<option value="en">영어</option>
 	          	  		<option value="jp">일본어</option>
@@ -66,7 +68,7 @@
 			  </th>
 	          <th>
 		          	<div>
-		          	  	<select id="target_lang">
+		          	  	<select id="target_lang" class="selectpicker" data-style="btn-primary">
 		          	  		<option value="kr">한국어</option>
 		          	  		<option value="en" selected>영어</option>
 		          	  		<option value="jp">일본어</option>
@@ -90,34 +92,7 @@
 	  </div>
   </form>
 </div>
-<!-- widgets version -->
-<div style="width: 500px; height; 100px" >
-  <form>
-	  <h2>번역 widgets</h2>                                                                                     
-	  <div class="table-responsive">
-	    <table class="table table-bordered">
-	      <thead>
-	        <tr>
-	          <th><div class="dropdown-menu">언어 선택 
-	          		<span class="dropdown-item-text">한국어 ↔ 영어</span>
-	          		<span class="dropdown-item-text">영어 ↔ 한국어</span>
-	          	  </div>한국어</th>
-	          <th>영어</th>          
-	        </tr>
-	      </thead>
-	      <tbody>
-	        <tr>
-	          <td> <textarea class="form-control" rows="5" id="inputText" placeholder="Type Here">안녕하세요</textarea></td>
-	          <td> <textarea class="form-control" rows="5" id="outputText" name="outputText" ></textarea></td>          
-	        </tr>
-	      </tbody>
-	    </table>
-	    	<div align="right">
-	    		<input type="button" class="btn btn-dark" value="번역하기" id="translate">
-	    	</div>
-	  </div>
-  </form>
-</div>
+
 
 </body>
 </html>

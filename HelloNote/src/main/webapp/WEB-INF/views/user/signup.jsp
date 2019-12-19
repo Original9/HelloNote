@@ -109,17 +109,19 @@
 									id="btnSign">회원가입 완료</button>
 								<button id="user" name="user"
 									class="btn btn-primary btn-block text-white btn-user"
-									type="button" onclick="location.href='/hellonote/'">로그인</button>
+									type="button" onclick="location.href='/hellonote/'">로그인으로
+									이동</button>
 								<br>
 								<hr>
 							</form>
+							<p align="center">↓ 이메일 인증 후 편하게 사용 ↓</p> 
 							<div class="text-center">
-								<a class="small" href="https://www.google.com">Click Go Site
-									=> www.google.co.kr</a>
+								<a class="small" href="https://www.google.com" target="_blank">Click
+									Go Site => www.google.co.kr</a>
 							</div>
 							<div class="text-center">
-								<a class="small" href="https://www.naver.com">Click Go Site
-									=> www.naver.com</a>
+								<a class="small" href="https://www.naver.com" target="_blank">Click
+									Go Site => www.naver.com</a>
 							</div>
 						</div>
 					</div>

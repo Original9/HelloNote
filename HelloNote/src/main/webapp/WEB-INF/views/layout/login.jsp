@@ -35,8 +35,8 @@
 							<div class="col-lg-6">
 								<div class="p-5">
 									<div class="text-center">
-										<h4 class="text-dark mb-4">Hello Note Login ~ !</h4>
-									</div>
+										<h4 class="text-dark mb-4">Hello Note !</h4>
+									</div> 
 									<form id="user" name="user" class="user" action="processLogin"
 										method="POST">
 										<div class="form-group">
@@ -52,10 +52,10 @@
 										<div class="form-group">
 											<button id="user" name="user"
 												class="btn btn-primary btn-block text-white btn-user"
-												type="submit">Login</button>
+												type="submit">로그인</button>
 											<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 												<script>
-													alert("잘못 된 회원정보 입니다.")
+													alert("회원정보를 잘못 입력 하셨습니다.")
 												</script>
 												<c:remove var="SPRING_SECURITY_LAST_EXCEPTION"
 													scope="session" />
@@ -72,10 +72,10 @@
 										<hr>
 										<br>
 									</form>
-									<div class="text-center">
+<!-- 									<div class="text-center">
 										<a class="small" href="findPwForm">시간보고 Password
 											찾기 추가 </a>
-									</div>
+									</div> -->
 									<div class="text-center">
 										<a class="small" href="signup">회원가입</a>
 									</div>

@@ -51,7 +51,7 @@ public class UserController {
 
 	// 네이버 아이디로 로그인 성공 시에 돌아올 페이지
 	@RequestMapping(value = "/mainPage/Callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+	public String naverCallback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request)
 			throws IOException, ParseException {
 		UserVO vo = new UserVO();
 		OAuth2AccessToken oauthToken;
@@ -104,7 +104,7 @@ public class UserController {
 		System.out.println(check);
 		if (1 == check) {
 			model.addAttribute("msg", "네이버 이메일로 회원가입이 되셨습니다. 임시비밀번호는 1234 입니다 나중에 프로필에서 변경 부탁드립니다.");
-			model.addAttribute("url", "/hellonote/mainPage");
+			model.addAttribute("url", request.getContextPath() + "/mainPage"); // getContextPath 앱 이름
 			return "layout/naver";
 		} else {
 			// 회원 가입이 되어있으면 바로 메인페이지 이동

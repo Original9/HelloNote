@@ -385,7 +385,7 @@
          $
                .ajax({
                   type : "post",
-                  url : "/hellonote/chatList",
+                  url : "${pageContext.request.contextPath}/chatList",
                   dataType : "json",
                   data : msg,
                   success : function(response) {
@@ -505,7 +505,7 @@
 
          $.ajax({
             type : "post",
-            url : "/hellonote/insertChat",
+            url : "${pageContext.request.contextPath}/insertChat",
             dataType : "json",
             data : msg,
             success : function(response) {

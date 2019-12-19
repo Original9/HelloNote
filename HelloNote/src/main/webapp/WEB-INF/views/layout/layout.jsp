@@ -39,7 +39,6 @@
 <!-- <script -->
 <%--    src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"/>"></script> --%>
 <%-- <script src="<c:url value="/resources/assets/js/theme.js"/>"></script> --%>
-
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -97,12 +96,16 @@
 						class="nav-link active"
 						href="${pageContext.request.contextPath}/news"><i
 							class="fas fa-tachometer-alt"></i><span id="10">뉴스</span></a></li>
+					<li class="nav-item defaultMenu" role="presentation"><a
+						class="nav-link active"
+						href="${pageContext.request.contextPath}/recipe"><i
+							class="fas fa-tachometer-alt"></i><span id="10">레시피</span></a></li>
 				</ul>
 				<div class="text-center d-none d-md-inline">
 					<button class="btn rounded-circle border-0" id="sidebarToggle"
 						type="button"></button>
 				</div>
-				<div height="500px"></div>
+				<div height="500px"></div><br><br><br>
 				<i class="fas fa-plus-square fa-3x" id="addMenu"></i> <i
 					class="fas fa-trash fa-3x" id="deleteMenu"></i><i
 					class="fas fa-edit fa-3x" id="editMenu"></i>
@@ -185,10 +188,10 @@
 														<th align=center><input type=button id=3 value=3
 															onclick=selectedBtn(3) style="width: 100%; height: 100%;"></th>
 														<th align=center><input type=button id=plus value=+
-															onclick=selectedOp( '+')
+															onclick=selectedOp("+")
 															style="width: 100%; height: 100%;"></th>
 														<th align=left><input type=button id=square value=x^y
-															onclick=selectedOp( '^')
+															onclick=selectedOp('^')
 															style="width: 100%; height: 100%;"></th>
 													</tr>
 
@@ -200,10 +203,10 @@
 														<td align=center><input type=button id=6 value=6
 															onclick=selectedBtn(6) style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=minus
-															value="-" onclick=selectedOp( '-')
+															value="-" onclick=selectedOp('-')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=sin value="sin"
-															onclick=mathText( '_sin')
+															onclick=mathText('_sin')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 													<tr>
@@ -214,10 +217,10 @@
 														<td align=center><input type=button id=9 value=9
 															onclick=selectedBtn(9) style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=multi value=*
-															onclick=selectedOp( '*')
+															onclick=selectedOp('*')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=cos value=cos
-															onclick=mathText( '_cos')
+															onclick=mathText('_cos')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 													<tr>
@@ -227,13 +230,13 @@
 															value=" " onclick=changeSign()
 															style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=dot value="."
-															onclick=selectedBtn( '.')
+															onclick=selectedBtn('.')
 															style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=divide
-															value="/" onclick=selectedOp( '/')
+															value="/" onclick=selectedOp('/')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=tan value="tan"
-															onclick=mathText( '_tan')
+															onclick=mathText('_tan')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 												</table>
@@ -332,8 +335,18 @@
 	</div>
 	<div class="modal" id="addMenuModal" style="z-index: 6;">
 		<div class="modal-content" id="addMenumodalConent">
-			<span class="close" id="addMenuModalClose"
-				style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
+			<table border'0'>
+				<tr>
+					<th>
+						<font color="black">메뉴추가</font>
+					</th>
+					<th>
+						<span class="close" id="editMenuModalClose"
+							style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>						
+					</th>
+				</tr>				
+			</table>
+			<hr>
 			<div>
 				<input placeholder="메뉴 이름" type="text" class="menuName"
 					id="menuName" name="menuName">
@@ -350,8 +363,8 @@
 					<option value="8">아이디</option>
 				</select>
 			</div>
-			<div>
-				<button id="addConfirm" class="addConfirm">추가</button>
+			<div align="right">
+				<button id="addConfirm" class="btn btn-primary addConfirm">추가</button>
 			</div>
 		</div>
 	</div>
@@ -359,7 +372,8 @@
 	<script type="text/javascript">
       var textarea = document.getElementById("messageWindow");
       //var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
-      var webSocket = new WebSocket('ws://39.116.34.40/HelloNote/chat.do');
+      //var webSocket = new WebSocket('ws://39.116.34.40/HelloNote/chat.do');
+      var webSocket = new WebSocket('ws://localhost/hellonote/chat.do');
       var inputMessage = document.getElementById('inputMessage');
       
       function enterkey() {
@@ -558,14 +572,24 @@
 
 
 
-	<div class="modal" id="editMenuModal" style="z-index: 6;">
+	<div class="modal" id="editMenuModal" style="z-index: 6; ">
 		<div class="modal-content" id="editMenuModalConent">
-			<span class="close" id="editMenuModalClose"
-				style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
+			<table>
+				<tr>
+					<th>
+						<font color="black">메뉴수정</font>						
+					</th>
+					<th>
+						<span class="close" id="editMenuModalClose"
+							style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>						
+					</th>
+				</tr>				
+			</table>
+			<hr>
 			<select id="editMenuSelector" class="menuType"></select> <input
 				type="text" placeholder="메뉴 이름" class="menuName" id="editName">
-			<div>
-				<button id="editConfirm" class="addConfirm">수정</button>
+			<div align="right" >
+				<button id="editConfirm" class="btn btn-primary addConfirm">수정</button>
 			</div>
 		</div>
 	</div>

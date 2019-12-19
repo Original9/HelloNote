@@ -72,10 +72,10 @@
 										<hr>
 										<br>
 									</form>
-									<!-- 									<div class="text-center">
-										<a class="small" href="forgot-password.html">시간보고 Password
+									<div class="text-center">
+										<a class="small" href="findPwForm">시간보고 Password
 											찾기 추가 </a>
-									</div> -->
+									</div>
 									<div class="text-center">
 										<a class="small" href="signup">회원가입</a>
 									</div>

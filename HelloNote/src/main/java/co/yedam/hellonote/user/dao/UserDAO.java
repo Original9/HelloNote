@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.yedam.hellonote.user.vo.UserVO;
 
@@ -70,4 +71,5 @@ public class UserDAO {
 	public UserVO idCheck(String hellonoteId) {
 		return mybatis.selectOne("UserDAO.idCheck", hellonoteId);
 	}
+
 }

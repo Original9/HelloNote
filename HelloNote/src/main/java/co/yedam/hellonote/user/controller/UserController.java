@@ -47,7 +47,6 @@ public class UserController {
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String home(Locale locale, Model model, HttpSession session) {
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 UserVO클래스의 getAuthorizationUrl메소드 호출
-		UserVO vo = new UserVO();
 		String naverAuthUrl = naverService.getAuthorizationUrl(session);
 		model.addAttribute("url", naverAuthUrl);
 		return "layout/login";

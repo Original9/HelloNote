@@ -80,7 +80,7 @@
 										<a class="small" href="signup">회원가입</a>
 									</div>
 									<div class="text-center">
-										<a class="small" onclick="init()">관리자 접속</a>
+										<p class="small" onclick="init()">관리자 접속</p>
 									</div>
 								</div>
 							</div>

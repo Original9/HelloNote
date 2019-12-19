@@ -15,7 +15,6 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
-import co.yedam.hellonote.common.MessageUtil;
 import co.yedam.hellonote.user.login.NaverLoginApi;
 
 @Service

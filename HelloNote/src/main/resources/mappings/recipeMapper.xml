@@ -17,7 +17,7 @@
 							(SELECT NVL(MAX(CHECKLIST_SEQ),0)+1 FROM ${hellonoteId}_check),
 							#{ingredient},
 							'f',
-							(SELECT NVL(MAX(CHECKLIST_ORDER),0)+1 FROM ${hellonoteId}_check),
+							(SELECT NVL(MAX(CHECKLIST_ORDER),0)+1 FROM ${hellonoteId}_check WHERE menu_id = #{menuId}),
 							#{menuId}
 						)
 	</insert>

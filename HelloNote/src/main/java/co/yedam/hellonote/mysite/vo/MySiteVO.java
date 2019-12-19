@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import lombok.Data;
 
+// 값 넣을 vo
 @Data
 public class MySiteVO {
 	

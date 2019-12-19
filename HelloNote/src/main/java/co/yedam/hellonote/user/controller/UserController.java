@@ -158,16 +158,9 @@ public class UserController {
 		return "redirect:getUserList";
 	}
 
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public String homelogin(Locale locale, Model model) {
-//
-//		return "layout/login";
-//	}
-
 	// 회원 가입 페이지
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
 	public String signup(Locale locale, Model model) {
-
 		return "user/signup";
 	}
 

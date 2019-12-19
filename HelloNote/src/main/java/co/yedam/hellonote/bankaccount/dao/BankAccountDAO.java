@@ -18,6 +18,12 @@ public class BankAccountDAO {
 	public int insertBankAccount(BankAccountVO vo) {
 		return bankAccount.insert("BankAccountDAO.insertBankAccount",vo);
 	};
+	
+	
+	public int noInsertBankAccount(BankAccountVO vo) {
+		return bankAccount.insert("BankAccountDAO.noInsertBankAccount", vo);
+		
+	}
 
 	public int updateBankAccount(BankAccountVO vo) {
 		return bankAccount.update("BankAccountDAO.updateBankAccount",vo);
@@ -31,6 +37,8 @@ public class BankAccountDAO {
 		return bankAccount.selectOne("BankAccountDAO.selectBankAccount", vo);
 		
 	}
+	
+	 
 //
 //	List<BankAccountVO> getAllBankList(BankAccountSearchVO svo) {
 //		return bankAccount.selectList("BankAccountDAO.getAllBankList",svo);

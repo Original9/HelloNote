@@ -48,6 +48,11 @@ public class CrawlingController {
 	@ResponseBody
 	public Map<String, String> recipeCrawl(@RequestParam String recipeKeyword) throws IOException {
 		Document doc = Jsoup.connect("http://www.10000recipe.com/recipe/list.html?q=" + recipeKeyword).get();
+		System.out.println(recipeKeyword);
+		String url="http://www.10000recipe.com/recipe/list.html?q=" + recipeKeyword;
+		System.out.println(url);
+		Document doc = Jsoup.connect(url).get();
+		System.out.println(doc);
 		doc.select(".thumbnail_over").remove();
 		doc.select(".vod_label").remove();
 		String elem = doc.select(".row").first().toString();

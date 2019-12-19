@@ -4,31 +4,64 @@
   
 <mapper namespace="BankAccountDAO">
 <select id="selectBankAccount" resultType="bankAccount">
-		SELECT *
+		SELECT
+		BANKACOUNT_SEQ,
+		BANKACCOUNT_ACCOUNTNAME,
+		BANKACCOUNT_BANKNAME,
+		BANKACCOUNT_ACCOUNTNUMBER,
+		MENU_ID
 		FROM
-		BH_BANKACCOUNT
-		WHERE BANKACOUNT_SEQ = #{bankAccountSeq}
+		${hellonoteId}_BANKACCOUNT
+		WHERE MENU_ID = #{menuId}
 		<!--  ${hellonoteId} -->
 </select>
 
 <insert id="insertBankAccount" >
-	<selectKey order="BEFORE" resultType="int" keyProperty="accountbookSeq">
-		SELECT NVL(MAX(ACCOUNTBOOK_SEQ),0)+1 FROM BH_BANKACCOUNT
+	<selectKey order="BEFORE" resultType="int" keyProperty="bankaccountSeq">
+		SELECT NVL(MAX(BANKACOUNT_SEQ),0)+1 FROM ${hellonoteId}_BANKACCOUNT
 	</selectKey>  
 
-	INSERT INTO BH_BANKACCOUNT
+	INSERT INTO ${hellonoteId}_BANKACCOUNT
 	(
+	BANKACOUNT_SEQ,
 	BANKACCOUNT_BANKNAME,
 	BANKACCOUNT_ACCOUNTNAME,
-	BANKACCOUNT_ACCOUNTNUMBER
+	BANKACCOUNT_ACCOUNTNUMBER,
+	MENU_ID
 	)
 	
 	values
 	(
-	#{bankaccountbankName},
+	#{bankaccountSeq},
+	#{bankaccountBankname},
 	#{bankaccountAccountname},
-	#{bankaccountAccountnumber}
+	#{bankaccountAccountnumber},
+	#{menuId}
 	)
+
+</insert>
+
+<insert id="noInsertBankAccount" >
+	<selectKey order="BEFORE" resultType="int" keyProperty="bankaccountSeq">
+		SELECT NVL(MAX(BANKACOUNT_SEQ),0)+1 FROM ${hellonoteId}_BANKACCOUNT
+	</selectKey>  
+		INSERT INTO ${hellonoteId}_BANKACCOUNT
+	(
+	BANKACOUNT_SEQ,
+	BANKACCOUNT_BANKNAME,
+	BANKACCOUNT_ACCOUNTNAME,
+	BANKACCOUNT_ACCOUNTNUMBER,
+	MENU_ID
+	)
+	
+	values
+	(
+	#{bankaccountSeq},
+	'none',
+	'none',
+	'none',
+	#{menuId}
+	)	
 
 </insert>
 

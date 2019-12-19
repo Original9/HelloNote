@@ -20,7 +20,12 @@ public class BankAccountServiceImpl implements BankAccountService{
 	@Override
 	public int insertBankAccount(BankAccountVO vo) {
 		
-		return 0;
+		return bankAccountDAO.insertBankAccount(vo);
+	}
+	
+	@Override
+	public int noInsertBankAccount(BankAccountVO vo) {
+		return bankAccountDAO.noInsertBankAccount(vo);
 	}
 
 	@Override
@@ -39,6 +44,8 @@ public class BankAccountServiceImpl implements BankAccountService{
 	public BankAccountVO selectBankAccount(BankAccountVO vo) {
 		return bankAccountDAO.selectBankAccount(vo);
 	}
+
+
 
 //	@Override
 //	public List<BankAccountVO> getAllBankList() {

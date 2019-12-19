@@ -96,6 +96,13 @@
 		HELLONOTE_USERS
 		WHERE HELLONOTE_ID = #{hellonoteId}
 	</select>
-
+	
+	<!--패스워드 찾기할때 비밀번호 변경 -->
+	<update id="chpw" parameterType="user">
+		UPDATE HELLONOTE_USERS
+		SET 
+		PW = #{pw}
+		WHERE HELLONOTE_ID = #{hellonoteId}
+	</update>
 
 </mapper>

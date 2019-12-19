@@ -63,6 +63,21 @@
 									</div>
 									<div class="col-sm-6">
 										<button type="button" class="idCheck">중복 체크</button>
+										<label for="성별"><strong>성별:&nbsp;</strong></label> <select
+											name="gender">
+											<option selected>선택</option>
+											<option value="M">남자</option>
+											<option value="F">여자</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input class="form-control form-control-user" type="text"
+											id="email" placeholder="이메일" name="email">
+									</div>
+									<div class="col-sm-6">
+										<button type="button" class="emailcheck">이메일 인증</button>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -71,15 +86,11 @@
 										<input class="form-control form-control-user" type="password"
 											id="pw" placeholder="비밀번호" name="pw">
 									</div>
-
 									<div class="col-sm-6">
 										<input class="form-control form-control-user" type="password"
 											id="pwcheck" placeholder="비밀번호 체크" name="pwcheck">
-
 									</div>
 								</div>
-
-								<br>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input class="form-control form-control-user" type="text"
@@ -89,16 +100,6 @@
 										<input class="form-control form-control-user" type="text"
 											id="hProfile" placeholder="자기소개" name="hProfile">
 									</div>
-
-								</div>
-								<br>
-								<div class="col-sm-6">
-									<label for="성별"><strong>성별:&nbsp;</strong></label> <select
-										name="gender">
-										<option selected>선택</option>
-										<option value="M">남자</option>
-										<option value="F">여자</option>
-									</select>
 								</div>
 								<br>
 								<hr>

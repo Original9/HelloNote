@@ -49,10 +49,8 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserListMap(vo);
 	}
 
-	// 기존 사용 비밀번호와 변경할 비밀 번호 체크
 	@Override
 	public int updateUser(UserVO dto) {
-
 		return userDAO.updateUser(dto);
 	}
 
@@ -112,5 +110,4 @@ public class UserServiceImpl implements UserService {
 	public UserVO idCheck(String hellonoteId) {
 		return userDAO.idCheck(hellonoteId);
 	}
-
 }

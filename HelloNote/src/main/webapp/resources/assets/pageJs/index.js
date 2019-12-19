@@ -102,7 +102,7 @@ function deleteMenu() {
 				},
 				success : function() {
 					ui.draggable.remove();
-					console.log('delete success');
+					$('#widgetContainer .draggableWidget[menuid="'+$id+'"]').remove();
 				}
 			});
 		}

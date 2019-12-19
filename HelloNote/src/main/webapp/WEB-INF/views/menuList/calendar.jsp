@@ -27,7 +27,6 @@
 	</head>
 
 <body>
-    <h4>session hellonoteId: "${hellonoteId}" session pw: "${pw}"</h4>
     <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->

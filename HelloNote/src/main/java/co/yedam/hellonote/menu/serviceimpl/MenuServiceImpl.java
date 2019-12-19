@@ -66,6 +66,7 @@ public class MenuServiceImpl implements MenuService{
 		}
 		dao.menuDeleteHandling(vo);
 		dao.menuDeleteHandling1(vo);
+		dao.menuDeleteHandling2(vo);
 		dao.deleteMenu(vo);
 	}
 

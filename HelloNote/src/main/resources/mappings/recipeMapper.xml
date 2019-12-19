@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RecipeDAO">
+	<insert parameterType="recipe" id="recipeMenuInsert">
+		insert into 	${hellonoteId}_check
+						(
+							checklist_seq,
+							checklist_mission,
+							checklist_status,
+							checklist_order,
+							menu_id
+						)
+		values
+						(
+							(SELECT NVL(MAX(CHECKLIST_SEQ),0)+1 FROM ${hellonoteId}_check),
+							#{ingredient},
+							'f',
+							(SELECT NVL(MAX(CHECKLIST_ORDER),0)+1 FROM ${hellonoteId}_check WHERE menu_id = #{menuId}),
+							#{menuId}
+						)
+	</insert>
+</mapper>

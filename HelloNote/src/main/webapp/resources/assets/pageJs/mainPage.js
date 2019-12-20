@@ -102,7 +102,7 @@ function makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 							+ widgetsSeq
 							+ '" menuid="'
 							+ menuId
-							+ '" style="width : 300px; left: '
+							+ '" style="position: absolute;width : 300px; left: '
 							+ xlocation
 							+ '; top: '
 							+ ylocation
@@ -114,7 +114,7 @@ function makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 		$('#widgetContainer div#' + widgetsSeq).find('ul').append(
 				'<li style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px"><strong>Nothing to do</strong></li>');
 	}
-
+	
 	$(data)
 			.each(
 					function(i) {
@@ -167,7 +167,7 @@ function makeMySite(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 							+ widgetsSeq
 							+ '" menuid="'
 							+ menuId
-							+ '" class="draggableWidget" style="width: 300px; left: '
+							+ '" class="draggableWidget" style="position: absolute; width: 300px; left: '
 							+ xlocation
 							+ '; top: '
 							+ ylocation
@@ -214,7 +214,7 @@ function makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation, zindex)
 
 	$('#widgetContainer').append(
 			'<div id="' + widgetsSeq
-					+ '" class="draggableWidget" style="left : ' + xlocation
+					+ '" class="draggableWidget" style="position: absolute; left : ' + xlocation
 					+ '; top: ' + ylocation + '; z-index: ' + zindex
 					+ '; height: 200px; width: 200px" menuid="' + menuId
 					+ '" align="center"></div>');
@@ -267,7 +267,7 @@ function makeCalendarWidget(data, menuId, widgetsSeq, xlocation, ylocation,
 					+ widgetsSeq
 					+ '" class="draggableWidget" menuid="'
 					+ menuId
-					+ '" style=" width : 162px; left : '
+					+ '" style="position: absolute; width : 162px; left : '
 					+ xlocation
 					+ '; top : '
 					+ ylocation
@@ -296,7 +296,7 @@ function makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex) 
 
 	$(
 			'<a id="' + widgetsSeq + '" class="memo draggableWidget" menuid="'
-					+ menuId + '" style="left:' + xlocation + '; top:'
+					+ menuId + '" style="position:absolute; left:' + xlocation + '; top:'
 					+ ylocation + '; z-index:' + zindex
 					+ '">  <div> <h3> </h3> </div> </a>').appendTo(
 			'#widgetContainer').on('click', function() {

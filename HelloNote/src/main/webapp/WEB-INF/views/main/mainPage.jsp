@@ -13,7 +13,7 @@
 <script src="<c:url value="/resources/assets/js/json.min.js" />"></script>
 <style>
 #widgetContainer {
-	width: 100%;
+	width: 1700px;
 	height: 1000px;
 	border: 2px solid #ccc;
 	padding: 10px;

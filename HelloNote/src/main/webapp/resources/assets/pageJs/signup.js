@@ -54,7 +54,7 @@ function signupbutton() {
 
 // ID 중복체크 눌렀을때 실행되는 function
 $(function() {
-	$("#idCheck").click(function() {
+	$(".idCheck").click(function() {
 		var form = document.signUp;
 
 		// 아이디 안에 공백 확인
@@ -103,5 +103,5 @@ $(function() {
 	$("#hellonoteId").keyup(function() {
 		$("#btnSign").attr("disabled", "disabled");
 	});
-})
+});
 

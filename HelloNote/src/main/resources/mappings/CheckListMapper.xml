@@ -11,6 +11,7 @@
 		CHECKLIST_MISSION "checkListMission",
 		MENU_ID "menuId"
 		FROM ${hellonoteId}_check
+		where menu_id = #{menuId}
 		ORDER BY CHECKLIST_ORDER
 	</select>
 
@@ -42,7 +43,7 @@
 		#{checklistStatus},
 		#{checklistMission},  
 		#{menuId},
-		(SELECT NVL(MAX(CHECKLIST_ORDER),0)+1 FROM ${hellonoteId}_check)
+		(SELECT NVL(MAX(CHECKLIST_ORDER),0)+1 FROM ${hellonoteId}_check where menu_id = #{menuId})
 		)
 	</insert>
 
@@ -67,6 +68,7 @@
 		CHECKLIST_ORDER  "checklistOrder",
 		MENU_ID "menuId"
 		FROM ${hellonoteId}_check
+		where MENU_ID = #{menuId}
 		ORDER BY CHECKLIST_ORDER
 	</select>
 	
@@ -79,6 +81,7 @@
 						CHECKLIST_STATUS ,
 						CHECKLIST_MISSION ,
 						MENU_ID  FROM ${hellonoteId}_check 
+						where menu_id = #{menuId}
 						order by CHECKLIST_SEQ DESC)
 		<![CDATA[ where rownum <=5]]>  
 		and CHECKLIST_STATUS = 'f'

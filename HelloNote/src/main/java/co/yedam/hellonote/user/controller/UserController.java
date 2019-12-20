@@ -1,5 +1,6 @@
 package co.yedam.hellonote.user.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -251,4 +253,36 @@ public class UserController {
 				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
 		return userService.getUser(vo);
 	}
+	@RequestMapping("actImgSubmit")
+	public String actImgSubmit(UserVO vo
+										,HttpServletRequest request
+										,MultipartFile uploadFile
+//										,MultipartHttpServletRequest multipartRequest
+										) throws IllegalStateException, IOException {
+		//업로드 파일 처리 하고 파일명을 vo 에 담기
+		String path =request.getSession().getServletContext().getRealPath("/resources/assets/img/user");
+//		List<MultipartFile>  uploadFile=multipartRequest.getFiles("uploadFile"); //여러파일 받을때
+		
+//		logger.debug(path);
+		System.out.println(path);
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		String beforeImgName = 
+		
+		System.out.println(uploadFile.getName());
+		
+//		MultipartFile file= vo.getUploadFile();
+		if(!uploadFile.isEmpty() && uploadFile.getSize()>0) {
+			
+			String originName = uploadFile.getOriginalFilename();
+			String ext =originName.substring(originName.lastIndexOf(".")+1,originName.length());
+			String fileName=userDetails.getUsername()+"_profileimg."+ext;	
+			//String fileName = uploadFile.getOriginalFilename();
+			
+			uploadFile.transferTo(new File(path,fileName));
+			
+		}
+		
+		return "redirect:getProfile";
+	}
+	
 }

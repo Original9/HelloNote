@@ -5,13 +5,14 @@ var imgTarget;
 var tImg;
 var filename;
 var submitImgButton;
+var ext;
 
 $(document).ready(function() {
 	
 	
 	imgTarget = $('#input-file');
 	tImg = $('#thumbnail');
-	filename = $('#hellonoteId').val() + "_";
+	filename = $('#hellonoteId').val() + "_profileimg";
 	submitImgButton =$('#imgsubmit'); 
 		//$('#input-file')[0].files;
 	defaultimg();
@@ -21,8 +22,21 @@ $(document).ready(function() {
 });
 
 function defaultimg() {
-	tImg.attr("src", contextpath + "/resources/assets/img/dogs/" + filename+ ".jpeg");
+	tImg.attr("src", contextpath + "/resources/assets/img/user/" + filename+ ".jpg");
 }
+
+
+tImg.on('error',function(){
+	extArr = new Array(".gif",".jpeg",".bmp",".png");
+	for(var i=0; i< extArr.length; i++){
+		tImg.attr("src", contextpath + "/resources/assets/img/user/" + filename+ ".jpg");
+	}
+	
+	
+});
+
+
+
 
 function imgchange() {
 	imgTarget.on('change',function() {
@@ -59,6 +73,38 @@ function imgSubmit(){
 			alert("이미지를 입력해주세요.");
 			return true;
 		}
+		var form = $('#actForm')[0];
+		var formData = new FormData(form); 
+		formData.append('uploadFile',$('#input-file')[0].files[0]);
+		
+
+		 $.ajax({
+             url: 'actImgSubmit',
+                     processData: false,
+                     contentType: false,
+                     data: formData,
+                     type: 'POST',
+                     success: function(result){
+                         alert("프로필 사진이 변경되었습니다.");
+                     }
+             });
+
+		
+//		$.ajax({
+//			url : "actImgSubmit",
+//			method : 'post',
+//			dataType : 'json',
+//			data : JSON.stringify({
+//				title : title,
+//				siteAddr : siteAddr,
+//				siteId : siteId,
+//				sitePw : sitePw,
+//				siteMemo : siteMemo,
+//				mySiteSeq : mySiteSeq,
+//				menuId : $('#menuId').val()
+//			}),
+//			contentType : 'application/json'
+//		});
 		
 		
 	});

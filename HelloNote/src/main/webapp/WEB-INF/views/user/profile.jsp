@@ -54,7 +54,7 @@ var contextpath =  "${pageContext.request.contextPath}";
 						<div class="col-lg-4">
 							<div class="card mb-3">
 								<div class="card-body text-center shadow">
-<!-- 									<form action="actImgSubmit" method="post" enctype="multipart/form-data"> -->
+									<form action="actImgSubmit" id="actForm" method="post" enctype="multipart/form-data">
 									<!-- 에러시 기본이미지 대체 -->
 										<img id="thumbnail" class="rounded-circle mb-3 mt-4" width="160" height="200"
 										onerror="this.src='resources/assets/img/dogs/image2.jpeg'"> 
@@ -64,10 +64,10 @@ var contextpath =  "${pageContext.request.contextPath}";
 									
 										<div class="filebox preview-image"> 
 											<input class="upload-name" value="파일선택" disabled="disabled" hidden="true">
-								 			<label for="input-file">파일가져오기</label> 
-								 			<input type="file" id="input-file" class="upload-hidden-img" hidden="true"> 
+								 			<label class="btn btn-primary btn-sm" for="input-file">파일가져오기</label> 
+								 			<input type="file" id="input-file" name="inputFile" class="upload-hidden-img" hidden="true"> 
 										</div>
-<!-- 									</form> -->
+									</form>
 									
 								</div>
 							</div>

@@ -26,6 +26,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if (vo == null) {
 			throw new UsernameNotFoundException("no user");
 		}
+
+		
+		//이미지 추가부분.
 		
 		String[] exts = {"jpg","jpeg","gif","bmp","png","JPG","JPEG","GIF","BMP","PNG"};
 		String filename = vo.getHellonoteId()+"_profileimg.";
@@ -43,6 +46,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if(vo.getProfileImg() == null) {
 			vo.setProfileImg("defaultImage.jpeg");
 		}
+		
+		//이미지 추가부분 끝.
 		return vo;
 	}
 }

@@ -178,15 +178,20 @@ public class UserController {
 	// 프로필이동
 	@RequestMapping("getProfile")
 	public String getProfile(Model model, UserVO vo,HttpServletRequest request) {
+		//유저 아이디를 받아서 파일명으로 변환.
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		vo = userService.getUser(vo);
+		
+		//검사할 확장자 명들 리스트(대소문자 구분)
 		String[] exts = {"jpg","jpeg","gif","bmp","png","JPG","JPEG","GIF","BMP","PNG"};
 		String filename = vo.getHellonoteId()+"_profileimg.";
 //		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
 		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
 		System.out.println(path);
 //		String path = request.getservletContext().getRe + "/resources/assets/img/user/";
+		
+		//확장자명 검색
 		for(String ext : exts) {
 			File file = new File(path, filename+ext);
 			if(file.exists()){	
@@ -273,6 +278,9 @@ public class UserController {
 				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
 		return userService.getUser(vo);
 	}
+	
+	
+	//이미지 업로드처리.
 	@RequestMapping("actImgSubmit")
 	public String actImgSubmit(UserVO vo
 										,HttpServletRequest request
@@ -283,10 +291,9 @@ public class UserController {
 		String path =request.getSession().getServletContext().getRealPath("/resources/assets/img/user");
 //		List<MultipartFile>  uploadFile=multipartRequest.getFiles("uploadFile"); //여러파일 받을때
 		
-//		logger.debug(path);
 		System.out.println(path);
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		String beforeImgName = 
+
 		
 		System.out.println(uploadFile.getName());
 		
@@ -300,7 +307,7 @@ public class UserController {
 			
 			uploadFile.transferTo(new File(path,fileName));
 			
-		}
+		} //예를들어 jpg이미지 넣고 png 이미지 넣을경우 나오는 파일읽는 문제 남아있음.
 		
 		return "redirect:getProfile";
 	}

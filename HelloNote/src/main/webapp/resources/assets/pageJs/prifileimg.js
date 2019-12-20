@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 
 
-
+// 이미지 변경시 미리보기
 function imgchange() {
 	imgTarget.on('change',function() {
 						if (window.FileReader) {
@@ -53,6 +53,8 @@ function imgchange() {
 
 }
 
+
+//이미지 변경.
 function imgSubmit(){
 	submitImgButton.on('click',function(){
 		if($('#input-file')[0].files.length==0){
@@ -74,24 +76,5 @@ function imgSubmit(){
                          alert("프로필 사진이 변경되었습니다.");
                      }
              });
-
-		
-//		$.ajax({
-//			url : "actImgSubmit",
-//			method : 'post',
-//			dataType : 'json',
-//			data : JSON.stringify({
-//				title : title,
-//				siteAddr : siteAddr,
-//				siteId : siteId,
-//				sitePw : sitePw,
-//				siteMemo : siteMemo,
-//				mySiteSeq : mySiteSeq,
-//				menuId : $('#menuId').val()
-//			}),
-//			contentType : 'application/json'
-//		});
-		
-		
 	});
 }

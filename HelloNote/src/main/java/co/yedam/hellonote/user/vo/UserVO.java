@@ -24,7 +24,7 @@ public class UserVO implements UserDetails {
 	String hGrant;
 	String age;
 	String hProfile;
-	
+	String profileImg;
 	
 
 	public String gethGrant() {

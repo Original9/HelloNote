@@ -1,5 +1,6 @@
 package co.yedam.hellonote.user.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -175,8 +177,33 @@ public class UserController {
 
 	// 프로필이동
 	@RequestMapping("getProfile")
-	public String getProfile(Model model, UserVO vo) {
-		model.addAttribute("user", userService.getUserList(vo));
+	public String getProfile(Model model, UserVO vo,HttpServletRequest request) {
+		//유저 아이디를 받아서 파일명으로 변환.
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		vo = userService.getUser(vo);
+		
+		//검사할 확장자 명들 리스트(대소문자 구분)
+		String[] exts = {"jpg","jpeg","gif","bmp","png","JPG","JPEG","GIF","BMP","PNG"};
+		String filename = vo.getHellonoteId()+"_profileimg.";
+//		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
+		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
+		System.out.println(path);
+//		String path = request.getservletContext().getRe + "/resources/assets/img/user/";
+		
+		//확장자명 검색
+		for(String ext : exts) {
+			File file = new File(path, filename+ext);
+			if(file.exists()){	
+				vo.setProfileImg(filename+ext);
+				break;
+			}
+		}
+		if(vo.getProfileImg() == null) {
+			vo.setProfileImg("defaultImage.jpeg");
+		}
+		System.out.println("방송 여기까지다 ㅄ들아 "+vo.getProfileImg());
+		model.addAttribute("user", vo);
 		return "main/user/profile"; // jsp 경로
 	}
 
@@ -217,6 +244,9 @@ public class UserController {
 		map.put("datas", list);
 		return new ModelAndView("commonExcelView", map);
 	}
+	
+	// 이메일인증
+	
 
 	// 단건 조회
 	@ResponseBody
@@ -251,4 +281,70 @@ public class UserController {
 				.setAuthentication(new UsernamePasswordAuthenticationToken(vo, null, vo.getAuthorities()));
 		return userService.getUser(vo);
 	}
+	
+	
+	//이미지 업로드처리.
+	@RequestMapping("actImgSubmit")
+	public String actImgSubmit(UserVO vo
+										,HttpServletRequest request
+										,MultipartFile uploadFile
+//										,MultipartHttpServletRequest multipartRequest
+										) throws IllegalStateException, IOException {
+		//업로드 파일 처리 하고 파일명을 vo 에 담기
+		String path =request.getSession().getServletContext().getRealPath("/resources/assets/img/user");
+//		List<MultipartFile>  uploadFile=multipartRequest.getFiles("uploadFile"); //여러파일 받을때
+		
+		System.out.println(path);
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		
+		System.out.println(uploadFile.getName());
+		
+//		MultipartFile file= vo.getUploadFile();
+		if(!uploadFile.isEmpty() && uploadFile.getSize()>0) {
+			
+			String originName = uploadFile.getOriginalFilename();
+			String ext =originName.substring(originName.lastIndexOf(".")+1,originName.length());
+			ext=ext.toLowerCase(); //확장자 소문자 변환.
+			System.out.println(ext + " : 대소문자 변경됬냐??");
+			String fileName=userDetails.getUsername()+"_profileimg."+ext;	
+			//String fileName = uploadFile.getOriginalFilename();
+			
+			uploadFile.transferTo(new File(path,fileName));
+			anotherExtRemove(fileName);
+			
+		} //예를들어 jpg이미지 넣고 png 이미지 넣을경우 나오는 파일읽는 문제 남아있음.
+		
+		return "redirect:getProfile";
+	}
+	
+	private void anotherExtRemove(String fileName ) {
+		
+		System.out.println(fileName + ": 들어온이름");
+		//검사할 확장자 명들 리스트(대소문자 구분)
+				String[] exts = {"jpg","jpeg","gif","bmp","png"};
+//				String fileWithOutExt = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());
+				String fileWithOutExt = fileName.substring(0,fileName.lastIndexOf(".")+1);
+				System.out.println(fileWithOutExt + ": 확장자짜른이름");
+//				String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
+				String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
+				System.out.println(path);
+//				String path = request.getservletContext().getRe + "/resources/assets/img/user/";
+				
+				//확장자명 검색
+				for(String ext : exts) {
+					String searchfileName = fileWithOutExt+ext;
+					System.out.println(searchfileName.toString() + " : 삭제할 이름");
+					System.out.println(fileName.toString()+": 원본");
+					//파일 확장자명까지 같지 않을때 삭제.
+					if(!searchfileName.toString().equals(fileName.toString())) {
+						System.out.println("들어오냐?");
+						File file = new File(path, fileWithOutExt+ext);
+						if(file.exists()){
+							file.delete();
+						}
+					}
+				}
+	}
+	
 }

@@ -1,5 +1,7 @@
 package co.yedam.hellonote.user.service;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,6 +26,28 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if (vo == null) {
 			throw new UsernameNotFoundException("no user");
 		}
+
+		
+		//이미지 추가부분.
+		
+		String[] exts = {"jpg","jpeg","gif","bmp","png"};
+		String filename = vo.getHellonoteId()+"_profileimg.";
+//		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
+		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
+		System.out.println(path);
+//		String path = request.getservletContext().getRe + "/resources/assets/img/user/";
+		for(String ext : exts) {
+			File file = new File(path, filename+ext);
+			if(file.exists()){	
+				vo.setProfileImg(filename+ext);
+				break;
+			}
+		}
+		if(vo.getProfileImg() == null) {
+			vo.setProfileImg("defaultImage.jpeg");
+		}
+		
+		//이미지 추가부분 끝.
 		return vo;
 	}
 }

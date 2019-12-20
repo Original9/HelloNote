@@ -25,9 +25,9 @@
 	href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
 <!-- JS -->
+<script src='<c:url value="/resources/assets/js/jquery.min.js"/>'></script>
 <script
 	src='<c:url value="/resources/assets/bootstrap/js/bootstrap.min.js"/>'></script>
-<script src='<c:url value="/resources/assets/js/jquery.min.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/chart.min.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/theme.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/json.min.js"/>'></script>
@@ -35,9 +35,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-	
-</script>
 
 <body>
 	<div class="container">
@@ -73,16 +70,6 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input class="form-control form-control-user" type="text"
-											id="email" placeholder="이메일" name="email">
-									</div>
-									<div class="col-sm-6">
-										<button type="button" class="emailcheck">이메일 인증</button>
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-
 										<input class="form-control form-control-user" type="password"
 											id="pw" placeholder="비밀번호" name="pw">
 									</div>
@@ -109,12 +96,12 @@
 									id="btnSign">회원가입 완료</button>
 								<button id="user" name="user"
 									class="btn btn-primary btn-block text-white btn-user"
-									type="button" onclick="location.href='/hellonote/'">로그인으로
+									type="button" onclick="location.href='/HelloNote/'">로그인으로
 									이동</button>
 								<br>
 								<hr>
 							</form>
-							<p align="center">↓ 이메일 인증 후 편하게 사용 ↓</p> 
+							<p align="center">↓ 이메일 인증 후 편하게 사용 ↓</p>
 							<div class="text-center">
 								<a class="small" href="https://www.google.com" target="_blank">Click
 									Go Site => www.google.co.kr</a>

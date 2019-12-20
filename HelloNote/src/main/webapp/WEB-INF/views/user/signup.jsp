@@ -73,15 +73,6 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input class="form-control form-control-user" type="text"
-											id="email" placeholder="이메일" name="email">
-									</div>
-									<div class="col-sm-6">
-										<button type="button" class="emailcheck">이메일 인증</button>
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
 
 										<input class="form-control form-control-user" type="password"
 											id="pw" placeholder="비밀번호" name="pw">

@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		//이미지 추가부분.
 		
-		String[] exts = {"jpg","jpeg","gif","bmp","png","JPG","JPEG","GIF","BMP","PNG"};
+		String[] exts = {"jpg","jpeg","gif","bmp","png"};
 		String filename = vo.getHellonoteId()+"_profileimg.";
 //		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
 		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";

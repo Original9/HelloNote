@@ -32,6 +32,23 @@ function imgchange() {
 								imgTarget.val('');
 								return;
 							}
+							
+//						    var _fileLen = imgTarget.val().length;
+//						    var _lastDot = imgTarget.val().lastIndexOf('.');
+//						 
+//						    // 확장자 명만 추출한 후 소문자로 변경
+//						    var _fileExt = imgTarget.val().substring(_lastDot, _fileLen).toLowerCase();
+//						    if(_fileExt==".png"){
+//						    	alert("png 형식은 지원하지 않습니다.");
+//						    	imgTarget.val('');
+//						    	return;
+//						    	
+//						    }
+						    
+
+
+						
+							
 							var reader = new FileReader();
 							reader.onload = function(e) {
 								var targetsrc = e.target.result;

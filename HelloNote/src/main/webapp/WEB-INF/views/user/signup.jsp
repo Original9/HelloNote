@@ -114,7 +114,7 @@
 								<br>
 								<hr>
 							</form>
-							<p align="center">↓ 이메일 인증 후 편하게 사용 ↓</p> 
+							<p align="center">↓ 이메일 인증 후 편하게 사용 ↓</p>
 							<div class="text-center">
 								<a class="small" href="https://www.google.com" target="_blank">Click
 									Go Site => www.google.co.kr</a>

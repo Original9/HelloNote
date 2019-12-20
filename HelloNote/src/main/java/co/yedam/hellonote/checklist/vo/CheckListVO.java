@@ -6,7 +6,7 @@ import lombok.Data;
 public class CheckListVO {
 	String checklistMission;
 	String checklistStatus;
-	String menuId;
+	int menuId;
 	int checklistSeq;
 	int checklistOrder; //정렬을 위한 임의의 변수
 	int oldOrder;

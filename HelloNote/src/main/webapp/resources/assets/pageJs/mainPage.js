@@ -250,7 +250,7 @@ function drawChart(data, widgetsSeq) {
 		chartData.push(subarr);
 	}
 	// 챠트 그리기
-	var chart = new google.visualization.AreaChart($('#widgetContainer div#'
+	var chart = new google.visualization.PieChart($('#widgetContainer div#'
 			+ widgetsSeq)[0]); // <--
 	// piechart
 	// 차트로

@@ -70,14 +70,14 @@
 	</select>
 	<select id="widgetAccountBook" resultType="map"
 		parameterType="widget">
-		SELECT 		ACCOUNTBOOK_PURPOSE as "accountbookPurpose",
-					SUM((ACCOUNTBOOK_PRICE/price)*100 ) as "accountbookPercent"
-		FROM 		${hellonoteId}_ACCOUNTBOOK,(
-						SELECT SUM (ACCOUNTBOOK_PRICE) price
-						FROM ${hellonoteId}_ACCOUNTBOOK
-					)
-		WHERE 		MENU_ID = #{menuId}
-		GROUP BY 	ACCOUNTBOOK_PURPOSE, price
+		<![CDATA[
+		SELECT
+		ACCOUNTBOOK_PURPOSE, (SUM((ACCOUNTBOOK_PRICE/price)*100 )) as accountbook_percent
+		FROM  ${hellonoteId}_ACCOUNTBOOK, (SELECT SUM (ACCOUNTBOOK_PRICE) price FROM ${hellonoteId}_ACCOUNTBOOK WHERE ACCOUNTBOOK_PRICE < 0)
+        WHERE ACCOUNTBOOK_PRICE < 0
+        AND MENU_ID = #{menuId}
+		GROUP BY ACCOUNTBOOK_PURPOSE
+		]]>
 	</select>
 	<select id="widgetMySite" resultType="map" parameterType="widget">
 		select	site_id,

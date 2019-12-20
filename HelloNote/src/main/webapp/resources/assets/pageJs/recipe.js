@@ -52,21 +52,23 @@ function recipeSearch() {
 						// 레시피 검색 결과 붙이기
 						$('#recipeSearchResult').append(data.list);
 
-						$('#recipeSearchResult').find('a')
-								.each(
-										function() {
-											// 사이트 링크 번호를 따와 div의 attribute로 설정
-											$(this).parent().attr(
-													'siteid',
-													$(this).attr('href').split(
-															'/')[2]);
-											// div에 스타일을 걸기 위해 클래스 추가
-											$(this).parent().addClass(
-													'recipeBox');
-											// 링크 제거
-											$(this).removeAttr('href');
-										})
+//						$('#recipeSearchResult').find('a')
+//								.each(
+//										function() {
+//											// 사이트 링크 번호를 따와 div의 attribute로 설정
+//											$(this).parent().attr(
+//													'siteid',
+//													$(this).attr('href').split(
+//															'/')[2]);
+//											// div에 스타일을 걸기 위해 클래스 추가
+//											$(this).parent().addClass(
+//													'recipeBox');
+//											// 링크 제거
+//											$(this).removeAttr('href');
+//										})
 
+						
+						
 					}
 				})
 			})

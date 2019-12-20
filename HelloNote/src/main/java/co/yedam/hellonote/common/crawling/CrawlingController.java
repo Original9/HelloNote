@@ -48,7 +48,6 @@ public class CrawlingController {
 	@RequestMapping("recipeSearch")
 	@ResponseBody
 	public Map<String, String> recipeCrawl(@RequestParam String recipeKeyword) throws IOException {
-		Document doc = Jsoup.connect("http://www.10000recipe.com/recipe/list.html?q=" + recipeKeyword).get();
 		System.out.println(recipeKeyword);
 		String url="http://www.10000recipe.com/recipe/list.html?q=" + URLEncoder.encode(recipeKeyword, "UTF-8");
 		System.out.println(url);

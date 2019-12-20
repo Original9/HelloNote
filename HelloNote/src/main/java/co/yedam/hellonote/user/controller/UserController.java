@@ -244,6 +244,9 @@ public class UserController {
 		map.put("datas", list);
 		return new ModelAndView("commonExcelView", map);
 	}
+	
+	// 이메일인증
+	
 
 	// 단건 조회
 	@ResponseBody

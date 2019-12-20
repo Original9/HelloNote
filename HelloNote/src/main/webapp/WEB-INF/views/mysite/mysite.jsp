@@ -14,13 +14,10 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/mySiteList.css">
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-<link rel="stylesheet"
 	href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
 <!-- JS -->
 <script src='<c:url value="/resources/assets/js/chart.min.js"/>'></script>
-<script src='<c:url value="/resources/assets/js/theme.js"/>'></script>
 <script src='<c:url value="/resources/assets/js/json.min.js"/>'></script>
 <script src='<c:url value="/resources/assets/pageJs/mySiteList.js"/>'></script>
 <script
@@ -29,64 +26,67 @@
 
 </head>
 <body>
-	<div id="wrapper">
-		<div class="container-fluid">
-			<h3 class="text-dark mb-4">사이트관리</h3>
-			<div class="card shadow">
-				<div class="card-header py-3">
-					<p class="text-primary m-0 font-weight-bold">사이트 관리</p>
-				</div>
-				<!-- 리스트 DIV 시작 -->
-				<div class="card-body">
-					<div class="row">
-						<div class="col-md-6 text-nowrap"></div>
+	<div class="container">
+		<div id="wrapper">
+			<div class="container-fluid">
+				<h3 class="text-dark mb-4">사이트관리</h3>
+				<div class="card shadow">
+					<div class="card-header py-3">
+						<p class="text-primary m-0 font-weight-bold">사이트 관리</p>
 					</div>
-					<!-- 목록 시작 -->
-					<form name="userForm" id="userForm" action='deleteMySite'>
-						<input type="hidden" name="menuId" value="${menuId }" />
-						<div class="table-responsive table mt-2">
-							<table class="table dataTable my-0 table-hover" id="tabledata">
-								<thead>
-									<tr>
-										<th scope="col" width="10"><input id="allCheck"
-											type="checkbox" onclick="allChk(this);" /></th>
-										<!--<th align="center" width="80">시퀀스</th>  -->
-										<th align="center" width="150">저장날짜</th>
-										<th align="center" width="200">제목</th>
-										<th align="center" width="100">아이디</th>
-										<!-- <th align="center" width="200">SITE_PW</th>  -->
-										<th align="center" width="200">메모</th>
-										<th align="center" width="200">사이트 주소</th>
-									</tr>
-								</thead>
-								<tbody>
-									<!-- 컨트롤러의 items key 값 -->
-									<c:forEach items="${mySite }" var="mySite">
-										<tr>
-											<td><input name="rowCheck" class="rowCheck"
-												type="checkbox" value="${mySite.mySiteSeq }" /></td>
-											<!--	<td class="getMySite" align="center" width="80">${mySite.mySiteSeq }</td> -->
-											<td class="getMySite" align="center" width="150">${mySite.siteDate }</td>
-											<td class="getMySite" align="center" width="200">${mySite.title }</td>
-											<td class="getMySite" align="center" width="100">${mySite.siteId }</td>
-											<!-- <td class="getMySite" align="center" width="200">${mySite.sitePw }</td> -->
-											<td class="getMySite" align="center" width="200">${mySite.siteMemo }</td>
-											<td align="center" width="200"><a
-												href="${mySite.siteAddr }" target="_blank">${mySite.siteAddr }</a></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<br>
-							<div align="right">
-								<button class="btn btn-primary" id="specification" type="button">추가하기</button>
-								<button class="btn btn-primary" type="button"
-									onclick="fn_userDel()">삭제</button>
-								<button class="btn btn-primary" type="button"
-									onclick="location.href='downloadExcel'">엑셀 다운로드</button>
-							</div>
+					<!-- 리스트 DIV 시작 -->
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-6 text-nowrap"></div>
 						</div>
-					</form>
+						<!-- 목록 시작 -->
+						<form name="userForm" id="userForm" action='deleteMySite'>
+							<input type="hidden" name="menuId" value="${menuId }" />
+							<div class="table-responsive table mt-2">
+								<table class="table dataTable my-0 table-hover" id="tabledata">
+									<thead>
+										<tr>
+											<th scope="col" width="10"><input id="allCheck"
+												type="checkbox" onclick="allChk(this);" /></th>
+											<!--<th align="center" width="80">시퀀스</th>  -->
+											<th align="center" width="150">저장날짜</th>
+											<th align="center" width="200">제목</th>
+											<th align="center" width="100">아이디</th>
+											<!-- <th align="center" width="200">SITE_PW</th>  -->
+											<th align="center" width="200">메모</th>
+											<th align="center" width="200">사이트 주소</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- 컨트롤러의 items key 값 -->
+										<c:forEach items="${mySite }" var="mySite">
+											<tr>
+												<td><input name="rowCheck" class="rowCheck"
+													type="checkbox" value="${mySite.mySiteSeq }" /></td>
+												<!--	<td class="getMySite" align="center" width="80">${mySite.mySiteSeq }</td> -->
+												<td class="getMySite" align="center" width="150">${mySite.siteDate }</td>
+												<td class="getMySite" align="center" width="200">${mySite.title }</td>
+												<td class="getMySite" align="center" width="100">${mySite.siteId }</td>
+												<!-- <td class="getMySite" align="center" width="200">${mySite.sitePw }</td> -->
+												<td class="getMySite" align="center" width="200">${mySite.siteMemo }</td>
+												<td align="center" width="200"><a
+													href="${mySite.siteAddr }" target="_blank">${mySite.siteAddr }</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<br>
+								<div align="right">
+									<button class="btn btn-primary" id="specification"
+										type="button">추가하기</button>
+									<button class="btn btn-primary" type="button"
+										onclick="fn_userDel()">삭제</button>
+									<button class="btn btn-primary" type="button"
+										onclick="location.href='downloadExcel'">엑셀 다운로드</button>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

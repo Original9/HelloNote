@@ -341,7 +341,7 @@
 						<font color="black">메뉴추가</font>
 					</th>
 					<th>
-						<span class="close" id="editMenuModalClose"
+						<span class="close" id="addMenuModalClose"
 							style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>						
 					</th>
 				</tr>				

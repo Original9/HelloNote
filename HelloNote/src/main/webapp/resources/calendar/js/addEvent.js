@@ -101,7 +101,7 @@ var newEvent = function (start, end, eventType) { // 이 함수는 언제 시작
         //새로운 일정 // 79라인까지 화면에 자동으로 등록해주고 나는 DB에만 넣으면 된다.
         $.ajax({ // 데이터 받아서 그냥 디비에 넣으면 끝인거 같고 
             type: "post",
-            url: "/hellonote/addCalendar",
+            url: context_path+"/addCalendar",
             dataType:'json',
            // contentType: 'application/json',
             data: eventData1  //JSON.parse(eventData)//JSON.stringify(eventData).serializeObject()            //..... db 연동시 

@@ -101,6 +101,15 @@ function editDone() {
 					'click',
 					'#edit-done',
 					function() {
+						if($('#title-edit').val().length > 80){
+							alert('제목이 너무 깁니다');
+							return;
+						}
+						
+						if($('#text-edit').val().length > 3000){
+							alert('메모 내용이 너무 깁니다');
+							return;
+						}
 						var $modalContent = $(this).parent(), $titleEdit = $(
 								'#title-edit').val(), $textEdit = $(
 								'#text-edit').val();

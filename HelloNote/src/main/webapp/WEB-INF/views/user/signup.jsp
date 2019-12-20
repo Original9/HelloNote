@@ -96,12 +96,11 @@
 									id="btnSign">회원가입 완료</button>
 								<button id="user" name="user"
 									class="btn btn-primary btn-block text-white btn-user"
-									type="button" onclick="location.href='/HelloNote/'">로그인으로
+									type="button" onclick="location.href='./'">로그인으로
 									이동</button>
 								<br>
 								<hr>
 							</form>
-							<p align="center">↓ 이메일 인증 후 편하게 사용 ↓</p>
 							<div class="text-center">
 								<a class="small" href="https://www.google.com" target="_blank">Click
 									Go Site => www.google.co.kr</a>

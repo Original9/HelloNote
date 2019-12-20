@@ -91,6 +91,7 @@ function imgSubmit(){
                      type: 'POST',
                      success: function(result){
                          alert("프로필 사진이 변경되었습니다.");
+                         $('.img-profile').attr('src',"resources/assets/img/user/"+result)
                      }
              });
 	});

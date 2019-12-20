@@ -14,7 +14,14 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	
+	<!-- 추가함 -->
+	<listener>
+    	<listener-class>
+        org.springframework.web.context.request.RequestContextListener
+	    </listener-class>
+	</listener>
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

@@ -8,6 +8,9 @@
 <html>
 
 <head>
+<script type="text/javascript">
+ var context_path = "${pageContext.request.contextPath}";
+</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -341,7 +344,7 @@
 						<font color="black">메뉴추가</font>
 					</th>
 					<th>
-						<span class="close" id="editMenuModalClose"
+						<span class="close" id="addMenuModalClose"
 							style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>						
 					</th>
 				</tr>				
@@ -355,11 +358,8 @@
 				<select class="menuType" name="menuType" id="menuType">
 					<option value="1">캘린더</option>
 					<option value="2">메모</option>
-					<option value="3">DDAY</option>
 					<option value="4">가계부</option>
-					<option value="5">계좌번호</option>
 					<option value="6">체크리스트</option>
-					<option value="7">장보기</option>
 					<option value="8">아이디</option>
 				</select>
 			</div>
@@ -372,7 +372,7 @@
 	<script type="text/javascript">
       var textarea = document.getElementById("messageWindow");
       //var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
-      var webSocket = new WebSocket('ws://39.116.34.40/HelloNote/chat.do');
+      var webSocket = new WebSocket('ws://39.116.34.40/hellonote/chat.do');
       //var webSocket = new WebSocket('ws://localhost/hellonote/chat.do');
       var inputMessage = document.getElementById('inputMessage');
       

@@ -16,7 +16,7 @@ function signupbutton() {
 
 	var password1RegExp = /^.*(?=.{4,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
 	if (!password1RegExp.test(form.pwcheck.value)) {
-		alert("영문, 숫자 혼합하여 6~20자리 이내로 입력해야합니다.")
+		alert("비밀번호는 영문, 숫자 혼합하여 6~20자리 이내로 입력해야합니다.")
 		$("#pw").focus();
 		$("#pw").val('');
 		$('#pwcheck').val('');
@@ -64,6 +64,15 @@ $(function() {
 			$("#hellnoteId").val('');
 			return false;
 		}
+		
+		// 아이디의 첫글자는 영어여야하고 영문+숫자조합
+		var id1RegExp = 	/^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
+		if (!id1RegExp.test(form.hellonoteId.value)) {
+			alert("4~20 자리 첫글자는 숫자 사용 불가 영어와숫자만로만 입력해야합니다.")
+			$("#hellonoteId").focus();
+			$("#hellonoteId").val('');
+			return false;
+		}
 
 		// ID안에 패턴공백검사
 		if (form.hellonoteId.value.search(/\s/) != -1) {
@@ -103,5 +112,5 @@ $(function() {
 	$("#hellonoteId").keyup(function() {
 		$("#btnSign").attr("disabled", "disabled");
 	});
-});
+})
 

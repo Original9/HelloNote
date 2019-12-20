@@ -102,19 +102,21 @@ function makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 							+ widgetsSeq
 							+ '" menuid="'
 							+ menuId
-							+ '" style="position: absolute;width : 300px; left: '
+							+ '" style="width : 400px; height: 400px; position: absolute; left: '
 							+ xlocation
 							+ '; top: '
 							+ ylocation
 							+ '; z-index: '
 							+ zindex
-							+ '" class="card shadow draggableWidget"> <div class="card-header py-3"> <h6 class="text-primary font-weight-bold m-0">Todo List</h6> </div> <ul class="list-group list-group-flush" style="list-style-type: none;"> </ul> </div>');
+							+ '; " class="shadow draggableWidget"> <div class="card-header py-3"> <h6 class="text-primary font-weight-bold m-0">Todo List</h6> </div> <ul class="list-group list-group-flush" style="list-style-type: none;"> </ul> </div>');
 
 	if (data.length == 0) {
-		$('#widgetContainer div#' + widgetsSeq).find('ul').append(
-				'<li style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px"><strong>Nothing to do</strong></li>');
+		$('#widgetContainer div#' + widgetsSeq)
+				.find('ul')
+				.append(
+						'<li style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px"><strong>Nothing to do</strong></li>');
 	}
-	
+
 	$(data)
 			.each(
 					function(i) {
@@ -167,13 +169,13 @@ function makeMySite(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 							+ widgetsSeq
 							+ '" menuid="'
 							+ menuId
-							+ '" class="draggableWidget" style="position: absolute; width: 300px; left: '
+							+ '" class="draggableWidget" style="position: absolute; width: 500px; left: '
 							+ xlocation
 							+ '; top: '
 							+ ylocation
 							+ '; z-index: '
 							+ zindex
-							+ '"><div class="card shadow-lg o-hidden border-0 my-5"> <h3 class="card-header d-flex justify-content-between align-items-center"> Site List</h3> <div class="card-body" id="accordion" role="tablist" aria-multiselectable="true"> <div class="panel"> <!-- content --> </div> </div> </div>');
+							+ '; "><div class="shadow-lg o-hidden border-0 my-5"> <h3 class="card-header d-flex justify-content-between align-items-center"> Site List</h3> <div class="card-body" id="accordion" role="tablist" aria-multiselectable="true"> <div class="panel"> <!-- content --> </div> </div> </div>');
 	$(data)
 			.each(
 					function(i) {
@@ -195,14 +197,15 @@ function makeMySite(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 												+ '" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'
 												+ i
 												+ '"> <div class="panel-body">'
-												+ this.SITE_ID + '/'
+												+'ID:'
+												+ this.SITE_ID +"&nbsp;&nbsp;"+ ' PW:'
 												+ this.SITE_PW
 												+ '</div> </div>');
 						var siteData = this;
 						$('#goButton' + i).on(
 								'click',
 								function() {
-									window.open('http://' + siteData.SITE_ADDR,
+									window.open(siteData.SITE_ADDR,
 											'_blank');
 								});
 					})
@@ -212,12 +215,15 @@ function makeMySite(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 // 가계부 위젯 생성 함수
 function makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 
-	$('#widgetContainer').append(
-			'<div id="' + widgetsSeq
-					+ '" class="draggableWidget" style="position: absolute; left : ' + xlocation
-					+ '; top: ' + ylocation + '; z-index: ' + zindex
-					+ '; height: 200px; width: 200px" menuid="' + menuId
-					+ '" align="center"></div>');
+	$('#widgetContainer')
+			.append(
+					'<div id="'
+							+ widgetsSeq
+							+ '" class="draggableWidget" style="position: absolute; left : '
+							+ xlocation + '; top: ' + ylocation + '; z-index: '
+							+ zindex
+							+ '; height: 500px; width: 500px" menuid="'
+							+ menuId + '" align="center"></div>');
 
 	google.load('visualization', '1.0', {
 		'packages' : [ 'corechart' ],
@@ -235,8 +241,8 @@ function drawChart(data, widgetsSeq) {
 	var options = {
 		// 크기 조절 및 배경색상, 배경색은 우리 프로젝트 색상으로 맞춰놓음
 		title : '항목 통계',
-		width : 200,
-		height : 200,
+		width : 500,
+		height : 500,
 		backgroundColor : '#f8f9fc'
 	};
 
@@ -267,13 +273,13 @@ function makeCalendarWidget(data, menuId, widgetsSeq, xlocation, ylocation,
 					+ widgetsSeq
 					+ '" class="draggableWidget" menuid="'
 					+ menuId
-					+ '" style="position: absolute; width : 162px; left : '
+					+ '" style=" position: absolute; width : 162px; left : '
 					+ xlocation
 					+ '; top : '
 					+ ylocation
 					+ '; z-index : '
 					+ zindex
-					+ '"><div id="wrapper"> <div class="row"> <div class="col"> <div class="card shadow mb-3"> <div class="card-header py-3"> <p class="text-primary m-0 font-weight-bold">오늘 일정</p> </div> <div class="card-body"> <div class="form-row"> <div class="col"> <div class="form-group"><label for="username"></label></div> </div> </div> <div class="form-group"><button class="btn btn-primary btn-sm">캘린더 바로가기</button></div> </div> </div> </div> </div> </div></div>')
+					+ '; "><div id="wrapper"> <div class="row"> <div class="col"> <div class="shadow mb-3"> <div class="card-header py-3" style="width:500px;"> <p class="text-primary m-0 font-weight-bold">오늘 일정</p> </div> <div class="card-body"> <div class="form-row"> <div class="col"> <div class="form-group"><label for="username"></label></div> </div> </div> <div class="form-group"><button class="btn btn-primary btn-sm">캘린더 바로가기</button></div> </div> </div> </div> </div> </div></div>')
 			.appendTo('#widgetContainer');
 
 	$('#widgetContainer #' + widgetsSeq).find('button').on('click', function() {
@@ -296,8 +302,8 @@ function makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex) 
 
 	$(
 			'<a id="' + widgetsSeq + '" class="memo draggableWidget" menuid="'
-					+ menuId + '" style="position:absolute; left:' + xlocation + '; top:'
-					+ ylocation + '; z-index:' + zindex
+					+ menuId + '" style="position:absolute; left:' + xlocation
+					+ '; top:' + ylocation + '; z-index:' + zindex
 					+ '">  <div> <h3> </h3> </div> </a>').appendTo(
 			'#widgetContainer').on('click', function() {
 		if (!flag)
@@ -332,6 +338,8 @@ function makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation,
 	widgetDraggable();
 }
 
+// for commit
+
 // 위젯 생성 함수
 function widgetDropped() {
 	$('#widgetContainer')
@@ -351,7 +359,11 @@ function widgetDropped() {
 												if ($(this).attr('menuid') == $menuId
 														|| $(this)
 																.attr(
-																		'menutypenumber') == $menuTypeNumber)
+																		'menutypenumber') == $menuTypeNumber
+														|| $menuId == 7
+														|| $menuId == 3
+														|| $menuId == 5
+														|| $menuTypeNumber == 10)
 													check = false;
 											});
 

@@ -15,25 +15,11 @@ $(document).ready(function() {
 	filename = $('#hellonoteId').val() + "_profileimg";
 	submitImgButton =$('#imgsubmit'); 
 		//$('#input-file')[0].files;
-	defaultimg();
 	imgchange();
 	imgSubmit();
 
 });
 
-function defaultimg() {
-	tImg.attr("src", contextpath + "/resources/assets/img/user/" + filename+ ".jpg");
-}
-
-
-tImg.on('error',function(){
-	extArr = new Array(".gif",".jpeg",".bmp",".png");
-	for(var i=0; i< extArr.length; i++){
-		tImg.attr("src", contextpath + "/resources/assets/img/user/" + filename+ ".jpg");
-	}
-	
-	
-});
 
 
 

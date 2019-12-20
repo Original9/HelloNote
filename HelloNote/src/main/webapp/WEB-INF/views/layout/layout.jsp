@@ -285,9 +285,9 @@
 								<div class="nav-item dropdown no-arrow">
 									<button class="btn btn-primary dropdown-toggle"
 										data-toggle="dropdown" aria-expanded="false" type="button">
-										<span class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie
-											Luna</span><img class="border rounded-circle img-profile"
-											src="<c:url value="/resources/assets/img/avatars/avatar1.jpeg"/>">
+										<span class="d-none d-lg-inline mr-2 text-gray-600 small"><sec:authentication property='principal.hellonoteId' />
+										</span><img class="border rounded-circle img-profile" style="width: 80px"
+											src="<c:url value="/resources/assets/img/user/"/>/<sec:authentication property='principal.profileImg' />">
 									</button>
 									<div
 										class="dropdown-menu shadow dropdown-menu-right animated--grow-in"

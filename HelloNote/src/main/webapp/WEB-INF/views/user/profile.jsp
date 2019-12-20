@@ -56,8 +56,8 @@ var contextpath =  "${pageContext.request.contextPath}";
 								<div class="card-body text-center shadow">
 									<form action="actImgSubmit" id="actForm" method="post" enctype="multipart/form-data">
 									<!-- 에러시 기본이미지 대체 -->
-										<img id="thumbnail" class="rounded-circle mb-3 mt-4" width="160" height="200"
-										onerror="this.src='resources/assets/img/dogs/image2.jpeg'"> 
+										<img id="thumbnail" class="rounded-circle mb-3 mt-4" width="160" height="200" src="resources/assets/img/user/${user.profileImg}"
+										onerror="this.src='resources/assets/img/user/defaultImage.jpeg'"> 
 										<div class="mb-3">
 											<button id="imgsubmit" class="btn btn-primary btn-sm" type="button">업로드</button>
 										</div>

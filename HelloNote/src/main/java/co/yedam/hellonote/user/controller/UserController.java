@@ -177,8 +177,28 @@ public class UserController {
 
 	// 프로필이동
 	@RequestMapping("getProfile")
-	public String getProfile(Model model, UserVO vo) {
-		model.addAttribute("user", userService.getUserList(vo));
+	public String getProfile(Model model, UserVO vo,HttpServletRequest request) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		vo.setHellonoteId(userDetails.getUsername());
+		vo = userService.getUser(vo);
+		String[] exts = {"jpg","jpeg","gif","bmp","png","JPG","JPEG","GIF","BMP","PNG"};
+		String filename = vo.getHellonoteId()+"_profileimg.";
+//		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
+		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
+		System.out.println(path);
+//		String path = request.getservletContext().getRe + "/resources/assets/img/user/";
+		for(String ext : exts) {
+			File file = new File(path, filename+ext);
+			if(file.exists()){	
+				vo.setProfileImg(filename+ext);
+				break;
+			}
+		}
+		if(vo.getProfileImg() == null) {
+			vo.setProfileImg("defaultImage.jpeg");
+		}
+		
+		model.addAttribute("user", vo);
 		return "main/user/profile"; // jsp 경로
 	}
 

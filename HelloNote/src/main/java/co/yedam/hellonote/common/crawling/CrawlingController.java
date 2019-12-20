@@ -45,32 +45,30 @@ public class CrawlingController {
 	public String recipePage() {
 		return "main/main/recipeCrawl";
 	}
-	private final static Logger log = Logger.getGlobal();
 
 	@RequestMapping("recipeSearch")
 	@ResponseBody
 	public Map<String, String> recipeCrawl(@RequestParam String recipeKeyword) throws IOException {
-		System.out.println(recipeKeyword);
 		String url = "http://www.10000recipe.com/recipe/list.html?q=" + URLEncoder.encode(recipeKeyword, "UTF-8");
-		System.out.println(url);
-		Document doc = Jsoup.connect(url).get();
+		Document doc = Jsoup.connect(url).userAgent(
+				"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36")
+				.get();
 		System.out.println(doc);
-		log.setLevel(Level.INFO);
-		log.info(doc.toString());
 		doc.select(".thumbnail_over").remove();
 		doc.select(".vod_label").remove();
-		Element elem = doc.select(".recipe_list").first();
+		Element elem = doc.select(".row").first();
 
 		System.out.println(elem);
 
 		return Collections.singletonMap("list", elem.toString());
 	}
 
-
 	@RequestMapping("getRecipe")
 	@ResponseBody
 	public Map<String, String> getRecipe(@RequestParam String siteId) throws IOException {
-		Document doc = Jsoup.connect("http://www.10000recipe.com/recipe/" + siteId).get();
+		Document doc = Jsoup.connect("http://www.10000recipe.com/recipe/" + siteId).userAgent(
+				"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36")
+				.get();
 
 		// 필요한 element들만 가져오기
 		Elements elem = doc.select(".view2_pic");

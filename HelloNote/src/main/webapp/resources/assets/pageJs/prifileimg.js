@@ -15,29 +15,15 @@ $(document).ready(function() {
 	filename = $('#hellonoteId').val() + "_profileimg";
 	submitImgButton =$('#imgsubmit'); 
 		//$('#input-file')[0].files;
-	defaultimg();
 	imgchange();
 	imgSubmit();
 
 });
 
-function defaultimg() {
-	tImg.attr("src", contextpath + "/resources/assets/img/user/" + filename+ ".jpg");
-}
-
-
-tImg.on('error',function(){
-	extArr = new Array(".gif",".jpeg",".bmp",".png");
-	for(var i=0; i< extArr.length; i++){
-		tImg.attr("src", contextpath + "/resources/assets/img/user/" + filename+ ".jpg");
-	}
-	
-	
-});
 
 
 
-
+// 이미지 변경시 미리보기
 function imgchange() {
 	imgTarget.on('change',function() {
 						if (window.FileReader) {
@@ -46,6 +32,23 @@ function imgchange() {
 								imgTarget.val('');
 								return;
 							}
+							
+//						    var _fileLen = imgTarget.val().length;
+//						    var _lastDot = imgTarget.val().lastIndexOf('.');
+//						 
+//						    // 확장자 명만 추출한 후 소문자로 변경
+//						    var _fileExt = imgTarget.val().substring(_lastDot, _fileLen).toLowerCase();
+//						    if(_fileExt==".png"){
+//						    	alert("png 형식은 지원하지 않습니다.");
+//						    	imgTarget.val('');
+//						    	return;
+//						    	
+//						    }
+						    
+
+
+						
+							
 							var reader = new FileReader();
 							reader.onload = function(e) {
 								var targetsrc = e.target.result;
@@ -67,6 +70,8 @@ function imgchange() {
 
 }
 
+
+//이미지 변경.
 function imgSubmit(){
 	submitImgButton.on('click',function(){
 		if($('#input-file')[0].files.length==0){
@@ -88,24 +93,5 @@ function imgSubmit(){
                          alert("프로필 사진이 변경되었습니다.");
                      }
              });
-
-		
-//		$.ajax({
-//			url : "actImgSubmit",
-//			method : 'post',
-//			dataType : 'json',
-//			data : JSON.stringify({
-//				title : title,
-//				siteAddr : siteAddr,
-//				siteId : siteId,
-//				sitePw : sitePw,
-//				siteMemo : siteMemo,
-//				mySiteSeq : mySiteSeq,
-//				menuId : $('#menuId').val()
-//			}),
-//			contentType : 'application/json'
-//		});
-		
-		
 	});
 }

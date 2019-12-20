@@ -355,11 +355,8 @@
 				<select class="menuType" name="menuType" id="menuType">
 					<option value="1">캘린더</option>
 					<option value="2">메모</option>
-					<option value="3">DDAY</option>
 					<option value="4">가계부</option>
-					<option value="5">계좌번호</option>
 					<option value="6">체크리스트</option>
-					<option value="7">장보기</option>
 					<option value="8">아이디</option>
 				</select>
 			</div>

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
 	type="text/css" />
@@ -50,6 +51,8 @@
 
 
 <script>
+
+
 	//ready 이벤트 작성
 	$(function() {
 		getAccountBookList();
@@ -63,27 +66,27 @@
 
 		 
 	 	$("#jb-radio-1,#jb-radio-2").click(function(){
-		
-			$('[name="accountbookPurpose"]').empty();
+		var submitSelect = $('#submitFrm [name="accountbookPurpose"]');
+		submitSelect.empty();
 	 		//수입 일 때 항목 변경
 			if($("#jb-radio-1").prop('checked')){
-				$('[name="accountbookPurpose"]').append("<option value='1'>월급</option>")
-												.append("<option value='2'>용돈</option>")
-												.append("<option value='3'>상여금</option>")
-												.append("<option value='4'>사업수익</option>")
-												.append("<option value='5'>기타</option>")
+				submitSelect.append("<option value=''>항목을 선택 해 주세요.</option>")
+												.append("<option value='월급'>월급</option>")
+												.append("<option value='용돈'>용돈</option>")
+												.append("<option value='상여금'>상여금</option>")
+												.append("<option value='사업수익'>사업수익</option>")
+												.append("<option value='기타'>기타</option>")
 			}
-			
+			//지출 일 때 항목 변경
 			else{
-				$('[name="accountbookPurpose"]')
-												.append("<option value='1'>교통비</option>")
-												.append("<option value='2'>식비</option>")
-												.append("<option value='3'>급여</option>")
-												.append("<option value='4'>세금</option>")
-												.append("<option value='5'>경조사</option>")
-												.append("<option value='6'>취미</option>")
-												.append("<option value='7'>기타</option>")
-				
+				submitSelect.append("<option value=''>항목을 선택 해 주세요.</option>")
+												.append("<option value='교통비'>교통비</option>")
+												.append("<option value='식비'>식비</option>")
+												.append("<option value='세금'>세금</option>")
+												.append("<option value='경조사'>경조사</option>")
+												.append("<option value='취미'>취미</option>")
+												.append("<option value='기타'>기타</option>")
+		 
 			}
 	 		
 	 		
@@ -115,14 +118,20 @@
 	
 		// 특정 기간 / 항목별  / 특정기간+항목으로 내역 조회
 		$("#updatemodal").hide();
-		
+		var searchSelect = $('#searchfrm [name="accountbookPurpose"]');
 		$('#btnIns').on('click', function() {
 			//날짜 잘못 입력했을 시 경고창
+
 			var fdate = $('#accountbookFirstDate').val();
 			var ldate = $('#accountbookLastDate').val();
 			if (fdate > ldate) {
 				alert('날짜 선택이 잘못 되었습니다. 날짜를 다시 확인해 주세요.');
-			} else {
+			}
+			else if(searchSelect.val() == ''){
+				alert("항목을 선택해 주세요.")
+				preventDefault();
+			}
+			else {
 				$("#searchfrm")
 				$.ajax({
 					url : "getAccountBookList.json",
@@ -193,7 +202,7 @@
 
 	//등록
 	function insertAccountBook() {
-	
+		var submitSelect = $('#submitFrm [name="accountbookPurpose"]');
 		
 		$("#insertBtn").click(function() {
 			var a = $('#accountbookPrice').val();
@@ -233,6 +242,11 @@
 					preventDefault();
 				}
 			}
+			
+			if(submitSelect.val() == ''){
+				alert("항목을 선택해 주세요.")
+				preventDefault();
+			} 
 	
 		
 				
@@ -276,6 +290,7 @@
 
 						});
 					}
+					location.reload();
 				});
 	}
 
@@ -288,45 +303,59 @@
 		$("#updatemodal").show();
 		$('[name="accountbookUpdateDate"]').val(accountbookdate);
 		$('input:text[name="updatePrice"]').val(accountbookprice);
-		$('input:text[name="updateTranslation"]').val(accountbooktranslation);
+		$('input:text[name="updateTranslation"]').val(accountbooktranslation=="null"?"":accountbooktranslation);
 		$('select[name="updateAccountBookPurpose"]').val(accountbookpurpose);
+		
+		
 		
 	 	$("#upd-radio-1,#upd-radio-2").click(function(){
 			
 			$('[name="updateAccountBookPurpose"]').empty();
 	 		//수입 일 때 항목 변경
-			if($("#upd-radio-1").prop('checked')){
-				$('[name="updateAccountBookPurpose"]').append("<option value='1'>월급</option>")
-												.append("<option value='2'>용돈</option>")
-												.append("<option value='3'>상여금</option>")
-												.append("<option value='4'>사업수익</option>")
-												.append("<option value='5'>기타</option>")
+	 		
+			if($("#upd-radio-1").prop('checked'))
+			{
+				$('[name="updateAccountBookPurpose"]')
+												.append("<option value='월급'>월급</option>")
+												.append("<option value='용돈'>용돈</option>")
+												.append("<option value='상여금'>상여금</option>")
+												.append("<option value='사업수익'>사업수익</option>")
+												.append("<option value='기타'>기타</option>")
 			}
+	 		
 			//지출 일 때 항목 변경
 			else{
 				$('[name="updateAccountBookPurpose"]')
-												.append("<option value='1'>교통비</option>")
-												.append("<option value='2'>식비</option>")
-												.append("<option value='3'>급여</option>")
-												.append("<option value='4'>세금</option>")
-												.append("<option value='5'>경조사</option>")
-												.append("<option value='6'>취미</option>")
-												.append("<option value='7'>기타</option>")
-				
-			}
-	 		
-	 		
-	 		
+												.append("<option value='교통비'>교통비</option>")
+												.append("<option value='식비'>식비</option>")
+												.append("<option value='세금'>세금</option>")
+												.append("<option value='경조사'>경조사</option>")
+												.append("<option value='취미'>취미</option>")
+												.append("<option value='기타'>기타</option>")
+	 		}
 		});
+	 	
+		if(accountbookprice > 0){
+			$('#upd-radio-1').attr("checked",true)
+			$("#upd-radio-1").click();
+			$('select[name="updateAccountBookPurpose"]').val(accountbookpurpose);
+		}
+		else{
+			$("#upd-radio-2").attr("checked",true)
+			$("#upd-radio-2").click();
+			$('select[name="updateAccountBookPurpose"]').val(accountbookpurpose)
+		}
 		
-		
+// 		if($('input:text[name="updateTranslation"]').val(accountbooktranslation) == ""){
+// 			$("#updateTranslation").val("asd")
+// 		} 
 		
 
 		$("#updateAccountBookBtn").click(function() {
 			var date = $('[name="accountbookUpdateDate"]').val();
 			var purpose = $('select[name="updateAccountBookPurpose"]').val();
 			var price = $('input:text[name="updatePrice"]').val();
-			var translation = $('input:text[name="updateTranslation"]').val();
+ 			var translation = $('input:text[name="updateTranslation"]').val();
 			if (price == '') {
 				alert('금액을 입력해 주세요.');
 				preventDefault();
@@ -350,10 +379,7 @@
 				}
 			}
 			
-			if($('input:text[name="updateTranslation"]').val(accountbooktranslation) == ''){
-				$('input:text[name="updateTranslation"]').val('');
-			}
-			
+		
 			
 
 			
@@ -388,18 +414,30 @@
 				$("<td>").html(data.accountbookTranslation))
 	}
 
-	//항목별 통계 차트
 	
-	var options = {
-		title : '수입 통계',
-		width : 300,
-		height : 200,
-		backgroundColor : '#f8f9fc'
+//  	google.load('visualization', '1.0', {
+// 		'packages' : [ 'corechart' ]
+// 	});
 
-	};
+	
+	//구글 차트 로드
 	google.load('visualization', '1.0', {
 		'packages' : [ 'corechart' ]
 	});
+		
+// 	google.charts.setOnLoadCallback(chart1);
+// 	google.charts.setOnLoadCallback(chart2);
+	
+	
+	//항목별 통계 차트
+
+	var options1 = {
+		title : '수입 통계',
+		width : 200,
+		height : 170,
+		backgroundColor : '#f8f9fc'
+
+	};
 	google.setOnLoadCallback(function() {
 		//차트에 넣을 data를 ajax 요청해서 가져옴
 		$.ajax({
@@ -408,60 +446,72 @@
 			type : "json",
 			success : function(data) {
 				//ajax결과를 chart에 맞는 data 형태로 가공
-				var chartData = [];
-				chartData.push([ '항목', '비율' ])
+				var chartData1 = [];
+				chartData1.push([ '항목', '비율' ])
 				for (i = 0; i < data.length; i++) {
 					var subarr = [ data[i].accountbookPurpose,
 							data[i].accountbookPercent ];
-					chartData.push(subarr);
+					chartData1.push(subarr);
 				}
 				//챠트 그리기
 				var chart = new google.visualization.PieChart(document
 						.querySelector('#chart_div'));
-				chart.draw(google.visualization.arrayToDataTable(chartData),
-						options);
+				chart.draw(google.visualization.arrayToDataTable(chartData1),
+						options1);
+				window.addEventListener('resize', function() { chart.draw(chartData1, options1); }, false);
 			}
 		});
 	});
 	
 	
 	//지출 차트
-	
-	var options = {
-			title : '지출 통계',
-			width : 300,
-			height : 200,
-			backgroundColor : '#f8f9fc'
 
-		};
-		google.load('visualization', '1.0', {
-			'packages' : [ 'corechart' ]
-		});
-		google.setOnLoadCallback(function() {
-			//차트에 넣을 data를 ajax 요청해서 가져옴
-			$.ajax({
-				url : "nagetiveChartAccountBook",
-				method : "post",
-				type : "json",
-				success : function(data) {
-					//ajax결과를 chart에 맞는 data 형태로 가공
-					var chartData = [];
-					chartData.push([ '항목', '비율' ])
-					for (i = 0; i < data.length; i++) {
-						var subarr = [ data[i].accountbookPurpose,
-								data[i].accountbookPercent ];
-						chartData.push(subarr);
+		var options2 = {
+				title : '지출 통계',
+				width : 200,
+				height : 170,
+				backgroundColor : '#f8f9fc',
+	 
+			};
+			google.setOnLoadCallback(function() {
+				//차트에 넣을 data를 ajax 요청해서 가져옴
+				$.ajax({
+					url : "nagetiveChartAccountBook",
+					method : "post",
+					type : "json",
+					success : function(data) {
+						//ajax결과를 chart에 맞는 data 형태로 가공
+						var chartData2 = [];
+						chartData2.push([ '항목', '비율' ])
+						for (i = 0; i < data.length; i++) {
+							var subarr = [ data[i].accountbookPurpose,
+									data[i].accountbookPercent ];
+							chartData2.push(subarr);
+						}
+						//챠트 그리기
+						var chart = new google.visualization.PieChart(document
+								.querySelector('#nagetiveChart_div'));
+						chart.draw(google.visualization.arrayToDataTable(chartData2),
+								options2);
+						 window.addEventListener('resize', function() { chart.draw(chartData2, options2); }, false);
 					}
-					//챠트 그리기
-					var chart = new google.visualization.PieChart(document
-							.querySelector('#nagetiveChart_div'));
-					chart.draw(google.visualization.arrayToDataTable(chartData),
-							options);
-				}
+				});
 			});
-		});
-	
-	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	 
+		
+		
 	
 	
 
@@ -469,9 +519,10 @@
 
 
 </head>
-<body>
-	<div id="chart_div" style="width: 1px; height: 1px"></div> 
-	<div id="nagetiveChart_div" style="width: 1px; height: 1px; align=right"></div>
+<body>	
+		<div id="chart_div" style="position: absolute; left: 70%; transform: translateX(-70%);" ></div> 
+		<div id="nagetiveChart_div" style="position: absolute; left: 80%; transform: translateX(-80%);"></div>
+		<div id="test" ></div> 
 	<div class="container">
 		<h3>가 계 부</h3>
 		<div class="col-5">
@@ -481,12 +532,6 @@
 			</h5>
 		</div>
 		
-	<input type="button"
-			class="btn btn-primary" id="csutomcheck" name="csutomcheck"
-			value="임의 내역 조회" onclick="mymodalshow()" data-toggle="modal"
-			data-target="myModal"> <input type="button"
-			class="btn btn-primary" id="final" name="final" value="결산"
-			onclick="location.href='downloadExcel2'">
 
 
 
@@ -512,13 +557,15 @@
 
 								항목을 선택해 주세요 <select class="custom-select custom-select-sm mb-1"
 									id="accountbookPurpose" name="accountbookPurpose">
-									<!--                            <option selected id="choiceSelect" name="choiceSelect">항목을 선택해 주세요</option> -->
-									<option selected value="교통비" id="trans" name="trans">교통비</option>
-									<option value="식비" id="foodExpense" name="foodExpense">식비</option>
-									<option value="급여" id="salary" name="salary">급여</option>
-									<option value="세금" id="tax" name="tax">세금</option>
-									<option value="경조사" id="event" name="event">경조사</option>
-									<option value="취미" id="hobby" name="hobby">취미</option>
+									<option selected value="">항목을 선택해 주세요</option>
+									<option value="교통비" >교통비</option>
+									<option value="식비">식비</option>
+									<option value="급여">급여</option>
+									<option value="세금">세금</option>
+									<option value="경조사">경조사</option>
+									<option value="취미">취미</option>
+									<option value="취미">취미</option>
+									<option value="취미">취미</option>
 								</select>
 							</div>
 							<div class="modal-footer">
@@ -572,9 +619,9 @@
 							항목 <select class="custom-select custom-select-sm mb-1"
 								id="updateAccountBookPurpose" name="updateAccountBookPurpose">
 								<!--                            <option selected>항목을 선택해 주세요</option> -->
-								<option value="교통비" id="trans" name="trans">교통비</option>
+								<option selected value="교통비" id="trans" name="trans">교통비</option>
 								<option value="식비" id="foodExpense" name="foodExpense">식비</option>
-								<option value="급여" id="salary" name="salary">급여</option>
+<!-- 								<option value="급여" id="salary" name="salary">급여</option> -->
 								<option value="세금" id="tax" name="tax">세금</option>
 								<option value="경조사" id="event" name="event">경조사</option>
 								<option value="취미" id="hobby" name="hobby">취미</option>
@@ -626,13 +673,13 @@
 			<div class="input-group-addon">항목</div>
 			<select class="custom-select custom-select-sm mb-1"
 				name="accountbookPurpose" id="accountbookPurpose">
-				<option selected value="교통비" id="trans" name="trans">교통비</option>
-				<option value="식비" id="foodexpense" name="foodexpense">식비</option>
-								<option value="급여" id="salary" name="salary">급여</option>
-				<option value="세금" id="tax" name="tax">세금</option>
-				<option value="경조사" id="event" name="event">경조사</option>
-				<option value="취미" id="hobby" name="hobby">취미</option>
-				<option value="기타" id="other" name="other">기타</option>
+				<option selected value="">항목을 선택 해 주세요.</option>
+				<option value="교통비">교통비</option>
+				<option value="식비">식비</option>
+				<option value="세금">세금</option>
+				<option value="경조사" >경조사</option>
+				<option value="취미">취미</option>
+				<option value="기타">기타</option>
 			</select> &nbsp;
 
 

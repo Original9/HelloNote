@@ -46,6 +46,10 @@ public class AccountBookNoCardController {
 			return "main/menuList/insertCard";
 		}
 		
+		else if(bavo.getBankaccountAccountname() == "none") {
+			return "main/menuList/accountBookNoCard";
+		}
+		
 		else {
 			return "main/menuList/accountBookNoCard";
 		}

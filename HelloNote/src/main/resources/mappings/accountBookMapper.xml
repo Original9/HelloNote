@@ -68,7 +68,7 @@
 		ACCOUNTBOOK_PURPOSE = #{accountbookPurpose},
 		ACCOUNTBOOK_PRICE = #{accountbookPrice} , 
 		ACCOUNTBOOK_TRANSLATION = #{accountbookTranslation}
-		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq}
+		WHERE ACCOUNTBOOK_SEQ = #{accountbookSeq} AND MENU_ID = #{accountbookMenuid}
 
 </update>
 

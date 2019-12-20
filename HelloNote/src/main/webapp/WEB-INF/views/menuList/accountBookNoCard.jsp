@@ -40,7 +40,7 @@
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 <title>AccountBook</title>
 
@@ -61,10 +61,14 @@
 
 		deleteAccountBook();
 
+		
 		//updateAccountBook();
 		//alert("dd");  
 
-		 
+
+		
+		
+		
 	 	$("#jb-radio-1,#jb-radio-2").click(function(){
 		var submitSelect = $('#submitFrm [name="accountbookPurpose"]');
 		submitSelect.empty();
@@ -111,6 +115,9 @@
 	function mymodalhide() {
 		$("#myModal").hide();
 	}
+	
+
+	
 
 	//목록 조회 요청
 	function getAccountBookList() {		
@@ -127,10 +134,12 @@
 			if (fdate > ldate) {
 				alert('날짜 선택이 잘못 되었습니다. 날짜를 다시 확인해 주세요.');
 			}
-			else if(searchSelect.val() == ''){
-				alert("항목을 선택해 주세요.")
+			
+			if(fdate == "" || ldate == ""){
+				alert("날짜를 선택해 주세요");
 				preventDefault();
 			}
+			
 			else {
 				$("#searchfrm")
 				$.ajax({
@@ -458,7 +467,7 @@
 						.querySelector('#chart_div'));
 				chart.draw(google.visualization.arrayToDataTable(chartData1),
 						options1);
-				window.addEventListener('resize', function() { chart.draw(chartData1, options1); }, false);
+// 				window.addEventListener('resize', function() { chart.draw(chartData1, options1); }, false);
 			}
 		});
 	});
@@ -493,12 +502,11 @@
 								.querySelector('#nagetiveChart_div'));
 						chart.draw(google.visualization.arrayToDataTable(chartData2),
 								options2);
-						 window.addEventListener('resize', function() { chart.draw(chartData2, options2); }, false);
+// 						 window.addEventListener('resize', function() { chart.draw(chartData2, options2); }, false);
 					}
 				});
 			});
-		
-		
+
 		
 		
 		
@@ -520,6 +528,8 @@
 
 </head>
 <body>	
+					<input type="hidden" id="deleteCardMenuid" name="deleteCardMenuid" value="${param.menuId}">
+		
 		<div id="chart_div" style="position: absolute; left: 70%; transform: translateX(-70%);" ></div> 
 		<div id="nagetiveChart_div" style="position: absolute; left: 80%; transform: translateX(-80%);"></div>
 		<div id="test" ></div> 
@@ -531,7 +541,15 @@
 					name="consumption" readonly>
 			</h5>
 		</div>
-		
+		<div class="col-5">
+			
+		<input type="button"
+			class="btn btn-primary" id="csutomcheck" name="csutomcheck"
+			value="임의 내역 조회" onclick="mymodalshow()" data-toggle="modal"
+			data-target="myModal"> <input type="button"
+			class="btn btn-primary" id="final" name="final" value="결산"
+			onclick="location.href='downloadExcel2'">
+		</div>
 
 
 
@@ -562,10 +580,12 @@
 									<option value="식비">식비</option>
 									<option value="급여">급여</option>
 									<option value="세금">세금</option>
-									<option value="경조사">경조사</option>
-									<option value="취미">취미</option>
-									<option value="취미">취미</option>
-									<option value="취미">취미</option>
+									<option value="월급">월급</option>
+									<option value="용돈">용돈</option>
+									<option value="상여금">상여금</option>
+									<option value="사업수익">사업수익</option>
+									<option value="기타">기타</option>
+									
 								</select>
 							</div>
 							<div class="modal-footer">
@@ -587,7 +607,7 @@
 
 		<div class="modal" id="updatemodal">
 			<form id="updatefrm" name="updatefrm">
-				<div class="modal-dialog">
+				<div class="modal-dialog"> 
 					<div class="modal-content">
 
 						<div class="modal-header">

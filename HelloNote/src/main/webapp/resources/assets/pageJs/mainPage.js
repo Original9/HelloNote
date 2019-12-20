@@ -337,6 +337,8 @@ function makeTranslateWidget(widgetsSeq, menuTypeNumber, xlocation, ylocation,
 	widgetDraggable();
 }
 
+// for commit
+
 // 위젯 생성 함수
 function widgetDropped() {
 	$('#widgetContainer')

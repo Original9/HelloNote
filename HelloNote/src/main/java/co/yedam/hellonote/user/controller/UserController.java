@@ -177,20 +177,18 @@ public class UserController {
 
 	// 프로필이동
 	@RequestMapping("getProfile")
-	public String getProfile(Model model, UserVO vo,HttpServletRequest request) {
+	public String getProfile(Model model, HttpServletRequest request) {
 		//유저 아이디를 받아서 파일명으로 변환.
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		vo.setHellonoteId(userDetails.getUsername());
-		vo = userService.getUser(vo);
-		
+	
 		//검사할 확장자 명들 리스트(대소문자 구분)
 		String[] exts = {"jpg","jpeg","gif","bmp","png","JPG","JPEG","GIF","BMP","PNG"};
-		String filename = vo.getHellonoteId()+"_profileimg.";
-//		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
-		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
+		String filename = userDetails.getUsername()+"_profileimg.";
+		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
+//		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp3/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
 		System.out.println(path);
 //		String path = request.getservletContext().getRe + "/resources/assets/img/user/";
-		
+		UserVO vo = (UserVO)userDetails;
 		//확장자명 검색
 		for(String ext : exts) {
 			File file = new File(path, filename+ext);
@@ -202,7 +200,7 @@ public class UserController {
 		if(vo.getProfileImg() == null) {
 			vo.setProfileImg("defaultImage.jpeg");
 		}
-		System.out.println("방송 여기까지다 ㅄ들아 "+vo.getProfileImg());
+		
 		model.addAttribute("user", vo);
 		return "main/user/profile"; // jsp 경로
 	}
@@ -285,6 +283,7 @@ public class UserController {
 	
 	//이미지 업로드처리.
 	@RequestMapping("actImgSubmit")
+	@ResponseBody
 	public String actImgSubmit(UserVO vo
 										,HttpServletRequest request
 										,MultipartFile uploadFile
@@ -299,7 +298,7 @@ public class UserController {
 
 		
 		System.out.println(uploadFile.getName());
-		
+		String fileName="";
 //		MultipartFile file= vo.getUploadFile();
 		if(!uploadFile.isEmpty() && uploadFile.getSize()>0) {
 			
@@ -307,18 +306,22 @@ public class UserController {
 			String ext =originName.substring(originName.lastIndexOf(".")+1,originName.length());
 			ext=ext.toLowerCase(); //확장자 소문자 변환.
 			System.out.println(ext + " : 대소문자 변경됬냐??");
-			String fileName=userDetails.getUsername()+"_profileimg."+ext;	
+			fileName=userDetails.getUsername()+"_profileimg."+ext;	
 			//String fileName = uploadFile.getOriginalFilename();
 			
 			uploadFile.transferTo(new File(path,fileName));
-			anotherExtRemove(fileName);
+			((UserVO)userDetails).setProfileImg(fileName);
+			anotherExtRemove(fileName,request); //이미지 업로드시 기존에 있는 자기 이미지 삭제
+			SecurityContextHolder.getContext()
+			.setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
 			
 		} //예를들어 jpg이미지 넣고 png 이미지 넣을경우 나오는 파일읽는 문제 남아있음.
 		
-		return "redirect:getProfile";
+		return fileName;
 	}
 	
-	private void anotherExtRemove(String fileName ) {
+	//이미지 업로드시 
+	private void anotherExtRemove(String fileName,HttpServletRequest request ) {
 		
 		System.out.println(fileName + ": 들어온이름");
 		//검사할 확장자 명들 리스트(대소문자 구분)
@@ -326,8 +329,8 @@ public class UserController {
 //				String fileWithOutExt = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());
 				String fileWithOutExt = fileName.substring(0,fileName.lastIndexOf(".")+1);
 				System.out.println(fileWithOutExt + ": 확장자짜른이름");
-//				String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
-				String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
+				String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
+//				String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp3/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
 				System.out.println(path);
 //				String path = request.getservletContext().getRe + "/resources/assets/img/user/";
 				

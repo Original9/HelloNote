@@ -65,6 +65,7 @@ function recipeSearch() {
 											// div에 스타일을 걸기 위해 클래스 추가
 											$(this).parent().addClass(
 													'recipeBox');
+											// commit
 											// 링크 제거
 											$(this).removeAttr('href');
 										})

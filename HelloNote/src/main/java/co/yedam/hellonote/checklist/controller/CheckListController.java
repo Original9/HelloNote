@@ -23,10 +23,11 @@ public class CheckListController {
 	
 	
 	@RequestMapping(value="/checkList")
-	public String getCheckList(HttpServletRequest request, HttpSession session) {
+	public String getCheckList(HttpServletRequest request) {
 		
 		String menuId = request.getParameter("menuId");
-		session.setAttribute("menuId",menuId);
+		request.setAttribute("menuId", menuId);
+//		session.setAttribute("menuId",menuId);
 	
 		return "main/menuList/checkList";
 	}

@@ -59,7 +59,7 @@ public class CrawlingController {
 		log.info(doc.toString());
 		doc.select(".thumbnail_over").remove();
 		doc.select(".vod_label").remove();
-		Element elem = doc.select(".row").first();
+		Element elem = doc.select(".recipe_list").first();
 
 		System.out.println(elem);
 

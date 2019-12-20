@@ -22,30 +22,32 @@ public class RestFulCheckListController {
 
 	@Autowired CheckListService checkListService;
 	
-	@RequestMapping(value="/getCheckList",method=RequestMethod.GET)
+	@RequestMapping("getCheckList")
 	public List<CheckListVO> getCheckList(HttpServletRequest request,Model model, CheckListVO vo){
+		String menuId = request.getParameter("menuId");
+		request.setAttribute("menuId", menuId);
 		UserDetails userDetails =(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		HttpSession session = request.getSession();
 		vo.setHellonoteId(userDetails.getUsername());
-		vo.setMenuId((String)session.getAttribute("menuId"));
 		return checkListService.getCheckList(vo);
 	}
 	
 	@RequestMapping(value="/getCheckListT5",method=RequestMethod.GET)
 	public List<CheckListVO> getCheckListT5(HttpServletRequest request,Model model, CheckListVO vo){
+		String menuId = request.getParameter("menuId");
+		request.setAttribute("menuId", menuId);
 		UserDetails userDetails =(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		HttpSession session = request.getSession();
 		vo.setHellonoteId(userDetails.getUsername());
-		vo.setMenuId((String)session.getAttribute("menuId"));
 		return checkListService.getCheckListT5(vo);
 	}
 	
 	
 	@RequestMapping(value="/insertList",method=RequestMethod.POST ,consumes ="application/json")
 	public CheckListVO insertList(@RequestBody CheckListVO vo,HttpSession session ) {
+//		String menuId = request.getParameter("menuId");
+//		request.setAttribute("menuId", menuId);
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		vo.setMenuId((String)session.getAttribute("menuId"));
 		checkListService.insertList(vo);
 		return vo;
 	}
@@ -53,20 +55,16 @@ public class RestFulCheckListController {
 	
 	@RequestMapping(value="/updateChecklist",method=RequestMethod.PUT ,consumes ="application/json")
 	public CheckListVO updateChecklist(@RequestBody CheckListVO vo,HttpSession session ) {
-		System.out.println("controller");
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		vo.setMenuId((String)session.getAttribute("menuId"));
 		checkListService.updateList(vo);
 		return vo;
 	}
 	
 	@RequestMapping(value="/deleteChecklist",method=RequestMethod.DELETE ,consumes ="application/json")
 	public CheckListVO deleteCheckList(@RequestBody CheckListVO vo,HttpSession session ) {
-		System.out.println("controller");
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		vo.setMenuId((String)session.getAttribute("menuId"));
 		checkListService.deleteList(vo);
 		return vo;
 	}
@@ -75,7 +73,6 @@ public class RestFulCheckListController {
 	public void sortHandling(CheckListVO vo, HttpSession session) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
-		vo.setMenuId((String)session.getAttribute("menuId"));
 		
 //		vo.
 //		#{oldOrder} and #{checklistOrder}

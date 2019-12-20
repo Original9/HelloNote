@@ -2,6 +2,8 @@ $(function() {
 	recipeSearch();
 	recipeModal();
 	recipeMenuInsert();
+	
+	// for commit
 })
 
 // 레시피 재료 체크 리스트에 담아주는 함수

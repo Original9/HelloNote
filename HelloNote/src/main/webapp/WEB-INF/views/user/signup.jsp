@@ -96,7 +96,7 @@
 									id="btnSign">회원가입 완료</button>
 								<button id="user" name="user"
 									class="btn btn-primary btn-block text-white btn-user"
-									type="button" onclick="location.href='/hellonote/'">로그인으로
+									type="button" onclick="location.href='/HelloNote/'">로그인으로
 									이동</button>
 								<br>
 								<hr>

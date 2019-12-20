@@ -72,7 +72,7 @@
 											<!-- <td class="getMySite" align="center" width="200">${mySite.sitePw }</td> -->
 											<td class="getMySite" align="center" width="200">${mySite.siteMemo }</td>
 											<td align="center" width="200"><a
-												href="${mySite.siteAddr }">${mySite.siteAddr }</a></td>
+												href="${mySite.siteAddr }" target="_blank">${mySite.siteAddr }</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>

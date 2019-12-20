@@ -40,7 +40,7 @@
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 <title>AccountBook</title>
 
@@ -61,7 +61,6 @@
 
 		deleteAccountBook();
 
-		resubmitCard();
 		
 		//updateAccountBook();
 		//alert("dd");  
@@ -135,10 +134,12 @@
 			if (fdate > ldate) {
 				alert('날짜 선택이 잘못 되었습니다. 날짜를 다시 확인해 주세요.');
 			}
-// 			else if(searchSelect.val() == ''){
-// 				alert("항목을 선택해 주세요.")
-// 				preventDefault();
-// 			}
+			
+			if(fdate == "" || ldate == ""){
+				alert("날짜를 선택해 주세요");
+				preventDefault();
+			}
+			
 			else {
 				$("#searchfrm")
 				$.ajax({
@@ -505,18 +506,7 @@
 					}
 				});
 			});
-		
-		
-			
-			function resubmitCard(){
-				$("#deleteCard").on('click', function(){
-					
-	 
-		 			location.href="insertCard?menuId="+menuId;
-					//location.href="accountBookNoCard?menuId="+menuId;
 
-				});
-			}
 		
 		
 		
@@ -538,6 +528,8 @@
 
 </head>
 <body>	
+					<input type="hidden" id="deleteCardMenuid" name="deleteCardMenuid" value="${param.menuId}">
+		
 		<div id="chart_div" style="position: absolute; left: 70%; transform: translateX(-70%);" ></div> 
 		<div id="nagetiveChart_div" style="position: absolute; left: 80%; transform: translateX(-80%);"></div>
 		<div id="test" ></div> 
@@ -560,7 +552,6 @@
 			class="btn btn-primary" id="final" name="final" value="결산"
 			onclick="location.href='downloadExcel2'">
 			
-		<button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteCard">재 등 록</button>
 
 
 
@@ -618,7 +609,7 @@
 
 		<div class="modal" id="updatemodal">
 			<form id="updatefrm" name="updatefrm">
-				<div class="modal-dialog">
+				<div class="modal-dialog"> 
 					<div class="modal-content">
 
 						<div class="modal-header">

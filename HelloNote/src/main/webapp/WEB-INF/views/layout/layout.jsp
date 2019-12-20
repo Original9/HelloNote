@@ -289,7 +289,7 @@
 									<button class="btn btn-primary dropdown-toggle"
 										data-toggle="dropdown" aria-expanded="false" type="button">
 										<span class="d-none d-lg-inline mr-2 text-gray-600 small"><sec:authentication property='principal.hellonoteId' />
-										</span><img class="border rounded-circle img-profile" style="width: 80px"
+										</span><img class="border rounded-circle img-profile" style="width: 35px"
 											src="<c:url value="/resources/assets/img/user/"/>/<sec:authentication property='principal.profileImg' />">
 									</button>
 									<div

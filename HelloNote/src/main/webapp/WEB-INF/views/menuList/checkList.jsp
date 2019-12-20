@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <body>
-	<table class="table_layout">
+	<table class="table_layout" style="width: 100%;">
 		<colgroup>
 			<col width="50%">
 			<col width="50%">
@@ -12,10 +12,10 @@
 				<th>
 				
 						<div class="form-row">
-							<div class="col">
-								<input class="form-control" id="submittext" style="width: 700px">
+							<div class="col-10">
+								<input class="form-control" id="submittext" style="width: 100%">
 							</div>
-							<div class="col" align="right">
+							<div class="col-auto" align="right">
 								<input class="btn btn-primary" id="submitCheckList"
 									type="button" value="추가">
 							</div>
@@ -49,7 +49,7 @@
 			<!-- 			</th> -->
 
 			<td>
-				<div class="card shadow mb-4" style="width: 1000">
+				<div class="card shadow mb-4" style="width: 100%">
 					<div class="card-header py-3">
 						<h6 class="text-primary font-weight-bold m-0">Todo List</h6>
 					</div>
@@ -127,33 +127,28 @@
 										.append(
 												'<li class="list-group-item"><div id="checkItem'
 							+ data[idx].checklistSeq
-							+ '" class="row align-items-center no-gutters"><div class="row align-items-center no-gutters" style="width:70%">' //style="width:70%"
+							+ '" class="row align-items-center no-gutters">' //style="width:70%"
 														+ '<div class="col-auto"><div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="formCheck-'
 							+ data[idx].checklistSeq
 							+ '"><label class="custom-control-label" for="formCheck-'
 							+ data[idx].checklistSeq
 							+'"> </label></div></div>'
-														+ '<div class="col-8" id="c-'
+														+ '<div class="col-auto" id="c-'
 							+ data[idx].checklistSeq
 							+ '"><input type="text" class="form-control" name="updatetxt-'
 							+data[idx].checklistSeq
 							+'" value="'
 							+data[idx].checklistMission
 							+'" style="display: none;"> <strong>'+data[idx].checklistMission+'</strong></h6></div>'
+														+ '<div class="col-1" align="right"><input class="btn btn-outline-danger" id="deleteCheckList'
+							+data[idx].checklistSeq
+							+'" type="button" value="X"></div>'
 														+ '</div>'
-														+ '<div class="col-1" align="right"><input class="btn btn-primary" id="deleteCheckList'
-							+data[idx].checklistSeq
-							+'" type="button" value="삭제"></div>'
-														+ '<div class="col-1" align="right"><input class="btn btn-primary" id="uptxtCheckList'
-							+data[idx].checklistSeq
-							+'" type="button" value="수정"></div></div>'
 														+ '</li>')
 
 								var delbutton = $('#deleteCheckList'
 										+ data[idx].checklistSeq);
 								var strcheckbox = $('#formCheck-'
-										+ data[idx].checklistSeq);
-								var uptxtbutton = $('#uptxtCheckList'
 										+ data[idx].checklistSeq);
 								var box = $('#checkItem'
 										+ data[idx].checklistSeq);
@@ -203,15 +198,14 @@
 									inputtxt.show(); //텍스트
 									strongStr.hide();
 									inputtxt.focus();
-// 									uptxtbutton.show();
 									delbutton.show();
 									inputtxt.val(strongStr[0].innerText);
+									
 								});
 
 								inputtxt.focusout(function(e) {
 									delbutton.hide();
 									if(inputtxt.val()==deforetxt){
-// 										uptxtbutton.hide();
 										inputtxt.hide();
 										strongStr.show();	
 									}
@@ -258,7 +252,7 @@
 								//기본 화면설정
 								inputtxt.hide();
 								strongStr.show();
-								uptxtbutton.hide();
+// 								uptxtbutton.hide();
 								delbutton.hide();
 
 							});//end of $.each
@@ -421,6 +415,22 @@
 				}
 			})
 		}
+		
+		/*-------------------------------------------------
+		//수정 텍스트 인풋창 사이징 동적 변경
+		-----------------------------------------------*/
+		function txtboxresizing(){
+			
+		}
+		
+		/*-------------------------------------------------
+		//수정 텍스트 인풋창 사이징 변경
+		-----------------------------------------------*/
+		function txtboxinitresizing(){
+			
+		}
+		
+		
 	</script>
 
 

@@ -160,7 +160,7 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
   events: function (start, end, timezone, callback) {
      $.ajax({
        type: "get",
-       url: "/hellonote/getCalendarList",
+       url: context_path+"/getCalendarList",
        //url: "../resources/data.json",
        // data: {
        //   // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
@@ -236,7 +236,7 @@ var calendar = $('#calendar').fullCalendar({ //일정 클릭시
     //드롭한 일정 업데이트
     $.ajax({// 변경되기전 값이 필요하다.
       type: "post",
-      url: "/hellonote/dgagAnddropReviseCalendar",
+      url: context_path+"/dgagAnddropReviseCalendar",
       dataType:'json',
       data: {"startDate":newDates.startDate, "endDate":newDates.endDate,"title":title},
       success: function (response) {

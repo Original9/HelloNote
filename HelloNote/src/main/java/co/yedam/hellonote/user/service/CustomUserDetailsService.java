@@ -2,6 +2,8 @@ package co.yedam.hellonote.user.service;
 
 import java.io.File;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +18,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	UserDAO dao;
 
+	@Autowired
+	HttpServletRequest request;
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserVO vo = new UserVO();
@@ -32,8 +37,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		String[] exts = {"jpg","jpeg","gif","bmp","png"};
 		String filename = vo.getHellonoteId()+"_profileimg.";
-//		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
-		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
+		String path = request.getSession().getServletContext().getRealPath("resources/assets/img/user");  
+//		String path =  "D:/dev/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp3/wtpwebapps/HelloNote_HelloNote/resources/assets/img/user";
 		System.out.println(path);
 //		String path = request.getservletContext().getRe + "/resources/assets/img/user/";
 		for(String ext : exts) {

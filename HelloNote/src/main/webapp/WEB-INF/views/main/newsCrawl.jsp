@@ -6,9 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-	$('#crawlContainer').find('img').each(function(){
-		$(this).width('100');
-		$(this).height('70');
+	$(function() {
+
+		$('#crawlContainer').find('img').each(function() {
+			$(this).css({
+				'width' : '20%',
+				'height' : 'auto'
+			});
+		})
 	})
 </script>
 </head>

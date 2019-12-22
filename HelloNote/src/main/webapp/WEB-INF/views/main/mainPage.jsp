@@ -18,6 +18,17 @@
 	border: 2px solid #ccc;
 	padding: 10px;
 }
+
+.memo:hover {
+	box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+	-webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+	-moz-box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-o-transform: none;
+	position: absolute;
+	z-index: 2;
+}
 </style>
 <script src="<c:url value="/resources/assets/pageJs/mainPage.js" />"></script>
 </head>

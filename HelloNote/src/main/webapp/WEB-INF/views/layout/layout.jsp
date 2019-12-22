@@ -94,23 +94,23 @@
 					<li class="nav-item defaultMenu" role="presentation"><a
 						class="nav-link active"
 						href="${pageContext.request.contextPath}/translate"><i
-							class="fas fa-tachometer-alt"></i><span id="9">번역기</span></a></li>
+							class="fas fa-language"></i><span id="9">번역기</span></a></li>
 					<li class="nav-item defaultMenu" role="presentation"><a
 						class="nav-link active"
 						href="${pageContext.request.contextPath}/news"><i
-							class="fas fa-tachometer-alt"></i><span id="10">뉴스</span></a></li>
+							class="fas fa-newspaper"></i><span id="10">뉴스</span></a></li>
 					<li class="nav-item defaultMenu" role="presentation"><a
 						class="nav-link active"
 						href="${pageContext.request.contextPath}/recipe"><i
-							class="fas fa-tachometer-alt"></i><span id="10">레시피</span></a></li>
+							class="fas fa-utensils"></i><span id="10">레시피</span></a></li>
 				</ul>
 				<div class="text-center d-none d-md-inline">
 					<button class="btn rounded-circle border-0" id="sidebarToggle"
 						type="button"></button>
 				</div>
-				<div height="500px"></div><br><br><br>
-				<i class="fas fa-plus-square fa-3x" id="addMenu"></i> <i
-					class="fas fa-trash fa-3x" id="deleteMenu"></i><i
+				<div height="500px"></div>
+				<br> <br> <br> <i class="fas fa-plus-square fa-3x"
+					id="addMenu"></i> <i class="fas fa-trash fa-3x" id="deleteMenu"></i><i
 					class="fas fa-edit fa-3x" id="editMenu"></i>
 			</div>
 		</nav>
@@ -191,10 +191,10 @@
 														<th align=center><input type=button id=3 value=3
 															onclick=selectedBtn(3) style="width: 100%; height: 100%;"></th>
 														<th align=center><input type=button id=plus value=+
-															onclick=selectedOp("+")
+															onclick=selectedOp( "+")
 															style="width: 100%; height: 100%;"></th>
 														<th align=left><input type=button id=square value=x^y
-															onclick=selectedOp('^')
+															onclick=selectedOp( '^')
 															style="width: 100%; height: 100%;"></th>
 													</tr>
 
@@ -206,10 +206,10 @@
 														<td align=center><input type=button id=6 value=6
 															onclick=selectedBtn(6) style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=minus
-															value="-" onclick=selectedOp('-')
+															value="-" onclick=selectedOp( '-')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=sin value="sin"
-															onclick=mathText('_sin')
+															onclick=mathText( '_sin')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 													<tr>
@@ -220,10 +220,10 @@
 														<td align=center><input type=button id=9 value=9
 															onclick=selectedBtn(9) style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=multi value=*
-															onclick=selectedOp('*')
+															onclick=selectedOp( '*')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=cos value=cos
-															onclick=mathText('_cos')
+															onclick=mathText( '_cos')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 													<tr>
@@ -233,13 +233,13 @@
 															value=" " onclick=changeSign()
 															style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=dot value="."
-															onclick=selectedBtn('.')
+															onclick=selectedBtn( '.')
 															style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=divide
-															value="/" onclick=selectedOp('/')
+															value="/" onclick=selectedOp( '/')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=tan value="tan"
-															onclick=mathText('_tan')
+															onclick=mathText( '_tan')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 												</table>
@@ -288,8 +288,9 @@
 								<div class="nav-item dropdown no-arrow">
 									<button class="btn btn-primary dropdown-toggle"
 										data-toggle="dropdown" aria-expanded="false" type="button">
-										<span class="d-none d-lg-inline mr-2 text-gray-600 small"><sec:authentication property='principal.hellonoteId' />
-										</span><img class="border rounded-circle img-profile" style="width: 35px"
+										<span class="d-none d-lg-inline mr-2 text-gray-600 small"><sec:authentication
+												property='principal.hellonoteId' /> </span><img
+											class="border rounded-circle img-profile" style="width: 35px"
 											src="<c:url value="/resources/assets/img/user/"/>/<sec:authentication property='principal.profileImg' />">
 									</button>
 									<div
@@ -338,16 +339,13 @@
 	</div>
 	<div class="modal" id="addMenuModal" style="z-index: 6;">
 		<div class="modal-content" id="addMenumodalConent">
-			<table border'0'>
-				<tr>
-					<th>
-						<font color="black">메뉴추가</font>
-					</th>
-					<th>
-						<span class="close" id="addMenuModalClose"
-							style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>						
-					</th>
-				</tr>				
+			<tableborder'0'>
+			<tr>
+				<th><font color="black">메뉴추가</font></th>
+				<th><span class="close" id="addMenuModalClose"
+					style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
+				</th>
+			</tr>
 			</table>
 			<hr>
 			<div>
@@ -572,23 +570,20 @@
 
 
 
-	<div class="modal" id="editMenuModal" style="z-index: 6; ">
+	<div class="modal" id="editMenuModal" style="z-index: 6;">
 		<div class="modal-content" id="editMenuModalConent">
 			<table>
 				<tr>
-					<th>
-						<font color="black">메뉴수정</font>						
+					<th><font color="black">메뉴수정</font></th>
+					<th><span class="close" id="editMenuModalClose"
+						style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
 					</th>
-					<th>
-						<span class="close" id="editMenuModalClose"
-							style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>						
-					</th>
-				</tr>				
+				</tr>
 			</table>
 			<hr>
 			<select id="editMenuSelector" class="menuType"></select> <input
 				type="text" placeholder="메뉴 이름" class="menuName" id="editName">
-			<div align="right" >
+			<div align="right">
 				<button id="editConfirm" class="btn btn-primary addConfirm">수정</button>
 			</div>
 		</div>

@@ -419,6 +419,7 @@ function widgetDraggable() {
 			});
 }
 
+// 위젯 위치 업데이트
 function updateWidgetPosition(i, x, y) {
 	$.ajax({
 		url : 'updateWidget',

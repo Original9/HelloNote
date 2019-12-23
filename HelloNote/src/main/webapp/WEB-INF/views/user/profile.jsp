@@ -59,12 +59,12 @@ var contextpath =  "${pageContext.request.contextPath}";
 										<img id="thumbnail" class="rounded-circle mb-3 mt-4" width="160" height="200" src="resources/assets/img/user/${user.profileImg}"
 										onerror="this.src='resources/assets/img/user/defaultImage.jpeg'"> 
 										<div class="mb-3">
-											<button id="imgsubmit" class="btn btn-primary btn-sm" type="button">업로드</button>
+											<button id="imgsubmit" class="btn btn-primary btn-sm" type="button">사진적용</button>
 										</div>
 									
 										<div class="filebox preview-image"> 
 											<input class="upload-name" value="파일선택" disabled="disabled" hidden="true">
-								 			<label class="btn btn-primary btn-sm" for="input-file">파일가져오기</label> 
+								 			<label class="btn btn-primary btn-sm" for="input-file">사진변경</label> 
 								 			<input type="file" id="input-file" name="inputFile" class="upload-hidden-img" hidden="true"> 
 										</div>
 									</form>

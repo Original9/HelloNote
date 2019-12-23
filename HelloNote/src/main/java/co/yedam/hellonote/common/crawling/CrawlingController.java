@@ -53,12 +53,10 @@ public class CrawlingController {
 		Document doc = Jsoup.connect(url).userAgent(
 				"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36")
 				.get();
-		System.out.println(doc);
 		doc.select(".thumbnail_over").remove();
 		doc.select(".vod_label").remove();
 		Element elem = doc.select(".row").first();
 
-		System.out.println(elem);
 
 		return Collections.singletonMap("list", elem.toString());
 	}

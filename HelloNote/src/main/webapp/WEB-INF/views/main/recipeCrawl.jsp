@@ -30,11 +30,17 @@
 .item {
 	padding: 10px;
 }
+
+#pageTop {
+	z-index : 20;
+}
 </style>
 </head>
 <body>
-	<input type="text" id="recipeKeyword">
-	<button id="recipeSearch">검색</button>
+	<form id="recipeSearchForm">
+		<input type="text" id="recipeKeyword">
+		<button id="recipeSearch" class="btn btn-primary">검색</button>
+	</form>
 	<div id="recipeSearchResult"></div>
 
 	<div class="modal" id="recipeModal" style="z-index: 6;">

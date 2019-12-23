@@ -222,7 +222,7 @@ function makeAccountBook(data, menuId, widgetsSeq, xlocation, ylocation, zindex)
 							+ '" class="draggableWidget" style="position: absolute; left : '
 							+ xlocation + '; top: ' + ylocation + '; z-index: '
 							+ zindex
-							+ '; height: 500px; width: 500px" menuid="'
+							+ '; height: 200px; width: 300px" menuid="'
 							+ menuId + '" align="center"></div>');
 
 	google.load('visualization', '1.0', {
@@ -241,8 +241,8 @@ function drawChart(data, widgetsSeq) {
 	var options = {
 		// 크기 조절 및 배경색상, 배경색은 우리 프로젝트 색상으로 맞춰놓음
 		title : '항목 통계',
-		width : 500,
-		height : 500,
+		width : 300,
+		height : 200,
 		backgroundColor : '#f8f9fc'
 	};
 
@@ -252,7 +252,7 @@ function drawChart(data, widgetsSeq) {
 	chartData.push([ '항목', '비율' ])
 	// 차트에 표시하기 위한 항목과 퍼센트
 	for (i = 0; i < data.length; i++) {
-		var subarr = [ data[i].accountbookPurpose, (data[i].accountbookPercent) ];
+		var subarr = [ data[i].ACCOUNTBOOK_PURPOSE, (data[i].ACCOUNTBOOK_PERCENT) ];
 		chartData.push(subarr);
 	}
 	// 챠트 그리기

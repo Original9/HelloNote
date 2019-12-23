@@ -125,20 +125,26 @@
 	
 		// 특정 기간 / 항목별  / 특정기간+항목으로 내역 조회
 		$("#updatemodal").hide();
-		var searchSelect = $('#searchfrm [name="accountbookPurpose"]');
 		$('#btnIns').on('click', function() {
-			//날짜 잘못 입력했을 시 경고창
+		var searchSelect = $('#searchfrm [name="accountbookPurpose"]');
+			
 
+			//날짜 잘못 입력했을 시 경고창 활성화
 			var fdate = $('#accountbookFirstDate').val();
 			var ldate = $('#accountbookLastDate').val();
 			if (fdate > ldate) {
 				alert('날짜 선택이 잘못 되었습니다. 날짜를 다시 확인해 주세요.');
+				preventDefault();
 			}
 			
+			//날짜 입력 하지 않았을 시 경고창 활성화
 			if(fdate == "" || ldate == ""){
 				alert("날짜를 선택해 주세요");
 				preventDefault();
 			}
+			
+			
+		
 			
 			else {
 				$("#searchfrm")
@@ -309,6 +315,8 @@
 	function updateAccountBook(accountbookSeq, accountbookprice,
 			accountbooktranslation, accountbookdate, accountbookpurpose) {
 
+		console.log(accountbookSeq);
+		
 		$("#updatemodal").show();
 		$('[name="accountbookUpdateDate"]').val(accountbookdate);
 		$('input:text[name="updatePrice"]').val(accountbookprice);
@@ -365,6 +373,7 @@
 			var purpose = $('select[name="updateAccountBookPurpose"]').val();
 			var price = $('input:text[name="updatePrice"]').val();
  			var translation = $('input:text[name="updateTranslation"]').val();
+ 			var $menuId = $("#updateAccountbookMenuid").val();
 			if (price == '') {
 				alert('금액을 입력해 주세요.');
 				preventDefault();
@@ -373,6 +382,8 @@
 				alert('날짜를 입력해 주세요.');
 				preventDefault();
 			}
+			
+
 			
 			if($("#upd-radio-1").prop('checked')){
 				if( price < 0){
@@ -388,10 +399,12 @@
 				}
 			}
 			
-		
 			
 
-			
+ 			if(price == 0){
+ 				alert("금액을 확인해 주세요.");
+ 				preventDefault();
+ 			} 
 			
 			
 			$.ajax({
@@ -404,10 +417,13 @@
 					accountbookPurpose : purpose,
 					accountbookPrice : price,
 					accountbookTranslation : translation,
-					accountbookSeq : accountbookSeq
+					accountbookSeq : accountbookSeq,
+					accountbookMenuid : $menuId
 				}),
 				contentType : 'application/json',
-				success : getAccountBookList
+				success : function(){
+					location.reload();
+				}
 			//date: accountbookUpdateDate, 
 
 			});
@@ -442,9 +458,10 @@
 
 	var options1 = {
 		title : '수입 통계',
-		width : 200,
-		height : 170,
-		backgroundColor : '#f8f9fc'
+		width : 500,
+		height : 300,
+		backgroundColor : '#f8f9fc',
+		colors: ['#2E64FE', '#2E2EFE', '#5858FA', '#5882FA', '#81BEF7']
 
 	};
 	google.setOnLoadCallback(function() {
@@ -477,9 +494,10 @@
 
 		var options2 = {
 				title : '지출 통계',
-				width : 200,
-				height : 170,
+				width : 500,
+				height : 300,
 				backgroundColor : '#f8f9fc',
+				colors: ['#FA5858', '#FF4000', '#DF0101', '#FA5858', '#F78181']
 	 
 			};
 			google.setOnLoadCallback(function() {
@@ -519,7 +537,6 @@
 		
 	 
 		
-		
 	
 	
 
@@ -528,29 +545,24 @@
 
 </head>
 <body>	
-					<input type="hidden" id="deleteCardMenuid" name="deleteCardMenuid" value="${param.menuId}">
-		
-		<div id="chart_div" style="position: absolute; left: 70%; transform: translateX(-70%);" ></div> 
-		<div id="nagetiveChart_div" style="position: absolute; left: 80%; transform: translateX(-80%);"></div>
+					
+					
+		<div id="chart_div" style="position: absolute; left: 75.5%; transform: translateX(-80%);" ></div>
+		<div id="nagetiveChart_div" style="position: absolute; left: 55%; transform: translateX(-55%); row: 60%; transform: translateY(100%);"></div>
 		<div id="test" ></div> 
 	<div class="container">
 		<h3>가 계 부</h3>
 		<div class="col-5">
 			<h5>
 				소 비 금 액: <input type="text" class="form-control" id="consumption"
-					name="consumption" readonly>
+					name="consumption" readonly><br/>
+				계 좌 잔 액 : <input type="text" class="form-control" id="balance"> <br/>
+				최 종 잔 액 : <input type="text" class="form-control" id="finalBalance">
 			</h5>
+
+
 		</div>
-		<div class="col-5">
-			계 좌 잔 액 : <input type="text" class="form-control-sm-7" id="balance">
-		</div>
-		최 종 잔 액 : <input type="text" class="form-control-sm-7"
-			id="finalBalance"> <input type="button"
-			class="btn btn-primary" id="csutomcheck" name="csutomcheck"
-			value="임의 내역 조회" onclick="mymodalshow()" data-toggle="modal"
-			data-target="myModal"> <input type="button"
-			class="btn btn-primary" id="final" name="final" value="결산"
-			onclick="location.href='downloadExcel2'">
+
 			
 
 
@@ -577,7 +589,7 @@
 
 								항목을 선택해 주세요 <select class="custom-select custom-select-sm mb-1"
 									id="accountbookPurpose" name="accountbookPurpose">
-									<option selected value="">항목을 선택해 주세요</option>
+									<option selected value=''>항목을 선택해 주세요</option>
 									<option value="교통비" >교통비</option>
 									<option value="식비">식비</option>
 									<option value="급여">급여</option>
@@ -611,8 +623,10 @@
 			<form id="updatefrm" name="updatefrm">
 				<div class="modal-dialog"> 
 					<div class="modal-content">
-
 						<div class="modal-header">
+									<input type="hidden" id="updateAccountbookMenuid" name="updateAccountbookMenuid"
+										value="${param.menuId}">
+						
 							<h4 class="modal-title">기간 선택</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
@@ -655,8 +669,9 @@
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-danger"
+							<button type="button" class="btn btn-primary"
 								id="updateAccountBookBtn">수정</button>
+	
 							<button type="button" class="btn btn-danger" data-dismiss="modal"
 								onclick="madalhide()">취소</button>
 						</div>
@@ -670,27 +685,31 @@
 
 		<!-- 기본적인 내역 등록 폼 -->
 
-		<form id="submitFrm" name="submitFrm" class="form-inline">
+		<form id="submitFrm" name="submitFrm">
 
 			<input type="hidden" id="accountbookMenuid" name="accountbookMenuid"
 				value="${param.menuId}">
 			<div class="custom-control custom-radio">
-				<input type="radio" name="jb-radio" id="jb-radio-1"
+				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-1"
 					class="custom-control-input"> <label id="incomeLabel"
 					class="custom-control-label" for="jb-radio-1">수입</label>
 			</div>
 			<div class="custom-control custom-radio">
-				<input type="radio" name="jb-radio" id="jb-radio-2"
+				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-2"
 					class="custom-control-input" checked="checked"> <label
 					class="custom-control-label" for="jb-radio-2">지출</label>
 			</div>
-			&nbsp;&nbsp;&nbsp;
-
+			
+	     <div class="col-7">
 			<div class="input-group-addon">날짜</div>
 			<label class="sr-only" for="example-date-input">Date</label> <input
 				class="form-control mb-2 mr-sm-2 mb-sm-0" type="date"
-				id="accountbookDate" name="accountbookDate"> &nbsp;
-
+				id="accountbookDate" name="accountbookDate"> 
+				<!-- 디폴드값 오늘날짜 자동으로 들어감 -->
+				<script>
+				document.getElementById('accountbookDate').valueAsDate = new Date();
+				</script>
+			
 			<!--   <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="Transaction" name="Transaction" placeholder="Transaction"> -->
 			<div class="input-group-addon">항목</div>
 			<select class="custom-select custom-select-sm mb-1"
@@ -702,7 +721,7 @@
 				<option value="경조사" >경조사</option>
 				<option value="취미">취미</option>
 				<option value="기타">기타</option>
-			</select> &nbsp;
+			</select>
 
 
 
@@ -715,13 +734,24 @@
 
 
 
-			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+<!-- 			<div class="input-group mb-2 mr-sm-2 mb-sm-0"> -->
 				<div class="input-group-addon">금액</div>
 				<input type="text" id="accountbookPrice" name="accountbookPrice"
 					class="form-control" aria-label="Amount (to the nearest dollar)"
 					placeholder="금액을 입력하세요.">
+<!-- 			</div> -->
 			</div>
 
+			<br/>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+			
+							 <input type="button"
+			class="btn btn-primary" id="csutomcheck" name="csutomcheck"
+			value="임의 내역 조회" onclick="mymodalshow()" data-toggle="modal"
+			data-target="myModal"> <input type="button"
+			class="btn btn-primary" id="final" name="final" value="결산"
+			onclick="location.href='downloadExcel2'">
 			<button type="button" id="insertBtn" name="insertBtn"
 				class="btn btn-primary">Submit</button>
 		</form>
@@ -734,8 +764,8 @@
 						<th>이용 목적</th>
 						<th>금액</th>
 						<th>비고</th>
-						<th>수정</th>
 						<th>삭제</th>
+						<th>수정</th>
 					</tr>
 				</thead>
 				<tbody id="tbodyList">

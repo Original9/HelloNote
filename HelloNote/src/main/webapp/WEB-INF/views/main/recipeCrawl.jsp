@@ -42,7 +42,7 @@
 			<span class="close" id="recipeModalClose"
 				style="margin-left: auto; margin-right: 0; width: 30px;">&times;</span>
 			<div id="recipeContainer"></div>
-			<select id = "recipeMenuSelector"></select>
+			<select id="recipeMenuSelector"></select>
 			<button id="recipeMenuInsert">재료 담기</button>
 		</div>
 	</div>

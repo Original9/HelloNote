@@ -303,14 +303,14 @@ function makeMemoWidget(data, menuId, widgetsSeq, xlocation, ylocation, zindex) 
 			'<a id="' + widgetsSeq + '" class="memo draggableWidget" menuid="'
 					+ menuId + '" style="position:absolute; left:' + xlocation
 					+ '; top:' + ylocation + '; z-index:' + zindex
-					+ '">  <div> <h3> </h3> </div> </a>').appendTo(
+					+ '">  <div class="text-box"> </div> </a>').appendTo(
 			'#widgetContainer').on('click', function() {
 		if (!flag)
 			location.href = 'memo?menuId=' + menuId;
 	});
 
 	$(data).each(function() {
-		$('a#' + widgetsSeq + ' div h3').append(this.MEMO_TITLE + '<br>');
+		$('a#' + widgetsSeq + ' div').append('<h5>' + this.MEMO_TITLE + '</h5>');
 	})
 
 	widgetDraggable();

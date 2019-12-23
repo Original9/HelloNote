@@ -18,6 +18,12 @@
 	border: 2px solid #ccc;
 	padding: 10px;
 }
+
+.text-box {
+	-webkit-line-clamp: 5;
+	height : 150px;
+	white-space : nowrap;
+}
 </style>
 <script src="<c:url value="/resources/assets/pageJs/mainPage.js" />"></script>
 </head>

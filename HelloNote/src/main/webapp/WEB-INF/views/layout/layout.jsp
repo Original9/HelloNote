@@ -358,7 +358,7 @@
 					<option value="2">메모</option>
 					<option value="4">가계부</option>
 					<option value="6">체크리스트</option>
-					<option value="8">아이디</option>
+					<option value="8">사이트관리</option>
 				</select>
 			</div>
 			<div align="right">

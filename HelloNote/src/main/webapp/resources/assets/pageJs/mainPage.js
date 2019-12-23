@@ -102,7 +102,7 @@ function makeCheckList(data, menuId, widgetsSeq, xlocation, ylocation, zindex) {
 							+ widgetsSeq
 							+ '" menuid="'
 							+ menuId
-							+ '" style="width : 400px; height: 400px; position: absolute; left: '
+							+ '" style="width : 400px;  position: absolute; left: '
 							+ xlocation
 							+ '; top: '
 							+ ylocation

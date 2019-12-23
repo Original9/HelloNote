@@ -158,7 +158,7 @@
 								<div class="nav-item dropdown no-arrow">
 									<button class="btn btn-primary dropdown-toggle"
 										data-toggle="dropdown" aria-expanded="false" type="button">
-										<span class="badge badge-danger badge-counter">3+</span><i
+										<span class="badge badge-danger badge-counter"></span><i
 											class="fas fa-bell fa-fw"></i>
 									</button>
 									<div
@@ -372,8 +372,8 @@
 	<script type="text/javascript">
       var textarea = document.getElementById("messageWindow");
       //var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
-      var webSocket = new WebSocket('ws://39.116.34.40/hellonote/chat.do');
-      //var webSocket = new WebSocket('ws://localhost/hellonote/chat.do');
+      //var webSocket = new WebSocket('ws://39.116.34.40/hellonote/chat.do');
+      var webSocket = new WebSocket('ws://localhost:8080/hellonote/chat.do');
       var inputMessage = document.getElementById('inputMessage');
       
       function enterkey() {
@@ -431,7 +431,8 @@
                                  .append(
                                        "<a class='d-flex align-items-center dropdown-item'>"
                                              + "<div class='dropdown-list-image mr-3' style='float:left'>"
-                                             + " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar5.jpeg'/>>"
+                                             + " <img class='rounded-circle' src=<c:url value='/resources/assets/img/user/"+chatList[i].fromId+"_profileimg.png'/> "
+                                             +"onerror=\"this.src=\'/hellonote/resources/assets/img/user/defaultImage.jpeg\'\">"
                                              + "<div class='bg-success status-indicator'></div>"
                                              + "</div>"
                                              + "<div class='font-weight-bold'>"

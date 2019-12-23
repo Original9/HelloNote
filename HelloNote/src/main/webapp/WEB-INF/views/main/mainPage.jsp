@@ -18,18 +18,35 @@
 	border: 2px solid #ccc;
 	padding: 10px;
 }
+
+.text-box {
+	-webkit-line-clamp: 5;
+	height : 150px;
+	white-space : nowrap;
+}
+
+.memo:hover {
+	box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+	-webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+	-moz-box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-o-transform: none;
+	position: absolute;
+	z-index: 2;
+}
 </style>
 <script src="<c:url value="/resources/assets/pageJs/mainPage.js" />"></script>
 </head>
 
 <body>
 	<!-- admin 권한만 보이게 -->
-	<%-- <h2>
+	<h2>
 		접속 ID:
 		<sec:authentication property="principal.hellonoteId" />
 		접속 GRANT:
 		<sec:authentication property="principal.hGrant" />
-	</h2> --%>
+	</h2>
 	<div id="widgetContainer" style="position: relative;">
 		<div id="deleteHolder" class="deleteHolder"
 			style="position: absolute; bottom: 10px; padding: 60px 0; width: 98.7%; text-align: center;">

@@ -32,6 +32,7 @@ function recipeMenuInsert(){
 			success : function(){
 				// 성공 시 alert
 				alert('재료를 체크리스트 담았습니다');
+				$('#recipeModal').hide();
 			}
 		})
 	})

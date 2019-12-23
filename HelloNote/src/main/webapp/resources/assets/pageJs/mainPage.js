@@ -241,8 +241,8 @@ function drawChart(data, widgetsSeq) {
 	var options = {
 		// 크기 조절 및 배경색상, 배경색은 우리 프로젝트 색상으로 맞춰놓음
 		title : '항목 통계',
-		width : 300,
-		height : 200,
+		width : 600,
+		height : 500,
 		backgroundColor : '#f8f9fc'
 	};
 

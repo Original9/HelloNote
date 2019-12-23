@@ -128,10 +128,13 @@
 		$('#btnIns').on('click', function() {
 		var searchSelect = $('#searchfrm [name="accountbookPurpose"]');
 			
-
+ 
 			//날짜 잘못 입력했을 시 경고창 활성화
 			var fdate = $('#accountbookFirstDate').val();
 			var ldate = $('#accountbookLastDate').val();
+			
+			console.log(fdate);
+			console.log(ldate);
 			if (fdate > ldate) {
 				alert('날짜 선택이 잘못 되었습니다. 날짜를 다시 확인해 주세요.');
 				preventDefault();

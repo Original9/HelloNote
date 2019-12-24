@@ -371,7 +371,6 @@
       var textarea = document.getElementById("messageWindow");
       //var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
       var webSocket = new WebSocket('wss://39.116.34.40:8443/hellonote/chat.do');
-      //var webSocket = new WebSocket('ws://localhost:8080/hellonote/chat.do');
       var inputMessage = document.getElementById('inputMessage');
       
       function enterkey() {

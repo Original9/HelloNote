@@ -288,7 +288,7 @@
 								<div class="nav-item dropdown no-arrow">
 									<button class="btn btn-primary dropdown-toggle"
 										data-toggle="dropdown" aria-expanded="false" type="button">
-										<span class="d-none d-lg-inline mr-2 text-gray-600 small"><sec:authentication
+										<span class="d-none d-lg-inline mr-2 text-white-600 small"><sec:authentication
 												property='principal.hellonoteId' /> </span><img
 											class="border rounded-circle img-profile" style="width: 35px"
 											src="<c:url value="/resources/assets/img/user/"/>/<sec:authentication property='principal.profileImg' />">
@@ -334,7 +334,7 @@
 				</div>
 			</footer>
 		</div>
-		<a class="border rounded d-inline scroll-to-top" href="#page-top"><i
+		<a id="pageTop" class="border rounded d-inline scroll-to-top" href="#page-top"><i
 			class="fas fa-angle-up"></i></a>
 	</div>
 	<div class="modal" id="addMenuModal" style="z-index: 6;">
@@ -358,7 +358,7 @@
 					<option value="2">메모</option>
 					<option value="4">가계부</option>
 					<option value="6">체크리스트</option>
-					<option value="8">아이디</option>
+					<option value="8">사이트관리</option>
 				</select>
 			</div>
 			<div align="right">
@@ -370,8 +370,8 @@
 	<script type="text/javascript">
       var textarea = document.getElementById("messageWindow");
       //var webSocket = new WebSocket('ws://localhost/app/BroadcastingServer');
-      var webSocket = new WebSocket('ws://39.116.34.40/hellonote/chat.do');
-      //var webSocket = new WebSocket('ws://localhost:8080/hellonote/chat.do');
+      var webSocket = new WebSocket('wss://39.116.34.40:8443/hellonote/chat.do');
+      //var webSocket = new WebSocket('ws://localhost/hellonote/chat.do');
       var inputMessage = document.getElementById('inputMessage');
       
       function enterkey() {
@@ -474,7 +474,8 @@
                   .append(
                         "<a class='d-flex align-items-center dropdown-item'>"
                               + "<div class='dropdown-list-image mr-3' style='float:left'>"
-                              + " <img class='rounded-circle' src=<c:url value='/resources/assets/img/avatars/avatar5.jpeg'/>>"
+                              + " <img class='rounded-circle' src=<c:url value='/resources/assets/img/user/"+result.fromId+"_profileimg.png'/> "
+                              +"onerror=\"this.src=\'/hellonote/resources/assets/img/user/defaultImage.jpeg\'\">"
                               + "<div class='bg-success status-indicator'></div>"
                               + "</div>"
                               + "<div class='font-weight-bold'>"

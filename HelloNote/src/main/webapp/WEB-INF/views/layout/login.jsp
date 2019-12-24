@@ -35,7 +35,7 @@
 							<div class="col-lg-6">
 								<div class="p-5">
 									<div class="text-center">
-										<h4 class="text-dark mb-4">Hello Note !</h4>
+										<h4 class="text-dark mb-4">Hello Note !!</h4>
 									</div> 
 									<form id="user" name="user" class="user" action="processLogin"
 										method="POST">

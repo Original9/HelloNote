@@ -22,7 +22,7 @@ public class NaverService {
 
 	private final static String CLIENT_ID = "0E1d9yjbXA7_tKyRjWOl";
 	private final static String CLIENT_SECRET = "hFqjKRxJwX";
-	private final static String REDIRECT_URI = "http://39.116.34.40/HelloNote/mainPage/Callback"; //MessageUtil.getMessage("REDIRECT_URI");
+	private final static String REDIRECT_URI = "https://39.116.34.40:8443/hellonote/mainPage/Callback"; //MessageUtil.getMessage("REDIRECT_URI");
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL */
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";

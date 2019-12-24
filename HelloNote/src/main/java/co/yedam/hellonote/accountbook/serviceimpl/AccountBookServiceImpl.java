@@ -11,6 +11,15 @@ import co.yedam.hellonote.accountbook.dao.AccountBookDAO;
 import co.yedam.hellonote.accountbook.service.AccountBookService;
 import co.yedam.hellonote.accountbook.vo.AccountBookVO;
 
+/**
+ * 
+ * 
+ * @author User
+ * @AccountBooks management class
+ *
+ */
+
+
 
 @Service
 public class AccountBookServiceImpl implements AccountBookService {
@@ -19,7 +28,19 @@ public class AccountBookServiceImpl implements AccountBookService {
 	AccountBookDAO dao;
 
 	
-	//전체 내역 조회
+	
+	/**
+	 *  DB class
+	 */
+	
+	/**
+	 *  select list
+	 *  @return List
+	 *  @param AccountBook VO
+	 *  
+	 *  
+	 */
+	
 	@Override
 	public List<AccountBookVO> getAccountBookList(AccountBookVO vo) {
 

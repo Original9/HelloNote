@@ -5,44 +5,28 @@
 <!DOCTYPE html>
 <html>
 <head>
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
-	type="text/css" />
-<style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-/*  input[type=text]{  */
-/*    width: 100%;  */
-/*    padding: 12px 20px;  */
-/*    margin: 8px 0;  */
-/*    display: inline-block;  */
-/*    border: 1px solid #ccc;  */
-/*    border-radius: 4px;  */
-/*    box-sizing: border-box;  */
-/*  }  */
-</style>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" />
+
 <!-- <link rel="stylesheet" -->
 <!--    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"> -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="<c:url value="/resources/assets/js/json.min.js"/>"></script>
 <!-- 구글 차트  -->
 <script src="//www.google.com/jsapi"></script>
 
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"> -->
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 
 <!--  data tables -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
 
-<title>AccountBook</title>
+<title>AccountBook</title> 
 
 
 
@@ -170,7 +154,7 @@
 
 	//목록 조회 결과 처리
 	function getAccountBookListHandler(data) {
-		$("tbody").empty();
+		$("#tbodyList").empty();
 		//List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
 		var sum = 0;
 		
@@ -415,7 +399,7 @@
 				data : JSON.stringify({
 					accountbookDate : date,
 					accountbookPurpose : purpose,
-					accountbookPrice : price,
+					accountbookPrice : $('input:text[name="updatePrice"]').val(),
 					accountbookTranslation : translation,
 					accountbookSeq : accountbookSeq,
 					accountbookMenuid : $menuId
@@ -687,16 +671,21 @@
 
 			<input type="hidden" id="accountbookMenuid" name="accountbookMenuid"
 				value="${param.menuId}">
-			<div class="custom-control custom-radio">
-				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-1"
+				
+	 
+			<div class="custom-control custom-radio custom-control-inline">
+				&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-1"
 					class="custom-control-input"> <label id="incomeLabel"
 					class="custom-control-label" for="jb-radio-1">수입</label>
 			</div>
-			<div class="custom-control custom-radio">
-				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-2"
+	     
+			<div class="custom-control custom-radio custom-control-inline">
+				<input type="radio" name="jb-radio" id="jb-radio-2"
 					class="custom-control-input" checked="checked"> <label
 					class="custom-control-label" for="jb-radio-2">지출</label>
 			</div>
+			
+			
 			
 	     <div class="col-7">
 			<div class="input-group-addon">날짜</div>
@@ -742,17 +731,17 @@
 
 			<br/>
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
 			
 							 <input type="button"
 			class="btn btn-primary" id="csutomcheck" name="csutomcheck"
 			value="임의 내역 조회" onclick="mymodalshow()" data-toggle="modal"
 			data-target="myModal"> <input type="button"
-			class="btn btn-primary" id="final" name="final" value="결산"
+			class="btn btn-primary" id="final" name="final" value="엑셀다운로드"
 			onclick="location.href='downloadExcel2'">
 			<button type="button" id="insertBtn" name="insertBtn"
-				class="btn btn-primary">Submit</button>
-		</form>
+				class="btn btn-primary">등록</button>
+		</form> 
 		<div id="accountBookList">
 			<table class="table" id="accountBookTable">
 				<thead>

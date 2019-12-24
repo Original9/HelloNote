@@ -6,9 +6,7 @@
 <html>
 <head>
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
-	type="text/css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" />
 <style>
 
 /*  input[type=text]{  */
@@ -29,17 +27,13 @@
 <script src="//www.google.com/jsapi"></script>
 
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"> -->
 
 <!--  data tables -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script> -->
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
 
 <title>AccountBook</title>
@@ -173,7 +167,7 @@
 
 	//목록 조회 결과 처리
 	function getAccountBookListHandler(data) {
-		$("tbody").empty();
+		$("#tbodyList").empty();
 		//List를 반복문으로 하나씩 찾아서 td태그 추가하면서 데이터 출력
 		var sum = 0;
 		
@@ -748,13 +742,13 @@
 
 			<br/>
 			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 			
 							 <input type="button"
 			class="btn btn-primary" id="csutomcheck" name="csutomcheck"
 			value="임의 내역 조회" onclick="mymodalshow()" data-toggle="modal"
 			data-target="myModal"> <input type="button"
-			class="btn btn-primary" id="final" name="final" value="결산"
+			class="btn btn-primary" id="final" name="final" value="엑셀다운로드"
 			onclick="location.href='downloadExcel2'">
 			<button type="button" id="insertBtn" name="insertBtn"
 				class="btn btn-primary">등록</button>

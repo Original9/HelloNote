@@ -82,7 +82,7 @@
 									<button class="btn btn-primary" type="button"
 										onclick="fn_userDel()">삭제</button>
 									<button class="btn btn-primary" type="button"
-										onclick="location.href='downloadExcel'">엑셀 다운로드</button>
+										onclick="location.href='downloadExcel?menuId=${menuId}'">엑셀 다운로드</button>
 								</div>
 							</div>
 						</form>

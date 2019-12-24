@@ -687,16 +687,21 @@
 
 			<input type="hidden" id="accountbookMenuid" name="accountbookMenuid"
 				value="${param.menuId}">
-			<div class="custom-control custom-radio">
-				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-1"
+				
+	 
+			<div class="custom-control custom-radio custom-control-inline">
+				&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-1"
 					class="custom-control-input"> <label id="incomeLabel"
 					class="custom-control-label" for="jb-radio-1">수입</label>
 			</div>
-			<div class="custom-control custom-radio">
-				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-2"
+	     
+			<div class="custom-control custom-radio custom-control-inline">
+				<input type="radio" name="jb-radio" id="jb-radio-2"
 					class="custom-control-input" checked="checked"> <label
 					class="custom-control-label" for="jb-radio-2">지출</label>
 			</div>
+			
+			
 			
 	     <div class="col-7">
 			<div class="input-group-addon">날짜</div>
@@ -751,8 +756,8 @@
 			class="btn btn-primary" id="final" name="final" value="결산"
 			onclick="location.href='downloadExcel2'">
 			<button type="button" id="insertBtn" name="insertBtn"
-				class="btn btn-primary">Submit</button>
-		</form>
+				class="btn btn-primary">등록</button>
+		</form> 
 		<div id="accountBookList">
 			<table class="table" id="accountBookTable">
 				<thead>

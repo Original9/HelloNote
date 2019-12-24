@@ -93,6 +93,8 @@ public class AccountBookController {
 	@RequestMapping(value = "/updateAccountBook.json", consumes = "application/json", method = RequestMethod.PUT)
 	@ResponseBody
 	public AccountBookVO updateAccountbook(@RequestBody AccountBookVO vo, Model model, HttpSession session) {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println(vo.getAccountbookPrice());
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		vo.setHellonoteId(userDetails.getUsername());
 		//vo.setMenuId((String)session.getAttribute("menuId"));

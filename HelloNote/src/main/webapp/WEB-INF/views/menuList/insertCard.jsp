@@ -15,16 +15,15 @@
 </style>
 <!-- <link rel="stylesheet" -->
 <!--    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"> -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="<c:url value="/resources/assets/js/json.min.js"/>"></script>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<%-- <script src="<c:url value="/resources/assets/js/json.min.js"/>"></script> --%>
 <!-- 구글 차트  -->
 <script src="//www.google.com/jsapi"></script>
 
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+<!-- <meta name="viewport" -->
+<!-- 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"> -->
 
 <!--  data tables -->
 <script

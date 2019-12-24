@@ -40,7 +40,7 @@
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
 
 <title>AccountBook</title>
 
@@ -409,6 +409,7 @@
  				preventDefault();
  			} 
 			
+ 			console.log(price)
 			
 			$.ajax({
 				url : "updateAccountBook.json",
@@ -418,7 +419,7 @@
 				data : JSON.stringify({
 					accountbookDate : date,
 					accountbookPurpose : purpose,
-					accountbookPrice : price,
+					accountbookPrice : $('input:text[name="updatePrice"]').val(),
 					accountbookTranslation : translation,
 					accountbookSeq : accountbookSeq,
 					accountbookMenuid : $menuId
@@ -549,18 +550,18 @@
 </head>
 <body>	
 					
-					
-		<div id="chart_div" style="position: absolute; left: 75.5%; transform: translateX(-80%);" ></div>
-		<div id="nagetiveChart_div" style="position: absolute; left: 55%; transform: translateX(-55%); row: 60%; transform: translateY(100%);"></div>
-		<div id="test" ></div> 
-	<div class="container">
-		<h3>가 계 부</h3>
+					      
+		<div id="chart_div" style="position: absolute; left: 77.5%; transform: translateX(-80%);" ></div>
+		<div id="nagetiveChart_div" style="position: absolute; left: 57%; transform: translateX(-55%); row: 60%; transform: translateY(100%);"></div>
+		<div id="test" ></div>   
+	<div class="container"> 
+		<h3>가 계 부</h3> 
 		<div class="col-5">
 			<h5>
 				소 비 금 액: <input type="text" class="form-control" id="consumption"
 					name="consumption" readonly><br/>
-				계 좌 잔 액 : <input type="text" class="form-control" id="balance"> <br/>
-				최 종 잔 액 : <input type="text" class="form-control" id="finalBalance">
+				계 좌 잔 액 : <input type="text" class="form-control" id="balance" readonly> <br/>
+				최 종 잔 액 : <input type="text" class="form-control" id="finalBalance" readonly>
 			</h5>
 
 
@@ -692,17 +693,17 @@
 
 			<input type="hidden" id="accountbookMenuid" name="accountbookMenuid"
 				value="${param.menuId}">
-			<div class="custom-control custom-radio">
-				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-1"
+				
+			<div class="custom-control custom-radio custom-control-inline">
+				&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-1"
 					class="custom-control-input"> <label id="incomeLabel"
 					class="custom-control-label" for="jb-radio-1">수입</label>
 			</div>
-			<div class="custom-control custom-radio">
-				&nbsp;&nbsp;<input type="radio" name="jb-radio" id="jb-radio-2"
+			<div class="custom-control custom-radio custom-control-inline">
+				<input type="radio" name="jb-radio" id="jb-radio-2"
 					class="custom-control-input" checked="checked"> <label
 					class="custom-control-label" for="jb-radio-2">지출</label>
-			</div>
-			
+		</div>
 	     <div class="col-7">
 			<div class="input-group-addon">날짜</div>
 			<label class="sr-only" for="example-date-input">Date</label> <input
@@ -756,7 +757,7 @@
 			class="btn btn-primary" id="final" name="final" value="결산"
 			onclick="location.href='downloadExcel2'">
 			<button type="button" id="insertBtn" name="insertBtn"
-				class="btn btn-primary">Submit</button>
+				class="btn btn-primary">등록</button>
 		</form>
 		<div id="accountBookList">
 			<table class="table" id="accountBookTable">

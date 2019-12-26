@@ -26,7 +26,6 @@
 
 </head>
 <body>
-	<div class="container">
 		<div id="wrapper">
 			<div class="container-fluid">
 				<h3 class="text-dark mb-4">사이트관리</h3>
@@ -90,7 +89,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 
 	<!-- 입력 모달 창 -->
 	<div class="modal" id="mySiteModal">

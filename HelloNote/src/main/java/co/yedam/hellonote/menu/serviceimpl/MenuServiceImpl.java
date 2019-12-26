@@ -49,7 +49,8 @@ public class MenuServiceImpl implements MenuService{
 			vo.setMenuTableName("d_day");
 			break;
 		case 4:
-			vo.setMenuTableName("mybudget");
+			// commit
+			vo.setMenuTableName("accountbook");
 			break;
 		case 5:
 			vo.setMenuTableName("bankaccount");

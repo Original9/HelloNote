@@ -191,10 +191,10 @@
 														<th align=center><input type=button id=3 value=3
 															onclick=selectedBtn(3) style="width: 100%; height: 100%;"></th>
 														<th align=center><input type=button id=plus value=+
-															onclick=selectedOp( "+")
+															onclick=selectedOp("+")
 															style="width: 100%; height: 100%;"></th>
 														<th align=left><input type=button id=square value=x^y
-															onclick=selectedOp( '^')
+															onclick=selectedOp('^')
 															style="width: 100%; height: 100%;"></th>
 													</tr>
 
@@ -206,10 +206,10 @@
 														<td align=center><input type=button id=6 value=6
 															onclick=selectedBtn(6) style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=minus
-															value="-" onclick=selectedOp( '-')
+															value="-" onclick=selectedOp('-')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=sin value="sin"
-															onclick=mathText( '_sin')
+															onclick=mathText('_sin')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 													<tr>
@@ -220,10 +220,10 @@
 														<td align=center><input type=button id=9 value=9
 															onclick=selectedBtn(9) style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=multi value=*
-															onclick=selectedOp( '*')
+															onclick=selectedOp('*')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=cos value=cos
-															onclick=mathText( '_cos')
+															onclick=mathText("_cos")
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 													<tr>
@@ -233,13 +233,13 @@
 															value=" " onclick=changeSign()
 															style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=dot value="."
-															onclick=selectedBtn( '.')
+															onclick=selectedBtn('.')
 															style="width: 100%; height: 100%;"></td>
 														<td align=center><input type=button id=divide
-															value="/" onclick=selectedOp( '/')
+															value="/" onclick=selectedOp('/')
 															style="width: 100%; height: 100%;"></td>
 														<td align=left><input type=button id=tan value="tan"
-															onclick=mathText( '_tan')
+															onclick=mathText('_tan')
 															style="width: 100%; height: 100%;"></td>
 													</tr>
 												</table>

@@ -26,7 +26,6 @@
 
 </head>
 <body>
-	<div class="container">
 		<div id="wrapper">
 			<div class="container-fluid">
 				<h3 class="text-dark mb-4">사이트관리</h3>
@@ -82,7 +81,7 @@
 									<button class="btn btn-primary" type="button"
 										onclick="fn_userDel()">삭제</button>
 									<button class="btn btn-primary" type="button"
-										onclick="location.href='downloadExcel'">엑셀 다운로드</button>
+										onclick="location.href='downloadExcel?menuId=${menuId}'">엑셀 다운로드</button>
 								</div>
 							</div>
 						</form>
@@ -90,7 +89,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 
 	<!-- 입력 모달 창 -->
 	<div class="modal" id="mySiteModal">

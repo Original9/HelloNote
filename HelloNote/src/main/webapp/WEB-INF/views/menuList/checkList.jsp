@@ -91,6 +91,7 @@
 			getCheckList() //내가 해야할것을 가져온다.
 			submitCheck()//추가버튼 눌렀을때 추가하는 이벤트.
 			sorting(); //정렬처리.
+			
 		});
 
 		/*------------------------------------------------
@@ -256,6 +257,8 @@
 								delbutton.hide();
 
 							});//end of $.each
+							$('#submittext').val("");
+							//clear submittext
 
 		}//end of function appendCheckList
 

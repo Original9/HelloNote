@@ -545,8 +545,8 @@
 <body>	
 					
 					      
-		<div id="chart_div" style="position: absolute; left: 77.5%; transform: translateX(-80%);" ></div>
-		<div id="nagetiveChart_div" style="position: absolute; left: 57%; transform: translateX(-55%); row: 60%; transform: translateY(100%);"></div>
+		<div id="chart_div" style="position: absolute; left: 78.5%; transform: translateX(-80%);" ></div>
+		<div id="nagetiveChart_div" style="position: absolute; left: 58%; transform: translateX(-55%); row: 60%; transform: translateY(100%);"></div>
 		<div id="test" ></div>   
 	<div class="container"> 
 		<h3>가 계 부</h3> 

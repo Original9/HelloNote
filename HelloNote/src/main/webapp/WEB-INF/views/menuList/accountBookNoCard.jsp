@@ -122,10 +122,10 @@
 			}
 			
 			//날짜 입력 하지 않았을 시 경고창 활성화
-			if(fdate == "" || ldate == ""){
-				alert("날짜를 선택해 주세요");
-				preventDefault();
-			}
+// 			if(fdate == "" || ldate == ""){
+// 				alert("날짜를 선택해 주세요");
+// 				preventDefault();
+// 			}
 			
 			
 		

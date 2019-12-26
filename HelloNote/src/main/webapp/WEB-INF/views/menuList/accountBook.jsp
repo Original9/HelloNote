@@ -552,7 +552,7 @@
 		<h3>가 계 부</h3> 
 		<div class="col-5">
 			<h5>
-				소 비 금 액: <input type="text" class="form-control" id="consumption"
+				합 계: <input type="text" class="form-control" id="consumption"
 					name="consumption" readonly><br/>
 				계 좌 잔 액 : <input type="text" class="form-control" id="balance" readonly> <br/>
 				최 종 잔 액 : <input type="text" class="form-control" id="finalBalance" readonly>
